@@ -1,45 +1,48 @@
 #####################################################
-# Creates data frame of parameter values to input   #
+# Accepts .csv of parameter values                  #
+# Assigns values to objects in environment          #
 # STILL IN DEVELOPMENT                              #
 #                                                   #
 # By: Michael J. McCann                             #
 # Last Updated: 2/26/2014                           #
 ##################################################### 
-
-input <- read.csv("input.csv")
-
-simulation <- 1 
-
-height <- input[simulation,1]          # height of the grid
-width  <- input[simulation,2]           # width of the grid
-
-timesteps <- input[simulation,3]       # number of time-steps (+1, actually) in a "growing season" 
-years <- input[simulation,4]           # number of years ("growing seasons") to run the model 
-
-wind_prob <- input[simulation,5]  # proportion of time steps where wind knocks a row/col off of the grid 
-
-wind_directions <- c(as.character(input[simulation,6]),as.character(input[simulation,7]),as.character(input[simulation,8]),as.character(input[simulation,9]))
-
-buffer <- input[simulation,10]            # distance from focal cell - used to count up the number of neighbors 
-
-numbspecies <- input[simulation,11]
-
-initial01 <- input[simulation,12]        # initial number of individuals - species 01
-initial02 <- input[simulation,13]        # initial number of individuals - species 02
-initial03 <- input[simulation,14]        # initial number of individuals - species 03
-initial04 <- input[simulation,15]        # initial number of individuals - species 04
-
-agedead01 <- input[simulation,16]        # average age that individuals die at - species 01
-agedead02 <- input[simulation,17]        # average age that individuals die at - species 02
-agedead03 <- input[simulation,18]        # average age that individuals die at - species 03
-agedead04 <- input[simulation,19]        # average age that individuals die at - species 04
-
-maxrgr01 <- input[simulation,20]      # maximum relative growth rate - species 01
-maxrgr02 <- input[simulation,21]      # maximum relative growth rate - species 02
-maxrgr03 <- input[simulation,22]      # maximum relative growth rate - species 03
-maxrgr04 <- input[simulation,23]      # maximum relative growth rate - species 04
-
-overwinter01 <- input[simulation,24]   # proportion of individuals that overwinter - species 01  
-overwinter02 <- input[simulation,25]   # proportion of individuals that overwinter - species 02
-overwinter03 <- input[simulation,26]   # proportion of individuals that overwinter - species 03  
-overwinter04 <- input[simulation,27]   # proportion of individuals that overwinter - species 04
+INPUT <- function(x){
+  parameters <- read.csv("input.csv")
+  
+  simulnumb <- x 
+  
+  assign("height", parameters[simulnumb,1], envir = .GlobalEnv)  # height of the grid
+  width  <- parameters[simulnumb,2]           # width of the grid
+  
+  timesteps <- parameters[simulnumb,3]       # number of time-steps (+1, actually) in a "growing season" 
+  years <- parameters[simulnumb,4]           # number of years ("growing seasons") to run the model 
+  
+  wind_prob <- parameters[simulnumb,5]  # proportion of time steps where wind knocks a row/col off of the grid 
+  
+  wind_directions <- c(as.character(parameters[simulnumb,6]),as.character(parameters[simulnumb,7]),as.character(parameters[simulnumb,8]),as.character(parameters[simulnumb,9]))
+  assign("wind_directions", c(as.character(parameters[simulnumb,6]),as.character(parameters[simulnumb,7]),as.character(parameters[simulnumb,8]),as.character(parameters[simulnumb,9])), envir = .GlobalEnv)
+  
+  buffer <- parameters[simulnumb,10]            # distance from focal cell - used to count up the number of neighbors 
+  
+  numbspecies <- parameters[simulnumb,11]
+  
+  initial01 <- parameters[simulnumb,12]        # initial number of individuals - species 01
+  initial02 <- parameters[simulnumb,13]        # initial number of individuals - species 02
+  initial03 <- parameters[simulnumb,14]        # initial number of individuals - species 03
+  initial04 <- parameters[simulnumb,15]        # initial number of individuals - species 04
+  
+  agedead01 <- parameters[simulnumb,16]        # average age that individuals die at - species 01
+  agedead02 <- parameters[simulnumb,17]        # average age that individuals die at - species 02
+  agedead03 <- parameters[simulnumb,18]        # average age that individuals die at - species 03
+  agedead04 <- parameters[simulnumb,19]        # average age that individuals die at - species 04
+  
+  maxrgr01 <- parameters[simulnumb,20]      # maximum relative growth rate - species 01
+  maxrgr02 <- parameters[simulnumb,21]      # maximum relative growth rate - species 02
+  maxrgr03 <- parameters[simulnumb,22]      # maximum relative growth rate - species 03
+  maxrgr04 <- parameters[simulnumb,23]      # maximum relative growth rate - species 04
+  
+  overwinter01 <- parameters[simulnumb,24]   # proportion of individuals that overwinter - species 01  
+  overwinter02 <- parameters[simulnumb,25]   # proportion of individuals that overwinter - species 02
+  overwinter03 <- parameters[simulnumb,26]   # proportion of individuals that overwinter - species 03  
+  overwinter04 <- parameters[simulnumb,27]   # proportion of individuals that overwinter - species 04
+}
