@@ -1,0 +1,789 @@
+DATE: 01/31/2013
+Functions: STEP9(), START3(), BLANK, OUTPUT()
+initial01<-10        # initial number of individuals - species 01
+initial02<-10        # initial number of individuals - species 02
+initial03<-10        # initial number of individuals - species 03
+initial04<-10        # initial number of individuals - species 04
+timesteps<-150        # number of time-steps (+1, actually) in a "growing season" 
+years<-10             # number of years ("growing seasons") to run the model 
+height<-100          # height of the grid
+width<-625           # width of the grid 
+agedead01<-35        # average age that individuals die at - species 01
+agedead02<-35        # average age that individuals die at - species 02
+agedead03<-35        # average age that individuals die at - species 03
+agedead04<-35        # average age that individuals die at - species 04
+maxrgr01<-0.4        # maximum relative growth rate - species 01
+maxrgr02<-0.35       # maximum relative growth rate - species 02
+maxrgr03<-0.25       # maximum relative growth rate - species 03
+maxrgr04<-0.2        # maximum relative growth rate - species 04
+overwinter01<-0.01   # proportion of individuals that overwinter - species 01  
+overwinter02<-0.05   # proportion of individuals that overwinter - species 02
+overwinter03<-0.075  # proportion of individuals that overwinter - species 03  
+overwinter04<-0.1    # proportion of individuals that overwinter - species 04
+buffer<-3            # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+wind_prob<-0.25 # proportion of time steps where wind knocks a row/col off of the grid 
+wind_directions<-c("U","L")  # UP, DOWN, LEFT, RIGHT
+system.time(LIST<-STEP9()) 
+user  system elapsed 
+3675.28   20.81 3734.55
+system.time(OUTPUT())
+# I forgot to time it 
+
+DATE: 01/31/2013
+Functions: STEP9(), START3(), BLANK, OUTPUT()
+initial01<-10        # initial number of individuals - species 01
+initial02<-10        # initial number of individuals - species 02
+initial03<-10        # initial number of individuals - species 03
+initial04<-10        # initial number of individuals - species 04
+timesteps<-150        # number of time-steps (+1, actually) in a "growing season" 
+years<-10             # number of years ("growing seasons") to run the model 
+height<-625          # height of the grid
+width<-100           # width of the grid 
+agedead01<-35        # average age that individuals die at - species 01
+agedead02<-35        # average age that individuals die at - species 02
+agedead03<-35        # average age that individuals die at - species 03
+agedead04<-35        # average age that individuals die at - species 04
+maxrgr01<-0.4        # maximum relative growth rate - species 01
+maxrgr02<-0.35       # maximum relative growth rate - species 02
+maxrgr03<-0.25       # maximum relative growth rate - species 03
+maxrgr04<-0.2        # maximum relative growth rate - species 04
+overwinter01<-0.01   # proportion of individuals that overwinter - species 01  
+overwinter02<-0.05   # proportion of individuals that overwinter - species 02
+overwinter03<-0.075  # proportion of individuals that overwinter - species 03  
+overwinter04<-0.1    # proportion of individuals that overwinter - species 04
+buffer<-3            # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+wind_prob<-0.25 # proportion of time steps where wind knocks a row/col off of the grid 
+wind_directions<-c("U","L")  # UP, DOWN, LEFT, RIGHT
+system.time(LIST<-STEP9()) 
+user  system elapsed 
+3648.37   25.73 3710.18 
+system.time(OUTPUT())
+user  system elapsed 
+201.82   12.07  275.28 
+
+DATE: 01/31/2013
+Functions: STEP9(), START3(), BLANK, OUTPUT()
+initial01<-40        # initial number of individuals - species 01
+initial02<-0        # initial number of individuals - species 02
+initial03<-0        # initial number of individuals - species 03
+initial04<-0        # initial number of individuals - species 04
+timesteps<-150        # number of time-steps (+1, actually) in a "growing season" 
+years<-10             # number of years ("growing seasons") to run the model 
+height<-250          # height of the grid
+width<-250           # width of the grid 
+agedead01<-35        # average age that individuals die at - species 01
+agedead02<-0        # average age that individuals die at - species 02
+agedead03<-0        # average age that individuals die at - species 03
+agedead04<-0        # average age that individuals die at - species 04
+maxrgr01<-0.4        # maximum relative growth rate - species 01
+maxrgr02<-0       # maximum relative growth rate - species 02
+maxrgr03<-0       # maximum relative growth rate - species 03
+maxrgr04<-0        # maximum relative growth rate - species 04
+overwinter01<-0.1   # proportion of individuals that overwinter - species 01  
+overwinter02<-0   # proportion of individuals that overwinter - species 02
+overwinter03<-0  # proportion of individuals that overwinter - species 03  
+overwinter04<-0    # proportion of individuals that overwinter - species 04
+buffer<-3            # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+wind_prob<-0.25 # proportion of time steps where wind knocks a row/col off of the grid 
+wind_directions<-c("U","L")  # UP, DOWN, LEFT, RIGHT
+system.time(LIST<-STEP9()) 
+user  system elapsed 
+1758.85   25.93 1820.86 
+system.time(OUTPUT())
+# I messed up and ending timing early 
+
+DATE: 01/30/2013
+Functions: STEP9(), START3(), BLANK, OUTPUT()
+initial01<-10        # initial number of individuals - species 01
+initial02<-10        # initial number of individuals - species 02
+initial03<-10        # initial number of individuals - species 03
+initial04<-10        # initial number of individuals - species 04
+timesteps<-150        # number of time-steps (+1, actually) in a "growing season" 
+years<-10             # number of years ("growing seasons") to run the model 
+height<-250          # height of the grid
+width<-250           # width of the grid 
+agedead01<-35        # average age that individuals die at - species 01
+agedead02<-35        # average age that individuals die at - species 02
+agedead03<-35        # average age that individuals die at - species 03
+agedead04<-35        # average age that individuals die at - species 04
+maxrgr01<-0.4        # maximum relative growth rate - species 01
+maxrgr02<-0.35       # maximum relative growth rate - species 02
+maxrgr03<-0.25       # maximum relative growth rate - species 03
+maxrgr04<-0.2        # maximum relative growth rate - species 04
+overwinter01<-0.01   # proportion of individuals that overwinter - species 01  
+overwinter02<-0.05   # proportion of individuals that overwinter - species 02
+overwinter03<-0.075  # proportion of individuals that overwinter - species 03  
+overwinter04<-0.1    # proportion of individuals that overwinter - species 04
+buffer<-3            # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+wind_prob<-0.25 # proportion of time steps where wind knocks a row/col off of the grid 
+wind_directions<-c("U","L")  # UP, DOWN, LEFT, RIGHT
+system.time(LIST<-STEP9()) 
+user  system elapsed 
+3447.62   28.83 3512.82 -- 58.55 minutes
+system.time(OUTPUT())
+user  system elapsed 
+206.47   15.19  290.18 
+
+
+
+DATE: 01/30/2013
+Functions: STEP9(), START3(), BLANK, OUTPUT()
+initial01<-10        # initial number of individuals - species 01
+initial02<-10        # initial number of individuals - species 02
+initial03<-10        # initial number of individuals - species 03
+initial04<-10        # initial number of individuals - species 04
+timesteps<-150        # number of time-steps (+1, actually) in a "growing season" 
+years<-10             # number of years ("growing seasons") to run the model 
+height<-500          # height of the grid
+width<-500           # width of the grid 
+agedead01<-35        # average age that individuals die at - species 01
+agedead02<-35        # average age that individuals die at - species 02
+agedead03<-35        # average age that individuals die at - species 03
+agedead04<-35        # average age that individuals die at - species 04
+maxrgr01<-0.4        # maximum relative growth rate - species 01
+maxrgr02<-0.35       # maximum relative growth rate - species 02
+maxrgr03<-0.25       # maximum relative growth rate - species 03
+maxrgr04<-0.2        # maximum relative growth rate - species 04
+overwinter01<-0.01   # proportion of individuals that overwinter - species 01  
+overwinter02<-0.05   # proportion of individuals that overwinter - species 02
+overwinter03<-0.075  # proportion of individuals that overwinter - species 03  
+overwinter04<-0.1    # proportion of individuals that overwinter - species 04
+buffer<-3            # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+wind_prob<-0.25 # proportion of time steps where wind knocks a row/col off of the grid 
+wind_directions<-c("U","L")  # UP, DOWN, LEFT, RIGHT
+Error: cannot allocate vector of size 1.9 Mb
+In addition: Warning messages:
+1: In LIST[[i + 1]]$PAmatrix <- LIST[[i]]$PAmatrix :
+  Reached total allocation of 16341Mb: see help(memory.size)
+
+
+
+DATE: 01/26/2013
+Functions: STEP8(), START2(), PLOT2(), BLANK
+initial01<-10      # initial number of individuals - species 01
+initial02<-10      # initial number of individuals - species 02
+timesteps<-100     # number of time-steps (+1, actually) in a "growing season" 
+years<-6           # number of years ("growing seasons") to run the model 
+height<-150        # height of the grid
+width<-150         # width of the grid 
+agedead01<-20      # average age that individuals die at - species 01
+agedead02<-20      # average age that individuals die at - species 02
+maxrgr01<-0.2      # maximum relative growth rate - species 01
+maxrgr02<-0.4      # maximum relative growth rate - species 02
+overwinter01<-0.1  # proportion of individuals that overwinter - species 01  
+overwinter02<-0.01 # proportion of individuals that overwinter - species 02
+buffer<-3          # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+wind_prob<-0.5 # proportion of time steps where wind knocks a row/col off of the grid 
+wind_directions<-c("U","L")  # UP, DOWN, LEFT, RIGHT
+user  system elapsed 
+295.88   76.03  387.55
+
+DATE: 01/26/2013
+Functions: STEP8(), START2(), PLOT2(), BLANK
+initial01<-10      # initial number of individuals - species 01
+initial02<-10      # initial number of individuals - species 02
+timesteps<-100     # number of time-steps (+1, actually) in a "growing season" 
+years<-6           # number of years ("growing seasons") to run the model 
+height<-150        # height of the grid
+width<-150         # width of the grid 
+agedead01<-20      # average age that individuals die at - species 01
+agedead02<-20      # average age that individuals die at - species 02
+maxrgr01<-0.2      # maximum relative growth rate - species 01
+maxrgr02<-0.4      # maximum relative growth rate - species 02
+overwinter01<-0.1  # proportion of individuals that overwinter - species 01  
+overwinter02<-0.01 # proportion of individuals that overwinter - species 02
+buffer<-3          # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+wind_prob<-0.5 # proportion of time steps where wind knocks a row/col off of the grid 
+wind_directions<-c("U","D","L","R")  # UP, DOWN, LEFT, RIGHT
+user  system elapsed 
+421.70   76.21  508.05
+
+
+DATE: 01/26/2013
+Functions: STEP8(), START2(), PLOT2(), BLANK
+initial01<-10      # initial number of individuals - species 01
+initial02<-10      # initial number of individuals - species 02
+timesteps<-100     # number of time-steps (+1, actually) in a "growing season" 
+years<-6           # number of years ("growing seasons") to run the model 
+height<-150        # height of the grid
+width<-150         # width of the grid 
+agedead01<-20      # average age that individuals die at - species 01
+agedead02<-20      # average age that individuals die at - species 02
+maxrgr01<-0.2      # maximum relative growth rate - species 01
+maxrgr02<-0.4      # maximum relative growth rate - species 02
+overwinter01<-0.1  # proportion of individuals that overwinter - species 01  
+overwinter02<-0.01 # proportion of individuals that overwinter - species 02
+buffer<-3          # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+user  system elapsed 
+275.79   78.25  390.91 
+
+DATE: 01/26/2013
+Functions: STEP8(), START2(), PLOT2(), BLANK
+initial01<-10    # initial number of individuals - species 01
+initial02<-10     # initial number of individuals - species 02
+timesteps<-100    # number of time-steps (+1, actually) in a "growing season" 
+years<-1         # number of years ("growing seasons") to run the model 
+height<-100       # height of the grid
+width<-100        # width of the grid 
+agedead01<-20     # average age that individuals die at - species 01
+agedead02<-20     # average age that individuals die at - species 02
+maxrgr01<-0.2     # maximum relative growth rate - species 01
+maxrgr02<-0.4     # maximum relative growth rate - species 02
+overwinter01<-0.1 # proportion of individuals that overwinter - species 01  
+overwinter02<-0.01# proportion of individuals that overwinter - species 02
+buffer<-3         # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+# user  system elapsed 
+# 25.07    6.10   31.58 
+
+DATE: 01/26/2013
+Functions: STEP7(), START2(), PLOT2(), BLANK
+initial01<-2    # initial number of individuals - species 01
+initial02<-2     # initial number of individuals - species 02
+timesteps<-100    # number of time-steps (+1, actually) in a "growing season" 
+years<-6         # number of years ("growing seasons") to run the model 
+height<-30       # height of the grid
+width<-30        # width of the grid 
+agedead01<-20     # average age that individuals die at - species 01
+agedead02<-20     # average age that individuals die at - species 02
+maxrgr01<-0.2     # maximum relative growth rate - species 01
+maxrgr02<-0.4     # maximum relative growth rate - species 02
+overwinter01<-0.1 # proportion of individuals that overwinter - species 01  
+overwinter02<-0.01# proportion of individuals that overwinter - species 02
+buffer<-3         # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+user  system elapsed 
+24.15    4.58   30.07 
+
+
+DATE: 01/24/2013
+Functions: STEP7(), START2(), PLOT2(), BLANK
+initial01<-10    # initial number of individuals - species 01
+initial02<-10     # initial number of individuals - species 02
+timesteps<-150    # number of time-steps (+1, actually) in a "growing season" 
+years<-6         # number of years ("growing seasons") to run the model 
+height<-300       # height of the grid
+width<-300        # width of the grid 
+agedead01<-40     # average age that individuals die at - species 01
+agedead02<-40     # average age that individuals die at - species 02
+maxrgr01<-0.2     # maximum relative growth rate - species 01
+maxrgr02<-0.4     # maximum relative growth rate - species 02
+overwinter01<-0.1 # proportion of individuals that overwinter - species 01  
+overwinter02<-0.01# proportion of individuals that overwinter - species 02
+buffer<-3         # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+user  system elapsed 
+1268.13  374.45 1667.23 = ~28 minutes
+
+DATE: 01/24/2013
+Functions: STEP7(), START2(), PLOT2(), BLANK
+initial01<-100    # initial number of individuals - species 01
+initial02<-10     # initial number of individuals - species 02
+timesteps<-150    # number of time-steps (+1, actually) in a "growing season" 
+years<-12         # number of years ("growing seasons") to run the model 
+height<-300       # height of the grid
+width<-300        # width of the grid 
+agedead01<-55     # average age that individuals die at - species 01
+agedead02<-40     # average age that individuals die at - species 02
+maxrgr01<-0.2     # maximum relative growth rate - species 01
+maxrgr02<-0.4     # maximum relative growth rate - species 02
+overwinter01<-0.1 # proportion of individuals that overwinter - species 01  
+overwinter02<-0.01# proportion of individuals that overwinter - species 02
+buffer<-3         # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting  
+user  system elapsed 
+2731.05  761.13 3540.32 = 59 minutes 
+
+DATE: 01/24/2013
+Functions: STEP7(), START2(), PLOT2(), BLANK
+initial01<-100    # initial number of individuals - species 01
+initial02<-10    # initial number of individuals - species 02
+timesteps<-150    # number of time-steps (+1, actually) in a "growing season" 
+years<-10         # number of years ("growing seasons") to run the model 
+height<-200       # height of the grid
+width<-200        # width of the grid 
+agedead01<-30    # age that individuals die at - species 01
+agedead02<-20    # age that individuals die at - species 02
+maxrgr01<-0.3    # maximum relative growth rate - species 01
+maxrgr02<-0.4    # maximum relative growth rate - species 02
+overwinter01<-0.5# proportion of individuals that overwinter - species 01  
+overwinter02<-0.2# proportion of individuals that overwinter - species 02
+buffer<-3        # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+user  system elapsed 
+1177.21  284.28 1499.55 
+
+DATE: 01/24/2013
+Functions: STEP7(), START2(), PLOT2(), BLANK
+initial01<-10    # initial number of individuals - species 01
+initial02<-10    # initial number of individuals - species 02
+timesteps<-150    # number of time-steps (+1, actually) in a "growing season" 
+years<-5         # number of years ("growing seasons") to run the model 
+height<-100       # height of the grid
+width<-100        # width of the grid 
+agedead01<-25    # age that individuals die at - species 01
+agedead02<-25    # age that individuals die at - species 02
+maxrgr01<-0.2    # maximum relative growth rate - species 01
+maxrgr02<-0.4    # maximum relative growth rate - species 02
+overwinter01<-0.4# proportion of individuals that overwinter - species 01  
+overwinter02<-0.2# proportion of individuals that overwinter - species 02
+buffer<-3        # distance from focal cell - used to count up the number of neighbors 
+winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+user  system elapsed 
+167.67   38.05  224.43 
+
+DATE: 01/24/2013
+Functions: STEP5(), START2(), PLOT2(), BLANK
+initial01<-10    # initial number of individuals - species 01
+initial02<-10    # initial number of individuals - species 02
+timesteps<-50 # number of time-steps to run the model 
+height<-12   # height of the grid
+width<-12    # width of the grid 
+agedead01<-30   # age that individuals die at - species 01
+agedead02<-20   # age that individuals die at - species 02
+maxrgr01<-0.2   # maximum relative growth rate - species 01
+maxrgr02<-0.4   # maximum relative growth rate - species 02
+buffer<-3     # distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+0.47    0.18    0.64 
+
+DATE: 01/16/2013
+Functions: STEP5(), START2(), PLOT2(), BLANK 
+initial01<-100    initial number of individuals - species 01
+initial02<-100    initial number of individuals - species 02
+timesteps<-200 number of time-steps to run the model 
+height<-1000   height of the grid
+width<-1000    width of the grid 
+agedead01<-30   age that individuals die at - species 01
+agedead02<-20   age that individuals die at - species 02
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.4   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+1573.50  515.63 2094.73 
+PLOT2()
+Error in write.gif(image, filename = paste(format(Sys.time(), "%m-%d-%Y-%H%M"),  : 
+Calloc could not allocate memory (201000000 of 1 bytes)
+
+DATE: 01/16/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-100    initial number of individuals - species 01
+initial02<-100    initial number of individuals - species 02
+timesteps<-500 number of time-steps to run the model 
+height<-500   height of the grid
+width<-500    width of the grid 
+agedead01<-30   age that individuals die at - species 01
+agedead02<-20   age that individuals die at - species 02
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.4   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+1977.72  379.36 2370.35
+
+DATE: 01/16/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-100    initial number of individuals - species 01
+initial02<-5    initial number of individuals - species 02
+timesteps<-500 number of time-steps to run the model 
+height<-500   height of the grid
+width<-500    width of the grid 
+agedead01<-30   age that individuals die at - species 01
+agedead02<-20   age that individuals die at - species 02
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.4   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+1567.69  375.99 1958.79 
+
+DATE: 01/16/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-100    initial number of individuals - species 01
+initial02<-5    initial number of individuals - species 02
+timesteps<-500 number of time-steps to run the model 
+height<-750   height of the grid
+width<-750    width of the grid 
+agedead01<-30   age that individuals die at - species 01
+agedead02<-20   age that individuals die at - species 02
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.4   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+Error: cannot allocate vector of size 4.3 Mb
+In addition: Warning messages:
+1: In LIST[[i + 1]]$PAmatrix <- LIST[[i]]$PAmatrix :
+Reached total allocation of 16341Mb: see help(memory.size)
+
+DATE: 01/16/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-100    initial number of individuals - species 01
+initial02<-5    initial number of individuals - species 02
+timesteps<-400 number of time-steps to run the model 
+height<-750   height of the grid
+width<-750    width of the grid 
+agedead01<-30   age that individuals die at - species 01
+agedead02<-20   age that individuals die at - species 02
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.4   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+369.91  149.67  524.38 
+
+DATE: 01/16/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-100    initial number of individuals - species 01
+initial02<-5    initial number of individuals - species 02
+timesteps<-200 number of time-steps to run the model 
+height<-500   height of the grid
+width<-500    width of the grid 
+agedead01<-30   age that individuals die at - species 01
+agedead02<-20   age that individuals die at - species 02
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.4   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+377.77  148.93  531.57 
+
+DATE: 01/15/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-100    initial number of individuals - species 01
+initial02<-5    initial number of individuals - species 02
+timesteps<-500 number of time-steps to run the model 
+height<-10   height of the grid
+width<-250    width of the grid 
+agedead01<-30   age that individuals die at - species 01
+agedead02<-20   age that individuals die at - species 02
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.4   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+27.08    4.20   35.95 
+
+DATE: 01/15/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-100    initial number of individuals - species 01
+initial02<-5    initial number of individuals - species 02
+timesteps<-500 number of time-steps to run the model 
+height<-50   height of the grid
+width<-50    width of the grid 
+agedead01<-30   age that individuals die at - species 01
+agedead02<-20   age that individuals die at - species 02
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.4   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+24.98    3.37   29.42 
+
+
+DATE: 01/15/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-30    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-200 number of time-steps to run the model 
+height<-500   height of the grid
+width<-500    width of the grid 
+agedead<-30     age that individuals die at - species not specified 
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.6   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+261.53  156.89  430.05 - 7.1675 minutes
+
+DATE: 01/15/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-30    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-200 number of time-steps to run the model 
+height<-500   height of the grid
+width<-500    width of the grid 
+agedead<-30     age that individuals die at - species not specified 
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.6   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+
+DATE: 01/15/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-30    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-200 number of time-steps to run the model 
+height<-500   height of the grid
+width<-500    width of the grid 
+agedead02<-20   age that individuals die at - species 02
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.6   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+Error: cannot allocate vector of size 1.9 Mb
+Timing stopped at: 0.23 0.19 0.42
+
+DATE: 01/15/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-10    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-500 number of time-steps to run the model 
+height<-24    height of the grid
+width<-24    width of the grid 
+agedead<-30     age that individuals die at - species not specified 
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.6   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+29.27   11.30   41.08 
+
+DATE: 01/15/2013
+Functions: STEP5(), START2(), PLOT2()
+initial01<-10    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-300 number of time-steps to run the model 
+height<-24    height of the grid
+width<-24    width of the grid 
+agedead<-30     age that individuals die at - species not specified 
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.6   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+16.18    6.59   23.09 
+
+DATE: 01/15/2013
+Functions: STEP5(), START2()
+initial01<-1    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-10 number of time-steps to run the model 
+height<-12    height of the grid
+width<-12    width of the grid 
+agedead<-30     age that individuals die at - species not specified 
+agedead01<-40   age that individuals die at - species 01
+agedead02<-20   age that individuals die at - species 02
+maxrgr01<-0.3   maximum relative growth rate - species 01
+maxrgr02<-0.4   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+0.20    0.21    2.13 
+
+DATE: 01/15/2013
+Functions: STEP4(), START2()
+initial01<-10    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-10 number of time-steps to run the model 
+height<-500    height of the grid
+width<-500    width of the grid 
+agedead<-30     age that individuals die at - species not specified 
+maxrgr01<-0.3   maximum relative growth rate - species 01
+maxrgr02<-0.4   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+25.69   16.17   42.09 
+
+DATE: 01/15/2013
+Functions: STEP4(), START2()
+initial01<-10    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-150 number of time-steps to run the model 
+height<-30    height of the grid
+width<-30    width of the grid 
+agedead<-30     age that individuals die at - species not specified 
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.6   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+53.28   10.14   64.31 
+
+DATE: 01/15/2013
+Functions: STEP4(), START2()
+initial01<-1    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-100 number of time-steps to run the model 
+height<-25   height of the grid
+width<-25     width of the grid 
+agedead<-30     age that individuals die at - species not specified 
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.6   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+20.59    5.53   26.77 
+
+DATE: 01/15/2013
+Functions: STEP4(), START2()
+initial01<-1    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-10 number of time-steps to run the model 
+height<-12    height of the grid
+width<-12     width of the grid 
+agedead<-30     age that individuals die at - species not specified 
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.6   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+0.24    0.24    0.77 
+
+DATE: 01/14/2013
+Functions: STEP3(), START2()
+initial01<-20    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-100 number of time-steps to run the model 
+height<-500    height of the grid
+width<-500     width of the grid 
+agedead<-30   age that individuals die at - species 01
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.4   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+12563.42   189.10 13285.49 --- 221.43 minutes = 3 hours, 41 minutes 
+
+DATE: 01/14/2013
+Functions: STEP3(), START2()
+initial01<-1    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-100 number of time-steps to run the model 
+height<-100    height of the grid
+width<-100     width of the grid 
+agedead<-30   age that individuals die at - species 01
+maxrgr01<-0.2   maximum relative growth rate - species 01
+maxrgr02<-0.6   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+495.92   17.25  514.28 --- 8.5 minutes 
+
+DATE: 01/14/2013
+Functions: STEP3(), START2()
+initial01<-1    initial number of individuals - species 01
+initial02<-1    initial number of individuals - species 02
+timesteps<-10 number of time-steps to run the model 
+height<-10    height of the grid
+width<-10     width of the grid 
+agedead<-30   age that individuals die at
+maxrgr01<-0.4   maximum relative growth rate - species 01
+maxrgr02<-0.3   maximum relative growth rate - species 02
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+0.62    0.19    0.82 
+
+DATE: 01/14/2013
+Function: STEP2()
+initial<-1    initial number of individuals 
+timesteps<-100 number of time-steps to run the model 
+height<-100    height of the grid
+width<-100     width of the grid 
+agedead<-30   age that individuals die at 
+maxrgr<-0.4   maximum relative growth rate
+buffer<-3     distance from focal cell - used to count up the number of neighbors 
+user  system elapsed 
+253.43   17.17  272.77 
+
+DATE: 01/14/2013
+Function: STEP2()
+intial<-1
+timesteps<-10
+height<-12
+width<-12
+agedead<-10
+9 individuals
+user  system elapsed 
+0.52    0.21    0.76 
+
+DATE: 01/14/2013
+Function: STEP2()
+intial<-1
+timesteps<-10
+height<-10
+width<-10
+agedead<-10
+41 individuals
+user  system elapsed 
+0.49    0.20    0.73 
+
+DATE: 01/14/2013
+Function: STEP1()
+intial<-1
+timesteps<-10
+height<-10
+width<-10
+agedead<-10
+395 individuals
+user  system elapsed 
+44.26    0.37   45.03 
+
+initial<-25
+timesteps<-20
+height<-100
+width<-100
+agedead<-2
+>4000 individuals
+user  system elapsed 
+28.07    2.71   30.91 
+
+initial<-25
+timesteps<-20
+height<-100
+width<-100
+agedead<-10
+>7000 individuals
+user  system elapsed 
+31.77    2.55   34.38 
+
+initial<-25
+timesteps<-35
+height<-100
+width<-100
+agedead<-10
+~9000 individuals
+user  system elapsed 
+66.02    5.22   71.43 --- 1.2 minutes 
+
+initial<-25
+timesteps<-50
+height<-250
+width<-250
+agedead<-10
+47205 individuals @ t=51
+user  system elapsed 
+499.68   25.00  525.73 --- 8.76 minutes 
+
+DATE: 10/18/2013
+initial<-25
+timesteps<-50
+height<-500
+width<-500
+agedead<-10
+user  system elapsed 
+1598.73   80.48 1684.22 --- 28.07 minutes
+
+initial<-25
+timesteps<-75
+height<-500
+width<-500
+agedead<-10
+Timing stopped at: 87999.14 48.06 88216.21 ---- 24.44 hours 
+time step 24 
+Did not return values to LIST[[i]], so do not know how many individuals
+But approximately 1/3 of the 500x500 grid ~ 83,333 individuals 
+
+DATE: 10/18/2013
+FUNCTION: STEP1()
+initial<-25
+timesteps<-75
+height<-500
+width<-500
+agedead<-10
+158,415 individuals after 75 timesteps 
+user  system elapsed 
+2703.30  124.50 2831.48 --- 47.191 minutes 
