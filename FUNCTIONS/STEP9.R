@@ -451,7 +451,7 @@ STEP9 <- function() { # start defining the function
         LIST[[i+1]]$PAmatrix <- rbind(LIST[[i+1]]$PAmatrix[-1,],0)
         LIST[[i+1]]$AGEmatrix <- rbind(LIST[[i+1]]$AGEmatrix[-1,],0)
       }
-      else if("D" %in% wind_directions & RAND >= 3*(wind_prob/length(wind_directions))) {
+      else if("D" %in% wind_directions & RAND >= 3*(wind_prob/length(wind_directions)) & RAND < 4*(wind_prob/length(wind_directions))) {
         # move: DOWN
         # remove last row and adds a row of zeros to the first row 
         LIST[[i+1]]$PAmatrix <- rbind(0,LIST[[i+1]]$PAmatrix[-height,])
