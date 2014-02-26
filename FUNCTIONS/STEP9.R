@@ -50,7 +50,6 @@ STEP9 <- function() { # start defining the function
           
           # find occupied cells and see if they meet criteria to reproduce (growth rate, density-dependence)
           if (LIST[[i]]$PAmatrix[j,k] >= 1) {
-            # insert for() statement here - work through 1:n species 
             for (n in 1:numbspecies) {
               if ((LIST[[i]]$PAmatrix[j,k] == n & 
                      LIST[[i]]$RAND[j,k] < speciesmatrix$maxrgr[n]*(1 - LIST[[i]]$NEIGH[j,k]/sum(wdist)))){

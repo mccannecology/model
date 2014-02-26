@@ -1,0 +1,3 @@
+height,width,timesteps,years,wind_prob,wind_directions,wind_directions,wind_directions,wind_directions,buffer,numbspecies,initial01,initial02,initial03,initial04,agedead01,agedead02,agedead03,agedead04,maxrgr01,maxrgr02,maxrgr03,maxrgr04,overwinter01,overwinter02,overwinter03,overwinter04
+100,100,150,10,0.25,U,D,L,R,3,2,10,10,,,10,10,,,10,10,,,10,10,,
+100,100,150,10,0.25,U,D,,,3,4,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10

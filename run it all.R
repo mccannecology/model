@@ -36,31 +36,41 @@
 ########################################################################################################
 # PARAMETERS  
 ########################################################################################################
+height<-100          # height of the grid
+width<-625           # width of the grid
+
+timesteps<-150       # number of time-steps (+1, actually) in a "growing season" 
+years<-10            # number of years ("growing seasons") to run the model 
+
+wind_prob<-0.25 # proportion of time steps where wind knocks a row/col off of the grid 
+wind_directions<-c("U","L")  # UP, DOWN, LEFT, RIGHT
+
+buffer<-3            # distance from focal cell - used to count up the number of neighbors 
+
+numbspecies <- 4
+
 initial01<-10        # initial number of individuals - species 01
 initial02<-10        # initial number of individuals - species 02
 initial03<-10        # initial number of individuals - species 03
 initial04<-10        # initial number of individuals - species 04
-timesteps<-150       # number of time-steps (+1, actually) in a "growing season" 
-years<-10            # number of years ("growing seasons") to run the model 
-height<-100          # height of the grid
-width<-625           # width of the grid 
+ 
 agedead01<-35        # average age that individuals die at - species 01
 agedead02<-35        # average age that individuals die at - species 02
 agedead03<-35        # average age that individuals die at - species 03
 agedead04<-35        # average age that individuals die at - species 04
+
 maxrgr01<-0.4        # maximum relative growth rate - species 01
 maxrgr02<-0.35       # maximum relative growth rate - species 02
 maxrgr03<-0.25       # maximum relative growth rate - species 03
 maxrgr04<-0.2        # maximum relative growth rate - species 04
+
 overwinter01<-0.01   # proportion of individuals that overwinter - species 01  
 overwinter02<-0.05   # proportion of individuals that overwinter - species 02
 overwinter03<-0.075  # proportion of individuals that overwinter - species 03  
 overwinter04<-0.1    # proportion of individuals that overwinter - species 04
-buffer<-3            # distance from focal cell - used to count up the number of neighbors 
+
 winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
 totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
-wind_prob<-0.25 # proportion of time steps where wind knocks a row/col off of the grid 
-wind_directions<-c("U","L")  # UP, DOWN, LEFT, RIGHT
 
 ########################################################################################################
 # SETUP: Working directory, load functions in the .../FUNCTIONS directory, etc. 
