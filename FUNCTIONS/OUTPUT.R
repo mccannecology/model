@@ -6,7 +6,7 @@
 # Last Updated: 2/26/2014                               #
 ######################################################### 
 
-OUTPUT <- function(){  
+OUTPUT <- function(animate=FALSE){  
   require(animation)
   require(raster)
   
@@ -25,18 +25,19 @@ OUTPUT <- function(){
   ###########################################################################
   ################ now do the animated plotting - package animate ###########
   ###########################################################################
-  saveHTML({
-    
-    ani.options(interval=0.2, nmax=(1+(timesteps+1)*years),verbose=FALSE)
-    
-    for(i in 1:(1+(timesteps+1)*years)) { # loop through time steps
-      plot(raster(LIST[[i]]$PAmatrix),main=i)
-      ani.pause()
-    }
-  },
-  outdir=getwd()
-  )
-  
+  if (animate == TRUE){
+    saveHTML({
+      
+      ani.options(interval=0.2, nmax=(1+(timesteps+1)*years),verbose=FALSE)
+      
+      for(i in 1:(1+(timesteps+1)*years)) { # loop through time steps
+        plot(raster(LIST[[i]]$PAmatrix),main=i)
+        ani.pause()
+      }
+    },
+    outdir=getwd()
+    )
+  }
   #########################################################################
   ################### generate a .gif of the simulation ###################
   #########################################################################
@@ -140,6 +141,24 @@ OUTPUT <- function(){
   ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," percent cover", ".jpg", sep=""))
   
   dev.off()
+  #################################################################
+  ############# Count # years waterbody is in FP regime ###########
+  #################################################################
+  # make a vector of "year"
+  year <- NULL
+  for (i in 1:years){
+    year <- append(year,rep(i,timesteps+1))
+  }
+  year <- append(year, i+1) # this is for the first day of the next year 
+  
+  # add year to your dataframe 
+  data02$year <- year
+  
+  data02$cover_ALL[1] <- 80 
+
+  ########
+  ############# INSERT SOMETHING HERE TO COUNT UP HOW MANY DAYS ARE >x% FP cover in each year 
+  ########
   
   ########################################################################
   ########### write a .txt of ALL parameter values in workspace ##########

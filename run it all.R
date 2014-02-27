@@ -90,13 +90,14 @@ sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE)
 ########################################################################################################
 # Set up the data LIST - starts out time step 0, but LIST[[1]]  
 ########################################################################################################
-simulnumb <- 1
+simulnumb <- 3
 
-INPUT(1)
+INPUT(simulnumb)
 
 SPECIES()
 
 winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+
 totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
 
 LIST <- vector("list",(1+(timesteps+1)*years)) # Creates the "blank" LIST of lists - PA,AGE - all 0s
