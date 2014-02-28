@@ -6,8 +6,8 @@
 # Last Updated: 2/26/2014                #
 ##########################################
 
-SPECIES <- function(){
-  parameters <- read.csv("input.csv")
+SPECIES <- function(x){  
+  simulnumb <- x 
   
   # make the number of columns = #variables + 1 
   speciesmatrix <- matrix(data=0,nrow=parameters[simulnumb,11],ncol=5)

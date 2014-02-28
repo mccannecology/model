@@ -45,7 +45,7 @@ for (i in 1:31) { # loop through all of your simulations - User needs to specify
   
   INPUT(simulnumb) # reads the .csv file of parameter values and assigns them to the global environment 
   
-  SPECIES() # function that builds the dataframe of species-specific parameters that is used in STEPX()
+  SPECIES(simulnumb) # function that builds the dataframe of species-specific parameters that is used in STEPX()
   
   # define couple of things in the global environment that get used in STEPX() and OUTPUT()
   
