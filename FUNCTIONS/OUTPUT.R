@@ -140,7 +140,7 @@ OUTPUT <- function(animate=FALSE){
   
   dev.off()
   #################################################################
-  ############# Count # years waterbody is in FP regime ###########
+  ########## Summary statistics of FP regime - by year ############
   #################################################################
   # make a vector of "year"
   year <- NULL
@@ -186,11 +186,11 @@ OUTPUT <- function(animate=FALSE){
   firstdayFP[j+1] <- NA # add an NA for the first day of the last year (years+1)
   
   # Build a data frame with all of these different summary statistics for each year 
+  # I can probably do this smarter than just repeated merge()
   data03 <- merge(avgFP,daysFP)
   data03 <- merge(data03, propdaysFP)
   data03 <- cbind(data03,firstdayFP)
   data03
-  # I can probably do this smarter than just repeated merge()
   
   # assign it to something useful otuside of the function 
   write.csv(data03,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)
@@ -198,8 +198,19 @@ OUTPUT <- function(animate=FALSE){
   #####
   ########## append to input.csv the results - #years with avgFP > threshold and #years with propdaySFP > 0.5 
   #####
+  # I should probably leave off some of the first few year - to let to model equilibrate 
   
+  # prop years with avgFP > regimethreshold
+  propyears_avgFP_abovethreshold <- sum(data03$avgFP >= regimethreshold)/years
   
+  # prop years with propdaysFP > 0.5
+  propyears_propdaysFP_abovehalf <- sum(data03$propdaysFP >= 0.5)/years
+  
+  assign("propyears_avgFP_abovethreshold", propyears_avgFP_abovethreshold, envir=.GlobalEnv)
+
+  assign("propyears_propdaysFP_abovehalf", propyears_propdaysFP_abovehalf, envir=.GlobalEnv)
+  
+
   
   ########################################################################
   ########### write a .txt of ALL parameter values in workspace ##########
