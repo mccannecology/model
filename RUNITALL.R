@@ -36,7 +36,7 @@
 #
 # 
 ########################################################################################################
-for (i in 1:31) {
+for (i in 1:31) { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
   require(R.utils) # package for sourceDirectory()
   
   sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) # load all your functions
