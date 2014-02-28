@@ -36,7 +36,7 @@
 #
 # 
 ########################################################################################################
-for (i in 1:31) { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
+for (i in 1:180) { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
   parameters <- read.csv("input03.csv") # imports parameter  values for all simulations 
   
   require(R.utils) # package for sourceDirectory()
