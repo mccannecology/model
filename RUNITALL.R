@@ -72,7 +72,7 @@ for (i in 1:31) { # loop through all of your simulations - User needs to specify
   parameters$propyears_propdaysFP_abovehalf <- NA # set-up a blank column 
   parameters$propyears_propdaysFP_abovehalf[simulnumb] <- propyears_propdaysFP_abovehalf # assign the current simulations results to the correct spot
   
-  write.csv(parameters,"input02.csv",append=T) # add these results to your original input file 
+  write.csv(parameters,"input02.csv",append=T,row.names=F) # add these results to your original input file 
     
   rm(list=ls()) # clear workspace for next simulation 
   
