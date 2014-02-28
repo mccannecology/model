@@ -34,94 +34,46 @@
 # Does the order of evaluting individuals in STEP matter? (i.e., center vs. UL corner vs. UR corner, etc.)
 # Is it ok to use LIST[[i]]$RAND for choosing overwintering deaths in WINTER.R? (also used for maxrgr - on previous steps) 
 #
+# 
 ########################################################################################################
-# PARAMETERS  
-########################################################################################################
-height<-100          # height of the grid
-width<-625           # width of the grid
-
-timesteps<-150       # number of time-steps (+1, actually) in a "growing season" 
-years<-10            # number of years ("growing seasons") to run the model 
-
-wind_prob<-0.25 # proportion of time steps where wind knocks a row/col off of the grid 
-wind_directions<-c("U","L")  # UP, DOWN, LEFT, RIGHT
-
-buffer<-3            # distance from focal cell - used to count up the number of neighbors 
-
-numbspecies <- 4
-
-initial01<-10        # initial number of individuals - species 01
-initial02<-10        # initial number of individuals - species 02
-initial03<-10        # initial number of individuals - species 03
-initial04<-10        # initial number of individuals - species 04
- 
-agedead01<-35        # average age that individuals die at - species 01
-agedead02<-35        # average age that individuals die at - species 02
-agedead03<-35        # average age that individuals die at - species 03
-agedead04<-35        # average age that individuals die at - species 04
-
-maxrgr01<-0.4        # maximum relative growth rate - species 01
-maxrgr02<-0.35       # maximum relative growth rate - species 02
-maxrgr03<-0.25       # maximum relative growth rate - species 03
-maxrgr04<-0.2        # maximum relative growth rate - species 04
-
-overwinter01<-0.01   # proportion of individuals that overwinter - species 01  
-overwinter02<-0.05   # proportion of individuals that overwinter - species 02
-overwinter03<-0.075  # proportion of individuals that overwinter - species 03  
-overwinter04<-0.1    # proportion of individuals that overwinter - species 04
-
-winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
-totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
-
-########################################################################################################
-# SETUP: Working directory, load functions in the .../FUNCTIONS directory, etc. 
-########################################################################################################
-# Set the working directory 
-# If I am using my laptop
-setwd("C:/Users/Mike/Desktop/Dropbox/Duckweed Modelling") 
-# If I am using office computer
-setwd("C:/Documents and Settings/Lerdau Lab/Desktop/Dropbox/Duckweed Modelling") 
-# If I am working off of the flash drive - Note: make sure I get the right root directory (e.g., "E:/")
-setwd("E:/Duckweed Modelling") # problem - depending on the computer - this may be E:/ or F:/ 
-
-library(R.utils)
-# Be careful! This will load all of the R scripts in your working directory
-# BUT this is WAY faster than copying and pasting the function into the console 
-sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) 
-########################################################################################################
-# Set up the data LIST - starts out time step 0, but LIST[[1]]  
-########################################################################################################
-for (i in 16:26) {
-  sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) 
+for (i in 1:31) { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
+  parameters <- read.csv("input02.csv") # imports parameter  values for all simulations 
   
-  simulnumb <- i
+  require(R.utils) # package for sourceDirectory()
   
-  INPUT(simulnumb)
+  sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) # load all your functions
   
-  SPECIES()
+  simulnumb <- i # assigns the simulation # from the for loop - will be used as an input to INPUT() to read the right row of .csv
   
-  winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+  INPUT(simulnumb) # reads the .csv file of parameter values and assigns them to the global environment 
   
-  totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+  SPECIES(simulnumb) # function that builds the dataframe of species-specific parameters that is used in STEPX()
   
-  LIST <- vector("list",(1+(timesteps+1)*years)) # Creates the "blank" LIST of lists - PA,AGE - all 0s
+  # define couple of things in the global environment that get used in STEPX() and OUTPUT()
   
-  for (i in 1:(1+(timesteps+1)*years)){ # fills out the list w/ matrices of 0 
+  winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters - used in STEPX()
+  
+  totaltime<- 1+(timesteps+1)*years # total length of time - used in OUTPUT() plotting
+  
+  LIST <- vector("list",(1+(timesteps+1)*years)) # Creates the "blank" LIST 
+  
+  for (i in 1:(1+(timesteps+1)*years)){ # fills  the LIST w/ matrices of 0 
     LIST[[i]] <- BLANK()
   }
   
-  LIST[[1]]<-START3() # Seed the first time step with some individuals 
+  LIST[[1]]<-START3() # Start the first time step with some individuals 
 
-  LIST<-STEP9()
+  LIST<-STEP9() # Runs the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
   
-  OUTPUT()
+  OUTPUT() # generates graphs 
   
-  rm(list=ls())
+  parameters$propyears_avgFP_abovethreshold <- NA # set-up a blank column 
+  parameters$propyears_avgFP_abovethreshold[simulnumb] <- propyears_avgFP_abovethreshold # assign the current simulations results to the correct spot
+  parameters$propyears_propdaysFP_abovehalf <- NA # set-up a blank column 
+  parameters$propyears_propdaysFP_abovehalf[simulnumb] <- propyears_propdaysFP_abovehalf # assign the current simulations results to the correct spot
+  
+  write.csv(parameters,"input02.csv",append=T,row.names=F) # add these results to your original input file 
+    
+  rm(list=ls()) # clear workspace for next simulation 
   
 }
-
-#############################
-# RUNNING & TIMING THE MODEL
-#############################
-system.time(LIST<-STEP9()) 
-system.time(OUTPUT())

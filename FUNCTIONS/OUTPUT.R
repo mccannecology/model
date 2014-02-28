@@ -140,7 +140,7 @@ OUTPUT <- function(animate=FALSE){
   
   dev.off()
   #################################################################
-  ############# Count # years waterbody is in FP regime ###########
+  ########## Summary statistics of FP regime - by year ############
   #################################################################
   # make a vector of "year"
   year <- NULL
@@ -148,57 +148,67 @@ OUTPUT <- function(animate=FALSE){
     year <- append(year,rep(i,timesteps+1))
   }
   year <- append(year, i+1) # this is for the first day of the next year 
-  
+
   # add year to your dataframe 
   data02$year <- year
+
+  # add a vector of "day" instead of "time" to the data frame 
+  data02$day <- c(rep(seq(1,timesteps+1),years),1)
   
-  # get the average floating plant coverage for all time steps in each year 
-  avgFPcover <- aggregate(data02$cover_ALL,list(year=data02$year),mean) 
-    
-  # get the number of days in each year that a water is above a treshold value of cover_ALL
+  # Average floating plant coverage for all time steps in each year 
+  avgFP <- aggregate(data02$cover_ALL,list(year=data02$year),mean) 
+  colnames(avgFP)[2] <- "avgFP"
+  
+  # Number of days each year that a water is above a treshold value of cover_ALL
   regimethreshold <- 70 
   apply.fun <- function(x) {
     sum(x > regimethreshold)
   }
-  aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+  daysFP <- aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+  colnames(daysFP)[2] <- "daysFP"
   
-  # get the proportion of days in each year that a water is above a treshold value of cover_ALL
+  # Proportion of days each year that a waterbody is above a treshold value of cover_ALL
   regimethreshold <- 70 
   apply.fun <- function(x) {
     sum(x > regimethreshold)/timesteps
   }
-  aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
-  
-  
-  ####
-  ####### trying to get the first day that the waterbody is above a threshold value of cover_ALL 
-  ####### using aggregrate()
-  ####
-  regimethreshold <- 70 
-  apply.fun <- function(x) {
-    min(x > regimethreshold)
-  }
-  aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+  propdaysFP <- aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+  colnames(propdaysFP)[2] <- "propdaysFP"
     
-  ####
-  ####### trying to get the first day that the waterbody is above a threshold value of cover_ALL 
-  ####### try it again, this time by looping   
-  ####
-  for (i in 1:timesteps+1) { # loop through time steps
-    for (j in 1:years) { # loop by years 
-      min(data02$cover_ALL[i*j] > 70)
-      # this logical test works, but I still need to somehow return the index of the cover_ALL values that exceeds the threshold 
-    }
-  }
-  
-  ########
-  ############# assign these values to the output file
-  ########
-  ############# Need to fix this so the value actually gets assigned to the parameters data frame outside of the function 
-  ########
+  # get the first day that the waterbody is above a threshold value of cover_ALL 
   regimethreshold <- 70 
-  #parameters$propcyearsFP[simulnumb] <- nrow(subset(avgFPcover[2], avgFPcover[2] > regimethreshold))/years
-  assign("parameters$propcyearsFP[simulnumb]", (nrow(subset(avgFPcover[2], avgFPcover[2] > regimethreshold))/years), envir=.GlobalEnv)
+  firstdayFP <- seq(from=0,to=0,length=years)
+  for (j in 1:years) { # loop by years 
+    temp <- subset(data02$day,data02$year == j & data02$cover_ALL >= regimethreshold) # need to fix for NAs # need to fix so it returns day instead of index 
+    firstdayFP[j] <- min(temp)
+  }
+  firstdayFP[is.infinite(firstdayFP)] <- NA # min() returns infinity if there are no numbers, so replaces Inf with NA
+  firstdayFP[j+1] <- NA # add an NA for the first day of the last year (years+1)
+  
+  # Build a data frame with all of these different summary statistics for each year 
+  # I can probably do this smarter than just repeated merge()
+  data03 <- merge(avgFP,daysFP)
+  data03 <- merge(data03, propdaysFP)
+  data03 <- cbind(data03,firstdayFP)
+  data03
+  
+  # assign it to something useful otuside of the function 
+  write.csv(data03,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)
+  
+  #####
+  ########## append to input.csv the results - #years with avgFP > threshold and #years with propdaySFP > 0.5 
+  #####
+  # I should probably leave off some of the first few year - to let to model equilibrate 
+  
+  # prop years with avgFP > regimethreshold
+  propyears_avgFP_abovethreshold <- sum(data03$avgFP >= regimethreshold)/years
+  
+  # prop years with propdaysFP > 0.5
+  propyears_propdaysFP_abovehalf <- sum(data03$propdaysFP >= 0.5)/years
+  
+  assign("propyears_avgFP_abovethreshold", propyears_avgFP_abovethreshold, envir=.GlobalEnv)
+
+  assign("propyears_propdaysFP_abovehalf", propyears_propdaysFP_abovehalf, envir=.GlobalEnv)
   
   ########################################################################
   ########### write a .txt of ALL parameter values in workspace ##########
