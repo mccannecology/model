@@ -1,0 +1,40 @@
+%ni% : function (...)  
+agedead01 :  int 30
+agedead02 :  int 30
+agedead03 :  int 30
+agedead04 :  int 30
+BLANK : function ()  
+buffer :  int 3
+height :  int 100
+i :  int 1261
+initial01 :  int 30
+initial02 :  int 0
+initial03 :  int 0
+initial04 :  int 0
+INPUT : function (x)  
+LIST : List of 1261
+  [list output truncated]
+maxrgr01 :  num 0.3
+maxrgr02 :  num 0
+maxrgr03 :  num 0
+maxrgr04 :  int 0
+numbspecies :  int 1
+OUTPUT : function (animate = FALSE)  
+overwinter01 :  num 0.1
+overwinter02 :  num 0
+overwinter03 :  num 0
+overwinter04 :  int 0
+simulnumb :  int 1
+SPECIES : function ()  
+speciesmatrix : 'data.frame':	1 obs. of  5 variables:
+START3 : function ()  
+STEP9 : function ()  
+timesteps :  int 125
+totaltime :  num 1261
+width :  int 100
+wind_directions :  chr [1:4] "U" "D" "L" "R"
+wind_prob :  num 0.25
+winters :  num [1:10] 126 252 378 504 630 ...
+years :  int 10
+  species maxrgr agedead initial overwinter
+1       1    0.3      30      30        0.1
