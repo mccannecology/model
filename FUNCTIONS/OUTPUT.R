@@ -73,8 +73,8 @@ OUTPUT <- function(animate=FALSE){
   }
   
   # generate a vector of ("species1","species2",etc.) - to use for naming your columns 
-  names<-c("species1")
-  for (n in 2:numbspecies){
+  names<-NULL
+  for (n in 1:numbspecies){
     names<-append(names, paste("species",n,sep="",collapse=""))
   }
   
@@ -118,8 +118,8 @@ OUTPUT <- function(animate=FALSE){
   }
   
   # generate a vector of ("species1","species2",etc.) - to use for naming your columns 
-  names<-c("cover_sp1")
-  for (n in 2:numbspecies){
+  names<-NULL
+  for (n in 1:numbspecies){
     names<-append(names, paste("cover_sp",n,sep="",collapse=""))
   }
   
