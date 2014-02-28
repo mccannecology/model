@@ -148,27 +148,30 @@ OUTPUT <- function(animate=FALSE){
     year <- append(year,rep(i,timesteps+1))
   }
   year <- append(year, i+1) # this is for the first day of the next year 
-  
+
   # add year to your dataframe 
   data02$year <- year
   
-  # get the average floating plant coverage for all time steps in each year 
-  avgFPcover <- aggregate(data02$cover_ALL,list(year=data02$year),mean) 
-    
-  # get the number of days in each year that a water is above a treshold value of cover_ALL
+  
+  # Average floating plant coverage for all time steps in each year 
+  avgFP <- aggregate(data02$cover_ALL,list(year=data02$year),mean) 
+  colnames(avgFP)[2] <- "avgFP"
+  
+  # Number of days each year that a water is above a treshold value of cover_ALL
   regimethreshold <- 70 
   apply.fun <- function(x) {
     sum(x > regimethreshold)
   }
-  aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+  daysFP <- aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+  colnames(daysFP)[2] <- "daysFP"
   
-  # get the proportion of days in each year that a water is above a treshold value of cover_ALL
+  # Proportion of days each year that a waterbody is above a treshold value of cover_ALL
   regimethreshold <- 70 
   apply.fun <- function(x) {
     sum(x > regimethreshold)/timesteps
   }
-  aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
-  
+  propdaysFP <- aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+  colnames(propdaysFP)[2] <- "propdaysFP"
   
   ####
   ####### trying to get the first day that the waterbody is above a threshold value of cover_ALL 
@@ -190,6 +193,12 @@ OUTPUT <- function(animate=FALSE){
       # this logical test works, but I still need to somehow return the index of the cover_ALL values that exceeds the threshold 
     }
   }
+  
+  # Build a data frame with all of these different summary statistics for each year 
+  data03 <- merge(avgFP,daysFP)
+  data03 <- merge(data03, propdaysFP)
+  # assign it to something useful otuside of the function 
+  # I can probably do this smarter than just repeated merge()
   
   ########
   ############# assign these values to the output file
