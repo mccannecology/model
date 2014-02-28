@@ -9,6 +9,8 @@
 INPUT <- function(x){
   parameters <- read.csv("input.csv")
   
+  assign("parameters", parameters, envir = .GlobalEnv)
+  
   simulnumb <- x 
   
   assign("height", parameters[simulnumb,1], envir = .GlobalEnv)  # height of the grid

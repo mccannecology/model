@@ -90,7 +90,7 @@ sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE)
 ########################################################################################################
 # Set up the data LIST - starts out time step 0, but LIST[[1]]  
 ########################################################################################################
-simulnumb <- 3
+simulnumb <- 1
 
 INPUT(simulnumb)
 
