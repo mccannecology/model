@@ -17,10 +17,10 @@ OUTPUT <- function(animate=FALSE){
   setwd(paste(getwd(),"/OUTPUT",sep=""))
   
   # create another folder to hold the animation results - inside the /OUTPUT folder 
-  dir.create(paste(format(Sys.time(), "%m-%d-%Y-%H%M"), sep=""))
+  dir.create(paste(format(Sys.time(), "%m-%d-%Y-%H%M")," - simul",simulnumb, sep=""))
   
   # now set your wd to that new - timestamped output folder 
-  setwd(paste(getwd(),"/",format(Sys.time(), "%m-%d-%Y-%H%M"),sep=""))
+  setwd(paste(getwd(),"/",format(Sys.time(), "%m-%d-%Y-%H%M")," - simul",simulnumb,sep=""))
   
   ###########################################################################
   ################ now do the animated plotting - package animate ###########
@@ -41,8 +41,6 @@ OUTPUT <- function(animate=FALSE){
   #########################################################################
   ################### generate a .gif of the simulation ###################
   #########################################################################
-  # not sure if this works for >4 species yet 
-  
   require(caTools)
   
   jet.colors = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F",
@@ -154,11 +152,53 @@ OUTPUT <- function(animate=FALSE){
   # add year to your dataframe 
   data02$year <- year
   
-  data02$cover_ALL[1] <- 80 
-
+  # get the average floating plant coverage for all time steps in each year 
+  avgFPcover <- aggregate(data02$cover_ALL,list(year=data02$year),mean) 
+    
+  # get the number of days in each year that a water is above a treshold value of cover_ALL
+  regimethreshold <- 70 
+  apply.fun <- function(x) {
+    sum(x > regimethreshold)
+  }
+  aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+  
+  # get the proportion of days in each year that a water is above a treshold value of cover_ALL
+  regimethreshold <- 70 
+  apply.fun <- function(x) {
+    sum(x > regimethreshold)/timesteps
+  }
+  aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+  
+  
+  ####
+  ####### trying to get the first day that the waterbody is above a threshold value of cover_ALL 
+  ####### using aggregrate()
+  ####
+  regimethreshold <- 70 
+  apply.fun <- function(x) {
+    min(x > regimethreshold)
+  }
+  aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+    
+  ####
+  ####### trying to get the first day that the waterbody is above a threshold value of cover_ALL 
+  ####### try it again, this time by looping   
+  ####
+  for (i in 1:timesteps+1) { # loop through time steps
+    for (j in 1:years) { # loop by years 
+      min(data02$cover_ALL[i*j] > 70)
+      # this logical test works, but I still need to somehow return the index of the cover_ALL values that exceeds the threshold 
+    }
+  }
+  
   ########
-  ############# INSERT SOMETHING HERE TO COUNT UP HOW MANY DAYS ARE >x% FP cover in each year 
+  ############# assign these values to the output file
   ########
+  ############# Need to fix this so the value actually gets assigned to the parameters data frame outside of the function 
+  ########
+  regimethreshold <- 70 
+  #parameters$propcyearsFP[simulnumb] <- nrow(subset(avgFPcover[2], avgFPcover[2] > regimethreshold))/years
+  assign("parameters$propcyearsFP[simulnumb]", (nrow(subset(avgFPcover[2], avgFPcover[2] > regimethreshold))/years), envir=.GlobalEnv)
   
   ########################################################################
   ########### write a .txt of ALL parameter values in workspace ##########
