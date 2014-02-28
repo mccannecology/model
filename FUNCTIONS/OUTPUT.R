@@ -151,7 +151,9 @@ OUTPUT <- function(animate=FALSE){
 
   # add year to your dataframe 
   data02$year <- year
-  
+
+  # add a vector of "day" instead of "time" to the data frame 
+  data02$day <- c(rep(seq(1,timesteps+1),years),1)
   
   # Average floating plant coverage for all time steps in each year 
   avgFP <- aggregate(data02$cover_ALL,list(year=data02$year),mean) 
@@ -172,42 +174,32 @@ OUTPUT <- function(animate=FALSE){
   }
   propdaysFP <- aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
   colnames(propdaysFP)[2] <- "propdaysFP"
-  
-  ####
-  ####### trying to get the first day that the waterbody is above a threshold value of cover_ALL 
-  ####### using aggregrate()
-  ####
-  regimethreshold <- 70 
-  apply.fun <- function(x) {
-    min(x > regimethreshold)
-  }
-  aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
     
-  ####
-  ####### trying to get the first day that the waterbody is above a threshold value of cover_ALL 
-  ####### try it again, this time by looping   
-  ####
-  for (i in 1:timesteps+1) { # loop through time steps
-    for (j in 1:years) { # loop by years 
-      min(data02$cover_ALL[i*j] > 70)
-      # this logical test works, but I still need to somehow return the index of the cover_ALL values that exceeds the threshold 
-    }
+  # get the first day that the waterbody is above a threshold value of cover_ALL 
+  regimethreshold <- 70 
+  firstdayFP <- seq(from=0,to=0,length=years)
+  for (j in 1:years) { # loop by years 
+    temp <- subset(data02$day,data02$year == j & data02$cover_ALL >= regimethreshold) # need to fix for NAs # need to fix so it returns day instead of index 
+    firstdayFP[j] <- min(temp)
   }
+  firstdayFP[is.infinite(firstdayFP)] <- NA # min() returns infinity if there are no numbers, so replaces Inf with NA
+  firstdayFP[j+1] <- NA # add an NA for the first day of the last year (years+1)
   
   # Build a data frame with all of these different summary statistics for each year 
   data03 <- merge(avgFP,daysFP)
   data03 <- merge(data03, propdaysFP)
-  # assign it to something useful otuside of the function 
+  data03 <- cbind(data03,firstdayFP)
+  data03
   # I can probably do this smarter than just repeated merge()
   
-  ########
-  ############# assign these values to the output file
-  ########
-  ############# Need to fix this so the value actually gets assigned to the parameters data frame outside of the function 
-  ########
-  regimethreshold <- 70 
-  #parameters$propcyearsFP[simulnumb] <- nrow(subset(avgFPcover[2], avgFPcover[2] > regimethreshold))/years
-  assign("parameters$propcyearsFP[simulnumb]", (nrow(subset(avgFPcover[2], avgFPcover[2] > regimethreshold))/years), envir=.GlobalEnv)
+  # assign it to something useful otuside of the function 
+  write.csv(data03,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)
+  
+  #####
+  ########## append to input.csv the results - #years with avgFP > threshold and #years with propdaySFP > 0.5 
+  #####
+  
+  
   
   ########################################################################
   ########### write a .txt of ALL parameter values in workspace ##########
