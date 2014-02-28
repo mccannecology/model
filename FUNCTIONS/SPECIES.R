@@ -7,10 +7,6 @@
 ##########################################
 
 SPECIES <- function(x){  
-  parameters <- read.csv("input02.csv")
-  
-  simulnumb <- x   
-  
   # make the number of columns = #variables + 1 
   speciesmatrix <- matrix(data=0,nrow=parameters$numbspecies[simulnumb],ncol=5)
   speciesmatrix <- as.data.frame(speciesmatrix)

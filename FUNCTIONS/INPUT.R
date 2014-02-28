@@ -6,13 +6,7 @@
 # By: Michael J. McCann                             #
 # Last Updated: 2/26/2014                           #
 ##################################################### 
-INPUT <- function(x){
-  parameters <- read.csv("input02.csv")
-  
-  assign("parameters", parameters, envir = .GlobalEnv)
-  
-  simulnumb <- x 
-  
+INPUT <- function(x){  
   assign("height", parameters$height[simulnumb], envir = .GlobalEnv)  # height of the grid
   assign("width", parameters$width[simulnumb], envir = .GlobalEnv)   # width of the grid
   
