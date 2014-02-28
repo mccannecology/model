@@ -41,28 +41,30 @@ for (i in 1:31) {
   
   sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) # load all your functions
   
-  simulnumb <- i
+  simulnumb <- i # assigns the simulation # from the for loop - will be used as an input to INPUT() to read the right row of .csv
   
-  INPUT(simulnumb)
+  INPUT(simulnumb) # reads the .csv file of parameter values and assigns them to the global environment 
   
-  SPECIES()
+  SPECIES() # function that builds the dataframe of species-specific parameters that is used in STEPX()
   
-  winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters  
+  # define couple of things in the global environment that get used in STEPX() and OUTPUT()
   
-  totaltime<- 1+(timesteps+1)*years # total length of time - useful for plotting 
+  winters <- (timesteps+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters - used in STEPX()
   
-  LIST <- vector("list",(1+(timesteps+1)*years)) # Creates the "blank" LIST of lists - PA,AGE - all 0s
+  totaltime<- 1+(timesteps+1)*years # total length of time - used in OUTPUT() plotting
   
-  for (i in 1:(1+(timesteps+1)*years)){ # fills out the list w/ matrices of 0 
+  LIST <- vector("list",(1+(timesteps+1)*years)) # Creates the "blank" LIST 
+  
+  for (i in 1:(1+(timesteps+1)*years)){ # fills  the LIST w/ matrices of 0 
     LIST[[i]] <- BLANK()
   }
   
-  LIST[[1]]<-START3() # Seed the first time step with some individuals 
+  LIST[[1]]<-START3() # Start the first time step with some individuals 
 
-  LIST<-STEP9()
+  LIST<-STEP9() # Runs the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
   
-  OUTPUT()
+  OUTPUT() # generates graphs 
   
-  rm(list=ls())
+  rm(list=ls()) # clear workspace for next simulation 
   
 }
