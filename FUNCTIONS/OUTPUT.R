@@ -210,8 +210,6 @@ OUTPUT <- function(animate=FALSE){
 
   assign("propyears_propdaysFP_abovehalf", propyears_propdaysFP_abovehalf, envir=.GlobalEnv)
   
-
-  
   ########################################################################
   ########### write a .txt of ALL parameter values in workspace ##########
   ########################################################################
