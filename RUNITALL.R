@@ -3,7 +3,7 @@
 #                                                   #
 #                                                   #
 # By: Michael J. McCann                             #
-# Last Updated: 02/28/2014                          #
+# Last Updated: 03/10/2014                          #
 #####################################################
 # 
 # CURRENTLY:
@@ -16,12 +16,8 @@
 # Modify MOVEMENT: don't spill off edge - pile up instead 
 # Modify shape of the waterbody (non-rectangular)
 #
-# Make functions flexible diff. # of spp. (I might already be there, just set initial=0 and spp is not included) (fix PLOT2?)
 # agedead - as a distribution isntead of a constant
 # Print parameter value labels on outputs (.gif or .jpg files)
-# Are there any other outputs that I need to save? 
-# Simplify calling all functions with one script - almost there 
-# Parameters as inputs of a .csv file (whichever is easier for cluster)
 # Can I get saveHTML (package animation) outputs to save well 
 # Figure out why I'm using saveHTML and not saveGIF() in package animation 
 # Modify reproduction so it gives up after a max distance of looking for a place to reproduce (so new plants aren't thrown too far)
@@ -36,9 +32,17 @@
 #
 # 
 ########################################################################################################
+# Enter your total number of simulations 
+totalsimuls <- 180 
+
+# set-up blank vectors for any of the results 
+VECTOR_propyears_avgFP_abovethreshold <- rep(NA, totalsimuls)
+VECTOR_propyears_propdaysFP_abovehalf <- rep(NA, totalsimuls)
+RESULTS <- data.frame(VECTOR_propyears_avgFP_abovethreshold,VECTOR_propyears_propdaysFP_abovehalf)
+
+parameters <- read.csv("input04.csv") # imports parameter  values for all simulations 
+
 for (i in 1:180) { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
-  parameters <- read.csv("input03.csv") # imports parameter  values for all simulations 
-  
   require(R.utils) # package for sourceDirectory()
   
   sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) # load all your functions
@@ -65,15 +69,19 @@ for (i in 1:180) { # loop through all of your simulations - User needs to specif
 
   LIST<-STEP9() # Runs the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
   
-  OUTPUT() # generates graphs 
+  OUTPUT() # generates graphs - if you want .html animation you must specify ani
   
-  parameters$propyears_avgFP_abovethreshold <- NA # set-up a blank column 
-  parameters$propyears_avgFP_abovethreshold[simulnumb] <- propyears_avgFP_abovethreshold # assign the current simulations results to the correct spot
-  parameters$propyears_propdaysFP_abovehalf <- NA # set-up a blank column 
-  parameters$propyears_propdaysFP_abovehalf[simulnumb] <- propyears_propdaysFP_abovehalf # assign the current simulations results to the correct spot
-  
-  write.csv(parameters,"input03.csv",append=T,row.names=F) # add these results to your original input file 
+  RESULTS[simulnumb,1] <- propyears_avgFP_abovethreshold # assign the current simulations results to the correct spot
+  RESULTS[simulnumb,2] <- propyears_propdaysFP_abovehalf # assign the current simulations results to the correct spot
     
-  rm(list=ls()) # clear workspace for next simulation 
+  rm(list = ls()[!(ls() %in% c("RESULTS","parameters"))]) # clear workspace (except for RESULTS and parameters) for next simulation 
   
 }
+
+# add the results vectors to the original parameters data frame 
+parameters$propyears_avgFP_abovethreshold <- RESULTS[,1]
+parameters$propyears_propdaysFP_abovehalf <- RESULTS[,2]
+
+# add these results to your original input file 
+write.csv(parameters,"input04.csv",append=T,row.names=F) 
+

@@ -1,3 +1,0 @@
-  species maxrgr agedead initial overwinter
-1       1    0.2      30      15       0.05
-2       2    0.2      30      15       0.05
