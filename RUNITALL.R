@@ -1,7 +1,6 @@
 #####################################################
 # Individual Based Model: Floating plant growth     #
 #                                                   #
-#                                                   #
 # By: Michael J. McCann                             #
 # Last Updated: 03/10/2014                          #
 #####################################################
@@ -32,17 +31,17 @@
 #
 # 
 ########################################################################################################
-# Enter your total number of simulations 
+# Enter your total number of simulations - should be same as # rows in "inputXX.csv"
 totalsimuls <- 180 
 
 # set-up blank vectors for any of the results 
-VECTOR_propyears_avgFP_abovethreshold <- rep(NA, totalsimuls)
-VECTOR_propyears_propdaysFP_abovehalf <- rep(NA, totalsimuls)
-RESULTS <- data.frame(VECTOR_propyears_avgFP_abovethreshold,VECTOR_propyears_propdaysFP_abovehalf)
+propyears_avgFP_abovethreshold <- rep(NA, totalsimuls)
+propyears_propdaysFP_abovehalf <- rep(NA, totalsimuls)
+RESULTS <- data.frame(propyears_avgFP_abovethreshold,propyears_propdaysFP_abovehalf)
 
 parameters <- read.csv("input04.csv") # imports parameter  values for all simulations 
 
-for (i in 1:180) { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
+for (i in 1:totalsimuls) { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
   require(R.utils) # package for sourceDirectory()
   
   sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) # load all your functions
