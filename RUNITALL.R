@@ -32,16 +32,16 @@
 # 
 ########################################################################################################
 # Enter your total number of simulations - should be same as # rows in "inputXX.csv"
-totalsimuls <- 180 
+totalsimuls <- 156 
 
 # set-up blank vectors for any of the results 
 propyears_avgFP_abovethreshold <- rep(NA, totalsimuls)
 propyears_propdaysFP_abovehalf <- rep(NA, totalsimuls)
 RESULTS <- data.frame(propyears_avgFP_abovethreshold,propyears_propdaysFP_abovehalf)
 
-parameters <- read.csv("input04.csv") # imports parameter  values for all simulations 
+parameters <- read.csv("input05.csv") # imports parameter  values for all simulations 
 
-for (i in 1:totalsimuls) { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
+for (i in 61:totalsimuls) { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
   require(R.utils) # package for sourceDirectory()
   
   sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) # load all your functions
@@ -82,5 +82,5 @@ parameters$propyears_avgFP_abovethreshold <- RESULTS[,1]
 parameters$propyears_propdaysFP_abovehalf <- RESULTS[,2]
 
 # add these results to your original input file 
-write.csv(parameters,"input04.csv",append=T,row.names=F) 
+write.csv(parameters,"output05.csv",row.names=F) 
 

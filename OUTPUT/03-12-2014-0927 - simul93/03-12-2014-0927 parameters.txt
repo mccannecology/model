@@ -1,0 +1,46 @@
+%ni% : function (...)  
+agedead01 :  int 30
+agedead02 :  int 30
+agedead03 :  int 30
+agedead04 :  int 30
+BLANK : function ()  
+buffer :  int 3
+height :  int 50
+i :  int 761
+initial01 :  int 2
+initial02 :  int 2
+initial03 :  int 2
+initial04 :  int 0
+INPUT : function (x)  
+LIST : List of 761
+  [list output truncated]
+maxrgr01 :  num 0.4
+maxrgr02 :  num 0.3
+maxrgr03 :  num 0.2
+maxrgr04 :  int 0
+numbspecies :  int 3
+OUTPUT : function (animate = FALSE)  
+overwinter01 :  num 0.05
+overwinter02 :  num 0.1
+overwinter03 :  num 0.15
+overwinter04 :  int 0
+parameters : 'data.frame':	156 obs. of  29 variables:
+propyears_avgFP_abovethreshold :  num 0.7
+propyears_propdaysFP_abovehalf :  num 0.7
+RESULTS : 'data.frame':	156 obs. of  2 variables:
+simulnumb :  int 93
+SPECIES : function (x)  
+speciesmatrix : 'data.frame':	3 obs. of  5 variables:
+START3 : function ()  
+STEP9 : function ()  
+timesteps :  int 75
+totaltime :  num 761
+width :  int 200
+wind_directions :  chr [1:4] "U" "L" "" ""
+wind_prob :  num 0.25
+winters :  num [1:10] 76 152 228 304 380 456 532 608 684 760
+years :  int 10
+  species maxrgr agedead initial overwinter
+1       1    0.4      30       2       0.05
+2       2    0.3      30       2       0.10
+3       3    0.2      30       2       0.15
