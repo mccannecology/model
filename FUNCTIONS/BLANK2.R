@@ -12,15 +12,18 @@ BLANK2 <- function(){
     
   SPmatrix <- matrix(0, height, width)
   
-  NEIGH <- matrix(0, height, width)
+  #NEIGH <- matrix(0, height, width) - skip setting up the neighbor matrix for now
+  
+  TOTALN <- 0 
   
   TOTALP <- 0
   
-  mylist <- c(rep(list(SPmatrix),numbspecies), list(NEIGH), list(TOTALP))
+  mylist <- c(rep(list(SPmatrix),numbspecies), list(NEIGH), list(TOTALN), list(TOTALP))
   
   # give each matrix in the list the right name 
   # the number of species matrices is variable, hence the paste and seq combo 
-  names(mylist) <- c(paste("SP",seq(from=1,to=numbspecies,by=1),"matrix",sep=""), "NEIGH", "TOTALP")
+  # names(mylist) <- c(paste("SP",seq(from=1,to=numbspecies,by=1),"matrix",sep=""), "NEIGH", "TOTALN", "TOTALP")
+  names(mylist) <- c(paste("SP",seq(from=1,to=numbspecies,by=1),"matrix",sep=""), "TOTALN", "TOTALP")
   
   return(mylist)
 }
