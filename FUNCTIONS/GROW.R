@@ -13,20 +13,37 @@ for (i in 1:10){ #
 LIST[[1]]<-START4() 
 #############################################################################################
 
+
+
+#############################################################################################
 # I will need to be smarter about indexing each SPmatrix
 # I cannot index via: LIST[[i]]$PAmatrix[j,k]
 
-# this is a way I could refer the correct number of SPmatrices 
-# should I then assign each one to something else and work on it elsewhere? 
-# then I could assign those new values to for(i in 1:numbspecies) LIST[[i+1]][i]
-# this does not work because it makes each a list (and not a matrix)
+# extract each SPmatrix from list and assign to an object in the environment
 for (i in 1:numbspecies) {
-  assign(paste("SP",i,"matrix",sep=""),LIST[[1]][i])
+  assign(paste("SP",i,"matrix",sep=""),matrix(unlist(LIST[[1]][1]),nrow=height,ncol=width)) #use unlist() to pull matrix out of list
 }
 
-# this extracts a matrix (and not a list) out!
-matrix(unlist(LIST[[1]][1]),nrow=height,ncol=width)
+# these are the actions that I am going to do for each SPmatrix 
+# here, I will do it just on SP1matrix 
 
-# these do the same  thing
-head(LIST[[1]],1)
-LIST[[1]][1]
+for (j in 1:height) { # loop over all rows (height)
+  for (k in 1:width) { # loop over all columns (width)
+    if (LIST[[i]]$SP1matrix[j,k] > 0) {
+      LIST[[i+1]]$SP1matrix[j,j] <- LIST[[i]]$SP1matrix[j,k] + 1 # This is where the growth formula goes 
+    }  
+  }   
+}
+
+# POSSIBLE SOLUTION: if statement - check numbspecies - based on that carry out different set of actions 
+# Do actions to the SP1matrix 
+if (numbspecies == 4) {}
+else if (numbspecies == 3) {}
+else if (numbspecies == 2) {}
+else if (numbspecies == 1) {}
+
+# everything will be inside a function
+# Can I make the numb of species an input? or is that irrelevant because it is already in the global environment 
+GROW() <- function() {
+  
+}
