@@ -24,12 +24,15 @@ for (i in seq(1,2001,500)) {
   }
 }
 
+# amount of memory currently in use by the OS - units: MB
+memory.size(max=FALSE)
 
+# maximum amount of memory from the OS - units: MB
+memory.size(max=TRUE)
 
+# current memory limit - units: MB
+memory.limit(size=NA)
 
-for (i in 1:10000){ 
-  LIST[[i]] <- BLANK2()
-}
-
-
+# set a new memory limit - units: MB
+memory.limit(size=6000)
 
