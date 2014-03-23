@@ -284,6 +284,7 @@ MOVE <- function(x1) {
             
             # spread: assign "amounttomove" to the new spot 
             x1[offspring[1],offspring[2]] <- amounttomove 
+            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    
             STOP <- 1 
@@ -321,6 +322,7 @@ MOVE <- function(x1) {
             
             # spread: assign "amounttomove" to the new spot 
             x1[offspring[1],offspring[2]] <- amounttomove 
+            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    
             STOP <- 1 
@@ -358,6 +360,7 @@ MOVE <- function(x1) {
             
             # spread: assign "amounttomove" to the new spot 
             x1[offspring[1],offspring[2]] <- amounttomove 
+            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    
             STOP <- 1 
