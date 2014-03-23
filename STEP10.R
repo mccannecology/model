@@ -75,7 +75,11 @@ STEP10 <- function() { # start defining the function
       
     } # closes the else statement - when it is an overwintering step
   
+    require(raster)
+    plot(raster(LIST[[i]]$SPALLmatrix),main=i)
+    
   } # closes for loop through time steps 
+  
   return(LIST)
 }
 
