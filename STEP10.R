@@ -6,6 +6,7 @@ STEP10 <- function() { # start defining the function
     # check if it's NOT overwintering timestep, then do the following 
     if (i %ni% winters) { 
     
+      # GROW 
       if (numbspecies == 4) { 
         LIST[[i+1]]$SP4matrix <- GROW(LIST[[i]]$SP4matrix, LIST[[i+1]]$SP4matrix, LIST[[i]]$SPALLmatrix) 
         LIST[[i+1]]$SP3matrix <- GROW(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix, LIST[[i]]$SPALLmatrix) 
@@ -22,13 +23,18 @@ STEP10 <- function() { # start defining the function
       else if (numbspecies == 2) {
         LIST[[i+1]]$SP2matrix <- GROW(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix, LIST[[i]]$SPALLmatrix) 
         LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, LIST[[i]]$SPALLmatrix) 
-        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix, LIST[[i]]$SPALLmatrix)
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix + LIST[[i]]$SPALLmatrix
       }
       else if (numbspecies == 1) {
         LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, LIST[[i]]$SPALLmatrix) 
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP1matrix
       }
-    
+
+      # UPTAKE N
+      LIST[[i+1]]$TOTALN <- UPTAKE_N(LIST[[i]]$SPALLmatrix,LIST[[i+1]]$SPALLmatrix,LIST[[i]]$TOTALN,LIST[[i+1]]$TOTALN)
+      
+      # UPTAKE P 
+      LIST[[i+1]]$TOTALP <- UPTAKE_P(LIST[[i]]$SPALLmatrix,LIST[[i+1]]$SPALLmatrix,LIST[[i]]$TOTALP,LIST[[i+1]]$TOTALP)
       
     } # closes the if statement, when it is not an overwintering step 
     
