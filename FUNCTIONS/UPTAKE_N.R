@@ -1,12 +1,16 @@
-# x1... LIST[[i]]$SPALLmatrix
-# x2... LIST[[i+1]]$SPALLmatrix
-# x3... LIST[[i]]$TOTALN
-# x4... LIST[[i+1]]$TOTALN
+# x... LIST
+# i... i from the timestep for loop in STEP10()
 
-UPTAKE_N <- function(x1,x2,x3,x4) {
-  newbiomass <- sum(x2-x1) # new biomass that grew on most recent     
-  x4 <- x3 - newbiomass * 0.001 # this decrease is completely arbitrary !
-  return(x4)
+UPTAKE_N <- function(x,i) {
+  newbiomass <- sum(x[[i+1]]$SPALLmatrix-x[[i]]$SPALLmatrix) # new biomass that grew on most recent     
+  x[[i+1]]$TOTALN <- x[[i]]$TOTALN - newbiomass * 0.001 # this decrease is completely arbitrary !
+  return(x[[i+1]]$TOTALN)
 }
 
 # need to add something that stops this from going below 0 
+
+# species should differ in their uptake rates 
+# add an object for each species' newbiomass e.g., newbiomassSP1 
+
+
+

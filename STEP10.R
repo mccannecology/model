@@ -31,10 +31,10 @@ STEP10 <- function() { # start defining the function
       }
 
       # UPTAKE N
-      LIST[[i+1]]$TOTALN <- UPTAKE_N(LIST[[i]]$SPALLmatrix,LIST[[i+1]]$SPALLmatrix,LIST[[i]]$TOTALN,LIST[[i+1]]$TOTALN)
+      LIST[[i+1]]$TOTALN <- UPTAKE_N(LIST,i)
       
       # UPTAKE P 
-      LIST[[i+1]]$TOTALP <- UPTAKE_P(LIST[[i]]$SPALLmatrix,LIST[[i+1]]$SPALLmatrix,LIST[[i]]$TOTALP,LIST[[i+1]]$TOTALP)
+      LIST[[i+1]]$TOTALP <- UPTAKE_P(LIST,i)
       
     } # closes the if statement, when it is not an overwintering step 
     
@@ -42,6 +42,7 @@ STEP10 <- function() { # start defining the function
     else {   
       
     } # closes the else statement - when it is an overwintering step
+  
   } # closes for loop through time steps 
   return(LIST)
 }
