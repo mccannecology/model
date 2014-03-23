@@ -74,10 +74,37 @@ STEP10 <- function() { # start defining the function
     else {   
       
     } # closes the else statement - when it is an overwintering step
-  
-    require(raster)
-    plot(raster(LIST[[i]]$SPALLmatrix),main=i)
     
+    ########
+    # PLOT #
+    ########
+    require(raster)
+    if (numbspecies == 4) { 
+      par(mfrow=c(numbspecies+1,1))
+      plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1",i,sep=" "))
+      plot(raster(LIST[[i]]$SP2matrix),main=paste("Species 2",i,sep=" "))
+      plot(raster(LIST[[i]]$SP3matrix),main=paste("Species 3",i,sep=" "))
+      plot(raster(LIST[[i]]$SP4matrix),main=paste("Species 4",i,sep=" "))
+      plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species",i,sep=" "))
+    }
+    else if (numbspecies == 3) { 
+      par(mfrow=c(numbspecies+1,1))
+      plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1",i,sep=" "))
+      plot(raster(LIST[[i]]$SP2matrix),main=paste("Species 2",i,sep=" "))
+      plot(raster(LIST[[i]]$SP3matrix),main=paste("Species 3",i,sep=" "))
+      plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species",i,sep=" "))
+    }
+    else if (numbspecies == 2) { 
+      par(mfrow=c(numbspecies+1,1))
+      plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1",i,sep=" "))
+      plot(raster(LIST[[i]]$SP2matrix),main=paste("Species 2",i,sep=" "))
+      plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species",i,sep=" "))
+    }
+    else if (numbspecies == 2) { 
+      par(mfrow=c(numbspecies+1,1))
+      plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1",i,sep=" "))
+      plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species",i,sep=" "))
+    }
   } # closes for loop through time steps 
   
   return(LIST)
