@@ -1,8 +1,5 @@
 # x1... LIST[[i]]$SPmatrix 
 
-# Add transport to neighboring cells even if they already are occupied (but preferentially to an unoccupied cell)
-# I want the spread to be limited to a certain radius around the focal plant 
-
 thresholdtomove <- 2
 amounttomove <- 0.5
 
@@ -36,13 +33,13 @@ MOVE <- function(x1) {
                                   j-distance, k+distance, x1[j-distance,k+distance]),
                                 nrow=8,byrow=TRUE)
             
-            # Remove coordinates that are outside the grid (negatives or >width or width) or that are occupied 
+            # Remove coordinates that are outside the grid (negatives or >width or width) or that are > thresholdtomove
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
-                                & (neighbors[,2]>=1 & neighbors[,2]<=width) 
-                                & neighbors[,3]==0)
+                                & (neighbors[,2]>=1 & neighbors[,2]<=width)
+                                & (neighbors[,3]<thresholdtomove))
                          
-            # randomly pick an empty neighbor to move into 
+            # randomly pick a neighbor < thresholdtomove to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
@@ -77,13 +74,13 @@ MOVE <- function(x1) {
                                   j, k-distance, x1[j,k-distance]),
                                 nrow=5,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) or that are occupied 
+            # Remove coordinates that outside of the grid (negatives or >width or width) or that are > thresholdtomove
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
-                                & (neighbors[,2]>=1 & neighbors[,2]<=width) 
-                                & neighbors[,3]==0)
+                                & (neighbors[,2]>=1 & neighbors[,2]<=width)
+                                & (neighbors[,3]<thresholdtomove))
                         
-            # randomly pick an empty neighbor to move into 
+            # randomly pick a neighbor < thresholdtomove to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
@@ -117,13 +114,13 @@ MOVE <- function(x1) {
                                   j-distance, k+distance, x1[j-distance,k+distance]),
                                 nrow=5,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) or that are occupied 
+            # Remove coordinates that outside of the grid (negatives or >width or width) or that are > thresholdtomove
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
-                                & (neighbors[,2]>=1 & neighbors[,2]<=width) 
-                                & neighbors[,3]==0)
+                                & (neighbors[,2]>=1 & neighbors[,2]<=width)
+                                & (neighbors[,3]<thresholdtomove))
             
-            # randomly pick an empty neighbor to move into 
+            # randomly pick a neighbor < thresholdtomove to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
@@ -157,13 +154,13 @@ MOVE <- function(x1) {
                                   j-distance, k+distance, x1[j-distance,k+distance]),
                                 nrow=5,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) or that are occupied 
+            # Remove coordinates that outside of the grid (negatives or >width or width) or that are > thresholdtomove
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
-                                & (neighbors[,2]>=1 & neighbors[,2]<=width) 
-                                & neighbors[,3]==0)
+                                & (neighbors[,2]>=1 & neighbors[,2]<=width)
+                                & (neighbors[,3]<thresholdtomove))
 
-            # randomly pick an empty neighbor to move into 
+            # randomly pick a neighbor < thresholdtomove to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
@@ -197,13 +194,13 @@ MOVE <- function(x1) {
                                   j-distance, k-distance, x1[j-distance,k-distance]),
                                 nrow=5,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) or that are occupied 
+            # Remove coordinates that outside of the grid (negatives or >width or width) or that are > thresholdtomove
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
-                                & (neighbors[,2]>=1 & neighbors[,2]<=width) 
-                                & neighbors[,3]==0)
+                                & (neighbors[,2]>=1 & neighbors[,2]<=width)
+                                & (neighbors[,3]<thresholdtomove))
              
-            # randomly pick an empty neighbor to move into 
+            # randomly pick a neighbor < thresholdtomove to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
@@ -235,13 +232,13 @@ MOVE <- function(x1) {
                                   j, k+distance, x1[j,k+distance]),                                                
                                 nrow=3,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) or that are occupied 
+            # Remove coordinates that outside of the grid (negatives or >width or width) or that are > thresholdtomove
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
-                                & (neighbors[,2]>=1 & neighbors[,2]<=width) 
-                                & neighbors[,3]==0)
+                                & (neighbors[,2]>=1 & neighbors[,2]<=width)
+                                & (neighbors[,3]<thresholdtomove))
                   
-            # randomly pick an empty neighbor to move into 
+            # randomly pick a neighbor < thresholdtomove to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
@@ -273,17 +270,17 @@ MOVE <- function(x1) {
                                   j, k-distance, x1[j,k-distance]),                        
                                 nrow=3,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) or that are occupied 
+            # Remove coordinates that outside of the grid (negatives or >width or width) or that are > thresholdtomove
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
-                                & (neighbors[,2]>=1 & neighbors[,2]<=width) 
-                                & neighbors[,3]==0)
+                                & (neighbors[,2]>=1 & neighbors[,2]<=width)
+                                & (neighbors[,3]<thresholdtomove))
 
-            # randomly pick an empty neighbor to move into 
+            # randomly pick a neighbor < thresholdtomove to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # spread: assign "amounttomove" to the new spot 
-            x1[offspring[1],offspring[2]] <- amounttomove 
+            # move:
+            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
             x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    
@@ -311,17 +308,17 @@ MOVE <- function(x1) {
                                   j-distance, k+distance, x1[j-distance,k+distance]),
                                 nrow=3,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) or that are occupied 
+            # Remove coordinates that outside of the grid (negatives or >width or width) or that are > thresholdtomove
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
-                                & (neighbors[,2]>=1 & neighbors[,2]<=width) 
-                                & neighbors[,3]==0)
+                                & (neighbors[,2]>=1 & neighbors[,2]<=width)
+                                & (neighbors[,3]<thresholdtomove))
 
-            # randomly pick an empty neighbor to move into 
+            # randomly pick a neighbor < thresholdtomove to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # spread: assign "amounttomove" to the new spot 
-            x1[offspring[1],offspring[2]] <- amounttomove 
+            # move:
+            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
             x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    
@@ -349,17 +346,17 @@ MOVE <- function(x1) {
                                   j-distance, k-distance, x1[j-distance,k-distance]),
                                 nrow=3,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) or that are occupied 
+            # Remove coordinates that outside of the grid (negatives or >width or width) or that are > thresholdtomove
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
-                                & (neighbors[,2]>=1 & neighbors[,2]<=width) 
-                                & neighbors[,3]==0)
+                                & (neighbors[,2]>=1 & neighbors[,2]<=width)
+                                & (neighbors[,3]<thresholdtomove))
             
-            # randomly pick an empty neighbor to move into 
+            # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # spread: assign "amounttomove" to the new spot 
-            x1[offspring[1],offspring[2]] <- amounttomove 
+            # move:
+            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
             x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    

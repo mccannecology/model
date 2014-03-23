@@ -13,15 +13,27 @@ for (i in 1:10){ #
 # Start the first time step with some individuals 
 LIST[[1]]<-START4() 
 #############################################################################################
+# Test function STEP10() on the LIST 
+LIST<-STEP10()
 
 # Test function GROW() on individual matrices 
 LIST[[2]]$SP1matrix <- GROW(LIST[[1]]$SP1matrix, LIST[[2]]$SP1matrix) 
 LIST[[2]]$SP2matrix <- GROW(LIST[[1]]$SP2matrix, LIST[[2]]$SP2matrix) 
 LIST[[2]]$SP3matrix <- GROW(LIST[[1]]$SP2matrix, LIST[[2]]$SP2matrix) 
 
-# Test function STEP10() on the LIST 
-LIST<-STEP10()
+# playing around with MOVE() 
+# I want movement to happen nearby
+# and not just to unoccupied cells 
 
+x1<-LIST[[3]]$SP1matrix
+x1
+LIST[[3]]$SP1matrix[4,8]
+j<-4
+k<-8
+
+rm(x1)
+rm(j)
+rm(k)
 
 # playing around with some forms of the growth formula for GROW()
 
