@@ -61,12 +61,12 @@ STEP10 <- function() { # start defining the function
       ############
       # UPTAKE N #
       ############
-      LIST[[i+1]]$TOTALN <- UPTAKE_N(LIST,i)
+      LIST[[i+1]]$TOTALN <- UPTAKE_N(LIST,i,n=numbspecies)
       
       ############
       # UPTAKE P #
       ############
-      LIST[[i+1]]$TOTALP <- UPTAKE_P(LIST,i)
+      LIST[[i+1]]$TOTALP <- UPTAKE_P(LIST,i,n=numbspecies)
       
     } # closes the if statement, when it is not an overwintering step 
     
