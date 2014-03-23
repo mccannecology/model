@@ -1,5 +1,5 @@
 #############################################################################################
-# Make some examples LISTs
+# Make a short/small LIST for testing 
 # occurs in RUNITALL in the real thing
 
 # Create a blank LIST 
