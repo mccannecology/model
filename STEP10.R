@@ -6,7 +6,35 @@ STEP10 <- function() { # start defining the function
     # check if it's NOT overwintering timestep, then do the following 
     if (i %ni% winters) { 
     
-      # GROW 
+      ########
+      # MOVE #
+      ########
+      if (numbspecies == 4) { 
+        LIST[[i]]$SP4matrix <- MOVE(LIST[[i]]$SP4matrix) 
+        LIST[[i]]$SP3matrix <- MOVE(LIST[[i]]$SP3matrix)
+        LIST[[i]]$SP2matrix <- MOVE(LIST[[i]]$SP2matrix)
+        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix)
+        LIST[[i]]$SPALLmatrix <- LIST[[i]]$SP4matrix + LIST[[i]]$SP3matrix + LIST[[i]]$SP2matrix + LIST[[i]]$SP1matrix
+      }
+      else if (numbspecies == 3) {
+        LIST[[i]]$SP3matrix <- MOVE(LIST[[i]]$SP3matrix)
+        LIST[[i]]$SP2matrix <- MOVE(LIST[[i]]$SP2matrix)
+        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix) 
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP3matrix + LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
+      }
+      else if (numbspecies == 2) {
+        LIST[[i]]$SP2matrix <- MOVE(LIST[[i]]$SP2matrix)
+        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix) 
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix + LIST[[i]]$SPALLmatrix
+      }
+      else if (numbspecies == 1) {
+        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix) 
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP1matrix
+      }
+      
+      ########
+      # GROW #
+      ########
       if (numbspecies == 4) { 
         LIST[[i+1]]$SP4matrix <- GROW(LIST[[i]]$SP4matrix, LIST[[i+1]]$SP4matrix, LIST[[i]]$SPALLmatrix) 
         LIST[[i+1]]$SP3matrix <- GROW(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix, LIST[[i]]$SPALLmatrix) 
@@ -30,10 +58,14 @@ STEP10 <- function() { # start defining the function
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP1matrix
       }
 
-      # UPTAKE N
+      ############
+      # UPTAKE N #
+      ############
       LIST[[i+1]]$TOTALN <- UPTAKE_N(LIST,i)
       
-      # UPTAKE P 
+      ############
+      # UPTAKE P #
+      ############
       LIST[[i+1]]$TOTALP <- UPTAKE_P(LIST,i)
       
     } # closes the if statement, when it is not an overwintering step 
