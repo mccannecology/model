@@ -14,7 +14,10 @@ for (i in 1:10){ #
 LIST[[1]]<-START4() 
 #############################################################################################
 
-# Testing the function GROW()
+# Test function GROW() on individual matrices 
 LIST[[2]]$SP1matrix <- GROW(LIST[[1]]$SP1matrix, LIST[[2]]$SP1matrix) 
 LIST[[2]]$SP2matrix <- GROW(LIST[[1]]$SP2matrix, LIST[[2]]$SP2matrix) 
 LIST[[2]]$SP3matrix <- GROW(LIST[[1]]$SP2matrix, LIST[[2]]$SP2matrix) 
+
+# Test function STEP10() on the LIST 
+LIST<-STEP10()
