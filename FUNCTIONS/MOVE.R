@@ -3,14 +3,6 @@
 # Add transport to neighboring cells even if they already are occupied (but preferentially to an unoccupied cell)
 # I want the spread to be limited to a certain radius around the focal plant 
 
-# THIS IS GOING TO NEED TO GET MODIFIED & ADDED IN SOMEWHERE - perhaps in GROW()
-# define the number of cells from the focal cell that you want to count as neighbors
-# require(simecol)
-# wdist <- matrix(1,(2*buffer+1),(2*buffer+1)) # a matrix of 1s - size buffer around focal cell 
-# wdist[buffer+1,buffer+1] <- 0 # change  focal cell to 0 - you don't want to count that as a neighbor 
-# counts up neighbors after senescence, reproducing, and movement 
-# LIST[[i+1]]$NEIGH <- neighbours(LIST[[i+1]]$PAmatrix, wdist = wdist, tol = 1, bounds = 0)  
-
 thresholdtomove <- 2
 amounttomove <- 0.5
 
