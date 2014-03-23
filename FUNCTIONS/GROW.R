@@ -1,4 +1,8 @@
-GROW <- function(x1,x2,x3) { # function has both LIST[[i]]$SPmatrix and LIST[[i+1]]$SPmatrix as inputs 
+# x1... LIST[[i]]$SPmatrix 
+# x2... LIST[[i+1]]$SPmatrix
+# x3... LIST[[i]]$SPALLmatrix
+
+GROW <- function(x1,x2,x3) { # function has LIST[[i]]$SPmatrix, LIST[[i+1]]$SPmatrix, and LIST[[i]]$SPALLmatrix as inputs 
   for (j in 1:height) { # loop over all rows (height)
     for (k in 1:width) { # loop over all columns (width)
       if (x1[j,k] > 0) {
