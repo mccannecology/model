@@ -71,7 +71,42 @@ STEP10 <- function() { # start defining the function
     } # closes the if statement, when it is not an overwintering step 
     
     # otherwise, it IS an overwintering timestep, do the following
+    ##############
+    # OVERWINTER #
+    ##############
     else {   
+      if (numbspecies == 4) { 
+        LIST[[i+1]]$SP4matrix <- OVERWINTER(LIST[[i]]$SP4matrix, LIST[[i+1]]$SP4matrix)
+        LIST[[i+1]]$SP3matrix <- OVERWINTER(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix)
+        LIST[[i+1]]$SP2matrix <- OVERWINTER(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix)
+        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix)
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP4matrix + LIST[[i+1]]$SP3matrix + LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
+      }
+      else if (numbspecies == 3) {
+        LIST[[i+1]]$SP3matrix <- OVERWINTER(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix)
+        LIST[[i+1]]$SP2matrix <- OVERWINTER(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix)
+        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix)
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP3matrix + LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
+      }
+      else if (numbspecies == 2) {
+        LIST[[i+1]]$SP2matrix <- OVERWINTER(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix)
+        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix)
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
+      }
+      else if (numbspecies == 1) {
+        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix)
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP1matrix
+      }
+      
+      #############
+      # RELEASE N #
+      #############
+      LIST[[i+1]]$TOTALN <- RELEASE_N(LIST,i)
+      
+      #############
+      # RELEASE P #
+      #############
+      LIST[[i+1]]$TOTALP <- RELEASE_P(LIST,i)
       
     } # closes the else statement - when it is an overwintering step
     

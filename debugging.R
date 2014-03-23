@@ -3,10 +3,10 @@
 # occurs in RUNITALL in the real thing
 
 # Create a blank LIST 
-LIST <- vector("list",10) # Creates the "blank" LIST 
+LIST <- vector("list",11) # Creates the "blank" LIST 
 
 # fill  the LIST w/ matrices of 0 
-for (i in 1:10){ # 
+for (i in 1:11){ # 
   LIST[[i]] <- BLANK2()
 }
 
@@ -15,6 +15,15 @@ LIST[[1]]<-START4()
 #############################################################################################
 # Test function STEP10() on the LIST 
 LIST<-STEP10()
+
+# Test function OVERWINTER() on individual matrices 
+LIST[[2]]$SP1matrix <- OVERWINTER(LIST[[1]]$SP1matrix, LIST[[2]]$SP1matrix) 
+LIST[[11]]$SP1matrix <- OVERWINTER(LIST[[10]]$SP1matrix, LIST[[11]]$SP1matrix) 
+LIST[[11]]$SP2matrix <- OVERWINTER(LIST[[10]]$SP2matrix, LIST[[11]]$SP2matrix) 
+LIST[[11]]$SP3matrix <- OVERWINTER(LIST[[10]]$SP3matrix, LIST[[11]]$SP3matrix) 
+
+# Test function RELEASE_N() on real data 
+LIST[[11]]$TOTALN <- RELEASE_N(LIST,10)
 
 # Test function GROW() on individual matrices 
 LIST[[2]]$SP1matrix <- GROW(LIST[[1]]$SP1matrix, LIST[[2]]$SP1matrix) 
