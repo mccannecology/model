@@ -1,6 +1,6 @@
 STEP10 <- function() { # start defining the function 
   
-  #for (i in 1:((timesteps+1)*years)) { # loop through time steps <--- change me back to the original 
+  #for (i in 1:((timesteps+1)*years)) { # loop through time steps <--- change back to the original when doing real model
   for (i in 1:9) { # loop through time steps  
   
     # check if it's NOT overwintering timestep, then do the following 
@@ -10,19 +10,23 @@ STEP10 <- function() { # start defining the function
         LIST[[i+1]]$SP4matrix <- GROW(LIST[[i]]$SP4matrix, LIST[[i+1]]$SP4matrix) 
         LIST[[i+1]]$SP3matrix <- GROW(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix) 
         LIST[[i+1]]$SP2matrix <- GROW(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix) 
-        LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix) 
+        LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix)
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP4matrix + LIST[[i+1]]$SP3matrix + LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
       }
       else if (numbspecies == 3) {
         LIST[[i+1]]$SP3matrix <- GROW(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix) 
         LIST[[i+1]]$SP2matrix <- GROW(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix) 
         LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix) 
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP3matrix + LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
       }
       else if (numbspecies == 2) {
         LIST[[i+1]]$SP2matrix <- GROW(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix) 
         LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix) 
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
       }
       else if (numbspecies == 1) {
         LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix) 
+        LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP1matrix
       }
     
       
