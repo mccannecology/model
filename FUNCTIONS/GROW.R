@@ -26,7 +26,6 @@ for (i in 1:numbspecies) {
 
 # these are the actions that I am going to do for each SPmatrix 
 # here, I will do it just on SP1matrix 
-
 for (j in 1:height) { # loop over all rows (height)
   for (k in 1:width) { # loop over all columns (width)
     if (LIST[[i]]$SP1matrix[j,k] > 0) {
@@ -42,8 +41,22 @@ else if (numbspecies == 3) {}
 else if (numbspecies == 2) {}
 else if (numbspecies == 1) {}
 
-# everything will be inside a function
-# Can I make the numb of species an input? or is that irrelevant because it is already in the global environment 
-GROW() <- function() {
-  
+
+# The input needs to be both LIST[[i]]$SP1matrix and LIST[[i+1]]$SP1matrix
+# Then I can index things properly
+GROW <- function(x1,x2) {
+  for (j in 1:height) { # loop over all rows (height)
+    for (k in 1:width) { # loop over all columns (width)
+      if (x1[j,k] > 0) {
+        x2[j,k] <- x1[j,k] + 1 # This is where the growth formula goes 
+      }  
+    }   
+  }
+  RESULT <- x2
+  return(RESULT) 
 }
+
+# Testing the function GROW()
+LIST[[2]]$SP1matrix <- GROW(LIST[[1]]$SP1matrix, LIST[[2]]$SP1matrix) 
+LIST[[2]]$SP2matrix <- GROW(LIST[[1]]$SP2matrix, LIST[[2]]$SP2matrix) 
+LIST[[2]]$SP3matrix <- GROW(LIST[[1]]$SP2matrix, LIST[[2]]$SP2matrix) 
