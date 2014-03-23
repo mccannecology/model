@@ -36,25 +36,25 @@ STEP10 <- function() { # start defining the function
       # GROW #
       ########
       if (numbspecies == 4) { 
-        LIST[[i+1]]$SP4matrix <- GROW(LIST[[i]]$SP4matrix, LIST[[i+1]]$SP4matrix, LIST[[i]]$SPALLmatrix) 
-        LIST[[i+1]]$SP3matrix <- GROW(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix, LIST[[i]]$SPALLmatrix) 
-        LIST[[i+1]]$SP2matrix <- GROW(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix, LIST[[i]]$SPALLmatrix) 
-        LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, LIST[[i]]$SPALLmatrix)
+        LIST[[i+1]]$SP4matrix <- GROW(LIST[[i]]$SP4matrix, LIST[[i+1]]$SP4matrix, LIST[[i]]$SPALLmatrix, n=4) 
+        LIST[[i+1]]$SP3matrix <- GROW(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix, LIST[[i]]$SPALLmatrix, n=3) 
+        LIST[[i+1]]$SP2matrix <- GROW(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix, LIST[[i]]$SPALLmatrix, n=2) 
+        LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, LIST[[i]]$SPALLmatrix, n=1)
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP4matrix + LIST[[i+1]]$SP3matrix + LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
       }
       else if (numbspecies == 3) {
-        LIST[[i+1]]$SP3matrix <- GROW(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix, LIST[[i]]$SPALLmatrix) 
-        LIST[[i+1]]$SP2matrix <- GROW(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix, LIST[[i]]$SPALLmatrix) 
-        LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, LIST[[i]]$SPALLmatrix) 
+        LIST[[i+1]]$SP3matrix <- GROW(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix, LIST[[i]]$SPALLmatrix, n=3) 
+        LIST[[i+1]]$SP2matrix <- GROW(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix, LIST[[i]]$SPALLmatrix, n=2) 
+        LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, LIST[[i]]$SPALLmatrix, n=1) 
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP3matrix + LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
       }
       else if (numbspecies == 2) {
-        LIST[[i+1]]$SP2matrix <- GROW(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix, LIST[[i]]$SPALLmatrix) 
-        LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, LIST[[i]]$SPALLmatrix) 
+        LIST[[i+1]]$SP2matrix <- GROW(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix, LIST[[i]]$SPALLmatrix, n=2) 
+        LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, LIST[[i]]$SPALLmatrix, n=1) 
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix + LIST[[i]]$SPALLmatrix
       }
       else if (numbspecies == 1) {
-        LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, LIST[[i]]$SPALLmatrix) 
+        LIST[[i+1]]$SP1matrix <- GROW(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, LIST[[i]]$SPALLmatrix, n=1) 
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP1matrix
       }
 
@@ -76,25 +76,25 @@ STEP10 <- function() { # start defining the function
     ##############
     else {   
       if (numbspecies == 4) { 
-        LIST[[i+1]]$SP4matrix <- OVERWINTER(LIST[[i]]$SP4matrix, LIST[[i+1]]$SP4matrix)
-        LIST[[i+1]]$SP3matrix <- OVERWINTER(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix)
-        LIST[[i+1]]$SP2matrix <- OVERWINTER(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix)
-        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix)
+        LIST[[i+1]]$SP4matrix <- OVERWINTER(LIST[[i]]$SP4matrix, LIST[[i+1]]$SP4matrix, n=4)
+        LIST[[i+1]]$SP3matrix <- OVERWINTER(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix, n=3)
+        LIST[[i+1]]$SP2matrix <- OVERWINTER(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix, n=2)
+        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, n=1)
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP4matrix + LIST[[i+1]]$SP3matrix + LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
       }
       else if (numbspecies == 3) {
-        LIST[[i+1]]$SP3matrix <- OVERWINTER(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix)
-        LIST[[i+1]]$SP2matrix <- OVERWINTER(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix)
-        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix)
+        LIST[[i+1]]$SP3matrix <- OVERWINTER(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix, n=3)
+        LIST[[i+1]]$SP2matrix <- OVERWINTER(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix, n=2)
+        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, n=1)
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP3matrix + LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
       }
       else if (numbspecies == 2) {
-        LIST[[i+1]]$SP2matrix <- OVERWINTER(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix)
-        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix)
+        LIST[[i+1]]$SP2matrix <- OVERWINTER(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix, n=2)
+        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, n=1)
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
       }
       else if (numbspecies == 1) {
-        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix)
+        LIST[[i+1]]$SP1matrix <- OVERWINTER(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix, n=1)
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP1matrix
       }
       

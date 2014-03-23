@@ -6,7 +6,7 @@
 # x1... LIST[[i]]$SPmatrix            #
 # x2... LIST[[i+1]]$SPmatrix          #
 # x3... LIST[[i]]$SPALLmatrix         #
-# n... species # 
+# n... species                        # 
 #                                     #
 # Created: MJ McCann 3/23/2013        #
 #######################################

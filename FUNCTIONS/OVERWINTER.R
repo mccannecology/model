@@ -5,6 +5,7 @@
 # INPUTS:                             #
 # x1... LIST[[i]]$SPmatrix            #
 # x2... LIST[[i+1]]$SPmatrix          #
+# n... species                        #
 #                                     #
 # Created: MJ McCann 3/22/2013        #
 #######################################
