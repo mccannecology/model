@@ -20,7 +20,7 @@ START4 <- function(){
   # loop through # of species you have 
   mylist<-list()
   
-  for (n in 1:numbspecies) { 
+  for (n in 1:numbspecies+1) { 
     initial<-c(rep(0,((height*width)-speciesmatrix[n,"initial"])),rep(1,speciesmatrix[n,"initial"])) # make a vector of 0s or 1s depending on your initial # from the species matrix     
     mylist[[n]] <- matrix(sample(initial),height,width) # randomly assign the elements of this vector to the SPmatrix without replacement 
   }
@@ -46,7 +46,7 @@ START4 <- function(){
   #######################################
   mylist <- c(mylist, list(TOTALN), list(TOTALP))
   
-  names(mylist) <- c(paste("SP",seq(from=1,to=numbspecies,by=1),"matrix",sep=""),"TOTALN","TOTALP")
+  names(mylist) <- c(paste("SP",seq(from=1,to=numbspecies,by=1),"matrix",sep=""),"SPALLmatrix","TOTALN","TOTALP")
   
   return(mylist)
 }
