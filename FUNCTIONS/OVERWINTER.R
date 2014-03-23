@@ -9,9 +9,9 @@
 # Created: MJ McCann 3/22/2013        #
 #######################################
 
-OVERWINTER <- function(x1,x2) {
+OVERWINTER <- function(x1,x2,n) {
   
-  x2 <- x1 * 0.1 # this is completely arbitary !
+  x2 <- x1 * speciesmatrix$overwinter[n] # this is completely arbitary !
     
   return(x2)
 }
