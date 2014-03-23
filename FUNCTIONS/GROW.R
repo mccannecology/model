@@ -1,6 +1,14 @@
-# x1... LIST[[i]]$SPmatrix 
-# x2... LIST[[i+1]]$SPmatrix
-# x3... LIST[[i]]$SPALLmatrix
+#######################################
+# Growth function                     #
+# Compatible w/ new LIST structure    #
+#                                     #
+# INPUTS:                             #
+# x1... LIST[[i]]$SPmatrix            #
+# x2... LIST[[i+1]]$SPmatrix          #
+# x3... LIST[[i]]$SPALLmatrix         #
+#                                     #
+# Created: MJ McCann 3/22/2013        #
+#######################################
 
 GROW <- function(x1,x2,x3) { # function has LIST[[i]]$SPmatrix, LIST[[i+1]]$SPmatrix, and LIST[[i]]$SPALLmatrix as inputs 
   for (j in 1:height) { # loop over all rows (height)

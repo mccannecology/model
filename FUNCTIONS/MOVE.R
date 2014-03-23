@@ -1,4 +1,12 @@
-# x1... LIST[[i]]$SPmatrix 
+#######################################
+# Growth function                     #
+# Compatible w/ new LIST structure    #
+#                                     #
+# INPUTS:                             #
+# x1... LIST[[i]]$SPmatrix            #
+#                                     #
+# Created: MJ McCann 3/22/2013        #
+#######################################
 
 thresholdtomove <- 2
 amounttomove <- 0.5

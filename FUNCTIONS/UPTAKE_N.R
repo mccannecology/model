@@ -1,5 +1,13 @@
-# x... LIST
-# i... i from the timestep for loop in STEP10()
+#######################################
+# Nitrogen uptake function            #
+# Compatible w/ new LIST structure    #
+#                                     #
+# INPUTS:                             #
+# x... LIST                           #
+# i... from for loop in STEP10()      #
+#                                     #
+# Created: MJ McCann 3/22/2013        #
+#######################################
 
 UPTAKE_N <- function(x,i) {
   newbiomass <- sum(x[[i+1]]$SPALLmatrix-x[[i]]$SPALLmatrix) # new biomass that grew on most recent     
