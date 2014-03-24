@@ -1,7 +1,6 @@
 STEP10 <- function() { # start defining the function 
   
-  #for (i in 1:((timesteps+1)*years)) { # loop through time steps <--- change back to the original when doing real model
-  for (i in 1:9) { # loop through time steps  
+  for (i in 1:((timesteps+1)*years)) { # loop through time steps 
   
     # check if it's NOT overwintering timestep, then do the following 
     if (i %ni% winters) { 
@@ -114,32 +113,35 @@ STEP10 <- function() { # start defining the function
     # PLOT #
     ########
     require(raster)
-    if (numbspecies == 4) { 
-      par(mfrow=c(numbspecies+1,1))
-      plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1","Timestep:",i,sep=" "))
-      plot(raster(LIST[[i]]$SP2matrix),main=paste("Species 2","Timestep:",i,sep=" "))
-      plot(raster(LIST[[i]]$SP3matrix),main=paste("Species 3","Timestep:",i,sep=" "))
-      plot(raster(LIST[[i]]$SP4matrix),main=paste("Species 4","Timestep:",i,sep=" "))
-      plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species","Timestep:",i,sep=" "))
-    }
-    else if (numbspecies == 3) { 
-      par(mfrow=c(numbspecies+1,1))
-      plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1","Timestep:",i,sep=" "))
-      plot(raster(LIST[[i]]$SP2matrix),main=paste("Species 2","Timestep:",i,sep=" "))
-      plot(raster(LIST[[i]]$SP3matrix),main=paste("Species 3","Timestep:",i,sep=" "))
-      plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species","Timestep:",i,sep=" "))
-    }
-    else if (numbspecies == 2) { 
-      par(mfrow=c(numbspecies+1,1))
-      plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1","Timestep:",i,sep=" "))
-      plot(raster(LIST[[i]]$SP2matrix),main=paste("Species 2","Timestep:",i,sep=" "))
-      plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species","Timestep:",i,sep=" "))
-    }
-    else if (numbspecies == 2) { 
-      par(mfrow=c(numbspecies+1,1))
-      plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1","Timestep:",i,sep=" "))
-      plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species","Timestep:",i,sep=" "))
-    }
+    
+    plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species","Timestep:",i,sep=" "))
+    
+    #if (numbspecies == 4) { 
+    #  par(mfrow=c(numbspecies+1,1))
+    #  plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1","Timestep:",i,sep=" "))
+    #  plot(raster(LIST[[i]]$SP2matrix),main=paste("Species 2","Timestep:",i,sep=" "))
+    #  plot(raster(LIST[[i]]$SP3matrix),main=paste("Species 3","Timestep:",i,sep=" "))
+    #  plot(raster(LIST[[i]]$SP4matrix),main=paste("Species 4","Timestep:",i,sep=" "))
+    #  plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species","Timestep:",i,sep=" "))
+    #}
+    #else if (numbspecies == 3) { 
+    #  par(mfrow=c(numbspecies+1,1))
+    #  plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1","Timestep:",i,sep=" "))
+    #  plot(raster(LIST[[i]]$SP2matrix),main=paste("Species 2","Timestep:",i,sep=" "))
+    #  plot(raster(LIST[[i]]$SP3matrix),main=paste("Species 3","Timestep:",i,sep=" "))
+    #  plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species","Timestep:",i,sep=" "))
+    #}
+    #else if (numbspecies == 2) { 
+    #  par(mfrow=c(numbspecies+1,1))
+    #  plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1","Timestep:",i,sep=" "))
+    #  plot(raster(LIST[[i]]$SP2matrix),main=paste("Species 2","Timestep:",i,sep=" "))
+    #  plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species","Timestep:",i,sep=" "))
+    #}
+    #else if (numbspecies == 2) { 
+    #  par(mfrow=c(numbspecies+1,1))
+    #  plot(raster(LIST[[i]]$SP1matrix),main=paste("Species 1","Timestep:",i,sep=" "))
+    #  plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species","Timestep:",i,sep=" "))
+    #}
   } # closes for loop through time steps 
   
   return(LIST)
