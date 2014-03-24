@@ -17,7 +17,9 @@ INPUT2 <- function(x){
   assign("TOTALP", parameters$TOTALP[simulnumb], envir = .GlobalEnv)  # overall phosphorus concentration (mg/L)
   
   assign("loss", parameters$loss[simulnumb], envir = .GlobalEnv)  # "losses" - respiration & various sources of mortality 
-    
+  assign("thresholdtomove", parameters$thresholdtomove[simulnumb], envir = .GlobalEnv)  # threshold value - above this biomass and plants start moving 
+  assign("amounttomove", parameters$amounttomove[simulnumb], envir = .GlobalEnv)  # threshold value - above this biomass and plants start moving 
+  
   assign("numbspecies", parameters$numbspecies[simulnumb], envir = .GlobalEnv) # number of species in the model 
   
   assign("initial01cells", parameters$initial01cells[simulnumb], envir = .GlobalEnv)   # initial number of cells occupied - species 01
