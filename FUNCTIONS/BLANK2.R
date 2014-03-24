@@ -12,8 +12,6 @@ BLANK2 <- function(){
     
   SPmatrix <- matrix(0, height, width)
   
-  #NEIGH <- matrix(0, height, width) - skip setting up the neighbor matrix for now
-  
   TOTALN <- 0 
   
   TOTALP <- 0
