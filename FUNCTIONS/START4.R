@@ -46,9 +46,9 @@ START4 <- function(){
   #######################################
   # Initializing TOTAL N & TOTAL P 
   #######################################
-  TOTALN <- 2 
+  TOTALN <- TOTALN 
   
-  TOTALP <- 0.5
+  TOTALP <- TOTALP 
   
   #######################################
   # Put it all together & return it 

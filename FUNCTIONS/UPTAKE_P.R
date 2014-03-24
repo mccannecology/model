@@ -23,7 +23,7 @@ UPTAKE_P <- function(x,i,n) {
                      newbiomassSP3 * speciesmatrix$uptakeP[3] +
                      newbiomassSP3 * speciesmatrix$uptakeP[4]
     
-    x[[i+1]]$TOTALP <- x[[i]]$TOTALP - totalPremoved # this decrease is completely arbitrary ! 
+    x[[i+1]]$TOTALP <- (x[[i]]$TOTALP*height*width - totalNremoved)/(height*width)
   }
   else if (n == 3) {
     newbiomassSP1 <- sum(x[[i+1]]$SP1matrix-x[[i]]$SP1matrix) # new SP1 biomass that grew on most recent timestep     
@@ -34,7 +34,7 @@ UPTAKE_P <- function(x,i,n) {
                      newbiomassSP2 * speciesmatrix$uptakeP[2] +
                      newbiomassSP3 * speciesmatrix$uptakeP[3]
     
-    x[[i+1]]$TOTALP <- x[[i]]$TOTALP - totalPremoved # this decrease is completely arbitrary ! 
+    x[[i+1]]$TOTALP <- (x[[i]]$TOTALP*height*width - totalNremoved)/(height*width)
   }
   else if (n == 2){
     newbiomassSP1 <- sum(x[[i+1]]$SP1matrix-x[[i]]$SP1matrix) # new SP1 biomass that grew on most recent timestep     
@@ -43,14 +43,14 @@ UPTAKE_P <- function(x,i,n) {
     totalPremoved <- newbiomassSP1 * speciesmatrix$uptakeP[1] + 
                      newbiomassSP2 * speciesmatrix$uptakeP[2]
     
-    x[[i+1]]$TOTALP <- x[[i]]$TOTALP - totalPremoved # this decrease is completely arbitrary ! 
+    x[[i+1]]$TOTALP <- (x[[i]]$TOTALP*height*width - totalNremoved)/(height*width)
   } 
   else if (n == 1){
     newbiomassSP1 <- sum(x[[i+1]]$SP1matrix-x[[i]]$SP1matrix) # new SP1 biomass that grew on most recent timestep      
   
     totalPremoved <- newbiomassSP1 * speciesmatrix$uptakeP[1]
   
-    x[[i+1]]$TOTALP <- x[[i]]$TOTALP - totalPremoved # this decrease is completely arbitrary ! 
+    x[[i+1]]$TOTALP <- (x[[i]]$TOTALP*height*width - totalNremoved)/(height*width)
   }
   return(x[[i+1]]$TOTALP)
 }

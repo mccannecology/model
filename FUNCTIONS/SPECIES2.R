@@ -20,14 +20,14 @@ SPECIES2 <- function(x){
   speciesmatrix[1]<-seq(1,numbspecies,1) # a vector of species numbers 
   
   # REMEMBER: parameters[simulnumb,9+i] for maxrgr means it starts @ colmn 10 
-  for (i in 1:numbspecies) {speciesmatrix[i,2] <- parameters[simulnumb,9+i]} # a vector of maxrgr - length varies on number of species
-  for (i in 1:numbspecies) {speciesmatrix[i,3] <- parameters[simulnumb,5+i]} # a vector of initial - length varies on number of species
-  for (i in 1:numbspecies) {speciesmatrix[i,4] <- parameters[simulnumb,13+i]} # a vector of overwinter - length varies on number of species
-  for (i in 1:numbspecies) {speciesmatrix[i,5] <- parameters[simulnumb,17+i]} # a vector of halfsatB - length varies on number of species
-  for (i in 1:numbspecies) {speciesmatrix[i,6] <- parameters[simulnumb,21+i]} # a vector of halfsatN - length varies on number of species
-  for (i in 1:numbspecies) {speciesmatrix[i,7] <- parameters[simulnumb,25+i]} # a vector of halfsatP - length varies on number of species
-  for (i in 1:numbspecies) {speciesmatrix[i,8] <- parameters[simulnumb,29+i]} # a vector of uptakeN - length varies on number of species
-  for (i in 1:numbspecies) {speciesmatrix[i,9] <- parameters[simulnumb,33+i]} # a vector of uptakeP - length varies on number of species
+  for (i in 1:numbspecies) {speciesmatrix[i,2] <- parameters[simulnumb,11+i]} # a vector of maxrgr - length varies on number of species
+  for (i in 1:numbspecies) {speciesmatrix[i,3] <- parameters[simulnumb,7+i]} # a vector of initial - length varies on number of species
+  for (i in 1:numbspecies) {speciesmatrix[i,4] <- parameters[simulnumb,15+i]} # a vector of overwinter - length varies on number of species
+  for (i in 1:numbspecies) {speciesmatrix[i,5] <- parameters[simulnumb,19+i]} # a vector of halfsatB - length varies on number of species
+  for (i in 1:numbspecies) {speciesmatrix[i,6] <- parameters[simulnumb,23+i]} # a vector of halfsatN - length varies on number of species
+  for (i in 1:numbspecies) {speciesmatrix[i,7] <- parameters[simulnumb,27+i]} # a vector of halfsatP - length varies on number of species
+  for (i in 1:numbspecies) {speciesmatrix[i,8] <- parameters[simulnumb,31+i]} # a vector of uptakeN - length varies on number of species
+  for (i in 1:numbspecies) {speciesmatrix[i,9] <- parameters[simulnumb,35+i]} # a vector of uptakeP - length varies on number of species
   
   assign("speciesmatrix",speciesmatrix, envir = .GlobalEnv)
   
