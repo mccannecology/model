@@ -1,18 +1,18 @@
 #####################################################
 # Individual Based Model: Floating plant growth     #
+# Now compatible with new LIST structure            #
 #                                                   #
 # By: Michael J. McCann                             #
-# Last Updated: 03/10/2014                          #
+# Major revision: 03/24/2014                        #
 #####################################################
 # 
 # CURRENTLY:
-# Multiple species reproducing, aging, dying on 2-d grid (matrix)
+# Multiple species of duckweed growth - each on their own 2-d grid (matrix)
 # Positions of plants based on X,Y coordinates in a matrix   
-# Individuals (1s, 2s, etc) look for nearest empty cell (0) to reproduce into 
 # Includes an overwintering step, where there is a large die-off of individuals 
 #
 # TO DO:
-# Modify MOVEMENT: don't spill off edge - pile up instead 
+# add WIND() 
 # Modify shape of the waterbody (non-rectangular)
 #
 # Print parameter value labels on outputs (.gif or .jpg files)
