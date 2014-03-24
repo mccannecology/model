@@ -7,10 +7,6 @@
 #                                     #
 # Created: MJ McCann 3/22/2013        #
 #######################################
-
-thresholdtomove <- 2
-amounttomove <- 0.5
-
 MOVE <- function(x1) {
   for (j in 1:height) { # loop over all rows (height)
     for (k in 1:width) { # loop over all columns (width)
@@ -51,8 +47,9 @@ MOVE <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
-            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
+            RAND_amounttomove <- runif(1,min=(amounttomove-(amounttomove/2)), max=(amounttomove+(amounttomove/2))) # draw from a random value from 50% above or below amounttomove
+            x1[offspring[1],offspring[2]] <- RAND_amounttomove # assign this random value "RAND_amounttomove" to the new spot 
+            x1[j,k] <- x1[j,k] - RAND_amounttomove # subtract this random value "RAND_amounttomove" from the original spot  
            
             # end the repeat loop - movement was successful    
             STOP <- 1 
@@ -92,8 +89,9 @@ MOVE <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
-            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
+            RAND_amounttomove <- runif(1,min=(amounttomove-(amounttomove/2)), max=(amounttomove+(amounttomove/2))) # draw from a random value from 50% above or below amounttomove
+            x1[offspring[1],offspring[2]] <- RAND_amounttomove # assign this random value "RAND_amounttomove" to the new spot 
+            x1[j,k] <- x1[j,k] - RAND_amounttomove # subtract this random value "RAND_amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    
             STOP <- 1 
@@ -132,8 +130,9 @@ MOVE <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
-            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
+            RAND_amounttomove <- runif(1,min=(amounttomove-(amounttomove/2)), max=(amounttomove+(amounttomove/2))) # draw from a random value from 50% above or below amounttomove
+            x1[offspring[1],offspring[2]] <- RAND_amounttomove # assign this random value "RAND_amounttomove" to the new spot 
+            x1[j,k] <- x1[j,k] - RAND_amounttomove # subtract this random value "RAND_amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    
             STOP <- 1 
@@ -172,8 +171,9 @@ MOVE <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
-            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
+            RAND_amounttomove <- runif(1,min=(amounttomove-(amounttomove/2)), max=(amounttomove+(amounttomove/2))) # draw from a random value from 50% above or below amounttomove
+            x1[offspring[1],offspring[2]] <- RAND_amounttomove # assign this random value "RAND_amounttomove" to the new spot 
+            x1[j,k] <- x1[j,k] - RAND_amounttomove # subtract this random value "RAND_amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    
             STOP <- 1 
@@ -212,8 +212,9 @@ MOVE <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
-            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
+            RAND_amounttomove <- runif(1,min=(amounttomove-(amounttomove/2)), max=(amounttomove+(amounttomove/2))) # draw from a random value from 50% above or below amounttomove
+            x1[offspring[1],offspring[2]] <- RAND_amounttomove # assign this random value "RAND_amounttomove" to the new spot 
+            x1[j,k] <- x1[j,k] - RAND_amounttomove # subtract this random value "RAND_amounttomove" from the original spot    
             
             # end the repeat loop - movement was successful    
             STOP <- 1 
@@ -250,8 +251,9 @@ MOVE <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
-            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
+            RAND_amounttomove <- runif(1,min=(amounttomove-(amounttomove/2)), max=(amounttomove+(amounttomove/2))) # draw from a random value from 50% above or below amounttomove
+            x1[offspring[1],offspring[2]] <- RAND_amounttomove # assign this random value "RAND_amounttomove" to the new spot 
+            x1[j,k] <- x1[j,k] - RAND_amounttomove # subtract this random value "RAND_amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    
             STOP <- 1 
@@ -287,9 +289,10 @@ MOVE <- function(x1) {
             # randomly pick a neighbor < thresholdtomove to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move:
-            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
-            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
+            # move: 
+            RAND_amounttomove <- runif(1,min=(amounttomove-(amounttomove/2)), max=(amounttomove+(amounttomove/2))) # draw from a random value from 50% above or below amounttomove
+            x1[offspring[1],offspring[2]] <- RAND_amounttomove # assign this random value "RAND_amounttomove" to the new spot 
+            x1[j,k] <- x1[j,k] - RAND_amounttomove # subtract this random value "RAND_amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    
             STOP <- 1 
@@ -325,9 +328,10 @@ MOVE <- function(x1) {
             # randomly pick a neighbor < thresholdtomove to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move:
-            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
-            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
+            # move: 
+            RAND_amounttomove <- runif(1,min=(amounttomove-(amounttomove/2)), max=(amounttomove+(amounttomove/2))) # draw from a random value from 50% above or below amounttomove
+            x1[offspring[1],offspring[2]] <- RAND_amounttomove # assign this random value "RAND_amounttomove" to the new spot 
+            x1[j,k] <- x1[j,k] - RAND_amounttomove # subtract this random value "RAND_amounttomove" from the original spot  
             
             # end the repeat loop - movement was successful    
             STOP <- 1 
@@ -363,9 +367,10 @@ MOVE <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move:
-            x1[offspring[1],offspring[2]] <- amounttomove # assign "amounttomove" to the new spot 
-            x1[j,k] <- x1[j,k] - amounttomove # subtract "amounttomove" from the original spot  
+            # move: 
+            RAND_amounttomove <- runif(1,min=(amounttomove-(amounttomove/2)), max=(amounttomove+(amounttomove/2))) # draw from a random value from 50% above or below amounttomove
+            x1[offspring[1],offspring[2]] <- RAND_amounttomove # assign this random value "RAND_amounttomove" to the new spot 
+            x1[j,k] <- x1[j,k] - RAND_amounttomove # subtract this random value "RAND_amounttomove" from the original spot    
             
             # end the repeat loop - movement was successful    
             STOP <- 1 
