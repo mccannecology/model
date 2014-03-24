@@ -29,7 +29,7 @@
 # 
 ########################################################################################################
 # Enter your total number of simulations - should be same as # rows in "inputXX.csv"
-totalsimuls <- 1 
+totalsimuls <- 6 
 
 # set-up blank vectors for any of the results 
 propyears_avgFP_abovethreshold <- rep(NA, totalsimuls)
@@ -65,7 +65,7 @@ for (i in 1:totalsimuls) { # loop through all of your simulations - User needs t
 
   LIST<-STEP10() # Runs the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
   
-  OUTPUT() # generates graphs - if you want .html animation you must specify ani
+  OUTPUT2() # generates graphs - if you want .html animation you must specify ani
   
   RESULTS[simulnumb,1] <- propyears_avgFP_abovethreshold # assign the current simulations results to the correct spot
   RESULTS[simulnumb,2] <- propyears_propdaysFP_abovehalf # assign the current simulations results to the correct spot
@@ -78,5 +78,5 @@ parameters$propyears_avgFP_abovethreshold <- RESULTS[,1]
 parameters$propyears_propdaysFP_abovehalf <- RESULTS[,2]
 
 # add these results to your original input file and write as a .csv 
-write.csv(parameters,"output06.csv",row.names=F) 
+write.csv(parameters,"output.csv",row.names=F) 
 
