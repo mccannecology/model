@@ -20,11 +20,16 @@ INPUT2 <- function(x){
     
   assign("numbspecies", parameters$numbspecies[simulnumb], envir = .GlobalEnv) # number of species in the model 
   
-  assign("initial01", parameters$initial01[simulnumb], envir = .GlobalEnv)   # initial number of individuals - species 01
-  assign("initial02", parameters$initial02[simulnumb], envir = .GlobalEnv)   # initial number of individuals - species 02
-  assign("initial03", parameters$initial03[simulnumb], envir = .GlobalEnv)   # initial number of individuals - species 03
-  assign("initial04", parameters$initial04[simulnumb], envir = .GlobalEnv)   # initial number of individuals - species 04
-    
+  assign("initial01cells", parameters$initial01cells[simulnumb], envir = .GlobalEnv)   # initial number of cells occupied - species 01
+  assign("initial02cells", parameters$initial02cells[simulnumb], envir = .GlobalEnv)   # initial number of cells occupied - species 02
+  assign("initial03cells", parameters$initial03cells[simulnumb], envir = .GlobalEnv)   # initial number of cells occupied - species 03
+  assign("initial04cells", parameters$initial04cells[simulnumb], envir = .GlobalEnv)   # initial number of cells occupied - species 04
+
+  assign("initial01totmass", parameters$initial01totmass[simulnumb], envir = .GlobalEnv)   # initial total biomass - species 01
+  assign("initial02totmass", parameters$initial02totmass[simulnumb], envir = .GlobalEnv)   # initial total biomass - species 02
+  assign("initial03totmass", parameters$initial03totmass[simulnumb], envir = .GlobalEnv)   # initial total biomass - species 03
+  assign("initial04totmass", parameters$initial04totmass[simulnumb], envir = .GlobalEnv)   # initial total biomass - species 04
+  
   assign("maxrgr01", parameters$maxrgr01[simulnumb], envir = .GlobalEnv)    # maximum relative growth rate - species 01
   assign("maxrgr02", parameters$maxrgr02[simulnumb], envir = .GlobalEnv)    # maximum relative growth rate - species 02
   assign("maxrgr03", parameters$maxrgr03[simulnumb], envir = .GlobalEnv)    # maximum relative growth rate - species 03

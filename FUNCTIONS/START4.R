@@ -12,7 +12,7 @@
 START4 <- function(){ 
   
   # issue a warning message if you try to create too many initial individuals (i.e., more than # of spots)
-  if (sum(speciesmatrix$initial) > (height*width)) {warning("Too many initial individuals for this pond!")}
+  if (sum(speciesmatrix$initial_cells) > (height*width)) {warning("Too many initial individuals for this pond!")}
   
   ####################################################
   # Build presence/absence matrices for each species 
@@ -21,7 +21,11 @@ START4 <- function(){
   mylist<-list()
   
   for (n in 1:numbspecies) { 
-    initial<-c(rep(0,((height*width)-speciesmatrix[n,"initial"])),rep(1,speciesmatrix[n,"initial"])) # make a vector of 0s or 1s depending on your initial # from the species matrix     
+    
+    masspercell <- speciesmatrix[n,"initial_total_biomass"]/speciesmatrix[n,"initial_cells"]
+  
+    initial<-c(rep(0,((height*width)-speciesmatrix[n,"initial_cells"])),rep(masspercell,speciesmatrix[n,"initial_cells"])) # make a vector of 0s or #s depending on your initial_cell & initial_total_biomass # from the species matrix     
+    
     mylist[[n]] <- matrix(sample(initial),height,width) # randomly assign the elements of this vector to the SPmatrix without replacement 
   }
   
@@ -33,15 +37,6 @@ START4 <- function(){
   for (n in 1:numbspecies) {
     SPALLmatrix <- SPALLmatrix + mylist[[n]]
   }
-  
-  #######################################
-  # Build neighbor matrix 
-  #######################################
-  # require(simecol)
-  # define the number of cells from the focal cell that you want to count as neighbors
-  # wdist <- matrix(1,(2*buffer+1),(2*buffer+1)) # a matrix of 1s - size buffer around focal cell 
-  # wdist[buffer+1,buffer+1] <- 0 # change  focal cell to 0 - you don't want to count that as a neighbor
-  # NEIGH <- neighbours(PAmatrix, wdist = wdist, tol = 1, bounds = 0)  
   
   #######################################
   # Initializing TOTAL N & TOTAL P 
