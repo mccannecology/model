@@ -6,7 +6,7 @@
 # Last Updated: 2/26/2014                               #
 ######################################################### 
 
-OUTPUT <- function(animate=FALSE){  
+OUTPUT2 <- function(animate=FALSE){  
   require(animation)
   require(raster)
   

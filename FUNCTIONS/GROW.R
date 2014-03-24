@@ -7,11 +7,14 @@
 # x2... LIST[[i+1]]$SPmatrix          #
 # x3... LIST[[i]]$SPALLmatrix         #
 # n... species                        # 
+# x4... LIST[[i]]$TOTALP              #
+# x5... LIST[[i]]$TOTALN              #
 #                                     #
 # Created: MJ McCann 3/23/2013        #
 #######################################
+loss<-0.05
 
-GROW <- function(x1,x2,x3,n) { 
+GROW <- function(x1,x2,x3,n,x4,x5) { 
   for (j in 1:height) { # loop over all rows (height)
     for (k in 1:width) { # loop over all columns (width)
       if (x1[j,k] > 0) {
@@ -19,7 +22,7 @@ GROW <- function(x1,x2,x3,n) {
                       
                       (speciesmatrix$halfsatB[n]/(x3[j,k]+speciesmatrix$halfsatB[n])) * # biomass limitation 
                       
-                      ((TOTALP/(TOTALP+speciesmatrix$halfsatP[n]))*(TOTALN/(TOTALN+speciesmatrix$halfsatN[n]))) - # nutrient limitation 
+                      ((x4/(x4+speciesmatrix$halfsatP[n]))*(x5/(x5+speciesmatrix$halfsatN[n]))) - # nutrient limitation 
           
                       (loss*x1[j,k]) # biomass loss 
       }  
