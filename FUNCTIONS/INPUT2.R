@@ -16,6 +16,8 @@ INPUT2 <- function(x){
   assign("TOTALN", parameters$TOTALN[simulnumb], envir = .GlobalEnv)  # overall nitrogen concentration (mg/L)
   assign("TOTALP", parameters$TOTALP[simulnumb], envir = .GlobalEnv)  # overall phosphorus concentration (mg/L)
   
+  assign("loss", parameters$loss[simulnumb], envir = .GlobalEnv)  # "losses" - respiration & various sources of mortality 
+    
   assign("numbspecies", parameters$numbspecies[simulnumb], envir = .GlobalEnv) # number of species in the model 
   
   assign("initial01", parameters$initial01[simulnumb], envir = .GlobalEnv)   # initial number of individuals - species 01

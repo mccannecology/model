@@ -12,8 +12,6 @@
 #                                     #
 # Created: MJ McCann 3/23/2013        #
 #######################################
-loss<-0.05
-
 GROW <- function(x1,x2,x3,n,x4,x5) { 
   for (j in 1:height) { # loop over all rows (height)
     for (k in 1:width) { # loop over all columns (width)
