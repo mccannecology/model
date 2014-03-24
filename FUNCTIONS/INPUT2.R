@@ -6,7 +6,7 @@
 # By: Michael J. McCann                             #
 # Major revision: 3/24/2014                         #
 ##################################################### 
-INPUT <- function(x){  
+INPUT2 <- function(x){  
   assign("height", parameters$height[simulnumb], envir = .GlobalEnv)  # height of the grid
   assign("width", parameters$width[simulnumb], envir = .GlobalEnv)   # width of the grid
   
