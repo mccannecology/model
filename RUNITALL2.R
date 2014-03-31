@@ -71,6 +71,8 @@ for (i in 1:totalsimuls) { # loop through all of your simulations - User needs t
   RESULTS[simulnumb,2] <- propyears_propdaysFP_abovehalf # assign the current simulations results to the correct spot
     
   rm(list = ls()[!(ls() %in% c("RESULTS","parameters"))]) # clear workspace (except for RESULTS and parameters) for next simulation 
+  
+  gc() # garbage collection 
 }
 
 # add the results vectors to the original parameters data frame 
