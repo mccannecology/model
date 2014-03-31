@@ -164,6 +164,34 @@ OUTPUT2 <- function(animate=FALSE){
   ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," percent cover", ".jpg", sep=""))
   
   dev.off()
+  
+  #################################################################
+  ############# Plot nutrients through time - GGPLOT2 #############
+  #################################################################
+  # creates a blank data frame where this all will go 
+  data04<-NULL
+  data04<-as.data.frame(data04)
+  
+  # for each timestep, for each species, assign the percent cover to the appropriate position in data01
+  for (i in 1:(1+(timesteps+1)*years)) { 
+      data04[i,1]<-LIST[[i]]$TOTALN
+      data04[i,2]<-LIST[[i]]$TOTALP
+  }
+  
+  # assign the correct names to the column names of your dataframe 
+  names(data04)<-c("Total N","TOTAL P")
+  
+  # add time to your dataframe 
+  data04$time <- seq(1,1+(timesteps+1)*years,1)
+  
+  # reshape your data 1st before trying ggplot2 
+  data04melt <- melt(data04,id.vars="time")
+  
+  ggplot(data04melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("concentration(mg/L)")
+  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," nutrients", ".jpg", sep=""))
+  
+  dev.off()
+  
   #################################################################
   ########## Summary statistics of FP regime - by year ############
   #################################################################
