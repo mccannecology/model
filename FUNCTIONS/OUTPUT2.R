@@ -211,9 +211,9 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   avgFPcover <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),mean) 
   colnames(avgFPcover)[2] <- "avgFPcover"
   
-  # ***Average*** floating plant ***cover*** for all time steps in each year 
-  avgFPcover <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),mean) 
-  colnames(avgFPcover)[2] <- "avgFPcover"
+  # ***Maximum*** floating plant ***cover*** for all time steps in each year 
+  maxFPcover <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),max) 
+  colnames(maxFPcover)[2] <- "maxFPcover"
   
   # ***Average*** floating plant ***biomass*** for all time steps in each year 
   avgFPbiomass <- aggregate(data_biomass$all_species,list(year=data_biomass$year),mean) 
@@ -247,10 +247,11 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   
   # Build a data frame with all of these different summary statistics for each year 
   # I can probably do this smarter than just repeated merge()
-  data_summary_by_year <- merge(avgFPcover,numb_daysFP)
+  data_summary_by_year <- merge(avgFPcover,maxFPcover) 
+  data_summary_by_year <- merge(data_summary_by_year, numb_daysFP)
   data_summary_by_year <- merge(data_summary_by_year, prop_daysFP)
-  data_summary_by_year <- merge(data_summary_by_year, avgFPbiomass)
-  data_summary_by_year <- cbind(data_summary_by_year,firstdayFP)
+  data_summary_by_year <- merge(data_summary_by_year, firstdayFP) 
+  data_summary_by_year <- cbind(data_summary_by_year, avgFPbiomass)
   data_summary_by_year
   
   # assign it to something useful otuside of the function 
