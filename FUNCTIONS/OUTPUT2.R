@@ -208,8 +208,12 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   data_cover$day <- c(rep(seq(1,timesteps+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
   
   # ***Average*** floating plant ***cover*** for all time steps in each year 
-  avgFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),mean) 
-  colnames(avgFP)[2] <- "avgFP"
+  avgFPcover <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),mean) 
+  colnames(avgFPcover)[2] <- "avgFPcover"
+  
+  # ***Average*** floating plant ***cover*** for all time steps in each year 
+  avgFPcover <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),mean) 
+  colnames(avgFPcover)[2] <- "avgFPcover"
   
   # ***Number*** of days each year that the waterbody is above a treshold value of cover_ALL
   apply.fun <- function(x) {
@@ -239,7 +243,7 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   
   # Build a data frame with all of these different summary statistics for each year 
   # I can probably do this smarter than just repeated merge()
-  data_summary_by_year <- merge(avgFP,daysFP)
+  data_summary_by_year <- merge(avgFPcover,daysFP)
   data_summary_by_year <- merge(data_summary_by_year, propdaysFP)
   data_summary_by_year <- cbind(data_summary_by_year,firstdayFP)
   data_summary_by_year
@@ -248,17 +252,17 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   write.csv(data_summary_by_year,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)
   
   #####
-  ########## append to input.csv the results - #years with avgFP > threshold and #years with propdaySFP > 0.5 
+  ########## append to input.csv the results - #years with avgFPcover > threshold and #years with propdaySFP > 0.5 
   #####
   # I should probably leave off some of the first few year - to let to model equilibrate 
   
-  # prop years with avgFP > regimethreshold
-  propyears_avgFP_abovethreshold <- sum(data_nutrients$avgFP >= regimethreshold)/years
+  # prop years with avgFPcover > regimethreshold
+  propyears_avgFPcover_abovethreshold <- sum(data_nutrients$avgFPcover >= regimethreshold)/years
   
   # prop years with propdaysFP > 0.5
   propyears_propdaysFP_abovehalf <- sum(data_nutrients$propdaysFP >= 0.5)/years
   
-  assign("propyears_avgFP_abovethreshold", propyears_avgFP_abovethreshold, envir=.GlobalEnv)
+  assign("propyears_avgFPcover_abovethreshold", propyears_avgFPcover_abovethreshold, envir=.GlobalEnv)
 
   assign("propyears_propdaysFP_abovehalf", propyears_propdaysFP_abovehalf, envir=.GlobalEnv)
   
