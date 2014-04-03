@@ -6,10 +6,10 @@
 # Last Updated: 2/26/2014                               #
 ######################################################### 
 
-OUTPUT2 <- function(animate=FALSE, regimethreshold){  
+OUTPUT2 <- function(animate=FALSE){  
   
   # assign the regimthreshold input value to the working environment for this function 
-  regimethreshold <- regimethreshold 
+  regimethreshold <- 70 
   
   require(animation)
   require(raster)
@@ -205,12 +205,12 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   
   # for each timestep, count up how many cells are occupied (at any biomass/cover level)
   for (i in 1:(1+(timesteps+1)*years)) { 
-    data_cell_occupancy[i,1] <- numblength(LIST[[i]]$SPALLmatrix[LIST[[i]]$SPALLmatrix > 0])
-    data_cell_occupancy[i,2] <- (numblength(LIST[[i]]$SPALLmatrix[LIST[[i]]$SPALLmatrix > 0]) / (height*width)) * 100
+    data_cell_occupancy[i,1] <- length(LIST[[i]]$SPALLmatrix[LIST[[i]]$SPALLmatrix > 0])
+    data_cell_occupancy[i,2] <- (length(LIST[[i]]$SPALLmatrix[LIST[[i]]$SPALLmatrix > 0]) / (height*width)) * 100
   }
   
   # generate a vector for naming your columns 
-  names<-c("numb_cells_occup","perc_cells_occup"
+  names<-c("numb_cells_occup","perc_cells_occup")
   
   # assign that vector to the column names of your dataframe 
   names(data_cell_occupancy)<-names
@@ -222,9 +222,9 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   data_cell_occupancy_melt <- melt(data_cell_occupancy,id.vars="time")
   
   # Change this back to the command two lines down if it does not work 
-  ggplot(data_cell_occupancy_melt, aes(x=time,y=perc_cells_occup,colour=variable)) + geom_line() + ylab("percent cells occupied")
-  # ggplot(data_cell_occupancy_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("percent cells occupied")
-  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," percent cover", ".jpg", sep=""))
+  # ggplot(data_cell_occupancy_melt, aes(x=time,y=perc_cells_occup,colour=variable)) + geom_line() + ylab("percent cells occupied")
+  ggplot(data_cell_occupancy_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("percent cells occupied")
+  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," cells occupied", ".jpg", sep=""))
   
   dev.off()
     
@@ -239,6 +239,9 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   data_cover$year <- year # add year to your dataframe 
   data_cover$day <- c(rep(seq(1,timesteps+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
   
+  data_biomass$year <- year # add year to your dataframe 
+  data_biomass$day <- c(rep(seq(1,timesteps+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
+ 
   # ***Average*** floating plant ***cover*** for all time steps in each year 
   avgFPcover <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),mean) 
   colnames(avgFPcover)[2] <- "avgFPcover"
@@ -260,7 +263,7 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   
   # ***Proportion*** of days each year that the waterbody is above a treshold value of cover_ALL
   apply.fun <- function(x) {
-    sum(x > regimethreshold)/timesteps
+    sum((x > regimethreshold)/timesteps)
   }
   prop_daysFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),apply.fun) 
   colnames(prop_daysFP)[2] <- "prop_daysFP"
@@ -277,15 +280,20 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   # firstdayFP[is.infinite(firstdayFP)] <- NA # min() returns infinity if there are no numbers, so replaces Inf with NA
   firstdayFP[j+1] <- NA # add an NA for the first day of the last year (years+1)
   
+  # this is ugly, but i need this to be in a dataframe with years and firstdayFP
+  firstdayFP <- cbind(avgFPbiomass[,-2],firstdayFP)
+  colnames(firstdayFP)[1] <- "year"
+  
   # Build a data frame with all of these different summary statistics for each year 
   # I can probably do this smarter than just repeated merge()
-  data_summary_by_year <- merge(avgFPcover,maxFPcover) 
-  data_summary_by_year <- merge(data_summary_by_year, numb_daysFP)
-  data_summary_by_year <- merge(data_summary_by_year, prop_daysFP)
-  data_summary_by_year <- merge(data_summary_by_year, firstdayFP) 
-  data_summary_by_year <- cbind(data_summary_by_year, avgFPbiomass)
-  data_summary_by_year
+  # data_summary_by_year <- merge(avgFPcover,maxFPcover) 
+  # data_summary_by_year <- merge(data_summary_by_year, numb_daysFP)
+  # data_summary_by_year <- merge(data_summary_by_year, prop_daysFP)
+  # data_summary_by_year <- merge(data_summary_by_year, firstdayFP) 
+  # data_summary_by_year <- cbind(data_summary_by_year, avgFPbiomass)
   
+  data_summary_by_year <- merge(avgFPcover,merge(maxFPcover,merge(numb_daysFP,merge(prop_daysFP,merge(firstdayFP,avgFPbiomass)))))
+    
   # assign it to something useful otuside of the function 
   write.csv(data_summary_by_year,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)
   

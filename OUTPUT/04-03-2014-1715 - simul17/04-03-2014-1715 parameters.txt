@@ -1,0 +1,97 @@
+%ni% : function (...)  
+amounttomove :  num 0.25
+apply.fun : function (x)  
+avgFPbiomass : 'data.frame':	11 obs. of  2 variables:
+avgFPcover : 'data.frame':	11 obs. of  2 variables:
+BLANK2 : function ()  
+data_biomass : 'data.frame':	1011 obs. of  8 variables:
+data_biomass_melt : 'data.frame':	5055 obs. of  3 variables:
+data_cell_occupancy : 'data.frame':	1011 obs. of  3 variables:
+data_cell_occupancy_melt : 'data.frame':	2022 obs. of  3 variables:
+data_cover : 'data.frame':	1011 obs. of  8 variables:
+data_cover_melt : 'data.frame':	5055 obs. of  3 variables:
+data_nutrients : 'data.frame':	1011 obs. of  3 variables:
+data_nutrients_melt : 'data.frame':	2022 obs. of  3 variables:
+data_summary_by_year : 'data.frame':	11 obs. of  3 variables:
+firstdayFP :  num [1:11, 1:2] 1 2 3 4 5 6 7 8 9 10 ...
+GROW : function (x1, x2, x3, n, x4, x5)  
+halfsatB01 :  int 42
+halfsatB02 :  int 42
+halfsatB03 :  int 42
+halfsatB04 :  int 42
+halfsatN01 :  num 0.04
+halfsatN02 :  num 0.04
+halfsatN03 :  num 0.04
+halfsatN04 :  num 0.04
+halfsatP01 :  num 0.05
+halfsatP02 :  num 0.05
+halfsatP03 :  num 0.05
+halfsatP04 :  num 0.05
+height :  int 20
+i :  int 10
+initial01cells :  int 2
+initial01totmass :  int 2
+initial02cells :  int 2
+initial02totmass :  int 2
+initial03cells :  int 2
+initial03totmass :  int 2
+initial04cells :  int 2
+initial04totmass :  int 2
+INPUT2 : function (x)  
+j :  int 10
+LIST : List of 1011
+  [list output truncated]
+loss :  num 0.05
+maxFPcover : 'data.frame':	11 obs. of  2 variables:
+maxrgr01 :  num 0.3
+maxrgr02 :  num 0.3
+maxrgr03 :  num 0.3
+maxrgr04 :  num 0.3
+MOVE : function (x1)  
+n :  int 4
+names :  chr [1:2] "numb_cells_occup" "perc_cells_occup"
+numb_daysFP : 'data.frame':	11 obs. of  2 variables:
+numbspecies :  int 4
+OUTPUT2 : function (animate = FALSE)  
+OVERWINTER : function (x1, x2, n)  
+overwinter01 :  num 0.1
+overwinter02 :  num 0.1
+overwinter03 :  num 0.1
+overwinter04 :  num 0.1
+parameters : 'data.frame':	64 obs. of  46 variables:
+prop_daysFP : 'data.frame':	11 obs. of  2 variables:
+propyears_avgFPcover_abovethreshold :  num 0
+propyears_prop_daysFP_abovehalf :  num 0
+regimethreshold :  num 70
+RELEASE_N : function (x, i)  
+RELEASE_P : function (x, i)  
+simulnumb :  num 17
+SPECIES2 : function (x)  
+speciesmatrix : 'data.frame':	4 obs. of  10 variables:
+START4 : function ()  
+STEP10 : function ()  
+temp :  num [1:53] 49 50 51 52 53 54 55 56 57 58 ...
+thresholdtomove :  int 25
+timesteps :  int 100
+TOTALN :  int 10
+TOTALP :  num 2
+totaltime :  num 1011
+UPTAKE_N : function (x, i, n)  
+UPTAKE_P : function (x, i, n)  
+uptakeN01 :  num 0.001
+uptakeN02 :  num 0.001
+uptakeN03 :  num 0.001
+uptakeN04 :  num 0.001
+uptakeP01 :  num 0.001
+uptakeP02 :  num 0.001
+uptakeP03 :  num 0.001
+uptakeP04 :  num 0.001
+width :  int 20
+winters :  num [1:10] 101 202 303 404 505 606 707 808 909 1010
+year :  num [1:1011] 1 1 1 1 1 1 1 1 1 1 ...
+years :  int 10
+  species maxrgr initial_cells initial_total_biomass overwinter halfsatB halfsatN halfsatP uptakeN uptakeP
+1       1    0.3             2                     2        0.1       42     0.04     0.05   0.001   0.001
+2       2    0.3             2                     2        0.1       42     0.04     0.05   0.001   0.001
+3       3    0.3             2                     2        0.1       42     0.04     0.05   0.001   0.001
+4       4    0.3             2                     2        0.1       42     0.04     0.05   0.001   0.001
