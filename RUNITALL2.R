@@ -32,9 +32,9 @@
 totalsimuls <- 64 
 
 # set-up blank vectors for any of the results 
-propyears_avgFP_abovethreshold <- rep(NA, totalsimuls)
-propyears_propdaysFP_abovehalf <- rep(NA, totalsimuls)
-RESULTS <- data.frame(propyears_avgFP_abovethreshold,propyears_propdaysFP_abovehalf)
+propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
+propyears_prop_daysFP_abovehalf <- rep(NA, totalsimuls)
+RESULTS <- data.frame(propyears_avgFPcover_abovethreshold,propyears_prop_daysFP_abovehalf)
 
 parameters <- read.csv("input02.csv") # imports parameter  values for all simulations 
 
@@ -67,8 +67,8 @@ for (i in 1:totalsimuls) { # loop through all of your simulations - User needs t
   
   OUTPUT2(regimethreshold=70) # generates graphs - if you want .html animation you must specify animate=TRUE, set "FP regime" threshold here too 
   
-  RESULTS[simulnumb,1] <- propyears_avgFP_abovethreshold # assign the current simulations results to the correct spot
-  RESULTS[simulnumb,2] <- propyears_propdaysFP_abovehalf # assign the current simulations results to the correct spot
+  RESULTS[simulnumb,1] <- propyears_avgFPcover_abovethreshold # assign the current simulations results to the correct spot
+  RESULTS[simulnumb,2] <- propyears_prop_daysFP_abovehalf # assign the current simulations results to the correct spot
     
   rm(list = ls()[!(ls() %in% c("RESULTS","parameters"))]) # clear workspace (except for RESULTS and parameters) for next simulation 
   
@@ -76,8 +76,8 @@ for (i in 1:totalsimuls) { # loop through all of your simulations - User needs t
 }
 
 # add the results vectors to the original parameters data frame 
-parameters$propyears_avgFP_abovethreshold <- RESULTS[,1]
-parameters$propyears_propdaysFP_abovehalf <- RESULTS[,2]
+parameters$propyears_avgFPcover_abovethreshold <- RESULTS[,1]
+parameters$propyears_prop_daysFP_abovehalf <- RESULTS[,2]
 
 # add these results to your original input file and write as a .csv 
 write.csv(parameters,"output02.csv",row.names=F) 

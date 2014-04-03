@@ -97,7 +97,7 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   }
   
   # generate a vector of ("species1","species2",etc.) - to use for naming your columns 
-  names<-"all species"
+  names<-"all_species"
   for (n in 1:numbspecies){
     names<-append(names, paste("species",n,sep="",collapse=""))
   }
@@ -215,24 +215,28 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   avgFPcover <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),mean) 
   colnames(avgFPcover)[2] <- "avgFPcover"
   
+  # ***Average*** floating plant ***biomass*** for all time steps in each year 
+  avgFPbiomass <- aggregate(data_biomass$all_species,list(year=data_biomass$year),mean) 
+  colnames(avgFPbiomass)[2] <- "avgFPbiomass"
+  
   # ***Number*** of days each year that the waterbody is above a treshold value of cover_ALL
   apply.fun <- function(x) {
     sum(x > regimethreshold)
   }
-  daysFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),apply.fun) 
-  colnames(daysFP)[2] <- "daysFP"
+  numb_daysFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),apply.fun) 
+  colnames(numb_daysFP)[2] <- "numb_daysFP"
   
   # ***Proportion*** of days each year that the waterbody is above a treshold value of cover_ALL
   apply.fun <- function(x) {
     sum(x > regimethreshold)/timesteps
   }
-  propdaysFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),apply.fun) 
-  colnames(propdaysFP)[2] <- "propdaysFP"
+  prop_daysFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),apply.fun) 
+  colnames(prop_daysFP)[2] <- "prop_daysFP"
     
   # ***First day*** that the waterbody is above a threshold value of cover_ALL 
   firstdayFP <- seq(from=0,to=0,length=years)
   for (j in 1:years) { # loop by years 
-    if (propdaysFP$propdaysFP[j] > 0) {
+    if (prop_daysFP$prop_daysFP[j] > 0) {
       temp <- subset(data_cover$day,data_cover$year == j & data_cover$cover_ALL >= regimethreshold) # need to fix for NAs # need to fix so it returns day instead of index 
       firstdayFP[j] <- min(temp)
     }
@@ -243,8 +247,9 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   
   # Build a data frame with all of these different summary statistics for each year 
   # I can probably do this smarter than just repeated merge()
-  data_summary_by_year <- merge(avgFPcover,daysFP)
-  data_summary_by_year <- merge(data_summary_by_year, propdaysFP)
+  data_summary_by_year <- merge(avgFPcover,numb_daysFP)
+  data_summary_by_year <- merge(data_summary_by_year, prop_daysFP)
+  data_summary_by_year <- merge(data_summary_by_year, avgFPbiomass)
   data_summary_by_year <- cbind(data_summary_by_year,firstdayFP)
   data_summary_by_year
   
@@ -252,19 +257,19 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   write.csv(data_summary_by_year,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)
   
   #####
-  ########## append to input.csv the results - #years with avgFPcover > threshold and #years with propdaySFP > 0.5 
+  ########## append to input.csv the results - #years with avgFPcover > threshold and #years with prop_daysFP > 0.5 
   #####
   # I should probably leave off some of the first few year - to let to model equilibrate 
   
   # prop years with avgFPcover > regimethreshold
   propyears_avgFPcover_abovethreshold <- sum(data_nutrients$avgFPcover >= regimethreshold)/years
   
-  # prop years with propdaysFP > 0.5
-  propyears_propdaysFP_abovehalf <- sum(data_nutrients$propdaysFP >= 0.5)/years
+  # prop years with prop_daysFP > 0.5
+  propyears_prop_daysFP_abovehalf <- sum(data_nutrients$prop_daysFP >= 0.5)/years
   
   assign("propyears_avgFPcover_abovethreshold", propyears_avgFPcover_abovethreshold, envir=.GlobalEnv)
 
-  assign("propyears_propdaysFP_abovehalf", propyears_propdaysFP_abovehalf, envir=.GlobalEnv)
+  assign("propyears_prop_daysFP_abovehalf", propyears_prop_daysFP_abovehalf, envir=.GlobalEnv)
   
   ########################################################################
   ########### write a .txt of ALL parameter values in workspace ##########
