@@ -6,7 +6,11 @@
 # Last Updated: 2/26/2014                               #
 ######################################################### 
 
-OUTPUT2 <- function(animate=FALSE){  
+OUTPUT2 <- function(animate=FALSE, regimethreshold){  
+  
+  # assign the regimthreshold input value to the working environment for this function 
+  regimethreshold <- regimethreshold 
+  
   require(animation)
   require(raster)
   
@@ -60,35 +64,35 @@ OUTPUT2 <- function(animate=FALSE){
   require(reshape2)
   
   # creates a blank data frame where this all will go 
-  data01<-NULL
-  data01<-as.data.frame(data01)
+  data_biomass<-NULL
+  data_biomass<-as.data.frame(data_biomass)
   
-  # for each timestep, for each species, assign the popl. size to the appropriate position in data01
+  # for each timestep, for each species, assign the popl. size to the appropriate position in data_biomass
   
   ### modify here with a if speciesnumb == 4
   
   for (i in 1:(1+(timesteps+1)*years)) { 
     if (numbspecies == 4) { 
-      data01[i,1]<-sum(LIST[[i]]$SPALLmatrix)
-      data01[i,2]<-sum(LIST[[i]]$SP1matrix)
-      data01[i,3]<-sum(LIST[[i]]$SP2matrix)
-      data01[i,4]<-sum(LIST[[i]]$SP3matrix)
-      data01[i,5]<-sum(LIST[[i]]$SP4matrix)
+      data_biomass[i,1]<-sum(LIST[[i]]$SPALLmatrix)
+      data_biomass[i,2]<-sum(LIST[[i]]$SP1matrix)
+      data_biomass[i,3]<-sum(LIST[[i]]$SP2matrix)
+      data_biomass[i,4]<-sum(LIST[[i]]$SP3matrix)
+      data_biomass[i,5]<-sum(LIST[[i]]$SP4matrix)
     }
     else if (numbspecies == 3) {
-      data01[i,1]<-sum(LIST[[i]]$SPALLmatrix)
-      data01[i,2]<-sum(LIST[[i]]$SP1matrix)
-      data01[i,3]<-sum(LIST[[i]]$SP2matrix)
-      data01[i,4]<-sum(LIST[[i]]$SP3matrix)
+      data_biomass[i,1]<-sum(LIST[[i]]$SPALLmatrix)
+      data_biomass[i,2]<-sum(LIST[[i]]$SP1matrix)
+      data_biomass[i,3]<-sum(LIST[[i]]$SP2matrix)
+      data_biomass[i,4]<-sum(LIST[[i]]$SP3matrix)
     }
     else if (numbspecies == 2) {
-      data01[i,1]<-sum(LIST[[i]]$SPALLmatrix)
-      data01[i,2]<-sum(LIST[[i]]$SP1matrix)
-      data01[i,3]<-sum(LIST[[i]]$SP2matrix)
+      data_biomass[i,1]<-sum(LIST[[i]]$SPALLmatrix)
+      data_biomass[i,2]<-sum(LIST[[i]]$SP1matrix)
+      data_biomass[i,3]<-sum(LIST[[i]]$SP2matrix)
     }
     else if (numbspecies == 1) {
-      data01[i,1]<-sum(LIST[[i]]$SPALLmatrix)
-      data01[i,2]<-sum(LIST[[i]]$SP1matrix)
+      data_biomass[i,1]<-sum(LIST[[i]]$SPALLmatrix)
+      data_biomass[i,2]<-sum(LIST[[i]]$SP1matrix)
     }
   }
   
@@ -99,15 +103,15 @@ OUTPUT2 <- function(animate=FALSE){
   }
   
   # assign that vector to the column names of your dataframe 
-  names(data01)<-names
+  names(data_biomass)<-names
   
   # add time to your dataframe 
-  data01$time <- seq(1,1+(timesteps+1)*years,1)
+  data_biomass$time <- seq(1,1+(timesteps+1)*years,1)
   
   #reshape your data 1st before trying ggplot2 
-  data01melt <- melt(data01,id.vars="time")
+  data_biomass_melt <- melt(data_biomass,id.vars="time")
   
-  ggplot(data01melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("total biomass (g)")
+  ggplot(data_biomass_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("total biomass (g)")
   ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," biomass", ".jpg", sep=""))
   
   dev.off()
@@ -116,32 +120,32 @@ OUTPUT2 <- function(animate=FALSE){
   ############# Plot % cover through time - GGPLOT2 ###############
   #################################################################
   # creates a blank data frame where this all will go 
-  data02<-NULL
-  data02<-as.data.frame(data02)
+  data_cover<-NULL
+  data_cover<-as.data.frame(data_cover)
   
-  # for each timestep, for each species, assign the percent cover to the appropriate position in data01
+  # for each timestep, for each species, assign the percent cover to the appropriate position in data_cover
   for (i in 1:(1+(timesteps+1)*years)) { 
     if (numbspecies == 4) { 
-      data02[i,1]<-mean(LIST[[i]]$SPALLmatrix)
-      data02[i,2]<-mean(LIST[[i]]$SP1matrix)
-      data02[i,3]<-mean(LIST[[i]]$SP2matrix)
-      data02[i,4]<-mean(LIST[[i]]$SP3matrix)
-      data02[i,5]<-mean(LIST[[i]]$SP4matrix)
+      data_cover[i,1]<-mean(LIST[[i]]$SPALLmatrix)
+      data_cover[i,2]<-mean(LIST[[i]]$SP1matrix)
+      data_cover[i,3]<-mean(LIST[[i]]$SP2matrix)
+      data_cover[i,4]<-mean(LIST[[i]]$SP3matrix)
+      data_cover[i,5]<-mean(LIST[[i]]$SP4matrix)
     }
     else if (numbspecies == 3) {
-      data02[i,1]<-mean(LIST[[i]]$SPALLmatrix)
-      data02[i,2]<-mean(LIST[[i]]$SP1matrix)
-      data02[i,3]<-mean(LIST[[i]]$SP2matrix)
-      data02[i,4]<-mean(LIST[[i]]$SP3matrix)
+      data_cover[i,1]<-mean(LIST[[i]]$SPALLmatrix)
+      data_cover[i,2]<-mean(LIST[[i]]$SP1matrix)
+      data_cover[i,3]<-mean(LIST[[i]]$SP2matrix)
+      data_cover[i,4]<-mean(LIST[[i]]$SP3matrix)
     }
     else if (numbspecies == 2) {
-      data02[i,1]<-mean(LIST[[i]]$SPALLmatrix)
-      data02[i,2]<-mean(LIST[[i]]$SP1matrix)
-      data02[i,3]<-mean(LIST[[i]]$SP2matrix)
+      data_cover[i,1]<-mean(LIST[[i]]$SPALLmatrix)
+      data_cover[i,2]<-mean(LIST[[i]]$SP1matrix)
+      data_cover[i,3]<-mean(LIST[[i]]$SP2matrix)
     }
     else if (numbspecies == 1) {
-      data02[i,1]<-mean(LIST[[i]]$SPALLmatrix)
-      data02[i,2]<-mean(LIST[[i]]$SP1matrix)
+      data_cover[i,1]<-mean(LIST[[i]]$SPALLmatrix)
+      data_cover[i,2]<-mean(LIST[[i]]$SP1matrix)
     }
   }
   
@@ -152,15 +156,15 @@ OUTPUT2 <- function(animate=FALSE){
   }
   
   # assign that vector to the column names of your dataframe 
-  names(data02)<-names
+  names(data_cover)<-names
     
   # add time to your dataframe 
-  data02$time <- seq(1,1+(timesteps+1)*years,1)
+  data_cover$time <- seq(1,1+(timesteps+1)*years,1)
   
   # reshape your data 1st before trying ggplot2 
-  data02melt <- melt(data02,id.vars="time")
+  data_cover_melt <- melt(data_cover,id.vars="time")
   
-  ggplot(data02melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("percent cover")
+  ggplot(data_cover_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("percent cover")
   ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," percent cover", ".jpg", sep=""))
   
   dev.off()
@@ -169,25 +173,25 @@ OUTPUT2 <- function(animate=FALSE){
   ############# Plot nutrients through time - GGPLOT2 #############
   #################################################################
   # creates a blank data frame where this all will go 
-  data04<-NULL
-  data04<-as.data.frame(data04)
+  data_nutrients<-NULL
+  data_nutrients<-as.data.frame(data_nutrients)
   
-  # for each timestep, for each species, assign the percent cover to the appropriate position in data01
+  # for each timestep, for each species, assign the percent cover to the appropriate position in data_nutrients
   for (i in 1:(1+(timesteps+1)*years)) { 
-      data04[i,1]<-LIST[[i]]$TOTALN
-      data04[i,2]<-LIST[[i]]$TOTALP
+    data_nutrients[i,1]<-LIST[[i]]$TOTALN
+    data_nutrients[i,2]<-LIST[[i]]$TOTALP
   }
   
   # assign the correct names to the column names of your dataframe 
-  names(data04)<-c("Total N","TOTAL P")
+  names(data_nutrients)<-c("Total N","TOTAL P")
   
   # add time to your dataframe 
-  data04$time <- seq(1,1+(timesteps+1)*years,1)
+  data_nutrients$time <- seq(1,1+(timesteps+1)*years,1)
   
   # reshape your data 1st before trying ggplot2 
-  data04melt <- melt(data04,id.vars="time")
+  data_nutrients_melt <- melt(data_nutrients,id.vars="time")
   
-  ggplot(data04melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("concentration(mg/L)")
+  ggplot(data_nutrients_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("concentration(mg/L)")
   ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," nutrients", ".jpg", sep=""))
   
   dev.off()
@@ -203,37 +207,34 @@ OUTPUT2 <- function(animate=FALSE){
   year <- append(year, i+1) # this is for the first day of the next year 
 
   # add year to your dataframe 
-  data02$year <- year
+  data_cover$year <- year
 
   # add a vector of "day" instead of "time" to the data frame 
-  data02$day <- c(rep(seq(1,timesteps+1),years),1)
+  data_cover$day <- c(rep(seq(1,timesteps+1),years),1)
   
   # Average floating plant coverage for all time steps in each year 
-  avgFP <- aggregate(data02$cover_ALL,list(year=data02$year),mean) 
+  avgFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),mean) 
   colnames(avgFP)[2] <- "avgFP"
   
   # Number of days each year that a water is above a treshold value of cover_ALL
-  regimethreshold <- 70 
   apply.fun <- function(x) {
     sum(x > regimethreshold)
   }
-  daysFP <- aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+  daysFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),apply.fun) 
   colnames(daysFP)[2] <- "daysFP"
   
   # Proportion of days each year that a waterbody is above a treshold value of cover_ALL
-  regimethreshold <- 70 
   apply.fun <- function(x) {
     sum(x > regimethreshold)/timesteps
   }
-  propdaysFP <- aggregate(data02$cover_ALL,list(year=data02$year),apply.fun) 
+  propdaysFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),apply.fun) 
   colnames(propdaysFP)[2] <- "propdaysFP"
     
   # get the first day that the waterbody is above a threshold value of cover_ALL 
-  regimethreshold <- 70 
   firstdayFP <- seq(from=0,to=0,length=years)
   for (j in 1:years) { # loop by years 
     if (propdaysFP$propdaysFP[j] > 0) {
-      temp <- subset(data02$day,data02$year == j & data02$cover_ALL >= regimethreshold) # need to fix for NAs # need to fix so it returns day instead of index 
+      temp <- subset(data_cover$day,data_cover$year == j & data_cover$cover_ALL >= regimethreshold) # need to fix for NAs # need to fix so it returns day instead of index 
       firstdayFP[j] <- min(temp)
     }
     else (firstdayFP[j] <- NA)
@@ -243,13 +244,13 @@ OUTPUT2 <- function(animate=FALSE){
   
   # Build a data frame with all of these different summary statistics for each year 
   # I can probably do this smarter than just repeated merge()
-  data03 <- merge(avgFP,daysFP)
-  data03 <- merge(data03, propdaysFP)
-  data03 <- cbind(data03,firstdayFP)
-  data03
+  data_summary_by_year <- merge(avgFP,daysFP)
+  data_summary_by_year <- merge(data_summary_by_year, propdaysFP)
+  data_summary_by_year <- cbind(data_summary_by_year,firstdayFP)
+  data_summary_by_year
   
   # assign it to something useful otuside of the function 
-  write.csv(data03,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)
+  write.csv(data_summary_by_year,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)
   
   #####
   ########## append to input.csv the results - #years with avgFP > threshold and #years with propdaySFP > 0.5 
@@ -257,10 +258,10 @@ OUTPUT2 <- function(animate=FALSE){
   # I should probably leave off some of the first few year - to let to model equilibrate 
   
   # prop years with avgFP > regimethreshold
-  propyears_avgFP_abovethreshold <- sum(data03$avgFP >= regimethreshold)/years
+  propyears_avgFP_abovethreshold <- sum(data_nutrients$avgFP >= regimethreshold)/years
   
   # prop years with propdaysFP > 0.5
-  propyears_propdaysFP_abovehalf <- sum(data03$propdaysFP >= 0.5)/years
+  propyears_propdaysFP_abovehalf <- sum(data_nutrients$propdaysFP >= 0.5)/years
   
   assign("propyears_avgFP_abovethreshold", propyears_avgFP_abovethreshold, envir=.GlobalEnv)
 

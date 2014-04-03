@@ -65,7 +65,7 @@ for (i in 1:totalsimuls) { # loop through all of your simulations - User needs t
 
   LIST<-STEP10() # Runs the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
   
-  OUTPUT2() # generates graphs - if you want .html animation you must specify ani
+  OUTPUT2(regimethreshold=70) # generates graphs - if you want .html animation you must specify animate=TRUE, set "FP regime" threshold here too 
   
   RESULTS[simulnumb,1] <- propyears_avgFP_abovethreshold # assign the current simulations results to the correct spot
   RESULTS[simulnumb,2] <- propyears_propdaysFP_abovehalf # assign the current simulations results to the correct spot
