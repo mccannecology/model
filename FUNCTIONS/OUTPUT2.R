@@ -197,6 +197,38 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   dev.off()
   
   #################################################################
+  ############# Plot % cells occupied through time - GGPLOT2 ######
+  #################################################################
+  # creates a blank data frame where this all will go 
+  data_cell_occupancy <-NULL
+  data_cell_occupancy<-as.data.frame(data_cell_occupancy)
+  
+  # for each timestep, count up how many cells are occupied (at any biomass/cover level)
+  for (i in 1:(1+(timesteps+1)*years)) { 
+    data_cell_occupancy[i,1] <- numblength(LIST[[i]]$SPALLmatrix[LIST[[i]]$SPALLmatrix > 0])
+    data_cell_occupancy[i,2] <- (numblength(LIST[[i]]$SPALLmatrix[LIST[[i]]$SPALLmatrix > 0]) / (height*width)) * 100
+  }
+  
+  # generate a vector for naming your columns 
+  names<-c("numb_cells_occup","perc_cells_occup"
+  
+  # assign that vector to the column names of your dataframe 
+  names(data_cell_occupancy)<-names
+  
+  # add time to your dataframe 
+  data_cell_occupancy$time <- seq(1,1+(timesteps+1)*years,1)
+  
+  # reshape your data 1st before trying ggplot2 
+  data_cell_occupancy_melt <- melt(data_cell_occupancy,id.vars="time")
+  
+  # Change this back to the command two lines down if it does not work 
+  ggplot(data_cell_occupancy_melt, aes(x=time,y=perc_cells_occup,colour=variable)) + geom_line() + ylab("percent cells occupied")
+  # ggplot(data_cell_occupancy_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("percent cells occupied")
+  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," percent cover", ".jpg", sep=""))
+  
+  dev.off()
+    
+  #################################################################
   ########## Summary statistics of FP regime - by year ############
   #################################################################
   # make a vector of "year"
