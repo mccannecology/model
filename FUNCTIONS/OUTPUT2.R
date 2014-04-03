@@ -201,36 +201,31 @@ OUTPUT2 <- function(animate=FALSE, regimethreshold){
   #################################################################
   # make a vector of "year"
   year <- NULL
-  for (i in 1:years){
-    year <- append(year,rep(i,timesteps+1))
-  }
+  for (i in 1:years){year <- append(year,rep(i,timesteps+1))}
   year <- append(year, i+1) # this is for the first day of the next year 
 
-  # add year to your dataframe 
-  data_cover$year <- year
-
-  # add a vector of "day" instead of "time" to the data frame 
-  data_cover$day <- c(rep(seq(1,timesteps+1),years),1)
+  data_cover$year <- year # add year to your dataframe 
+  data_cover$day <- c(rep(seq(1,timesteps+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
   
-  # Average floating plant coverage for all time steps in each year 
+  # ***Average*** floating plant ***cover*** for all time steps in each year 
   avgFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),mean) 
   colnames(avgFP)[2] <- "avgFP"
   
-  # Number of days each year that a water is above a treshold value of cover_ALL
+  # ***Number*** of days each year that the waterbody is above a treshold value of cover_ALL
   apply.fun <- function(x) {
     sum(x > regimethreshold)
   }
   daysFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),apply.fun) 
   colnames(daysFP)[2] <- "daysFP"
   
-  # Proportion of days each year that a waterbody is above a treshold value of cover_ALL
+  # ***Proportion*** of days each year that the waterbody is above a treshold value of cover_ALL
   apply.fun <- function(x) {
     sum(x > regimethreshold)/timesteps
   }
   propdaysFP <- aggregate(data_cover$cover_ALL,list(year=data_cover$year),apply.fun) 
   colnames(propdaysFP)[2] <- "propdaysFP"
     
-  # get the first day that the waterbody is above a threshold value of cover_ALL 
+  # ***First day*** that the waterbody is above a threshold value of cover_ALL 
   firstdayFP <- seq(from=0,to=0,length=years)
   for (j in 1:years) { # loop by years 
     if (propdaysFP$propdaysFP[j] > 0) {
