@@ -15,7 +15,7 @@
 GROW <- function(x1,x2,x3,n,x4,x5) { 
   for (j in 1:height) { # loop over all rows (height)
     for (k in 1:width) { # loop over all columns (width)
-      if (x1[j,k] > 0) {
+      if (x1[j,k] > 0 & x1[j,k] <= 100) {
         x2[j,k] <- x1[j,k] + speciesmatrix$maxrgr[n]*x1[j,k] * # initial biomass plus new growth 
                       
                       (speciesmatrix$halfsatB[n]/(x3[j,k]+speciesmatrix$halfsatB[n])) * # biomass limitation 
