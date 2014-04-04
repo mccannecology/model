@@ -9,25 +9,25 @@ STEP10 <- function() { # start defining the function
       # MOVE #
       ########
       if (numbspecies == 4) { 
-        LIST[[i]]$SP4matrix <- MOVE(LIST[[i]]$SP4matrix) 
-        LIST[[i]]$SP3matrix <- MOVE(LIST[[i]]$SP3matrix)
-        LIST[[i]]$SP2matrix <- MOVE(LIST[[i]]$SP2matrix)
-        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix)
+        LIST[[i]]$SP4matrix <- MOVE(LIST[[i]]$SP4matrix, LIST[[i+1]]$SP4matrix) 
+        LIST[[i]]$SP3matrix <- MOVE(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix)
+        LIST[[i]]$SP2matrix <- MOVE(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix)
+        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix)
         LIST[[i]]$SPALLmatrix <- LIST[[i]]$SP4matrix + LIST[[i]]$SP3matrix + LIST[[i]]$SP2matrix + LIST[[i]]$SP1matrix
       }
       else if (numbspecies == 3) {
-        LIST[[i]]$SP3matrix <- MOVE(LIST[[i]]$SP3matrix)
-        LIST[[i]]$SP2matrix <- MOVE(LIST[[i]]$SP2matrix)
-        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix) 
+        LIST[[i]]$SP3matrix <- MOVE(LIST[[i]]$SP3matrix, LIST[[i+1]]$SP3matrix)
+        LIST[[i]]$SP2matrix <- MOVE(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix)
+        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix) 
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP3matrix + LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix
       }
       else if (numbspecies == 2) {
-        LIST[[i]]$SP2matrix <- MOVE(LIST[[i]]$SP2matrix)
-        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix) 
+        LIST[[i]]$SP2matrix <- MOVE(LIST[[i]]$SP2matrix, LIST[[i+1]]$SP2matrix)
+        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix) 
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP2matrix + LIST[[i+1]]$SP1matrix + LIST[[i]]$SPALLmatrix
       }
       else if (numbspecies == 1) {
-        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix) 
+        LIST[[i]]$SP1matrix <- MOVE(LIST[[i]]$SP1matrix, LIST[[i+1]]$SP1matrix) 
         LIST[[i+1]]$SPALLmatrix <- LIST[[i+1]]$SP1matrix
       }
       
