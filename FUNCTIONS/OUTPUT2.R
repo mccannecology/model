@@ -6,10 +6,10 @@
 # Last Updated: 2/26/2014                               #
 ######################################################### 
 
-OUTPUT2 <- function(animate=FALSE){  
+OUTPUT2 <- function(animate=FALSE,threshold){  
   
   # assign the regimthreshold input value to the working environment for this function 
-  regimethreshold <- 70 
+  regimethreshold <- threshold
   
   require(animation)
   require(raster)
