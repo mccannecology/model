@@ -115,7 +115,7 @@ STEP10 <- function() { # start defining the function
     require(raster)
     
     # new plotting: zlim should set the constant scale 
-    plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species","Timestep:",i,sep=" "), zlim=c(0,450))
+    plot(raster(LIST[[i]]$SPALLmatrix),main=paste("All species","Timestep:",i,sep=" "), zlim=c(0,100))
     
     #if (numbspecies == 4) { 
     #  par(mfrow=c(numbspecies+1,1))
