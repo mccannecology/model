@@ -17,8 +17,10 @@ INPUT2 <- function(x){
   assign("TOTALP", parameters$TOTALP[simulnumb], envir = .GlobalEnv)  # overall phosphorus concentration (mg/L)
   
   assign("loss", parameters$loss[simulnumb], envir = .GlobalEnv)  # "losses" - respiration & various sources of mortality 
+  
   assign("thresholdtomove", parameters$thresholdtomove[simulnumb], envir = .GlobalEnv)  # threshold value - above this biomass and plants start moving 
-  assign("amounttomove", parameters$amounttomove[simulnumb], envir = .GlobalEnv)  # threshold value - above this biomass and plants start moving 
+  assign("maxthresholdtomove", parameters$maxthresholdtomove[simulnumb], envir = .GlobalEnv)  # max threshold value - above this biomass and move at a constant maxamountomove value
+  assign("maxamounttomove", parameters$maxamounttomove[simulnumb], envir = .GlobalEnv)  # movement amount once plant density is at maxthresholdtomove 
   
   assign("numbspecies", parameters$numbspecies[simulnumb], envir = .GlobalEnv) # number of species in the model 
   
