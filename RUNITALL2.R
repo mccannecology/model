@@ -1,13 +1,13 @@
-#####################################################
-# Individual Based Model: Floating plant growth     #
-# Now compatible with new LIST structure            #
-#                                                   #
-# By: Michael J. McCann                             #
-# Major revision: 03/24/2014                        #
-#####################################################
+################################################
+# Spatially-explicit Floating plant growth     #
+# Now compatible with new LIST structure       #
+#                                              #
+# By: Michael J. McCann                        #
+# Major revision: 03/24/2014                   #
+################################################
 # 
-# CURRENTLY:
-# Multiple species of duckweed growth - each on their own 2-d grid (matrix)
+# CURRENT SETUP:
+# Multiple species of duckweed growing - Each species is on their own 2-d grid (matrix)
 # Positions of plants based on X,Y coordinates in a matrix   
 # Includes an overwintering step, where there is a large die-off of individuals 
 #
