@@ -1,0 +1,4 @@
+  species maxrgr initial_cells initial_total_biomass overwinter halfsatB
+1       1      0             0                     0          0        0
+  halfsatN halfsatP uptakeN uptakeP
+1        0        0       0       0
