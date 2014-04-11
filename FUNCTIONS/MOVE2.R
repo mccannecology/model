@@ -35,7 +35,7 @@ MOVE2 <- function(x1) {
                                   j, k-distance, 
                                   j-distance, k, 
                                   j-distance, k-distance, 
-                                  j-distance, k+distance,),
+                                  j-distance, k+distance),
                                 nrow=8,byrow=TRUE)
             
             # Remove coordinates that are outside the grid (negatives or >width or width) 
