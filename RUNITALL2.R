@@ -32,9 +32,10 @@
 totalsimuls <- 96
 
 # set-up blank vectors for any of the results 
-propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
-propyears_prop_daysFP_abovehalf <- rep(NA, totalsimuls)
-RESULTS <- data.frame(propyears_avgFPcover_abovethreshold,propyears_prop_daysFP_abovehalf)
+propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls) # The proportion of years where the average FP cover is greater than "threshold" (defined as input to OUTPUT())
+propyears_prop_daysFP_abovehalf <- rep(NA, totalsimuls) # The proportion of years where >50% days are reater than "threshold" FP cover (defined as input to OUTPUT())
+avg_avg_FPcover <- rep(NA, totalsimuls) # The proportion of years where >50% days are greater than "threshold" FP cover (defined as input to OUTPUT())
+RESULTS <- data.frame(propyears_avgFPcover_abovethreshold,propyears_prop_daysFP_abovehalf,avg_avg_FPcover)
 
 parameters <- read.csv("input04.csv") # imports parameter  values for all simulations 
 
@@ -69,7 +70,8 @@ for (i in 1:totalsimuls) { # loop through all of your simulations - User needs t
   
   RESULTS[simulnumb,1] <- propyears_avgFPcover_abovethreshold # assign the current simulations results to the correct spot
   RESULTS[simulnumb,2] <- propyears_prop_daysFP_abovehalf # assign the current simulations results to the correct spot
-    
+  RESULTS[simulnumb,3] <- avg_avg_FPcover # assign the current simulations results to the correct spot  
+  
   rm(list = ls()[!(ls() %in% c("RESULTS","parameters"))]) # clear workspace (except for RESULTS and parameters) for next simulation 
   
 }
@@ -77,6 +79,7 @@ for (i in 1:totalsimuls) { # loop through all of your simulations - User needs t
 # add the results vectors to the original parameters data frame 
 parameters$propyears_avgFPcover_abovethreshold <- RESULTS[,1]
 parameters$propyears_prop_daysFP_abovehalf <- RESULTS[,2]
+parameters$avg_avg_FPcover <- RESULTS[,3]
 
 # add these results to your original input file and write as a .csv 
 write.csv(parameters,"output04.csv",row.names=F) 
