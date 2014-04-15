@@ -285,13 +285,6 @@ OUTPUT2 <- function(animate=FALSE,threshold){
   colnames(firstdayFP)[1] <- "year"
   
   # Build a data frame with all of these different summary statistics for each year 
-  # I can probably do this smarter than just repeated merge()
-  # data_summary_by_year <- merge(avgFPcover,maxFPcover) 
-  # data_summary_by_year <- merge(data_summary_by_year, numb_daysFP)
-  # data_summary_by_year <- merge(data_summary_by_year, prop_daysFP)
-  # data_summary_by_year <- merge(data_summary_by_year, firstdayFP) 
-  # data_summary_by_year <- cbind(data_summary_by_year, avgFPbiomass)
-  
   data_summary_by_year <- merge(avgFPcover,merge(maxFPcover,merge(numb_daysFP,merge(prop_daysFP,merge(firstdayFP,avgFPbiomass)))))
     
   # assign it to something useful otuside of the function 
@@ -303,14 +296,20 @@ OUTPUT2 <- function(animate=FALSE,threshold){
   # I should probably leave off some of the first few year - to let to model equilibrate 
   
   # prop years with avgFPcover > regimethreshold
-  propyears_avgFPcover_abovethreshold <- sum(data_nutrients$avgFPcover >= regimethreshold)/years
+  propyears_avgFPcover_abovethreshold <- sum(data_summary_by_year$avgFPcover >= regimethreshold)/years
   
   # prop years with prop_daysFP > 0.5
-  propyears_prop_daysFP_abovehalf <- sum(data_nutrients$prop_daysFP >= 0.5)/years
+  propyears_prop_daysFP_abovehalf <- sum(data_summary_by_year$prop_daysFP >= 0.5)/years
+  
+  # average FP cover across years (excluding 1st three)
+  avg_avg_FPcover <- mean(data_summary_by_year$avgFPcover[4:years])
   
   assign("propyears_avgFPcover_abovethreshold", propyears_avgFPcover_abovethreshold, envir=.GlobalEnv)
 
   assign("propyears_prop_daysFP_abovehalf", propyears_prop_daysFP_abovehalf, envir=.GlobalEnv)
+
+  assign("avg_avg_FPcover", avg_avg_FPcover, envir=.GlobalEnv)
+  
   
   ########################################################################
   ########### write a .txt of ALL parameter values in workspace ##########
