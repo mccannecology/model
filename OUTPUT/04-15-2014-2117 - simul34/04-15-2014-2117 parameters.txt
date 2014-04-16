@@ -1,0 +1,79 @@
+%ni% : function (...)  
+avg_avg_FPcover :  num 76.4
+BLANK2 : function ()  
+GROW : function (x1, x2, x3, n, x4, x5)  
+GROW2 : function (x1, x2, x3, n, x4, x5)  
+halfsatB01 :  int 42
+halfsatB02 :  int 0
+halfsatB03 :  int 0
+halfsatB04 :  int 0
+halfsatN01 :  num 0.04
+halfsatN02 :  int 0
+halfsatN03 :  int 0
+halfsatN04 :  int 0
+halfsatP01 :  num 0.05
+halfsatP02 :  int 0
+halfsatP03 :  int 0
+halfsatP04 :  int 0
+height :  int 20
+i :  int 1511
+initial01cells :  int 200
+initial01totmass :  int 400
+initial02cells :  int 0
+initial02totmass :  int 0
+initial03cells :  int 0
+initial03totmass :  int 0
+initial04cells :  int 0
+initial04totmass :  int 0
+INPUT2 : function (x)  
+LIST : List of 1511
+  [list output truncated]
+loss :  num 0.05
+maxamounttomove :  int 5
+maxrgr01 :  num 0.3
+maxrgr02 :  int 0
+maxrgr03 :  int 0
+maxrgr04 :  int 0
+maxthresholdtomove :  int 100
+MOVE : function (x1)  
+MOVE2 : function (x1)  
+numbspecies :  int 1
+OUTPUT2 : function (animate = FALSE, threshold)  
+OVERWINTER : function (x1, x2, n)  
+overwinter01 :  num 0.1
+overwinter02 :  int 0
+overwinter03 :  int 0
+overwinter04 :  int 0
+parameters : 'data.frame':	192 obs. of  47 variables:
+propyears_avgFPcover_abovethreshold :  num 0.9
+propyears_prop_daysFP_abovehalf :  num 1
+RELEASE_N : function (x, i)  
+RELEASE_P : function (x, i)  
+RESULTS : 'data.frame':	192 obs. of  3 variables:
+simulnumb :  int 34
+SPECIES2 : function (x)  
+speciesmatrix : 'data.frame':	1 obs. of  10 variables:
+START4 : function ()  
+STEP10 : function ()  
+thresholdtomove :  int 25
+timesteps :  int 150
+TOTALN :  num 5
+TOTALP :  num 1.25
+totaltime :  num 1511
+UPTAKE_N : function (x, i, n)  
+UPTAKE_P : function (x, i, n)  
+uptakeN01 :  num 0.005
+uptakeN02 :  int 0
+uptakeN03 :  int 0
+uptakeN04 :  int 0
+uptakeP01 :  num 0.00125
+uptakeP02 :  int 0
+uptakeP03 :  int 0
+uptakeP04 :  int 0
+width :  int 20
+winters :  num [1:10] 151 302 453 604 755 ...
+years :  int 10
+  species maxrgr initial_cells initial_total_biomass overwinter halfsatB halfsatN halfsatP
+1       1    0.3           200                   400        0.1       42     0.04     0.05
+  uptakeN uptakeP
+1   0.005 0.00125
