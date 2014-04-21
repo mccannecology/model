@@ -31,29 +31,24 @@
 # Enter your total number of simulations - should be same as # rows in "inputXX.csv"
 totalsimuls <- 3
 
-# set-up blank vectors for each of the results 
-# propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls) # The proportion of years where the average FP cover is greater than "threshold" (defined as input to OUTPUT())
-# propyears_prop_daysFP_abovehalf <- rep(NA, totalsimuls) # The proportion of years where >50% days are reater than "threshold" FP cover (defined as input to OUTPUT())
-# avg_avg_FPcover <- rep(NA, totalsimuls) # The proportion of years where >50% days are greater than "threshold" FP cover (defined as input to OUTPUT())
-
-# combine all of those different results into a data frame (currently blank)
-# RESULTS <- data.frame(propyears_avgFPcover_abovethreshold,propyears_prop_daysFP_abovehalf,avg_avg_FPcover)
-
 # imports parameter  values for all simulations 
 parameters <- read.csv("input05.csv") 
 
+# add blank columns to parameters for each of the results 
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
 parameters$propyears_prop_daysFP_abovehalf <- rep(NA, totalsimuls)
 parameters$avg_avg_FPcover <- rep(NA, totalsimuls)
 
+# load the packages you need 
 require(foreach)
 require(doSNOW)
+require(R.utils) # package for sourceDirectory() - loeding all the functions in a directory 
 
+# make the correct number of clusters - the first argument will change depending on the machine / set-up 
 cl <- makeCluster(2,"SOCK") 
 
-require(R.utils) # package for sourceDirectory()
-
-sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) # load all your functions
+# load all your functions
+sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) 
 
 #  assigns the functions to the global environments of each node
 clusterExport(cl, c("BLANK2", "GROW", "INPUT2","MOVE",
@@ -61,14 +56,10 @@ clusterExport(cl, c("BLANK2", "GROW", "INPUT2","MOVE",
                     "SPECIES2","START4","STEP10","UPTAKE_N","UPTAKE_P"))
 
 registerDoSNOW(cl) # registers the SNOW parallel backend w/ foreach package 
-getDoParWorkers() # returns the # of workers 
+getDoParWorkers() # returns the # of workers - this should match the # of cores on your machine (or # cores - 1)
 
 RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
-  # require(R.utils) # package for sourceDirectory()
-  
-  # sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) # load all your functions
-  
-  # I am not sure if this is neccasary. Can I just use totalsimuls?
+  # I am not sure if this is neccasary. Can I just use i as the input to the functions below?
   simulnumb <- i # assigns the simulation # from the for loop - will be used as an input to INPUT() to read the right row of .csv
   
   INPUT3(simulnumb) # reads the .csv file of parameter values and assigns them to the global environment 
