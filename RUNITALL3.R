@@ -49,7 +49,7 @@ parameters$avg_avg_FPcover <- rep(NA, totalsimuls)
 require(foreach)
 require(doSNOW)
 
-cl <- makeCluster(3,"SOCK") 
+cl <- makeCluster(2,"SOCK") 
 
 require(R.utils) # package for sourceDirectory()
 
@@ -63,7 +63,7 @@ clusterExport(cl, c("BLANK2", "GROW", "INPUT2","MOVE",
 registerDoSNOW(cl) # registers the SNOW parallel backend w/ foreach package 
 getDoParWorkers() # returns the # of workers 
 
-foreach (i=1:totalsimuls, .foreach=c) %dopar% { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
+RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
   # require(R.utils) # package for sourceDirectory()
   
   # sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) # load all your functions
@@ -97,19 +97,37 @@ foreach (i=1:totalsimuls, .foreach=c) %dopar% { # loop through all of your simul
   # RESULTS[simulnumb,2] <- propyears_prop_daysFP_abovehalf # assign the current simulations results to the correct spot
   # RESULTS[simulnumb,3] <- avg_avg_FPcover # assign the current simulations results to the correct spot  
   
-  parameters$propyears_avgFPcover_abovethreshold[simulnumb] <- propyears_avgFPcover_abovethreshold
-  parameters$propyears_prop_daysFP_abovehalf[simulnumb] <- propyears_prop_daysFP_abovehalf
-  parameters$avg_avg_FPcover[simulnumb] <- avg_avg_FPcover
+  # parameters$propyears_avgFPcover_abovethreshold[simulnumb] <- propyears_avgFPcover_abovethreshold
+  # parameters$propyears_prop_daysFP_abovehalf[simulnumb] <- propyears_prop_daysFP_abovehalf
+  # parameters$avg_avg_FPcover[simulnumb] <- avg_avg_FPcover
     
+  c(simulnumb, propyears_avgFPcover_abovethreshold,propyears_prop_daysFP_abovehalf,avg_avg_FPcover)
+  
   # rm(list = ls()[!(ls() %in% c("RESULTS","parameters"))]) # clear workspace (except for RESULTS and parameters) for next simulation 
   
 }
 
-# add the results vectors to the original parameters data frame 
-# parameters$propyears_avgFPcover_abovethreshold <- RESULTS[,1]
-# parameters$propyears_prop_daysFP_abovehalf <- RESULTS[,2]
-# parameters$avg_avg_FPcover <- RESULTS[,3]
+# stop the cluster 
+stopCluster(cl)
 
-# add these results to your original input file and write as a .csv 
+# name the RESULTS columns 
+colnames(RESULT) <- c("simulnumb", "propyears_avgFPcover_abovethreshold","propyears_prop_daysFP_abovehalf","avg_avg_FPcover")
+
+# convert to a data frame 
+RESULT <- as.data.frame(RESULT)
+
+# Order the RESULT by simulation number 
+# create a vector of simulnumb in increasing order 
+order.simulnumb <- order(RESULT$simulnumb)
+
+# use that vector to order the RESULT data frame 
+RESULT <- RESULT[order.simulnumb,] 
+
+# add the columns of the RESULT data frame to the original parameters data frame 
+parameters$propyears_avgFPcover_abovethreshold <- RESULT[,2]
+parameters$propyears_prop_daysFP_abovehalf <- RESULT[,3]
+parameters$avg_avg_FPcover <- RESULT[,4]
+
+# write parameters with RESULT appended to a .csv 
 write.csv(parameters,"output05.csv",row.names=F) 
 
