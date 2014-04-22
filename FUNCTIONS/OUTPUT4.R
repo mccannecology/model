@@ -215,7 +215,7 @@ OUTPUT4 <- function(animate=FALSE,threshold){
   }
   
   # assign the correct names to the column names of your dataframe 
-  names(data_nutrients)<-c("Total_N","TOTAL_P")
+  names(data_nutrients)<-c("TOTAL_N","TOTAL_P")
   
   # add time to your dataframe 
   data_nutrients$time <- seq(1,1+(timesteps+1)*years,1)
@@ -239,12 +239,12 @@ OUTPUT4 <- function(animate=FALSE,threshold){
   for (i in 1:(1+(timesteps+1)*years)) { 
     data_cell_occupancy[i,1] <- length(LIST[[i]]$SAVmatrix[LIST[[i]]$SAVmatrix > 0])
     data_cell_occupancy[i,2] <- length(LIST[[i]]$FPALLmatrix[LIST[[i]]$FPALLmatrix > 0])
-    data_cell_occupancy[i,3] <- (length(LIST[[i]]$SAVmatrix[LIST[[i]]$FPALLmatrix > 0]) / (height*width)) * 100
+    data_cell_occupancy[i,3] <- (length(LIST[[i]]$SAVmatrix[LIST[[i]]$SAVmatrix > 0]) / (height*width)) * 100
     data_cell_occupancy[i,4] <- (length(LIST[[i]]$FPALLmatrix[LIST[[i]]$FPALLmatrix > 0]) / (height*width)) * 100
   }
   
   # generate a vector for naming your columns 
-  names<-c("numb_cells_occup_SAV","numb_cells_occup_FP","perc_cells_occup_FP","perc_cells_occup_FP")
+  names<-c("numb_cells_occup_SAV","numb_cells_occup_FP","perc_cells_occup_SAV","perc_cells_occup_FP")
   
   # assign that vector to the column names of your dataframe 
   names(data_cell_occupancy)<-names
@@ -256,8 +256,8 @@ OUTPUT4 <- function(animate=FALSE,threshold){
   data_cell_occupancy_melt <- melt(data_cell_occupancy,id.vars="time")
   
   # Change this back to the command two lines down if it does not work 
-  # ggplot(data_cell_occupancy_melt, aes(x=time,y=perc_cells_occup,colour=variable)) + geom_line() + ylab("percent cells occupied")
-  ggplot(data_cell_occupancy_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("percent cells occupied")
+  # ggplot(data_cell_occupancy_melt, aes(x=time,y=perc_cells_occup,colour=variable)) + geom_line() + ylab("cells occupied")
+  ggplot(data_cell_occupancy_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("cells occupied")
   ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," cells occupied", ".jpg", sep=""))
   
   dev.off()
@@ -277,15 +277,15 @@ OUTPUT4 <- function(animate=FALSE,threshold){
   data_biomass$day <- c(rep(seq(1,timesteps+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
  
   # ***Average*** floating plant ***cover*** for all time steps in each year 
-  avgFPcover <- aggregate(data_cover$ALL_FP,list(year=data_cover$year),mean) 
+  avgFPcover <- aggregate(data_cover$All_FP,list(year=data_cover$year),mean) 
   colnames(avgFPcover)[2] <- "avgFPcover"
   
   # ***Maximum*** floating plant ***cover*** for all time steps in each year 
-  maxFPcover <- aggregate(data_cover$ALL_FP,list(year=data_cover$year),max) 
+  maxFPcover <- aggregate(data_cover$All_FP,list(year=data_cover$year),max) 
   colnames(maxFPcover)[2] <- "maxFPcover"
   
   # ***Average*** floating plant ***biomass*** for all time steps in each year 
-  avgFPbiomass <- aggregate(data_biomass$ALL_FP,list(year=data_biomass$year),mean) 
+  avgFPbiomass <- aggregate(data_biomass$All_FP,list(year=data_biomass$year),mean) 
   colnames(avgFPbiomass)[2] <- "avgFPbiomass"
   
 
@@ -344,15 +344,15 @@ OUTPUT4 <- function(animate=FALSE,threshold){
   numb_daysSAV <- aggregate(data_cover$SAV,list(year=data_cover$year),apply.fun) 
   colnames(numb_daysSAV)[2] <- "numb_daysSAV"
   
-  # ***Proportion*** of days each year that the waterbody is above a treshold value of sAV
+  # ***Proportion*** of days each year that the waterbody is above a treshold value of SAV
   apply.fun <- function(x) {
     sum((x > regimethreshold)/timesteps)
   }
-  prop_dayssAV <- aggregate(data_cover$sAV,list(year=data_cover$year),apply.fun) 
-  colnames(prop_dayssAV)[2] <- "prop_dayssAV"
+  prop_daysSAV <- aggregate(data_cover$SAV,list(year=data_cover$year),apply.fun) 
+  colnames(prop_daysSAV)[2] <- "prop_daysSAV"
   
   # ***First day*** that the waterbody is above a threshold value of SAV 
-  firstdaysAV <- seq(from=0,to=0,length=years)
+  firstdaySAV <- seq(from=0,to=0,length=years)
   for (j in 1:years) { # loop by years 
     if (prop_daysSAV$prop_daysSAV[j] > 0) {
       temp <- subset(data_cover$day,data_cover$year == j & data_cover$SAV >= regimethreshold) # need to fix for NAs # need to fix so it returns day instead of index 
@@ -384,9 +384,8 @@ OUTPUT4 <- function(animate=FALSE,threshold){
                                                                 merge(prop_daysFP,
                                                                     merge(firstdayFP,
                                                                           merge(numb_daysSAV,
-                                                                                merge(prop_daysSAV,
-                                                                                      merge(firstdaySAV,
-                                                                                          ))))))))))))
+                                                                                merge(prop_daysSAV,firstdaySAV,
+                                                                                          )))))))))))
     
   # assign it to something useful otuside of the function 
   write.csv(data_summary_by_year,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)

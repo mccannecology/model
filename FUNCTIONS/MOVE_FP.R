@@ -14,7 +14,7 @@ MOVE_FP <- function(x1) {
     for (k in 1:width) { # loop over all columns (width)
       
       # find cells that meet criteria to move (> threshold)
-      if (x1[j,k] >= minthresholdtomoveFP) {
+      if (x1[j,k] >= minthresholdtomoveFP){
 
         # if the cell is in the center, then do the following: 
         if ((j>=2 & j<= (height-1)) & (k>=2 & k<= (width-1))) { 

@@ -29,7 +29,6 @@ UPTAKE_N2 <- function(x,i,n) {
                      newbiomassFP3 * speciesmatrix$uptakeN[4] +
                      newbiomassFP3 * speciesmatrix$uptakeN[5]
     
-    x[[i+1]]$TOTALN <- (x[[i]]$TOTALN*height*width - totalNremoved)/(height*width)
   }
   else if (n == 3) {
     newbiomassFP1 <- sum(x[[i+1]]$FP1matrix-x[[i]]$FP1matrix) # new FP1 biomass that grew on most recent timestep     
@@ -40,8 +39,7 @@ UPTAKE_N2 <- function(x,i,n) {
                      newbiomassFP1 * speciesmatrix$uptakeN[2] + 
                      newbiomassFP2 * speciesmatrix$uptakeN[3] +
                      newbiomassFP3 * speciesmatrix$uptakeN[4]
-    
-    x[[i+1]]$TOTALN <- (x[[i]]$TOTALN*height*width - totalNremoved)/(height*width)
+      
   }
   else if (n == 2){
     newbiomassFP1 <- sum(x[[i+1]]$FP1matrix-x[[i]]$FP1matrix) # new FP1 biomass that grew on most recent timestep     
@@ -51,7 +49,6 @@ UPTAKE_N2 <- function(x,i,n) {
                      newbiomassFP1 * speciesmatrix$uptakeN[2] + 
                      newbiomassFP2 * speciesmatrix$uptakeN[3] 
     
-    x[[i+1]]$TOTALN <- (x[[i]]$TOTALN*height*width - totalNremoved)/(height*width)
   } 
   else if (n == 1){
     newbiomassFP1 <- sum(x[[i+1]]$FP1matrix-x[[i]]$FP1matrix) # new FP1 biomass that grew on most recent timestep      
@@ -59,8 +56,17 @@ UPTAKE_N2 <- function(x,i,n) {
     totalNremoved <- newbiomassSAV * speciesmatrix$uptakeN[1] + 
                      newbiomassFP1 * speciesmatrix$uptakeN[2]
     
-    x[[i+1]]$TOTALN <- (x[[i]]$TOTALN*height*width - totalNremoved)/(height*width)
   }
+    
+  if ((x[[i]]$TOTALN*height*width - totalNremoved)/(height*width) >= 0){
+    temp <- (x[[i]]$TOTALN*height*width - totalNremoved)/(height*width)
+  }
+  else {
+    temp <- 0
+  }
+   
+  x[[i+1]]$TOTALN <- temp
+
   return(x[[i+1]]$TOTALN)
 }
 
