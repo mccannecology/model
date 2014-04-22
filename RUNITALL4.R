@@ -32,7 +32,7 @@
 totalsimuls <- 3
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input06.csv") 
+parameters <- read.csv("input05.csv") 
 
 # add blank columns to parameters for each of the results 
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
@@ -127,5 +127,5 @@ parameters$propyears_prop_daysSAV_abovehalf <- RESULT[,6]
 parameters$avg_avg_SAVcover <- RESULT[,7]
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output06.csv",row.names=F) 
+write.csv(parameters,"output05.csv",row.names=F) 
 
