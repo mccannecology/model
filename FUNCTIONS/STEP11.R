@@ -87,25 +87,25 @@ STEP11 <- function() { # start defining the function
         LIST[[i+1]]$FP3matrix <- OVERWINTER(LIST[[i]]$FP3matrix, LIST[[i+1]]$FP3matrix, n=4)
         LIST[[i+1]]$FP2matrix <- OVERWINTER(LIST[[i]]$FP2matrix, LIST[[i+1]]$FP2matrix, n=3)
         LIST[[i+1]]$FP1matrix <- OVERWINTER(LIST[[i]]$FP1matrix, LIST[[i+1]]$FP1matrix, n=2)
-        LIST[[i+1]]$SAVmatrix <- OVERWINTER(LIST[[i]]$SAVmatrix, LIST[[i+1]]SAVmatrix, n=1)
+        LIST[[i+1]]$SAVmatrix <- OVERWINTER(LIST[[i]]$SAVmatrix, LIST[[i+1]]$SAVmatrix, n=1)
         LIST[[i+1]]$FPALLmatrix <- LIST[[i+1]]$FP4matrix + LIST[[i+1]]$FP3matrix + LIST[[i+1]]$FP2matrix + LIST[[i+1]]$FP1matrix
       }
       else if (numbFPspecies == 3) {
         LIST[[i+1]]$FP3matrix <- OVERWINTER(LIST[[i]]$FP3matrix, LIST[[i+1]]$FP3matrix, n=4)
         LIST[[i+1]]$FP2matrix <- OVERWINTER(LIST[[i]]$FP2matrix, LIST[[i+1]]$FP2matrix, n=3)
         LIST[[i+1]]$FP1matrix <- OVERWINTER(LIST[[i]]$FP1matrix, LIST[[i+1]]$FP1matrix, n=2)
-        LIST[[i+1]]$SAVmatrix <- OVERWINTER(LIST[[i]]$SAVmatrix, LIST[[i+1]]SAVmatrix, n=1)
+        LIST[[i+1]]$SAVmatrix <- OVERWINTER(LIST[[i]]$SAVmatrix, LIST[[i+1]]$SAVmatrix, n=1)
         LIST[[i+1]]$FPALLmatrix <- LIST[[i+1]]$FP3matrix + LIST[[i+1]]$FP2matrix + LIST[[i+1]]$FP1matrix
       }
       else if (numbFPspecies == 2) {
         LIST[[i+1]]$FP2matrix <- OVERWINTER(LIST[[i]]$FP2matrix, LIST[[i+1]]$FP2matrix, n=3)
         LIST[[i+1]]$FP1matrix <- OVERWINTER(LIST[[i]]$FP1matrix, LIST[[i+1]]$FP1matrix, n=2)
-        LIST[[i+1]]$SAVmatrix <- OVERWINTER(LIST[[i]]$SAVmatrix, LIST[[i+1]]SAVmatrix, n=1)
+        LIST[[i+1]]$SAVmatrix <- OVERWINTER(LIST[[i]]$SAVmatrix, LIST[[i+1]]$SAVmatrix, n=1)
         LIST[[i+1]]$FPALLmatrix <- LIST[[i+1]]$FP2matrix + LIST[[i+1]]$FP1matrix
       }
       else if (numbFPspecies == 1) {
         LIST[[i+1]]$FP1matrix <- OVERWINTER(LIST[[i]]$FP1matrix, LIST[[i+1]]$FP1matrix, n=2)
-        LIST[[i+1]]$SAVmatrix <- OVERWINTER(LIST[[i]]$SAVmatrix, LIST[[i+1]]SAVmatrix, n=1)
+        LIST[[i+1]]$SAVmatrix <- OVERWINTER(LIST[[i]]$SAVmatrix, LIST[[i+1]]$SAVmatrix, n=1)
         LIST[[i+1]]$FPALLmatrix <- LIST[[i+1]]$FP1matrix
       }
       
