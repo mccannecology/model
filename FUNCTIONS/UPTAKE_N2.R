@@ -62,7 +62,7 @@ UPTAKE_N2 <- function(x,i,n) {
     temp <- (x[[i]]$TOTALN*height*width - totalNremoved)/(height*width)
   }
   else {
-    temp <- 0
+    temp <- 0.00001
   }
    
   x[[i+1]]$TOTALN <- temp

@@ -62,7 +62,7 @@ UPTAKE_P2 <- function(x,i,n) {
     temp <- (x[[i]]$TOTALP*height*width - totalPremoved)/(height*width)
   }
   else {
-    temp <- 0
+    temp <- 0.00001
   }
   
   x[[i+1]]$TOTALP <- temp
