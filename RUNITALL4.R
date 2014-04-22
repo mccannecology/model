@@ -38,6 +38,9 @@ parameters <- read.csv("input06.csv")
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
 parameters$propyears_prop_daysFP_abovehalf <- rep(NA, totalsimuls)
 parameters$avg_avg_FPcover <- rep(NA, totalsimuls)
+parameters$propyears_avgSAVcover_abovethreshold <- rep(NA, totalsimuls)
+parameters$propyears_prop_daysSAV_abovehalf <- rep(NA, totalsimuls)
+parameters$avg_avg_SAVcover <- rep(NA, totalsimuls)
 
 # load the packages you need 
 require(foreach)
@@ -79,9 +82,9 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   
   LIST[[1]]<-START5() # Start the first time step with some individuals 
   
-  LIST<-STEP10() # Runs the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
+  LIST<-STEP11() # Runs the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
   
-  OUTPUT3(threshold=70) # generates graphs - if you want .html animation you must specify animate=TRUE, set "FP regime" threshold here too 
+  OUTPUT4(threshold=70) # generates graphs - if you want .html animation you must specify animate=TRUE, set "FP regime" threshold here too 
   
   # RESULTS[simulnumb,1] <- propyears_avgFPcover_abovethreshold # assign the current simulations results to the correct spot
   # RESULTS[simulnumb,2] <- propyears_prop_daysFP_abovehalf # assign the current simulations results to the correct spot
@@ -91,17 +94,19 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   # parameters$propyears_prop_daysFP_abovehalf[simulnumb] <- propyears_prop_daysFP_abovehalf
   # parameters$avg_avg_FPcover[simulnumb] <- avg_avg_FPcover
     
-  c(simulnumb, propyears_avgFPcover_abovethreshold,propyears_prop_daysFP_abovehalf,avg_avg_FPcover)
-  
-  # rm(list = ls()[!(ls() %in% c("RESULTS","parameters"))]) # clear workspace (except for RESULTS and parameters) for next simulation 
-  
+  # stick all of the results you want out in a vector together 
+  c(simulnumb, propyears_avgFPcover_abovethreshold,propyears_prop_daysFP_abovehalf,avg_avg_FPcover,
+    propyears_avgSAVcover_abovethreshold,propyears_prop_daysSAV_abovehalf,avg_avg_SAVcover)
+    
 }
 
 # stop the cluster 
 stopCluster(cl)
 
 # name the RESULTS columns 
-colnames(RESULT) <- c("simulnumb", "propyears_avgFPcover_abovethreshold","propyears_prop_daysFP_abovehalf","avg_avg_FPcover")
+colnames(RESULT) <- c("simulnumb",
+                      "propyears_avgFPcover_abovethreshold","propyears_prop_daysFP_abovehalf","avg_avg_FPcover",
+                      "propyears_avgSAVcover_abovethreshold","propyears_prop_daysSAV_abovehalf","avg_avg_SAVcover")
 
 # convert to a data frame 
 RESULT <- as.data.frame(RESULT)
@@ -117,7 +122,10 @@ RESULT <- RESULT[order.simulnumb,]
 parameters$propyears_avgFPcover_abovethreshold <- RESULT[,2]
 parameters$propyears_prop_daysFP_abovehalf <- RESULT[,3]
 parameters$avg_avg_FPcover <- RESULT[,4]
+parameters$propyears_avgSAVcover_abovethreshold <- RESULT[,5]
+parameters$propyears_prop_daysSAV_abovehalf <- RESULT[,6]
+parameters$avg_avg_SAVcover <- RESULT[,7]
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output05.csv",row.names=F) 
+write.csv(parameters,"output06.csv",row.names=F) 
 
