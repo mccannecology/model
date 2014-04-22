@@ -21,18 +21,18 @@ STEP11 <- function() { # start defining the function
         LIST[[i]]$FP3matrix <- MOVE_FP(LIST[[i]]$FP3matrix)
         LIST[[i]]$FP2matrix <- MOVE_FP(LIST[[i]]$FP2matrix)
         LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
-        LIST[[i]]$FPALLmatrix <- LIST[[i+1]]$FP3matrix + LIST[[i+1]]$FP2matrix + LIST[[i+1]]$FP1matrix
+        LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP3matrix + LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix
       }
       else if (numbFPspecies == 2) {
         LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix)
         LIST[[i]]$FP2matrix <- MOVE_FP(LIST[[i]]$FP2matrix)
         LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
-        LIST[[i]]$FPALLmatrix <- LIST[[i+1]]$FP2matrix + LIST[[i+1]]$FP1matrix + LIST[[i]]$FPALLmatrix
+        LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix + LIST[[i]]$FPALLmatrix
       }
       else if (numbFPspecies == 1) {
         LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix)
         LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
-        LIST[[i]]$FPALLmatrix <- LIST[[i+1]]$FP1matrix
+        LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP1matrix
       }
       
       ########
@@ -133,6 +133,8 @@ STEP11 <- function() { # start defining the function
     plot(raster(LIST[[i]]$FPALLmatrix),main=paste("All FP species"), zlim=c(0,100))
     
   } # closes for loop through time steps 
+  
+  print(LIST[[i]])
   
   return(LIST)
 }

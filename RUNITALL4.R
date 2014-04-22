@@ -48,7 +48,7 @@ require(doSNOW)
 require(R.utils) # package for sourceDirectory() - loeding all the functions in a directory 
 
 # make the correct number of clusters - the first argument will change depending on the machine / set-up 
-cl <- makeCluster(2,"SOCK") 
+cl <- makeCluster(3,"SOCK") 
 
 # load all your functions
 sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) 
@@ -82,7 +82,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   
   LIST[[1]]<-START5() # Start the first time step with some individuals 
   
-  LIST<-STEP11() # Runs the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
+  LIST<-STEP11() # Run the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
   
   OUTPUT4(threshold=70) # generates graphs - if you want .html animation you must specify animate=TRUE, set "FP regime" threshold here too 
   
