@@ -54,9 +54,9 @@ cl <- makeCluster(2,"SOCK")
 sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) 
 
 #  assigns the functions to the global environments of each node
-clusterExport(cl, c("BLANK2", "GROW", "INPUT2","MOVE",
-                    "OUTPUT2","OVERWINTER","RELEASE_N","RELEASE_P",
-                    "SPECIES2","START4","STEP10","UPTAKE_N","UPTAKE_P"))
+clusterExport(cl, c("BLANK3", "GROW_SAV", "GROW_FP", "INPUT4","MOVE_FP","MOVE_SAV",
+                    "OUTPUT4","OVERWINTER","RELEASE_N2","RELEASE_P2",
+                    "SPECIES4","START5","STEP11","UPTAKE_N2","UPTAKE_P2"))
 
 registerDoSNOW(cl) # registers the SNOW parallel backend w/ foreach package 
 getDoParWorkers() # returns the # of workers - this should match the # of cores on your machine (or # cores - 1)

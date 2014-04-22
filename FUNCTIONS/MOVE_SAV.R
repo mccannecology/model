@@ -9,12 +9,12 @@
 # Created: MJ McCann 3/22/2014        #
 # Updated: 4/2014                     #
 #######################################
-MOVE_FP <- function(x1) { 
+MOVE_SAV <- function(x1) { 
   for (j in 1:height) { # loop over all rows (height)
     for (k in 1:width) { # loop over all columns (width)
       
       # find cells that meet criteria to move (> threshold)
-      if (x1[j,k] >= minthresholdtomove) {
+      if (x1[j,k] >= minthresholdtomoveSAV) {
 
         # if the cell is in the center, then do the following: 
         if ((j>=2 & j<= (height-1)) & (k>=2 & k<= (width-1))) { 
@@ -48,13 +48,13 @@ MOVE_FP <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            if (x1[j,k] < maxthresholdtomove) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveSAV) {
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomove # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomove # subtract this value from the original spot 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
             }
            
             # end the repeat loop - movement was successful    
@@ -94,13 +94,13 @@ MOVE_FP <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            if (x1[j,k] < maxthresholdtomove) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveSAV) {
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomove # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomove # subtract this value from the original spot 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -139,13 +139,13 @@ MOVE_FP <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            if (x1[j,k] < maxthresholdtomove) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveSAV) {
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomove # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomove # subtract this value from the original spot 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -184,13 +184,13 @@ MOVE_FP <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            if (x1[j,k] < maxthresholdtomove) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveSAV) {
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomove # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomove # subtract this value from the original spot 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -229,13 +229,13 @@ MOVE_FP <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            if (x1[j,k] < maxthresholdtomove) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveSAV) {
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomove # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomove # subtract this value from the original spot 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -272,13 +272,13 @@ MOVE_FP <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            if (x1[j,k] < maxthresholdtomove) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveSAV) {
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomove # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomove # subtract this value from the original spot 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -315,13 +315,13 @@ MOVE_FP <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            if (x1[j,k] < maxthresholdtomove) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveSAV) {
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomove # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomove # subtract this value from the original spot 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -358,13 +358,13 @@ MOVE_FP <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            if (x1[j,k] < maxthresholdtomove) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveSAV) {
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomove # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomove # subtract this value from the original spot 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -401,13 +401,13 @@ MOVE_FP <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: 
-            if (x1[j,k] < maxthresholdtomove) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomove/(maxthresholdtomove-minthresholdtomove))*(x1[j,k]-minthresholdtomove) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveSAV) {
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomove # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomove # subtract this value from the original spot 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    

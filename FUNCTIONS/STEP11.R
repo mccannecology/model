@@ -8,11 +8,8 @@ STEP11 <- function() { # start defining the function
       ########
       # MOVE #
       ########
-      # SAV movement 
-      LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix) 
-      
-      # FP movement 
       if (numbFPspecies == 4) { 
+        LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix) 
         LIST[[i]]$FP4matrix <- MOVE_FP(LIST[[i]]$FP4matrix) 
         LIST[[i]]$FP3matrix <- MOVE_FP(LIST[[i]]$FP3matrix)
         LIST[[i]]$FP2matrix <- MOVE_FP(LIST[[i]]$FP2matrix)
@@ -20,17 +17,20 @@ STEP11 <- function() { # start defining the function
         LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP4matrix + LIST[[i]]$FP3matrix + LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix
       }
       else if (numbFPspecies == 3) {
+        LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix)
         LIST[[i]]$FP3matrix <- MOVE_FP(LIST[[i]]$FP3matrix)
         LIST[[i]]$FP2matrix <- MOVE_FP(LIST[[i]]$FP2matrix)
         LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
         LIST[[i]]$FPALLmatrix <- LIST[[i+1]]$FP3matrix + LIST[[i+1]]$FP2matrix + LIST[[i+1]]$FP1matrix
       }
       else if (numbFPspecies == 2) {
+        LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix)
         LIST[[i]]$FP2matrix <- MOVE_FP(LIST[[i]]$FP2matrix)
         LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
         LIST[[i]]$FPALLmatrix <- LIST[[i+1]]$FP2matrix + LIST[[i+1]]$FP1matrix + LIST[[i]]$FPALLmatrix
       }
       else if (numbFPspecies == 1) {
+        LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix)
         LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
         LIST[[i]]$FPALLmatrix <- LIST[[i+1]]$FP1matrix
       }
@@ -38,11 +38,9 @@ STEP11 <- function() { # start defining the function
       ########
       # GROW #
       ########
-      # SAV growth 
-      LIST[[i+1]]$SAVmatrix <- GROW_SAV(LIST[[i]]$SAVmatrix, LIST[[i+1]]$SAVmatrix, LIST[[i]]$FPALLmatrix, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
-      
       # FP growth
       if (numbFPspecies == 4) { 
+        LIST[[i+1]]$SAVmatrix <- GROW_SAV(LIST[[i]]$SAVmatrix, LIST[[i+1]]$SAVmatrix, LIST[[i]]$FPALLmatrix, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
         LIST[[i+1]]$FP4matrix <- GROW_FP(LIST[[i]]$FP4matrix, LIST[[i+1]]$FP4matrix, LIST[[i]]$FPALLmatrix, n=4, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
         LIST[[i+1]]$FP3matrix <- GROW_FP(LIST[[i]]$FP3matrix, LIST[[i+1]]$FP3matrix, LIST[[i]]$FPALLmatrix, n=3, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
         LIST[[i+1]]$FP2matrix <- GROW_FP(LIST[[i]]$FP2matrix, LIST[[i+1]]$FP2matrix, LIST[[i]]$FPALLmatrix, n=2, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
@@ -50,17 +48,20 @@ STEP11 <- function() { # start defining the function
         LIST[[i+1]]$FPALLmatrix <- LIST[[i+1]]$FP4matrix + LIST[[i+1]]$FP3matrix + LIST[[i+1]]$FP2matrix + LIST[[i+1]]$FP1matrix
       }
       else if (numbFPspecies == 3) {
+        LIST[[i+1]]$SAVmatrix <- GROW_SAV(LIST[[i]]$SAVmatrix, LIST[[i+1]]$SAVmatrix, LIST[[i]]$FPALLmatrix, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
         LIST[[i+1]]$FP3matrix <- GROW_FP(LIST[[i]]$FP3matrix, LIST[[i+1]]$FP3matrix, LIST[[i]]$FPALLmatrix, n=3, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
         LIST[[i+1]]$FP2matrix <- GROW_FP(LIST[[i]]$FP2matrix, LIST[[i+1]]$FP2matrix, LIST[[i]]$FPALLmatrix, n=2, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
         LIST[[i+1]]$FP1matrix <- GROW_FP(LIST[[i]]$FP1matrix, LIST[[i+1]]$FP1matrix, LIST[[i]]$FPALLmatrix, n=1, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
         LIST[[i+1]]$FPALLmatrix <- LIST[[i+1]]$FP3matrix + LIST[[i+1]]$FP2matrix + LIST[[i+1]]$FP1matrix
       }
       else if (numbFPspecies == 2) {
+        LIST[[i+1]]$SAVmatrix <- GROW_SAV(LIST[[i]]$SAVmatrix, LIST[[i+1]]$SAVmatrix, LIST[[i]]$FPALLmatrix, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN)
         LIST[[i+1]]$FP2matrix <- GROW_FP(LIST[[i]]$FP2matrix, LIST[[i+1]]$FP2matrix, LIST[[i]]$FPALLmatrix, n=2, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
         LIST[[i+1]]$FP1matrix <- GROW_FP(LIST[[i]]$FP1matrix, LIST[[i+1]]$FP1matrix, LIST[[i]]$FPALLmatrix, n=1, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
         LIST[[i+1]]$FPALLmatrix <- LIST[[i+1]]$FP2matrix + LIST[[i+1]]$FP1matrix + LIST[[i]]$FPALLmatrix
       }
       else if (numbFPspecies == 1) {
+        LIST[[i+1]]$SAVmatrix <- GROW_SAV(LIST[[i]]$SAVmatrix, LIST[[i+1]]$SAVmatrix, LIST[[i]]$FPALLmatrix, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN)
         LIST[[i+1]]$FP1matrix <- GROW_FP(LIST[[i]]$FP1matrix, LIST[[i+1]]$FP1matrix, LIST[[i]]$FPALLmatrix, n=1, LIST[[i]]$TOTALP, LIST[[i]]$TOTALN) 
         LIST[[i+1]]$FPALLmatrix <- LIST[[i+1]]$FP1matrix
       }
@@ -127,7 +128,7 @@ STEP11 <- function() { # start defining the function
     require(raster)
     
     # new plotting: zlim should set the constant scale 
-    par(mfrow=2)
+    par(mfrow=c(2,1))
     plot(raster(LIST[[i]]$SAVmatrix),main=paste("SAV","Timestep:",i,sep=" "), zlim=c(0,100))
     plot(raster(LIST[[i]]$FPALLmatrix),main=paste("All FP species"), zlim=c(0,100))
     

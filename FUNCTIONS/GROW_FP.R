@@ -28,7 +28,7 @@ GROW_FP <- function(x1,x2,x3,n,x4,x5) {
           
                       ((x4/(x4+speciesmatrix$halfsatP[n+1]))*(x5/(x5+speciesmatrix$halfsatN[n+1]))) - # nutrient limitation 
           
-                      (loss*x1[j,k]) # biomass loss 
+                      (lossSAV*x1[j,k]) # biomass loss 
       }
     }   
   }
