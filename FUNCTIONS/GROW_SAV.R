@@ -17,7 +17,7 @@ GROW_SAV <- function(x1,x2,x3,x4,x5) {
   for (j in 1:height) { # loop over all rows (height)
     for (k in 1:width) { # loop over all columns (width)
       if (x1[j,k] > 0) {
-        x2[j,k] <- x1[j,k] + (speciesmatrix$maxrgr[1])*x1[j,k]) * # initial biomass plus new growth 
+        x2[j,k] <- x1[j,k] + (speciesmatrix$maxrgr[1]*x1[j,k]) * # initial biomass plus new growth 
 
                       (1/(1+(lightlimitation*x1)+(shadingbyFP*x3)+lightattenuation)) * # limitation according to Scheffer et al. 2003 
 

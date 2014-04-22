@@ -38,7 +38,7 @@ OUTPUT4 <- function(animate=FALSE,threshold){
       ani.options(interval=0.2, nmax=(1+(timesteps+1)*years),verbose=FALSE)
       
       for(i in 1:(1+(timesteps+1)*years)) { # loop through time steps
-        plot(raster(LIST[[i]]$FPALLmatrix),main=paste("Floating Plants ","Timestep ",i,sep="")
+        plot(raster(LIST[[i]]$FPALLmatrix),main=paste("Floating Plants ","Timestep ",i,sep=""))
         ani.pause()
       }
     },
@@ -50,7 +50,7 @@ OUTPUT4 <- function(animate=FALSE,threshold){
       ani.options(interval=0.2, nmax=(1+(timesteps+1)*years),verbose=FALSE)
       
       for(i in 1:(1+(timesteps+1)*years)) { # loop through time steps
-        plot(raster(LIST[[i]]$SAVmatrix),main=paste("Submerged plants ","Timestep ",i,sep="")
+        plot(raster(LIST[[i]]$SAVmatrix),main=paste("Submerged plants ","Timestep ",i,sep=""))
              ani.pause()
       }
     },
@@ -386,7 +386,7 @@ OUTPUT4 <- function(animate=FALSE,threshold){
                                                                           merge(numb_daysSAV,
                                                                                 merge(prop_daysSAV,
                                                                                       merge(firstdaySAV,
-                                                                                          )))))))))))
+                                                                                          ))))))))))))
     
   # assign it to something useful otuside of the function 
   write.csv(data_summary_by_year,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)
