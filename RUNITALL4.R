@@ -38,9 +38,13 @@ parameters <- read.csv("input05.csv")
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
 parameters$propyears_prop_daysFP_abovehalf <- rep(NA, totalsimuls)
 parameters$avg_avg_FPcover <- rep(NA, totalsimuls)
+parameters$avg_max_FPcover <- rep(NA, totalsimuls)
+parameters$avg_firstdayFP <- rep(NA, totalsimuls)
 parameters$propyears_avgSAVcover_abovethreshold <- rep(NA, totalsimuls)
 parameters$propyears_prop_daysSAV_abovehalf <- rep(NA, totalsimuls)
 parameters$avg_avg_SAVcover <- rep(NA, totalsimuls)
+parameters$avg_max_SAVcover <- rep(NA, totalsimuls)
+parameters$avg_firstdaySAV <- rep(NA, totalsimuls)
 
 # load the packages you need 
 require(foreach)
@@ -95,8 +99,17 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   # parameters$avg_avg_FPcover[simulnumb] <- avg_avg_FPcover
     
   # stick all of the results you want out in a vector together 
-  c(simulnumb, propyears_avgFPcover_abovethreshold,propyears_prop_daysFP_abovehalf,avg_avg_FPcover,
-    propyears_avgSAVcover_abovethreshold,propyears_prop_daysSAV_abovehalf,avg_avg_SAVcover)
+  c(simulnumb, 
+    propyears_avgFPcover_abovethreshold,
+    propyears_prop_daysFP_abovehalf,
+    avg_avg_FPcover,
+    avg_max_FPcover,
+    avg_firstdayFP,
+    propyears_avgSAVcover_abovethreshold,
+    propyears_prop_daysSAV_abovehalf,
+    avg_avg_SAVcover,
+    avg_max_SAVcover,
+    avg_firstdaySAV)
     
 }
 
@@ -105,8 +118,16 @@ stopCluster(cl)
 
 # name the RESULTS columns 
 colnames(RESULT) <- c("simulnumb",
-                      "propyears_avgFPcover_abovethreshold","propyears_prop_daysFP_abovehalf","avg_avg_FPcover",
-                      "propyears_avgSAVcover_abovethreshold","propyears_prop_daysSAV_abovehalf","avg_avg_SAVcover")
+                      "propyears_avgFPcover_abovethreshold",
+                      "propyears_prop_daysFP_abovehalf",
+                      "avg_avg_FPcover", 
+                      "avg_max_FPcover", 
+                      "avg_firstdayFP",
+                      "propyears_avgSAVcover_abovethreshold",
+                      "propyears_prop_daysSAV_abovehalf",
+                      "avg_avg_SAVcover", 
+                      "avg_max_SAVcover", 
+                      "avg_firstdaySAV")
 
 # convert to a data frame 
 RESULT <- as.data.frame(RESULT)
@@ -122,9 +143,14 @@ RESULT <- RESULT[order.simulnumb,]
 parameters$propyears_avgFPcover_abovethreshold <- RESULT[,2]
 parameters$propyears_prop_daysFP_abovehalf <- RESULT[,3]
 parameters$avg_avg_FPcover <- RESULT[,4]
-parameters$propyears_avgSAVcover_abovethreshold <- RESULT[,5]
-parameters$propyears_prop_daysSAV_abovehalf <- RESULT[,6]
-parameters$avg_avg_SAVcover <- RESULT[,7]
+parameters$avg_max_FPcover <- RESULT[,5]
+parameters$avg_firstdayFP <- RESULT[,6]
+parameters$propyears_avgSAVcover_abovethreshold <- RESULT[,7]
+parameters$propyears_prop_daysSAV_abovehalf <- RESULT[,8]
+parameters$avg_avg_SAVcover <- RESULT[,9]
+parameters$avg_max_SAVcover <- RESULT[,10]
+parameters$avg_firstdaySAV <- RESULT[,11]
+
 
 # write parameters with RESULT appended to a .csv 
 write.csv(parameters,"output05.csv",row.names=F) 
