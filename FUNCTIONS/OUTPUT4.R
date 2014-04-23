@@ -29,9 +29,9 @@ OUTPUT4 <- function(animate=FALSE,threshold){
   # now set your wd to that new - timestamped output folder 
   setwd(paste(getwd(),"/",format(Sys.time(), "%m-%d-%Y-%H%M")," - simul",simulnumb,sep=""))
   
-  ###########################################################################
-  ################ now do the animated plotting - package animate ###########
-  ###########################################################################
+  ##############################################################
+  ############## animated plotting - package animate ###########
+  ##############################################################
   if (animate == TRUE){
     saveHTML({
       
@@ -80,6 +80,22 @@ OUTPUT4 <- function(animate=FALSE,threshold){
   
   write.gif(image, filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," SAV animate", ".gif", sep=""), 
             scale="always", col="jet.colors")  
+  
+  #########################################################################
+  ################### save a few snapshots of the waterbody ###############
+  #########################################################################
+  require(raster)
+  
+  # new plotting: zlim should set the constant scale 
+  jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshots", ".jpg", sep=""),width=11,height=8,units="in",res=300)
+  par(mfrow=c(3,2))
+  plot(raster(LIST[[1]]$SAVmatrix),main="SAV Initial", zlim=c(0,100))
+  plot(raster(LIST[[1]]$FPALLmatrix),main="All FP species Initial", zlim=c(0,100))
+  plot(raster(LIST[[(timesteps*years)/2]]$SAVmatrix),main="SAV Midpoint", zlim=c(0,100))
+  plot(raster(LIST[[(timesteps*years)/2]]$FPALLmatrix),main="All FP species Midpoint", zlim=c(0,100))
+  plot(raster(LIST[[(timesteps*years)-1]]$SAVmatrix),main="SAV Final", zlim=c(0,100))
+  plot(raster(LIST[[(timesteps*years)-1]]$FPALLmatrix),main="All FP species Final", zlim=c(0,100))
+  dev.off()
   
   #####################################################################################  
   ############### Plot biomass of all species through time - GGPLOT2 ##################
@@ -140,9 +156,9 @@ OUTPUT4 <- function(animate=FALSE,threshold){
   data_biomass_melt <- melt(data_biomass,id.vars="time")
   
   ggplot(data_biomass_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("total biomass (g)")
-  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," biomass", ".jpg", sep=""))
+  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," biomass", ".jpg", sep=""),width=11,height=8,units="in")
   
-  dev.off()
+  # dev.off()
   
   #################################################################
   ############# Plot % cover through time - GGPLOT2 ###############
@@ -197,9 +213,9 @@ OUTPUT4 <- function(animate=FALSE,threshold){
   data_cover_melt <- melt(data_cover,id.vars="time")
   
   ggplot(data_cover_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("percent cover")
-  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," percent cover", ".jpg", sep=""))
+  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," percent cover", ".jpg", sep=""),width=11,height=8,units="in")
   
-  dev.off()
+  # dev.off()
   
   #################################################################
   ############# Plot nutrients through time - GGPLOT2 #############
@@ -224,9 +240,9 @@ OUTPUT4 <- function(animate=FALSE,threshold){
   data_nutrients_melt <- melt(data_nutrients,id.vars="time")
   
   ggplot(data_nutrients_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("concentration(mg/L)")
-  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," nutrients", ".jpg", sep=""))
+  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," nutrients", ".jpg", sep=""),width=11,height=8,units="in")
   
-  dev.off()
+  # dev.off()
   
   #################################################################
   ############# Plot % cells occupied through time - GGPLOT2 ######
@@ -258,9 +274,9 @@ OUTPUT4 <- function(animate=FALSE,threshold){
   # Change this back to the command two lines down if it does not work 
   # ggplot(data_cell_occupancy_melt, aes(x=time,y=perc_cells_occup,colour=variable)) + geom_line() + ylab("cells occupied")
   ggplot(data_cell_occupancy_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("cells occupied")
-  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," cells occupied", ".jpg", sep=""))
+  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," cells occupied", ".jpg", sep=""),width=11,height=8,units="in")
   
-  dev.off()
+  # dev.off()
     
   ####################################################
   ########## Summary statistics - by year ############
