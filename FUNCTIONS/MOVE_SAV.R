@@ -47,14 +47,16 @@ MOVE_SAV <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: 
+            # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
             if (x1[j,k] < maxthresholdtomoveSAV) {
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
               x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
+            # move: cells > maxthresholdtomoveSAV
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
+              amounttomove <- x1[j,k] - maxthresholdtomoveSAV # bring cells greater than 100 down to 100 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
            
             # end the repeat loop - movement was successful    
@@ -93,14 +95,16 @@ MOVE_SAV <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: 
+            # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
             if (x1[j,k] < maxthresholdtomoveSAV) {
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
               x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
+            # move: cells > maxthresholdtomoveSAV
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
+              amounttomove <- x1[j,k] - maxthresholdtomoveSAV # bring cells greater than 100 down to 100 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -138,14 +142,16 @@ MOVE_SAV <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: 
+            # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
             if (x1[j,k] < maxthresholdtomoveSAV) {
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
               x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
+            # move: cells > maxthresholdtomoveSAV
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
+              amounttomove <- x1[j,k] - maxthresholdtomoveSAV # bring cells greater than 100 down to 100 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -183,14 +189,16 @@ MOVE_SAV <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: 
+            # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
             if (x1[j,k] < maxthresholdtomoveSAV) {
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
               x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
+            # move: cells > maxthresholdtomoveSAV
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
+              amounttomove <- x1[j,k] - maxthresholdtomoveSAV # bring cells greater than 100 down to 100 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -228,14 +236,16 @@ MOVE_SAV <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: 
+            # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
             if (x1[j,k] < maxthresholdtomoveSAV) {
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
               x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
+            # move: cells > maxthresholdtomoveSAV
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
+              amounttomove <- x1[j,k] - maxthresholdtomoveSAV # bring cells greater than 100 down to 100 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -271,14 +281,16 @@ MOVE_SAV <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: 
+            # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
             if (x1[j,k] < maxthresholdtomoveSAV) {
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
               x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
+            # move: cells > maxthresholdtomoveSAV
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
+              amounttomove <- x1[j,k] - maxthresholdtomoveSAV # bring cells greater than 100 down to 100 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -314,14 +326,16 @@ MOVE_SAV <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: 
+            # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
             if (x1[j,k] < maxthresholdtomoveSAV) {
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
               x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
+            # move: cells > maxthresholdtomoveSAV
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
+              amounttomove <- x1[j,k] - maxthresholdtomoveSAV # bring cells greater than 100 down to 100 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -357,14 +371,16 @@ MOVE_SAV <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: 
+            # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
             if (x1[j,k] < maxthresholdtomoveSAV) {
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
               x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
+            # move: cells > maxthresholdtomoveSAV
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
+              amounttomove <- x1[j,k] - maxthresholdtomoveSAV # bring cells greater than 100 down to 100 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
@@ -400,14 +416,16 @@ MOVE_SAV <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: 
+            # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
             if (x1[j,k] < maxthresholdtomoveSAV) {
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
               x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
             }
+            # move: cells > maxthresholdtomoveSAV
             else {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + maxamounttomoveSAV # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - maxamounttomoveSAV # subtract this value from the original spot 
+              amounttomove <- x1[j,k] - maxthresholdtomoveSAV # bring cells greater than 100 down to 100 
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
             
             # end the repeat loop - movement was successful    
