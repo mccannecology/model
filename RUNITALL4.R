@@ -32,7 +32,7 @@
 totalsimuls <- 90
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input07.csv") 
+parameters <- read.csv("input08.csv") 
 
 # add blank columns to parameters for each of the results 
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
@@ -52,7 +52,7 @@ require(doSNOW)
 require(R.utils) # package for sourceDirectory() - loeding all the functions in a directory 
 
 # make the correct number of clusters - the first argument will change depending on the machine / set-up 
-cl <- makeCluster(3,"SOCK") 
+cl <- makeCluster(4,"SOCK") 
 
 # load all your functions
 sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) 
@@ -153,5 +153,5 @@ parameters$avg_firstdaySAV <- RESULT[,11]
 
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output07.csv",row.names=F) 
+write.csv(parameters,"output08.csv",row.names=F) 
 
