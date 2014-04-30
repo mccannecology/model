@@ -1,0 +1,94 @@
+avg_avg_FPcover :  num 85.8
+avg_avg_SAVcover :  num 2.08
+avg_firstdayFP :  num 10
+avg_firstdaySAV :  num NA
+avg_max_FPcover :  num 89.4
+avg_max_SAVcover :  num 3.71
+BLANK3 : function ()  
+GROW_FP : function (x1, x2, x3, n, x4, x5)  
+GROW_SAV : function (x1, x2, x3, x4, x5)  
+halfsatB01 :  int 42
+halfsatB02 :  int 0
+halfsatB03 :  int 0
+halfsatB04 :  int 0
+halfsatBSAV :  int 0
+halfsatN01 :  num 0.2
+halfsatN02 :  int 0
+halfsatN03 :  int 0
+halfsatN04 :  int 0
+halfsatNSAV :  int 0
+halfsatP01 :  num 0.05
+halfsatP02 :  int 0
+halfsatP03 :  int 0
+halfsatP04 :  int 0
+halfsatPSAV :  int 0
+height :  int 20
+initial01cells :  int 300
+initial01totmass :  int 30000
+initial02cells :  int 0
+initial02totmass :  int 0
+initial03cells :  int 0
+initial03totmass :  int 0
+initial04cells :  int 0
+initial04totmass :  int 0
+initialSAVcells :  int 100
+initialSAVtotmass :  int 10000
+INPUT4 : function (x)  
+lightattenuation :  int 0
+lightlimitation :  num 0.04
+lossFP :  num 0.05
+lossSAV :  num 0.05
+maxamounttomoveFP :  int 5
+maxamounttomoveSAV :  int 5
+maxrgr01 :  num 0.5
+maxrgr02 :  int 0
+maxrgr03 :  int 0
+maxrgr04 :  int 0
+maxrgrSAV :  NULL
+maxthresholdtomoveFP :  int 100
+maxthresholdtomoveSAV :  int 100
+minthresholdtomoveFP :  int 50
+minthresholdtomoveSAV :  int 50
+MOVE_FP : function (x1)  
+MOVE_SAV : function (x1)  
+numbFPspecies :  int 1
+OUTPUT4 : function (animate = FALSE, threshold)  
+OVERWINTER : function (x1, x2, n)  
+overwinter01 :  num 0.1
+overwinter02 :  int 0
+overwinter03 :  int 0
+overwinter04 :  int 0
+overwinterSAV :  num 0.1
+propyears_avgFPcover_abovethreshold :  num 1
+propyears_avgSAVcover_abovethreshold :  num 0
+propyears_prop_daysFP_abovehalf :  num 1
+propyears_prop_daysSAV_abovehalf :  num 0
+RELEASE_N2 : function (x, i)  
+RELEASE_P2 : function (x, i)  
+shadingbyFP :  num 0.08
+SPECIES4 : function (x)  
+START5 : function ()  
+STEP11 : function ()  
+timesteps :  int 150
+TOTALN :  num 10
+TOTALP :  num 2.5
+UPTAKE_N2 : function (x, i, n)  
+UPTAKE_P2 : function (x, i, n)  
+uptakeN01 :  num 0.005
+uptakeN02 :  int 0
+uptakeN03 :  int 0
+uptakeN04 :  int 0
+uptakeNSAV :  num 0.075
+uptakeP01 :  num 0.00125
+uptakeP02 :  int 0
+uptakeP03 :  int 0
+uptakeP04 :  int 0
+uptakePSAV :  num 0.0187
+width :  int 20
+years :  int 10
+  species maxrgr initial_cells initial_total_biomass overwinter halfsatB
+1      FP    0.5           100                 10000        0.1      0.5
+2       1    0.5           300                 30000        0.1      0.5
+  halfsatN halfsatP uptakeN uptakeP
+1      0.0     0.00   0.075 0.01875
+2      0.2     0.05   0.005 0.00125
