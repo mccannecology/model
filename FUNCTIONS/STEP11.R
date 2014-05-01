@@ -125,12 +125,12 @@ STEP11 <- function() { # start defining the function
     ########
     # PLOT #
     ########
-    require(raster)
+    # require(raster)
     
     # new plotting: zlim should set the constant scale 
-    par(mfrow=c(2,1))
-    plot(raster(LIST[[i]]$SAVmatrix),main=paste("SAV","Timestep:",i,sep=" "), zlim=c(0,100))
-    plot(raster(LIST[[i]]$FPALLmatrix),main=paste("All FP species"), zlim=c(0,100))
+    # par(mfrow=c(2,1))
+    # plot(raster(LIST[[i]]$SAVmatrix),main=paste("SAV","Timestep:",i,sep=" "), zlim=c(0,100))
+    # plot(raster(LIST[[i]]$FPALLmatrix),main=paste("All FP species"), zlim=c(0,100))
     
   } # closes for loop through time steps 
   
