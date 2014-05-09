@@ -43,7 +43,7 @@ INPUT5 <- function(x){
   assign("initial03totmass", parameters$initial03totmass[simulnumb], pos = 1)   # initial total biomass - species 03
   assign("initial04totmass", parameters$initial04totmass[simulnumb], pos = 1)   # initial total biomass - species 04
   
-  assign("maxrgrSAV", parameters$maxrgrSAV[simulnumb], pos = 1)  # maximum relative growth rate - SAV
+  assign("maxSAVrgr", parameters$maxSAVrgr[simulnumb], pos = 1)  # maximum relative growth rate - SAV
   assign("maxrgr01", parameters$maxrgr01[simulnumb], pos = 1)    # maximum relative growth rate - species 01
   assign("maxrgr01", parameters$maxrgr01[simulnumb], pos = 1)    # maximum relative growth rate - species 01
   assign("maxrgr02", parameters$maxrgr02[simulnumb], pos = 1)    # maximum relative growth rate - species 02

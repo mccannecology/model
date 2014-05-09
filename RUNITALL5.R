@@ -29,10 +29,10 @@
 # 
 ########################################################################################################
 # Enter your total number of simulations - should be same as # rows in "inputXX.csv"
-totalsimuls <- 540
+totalsimuls <- 900
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input13.csv") 
+parameters <- read.csv("input14.csv") 
 
 # add blank columns to parameters for each of the results 
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
@@ -58,9 +58,9 @@ cl <- makeCluster(4,"SOCK")
 sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) 
 
 #  assigns the functions to the global environments of each node
-clusterExport(cl, c("BLANK3", "GROW_SAV", "GROW_FP", "INPUT4","MOVE_FP","MOVE_SAV",
-                    "OUTPUT4","OVERWINTER","RELEASE_N2","RELEASE_P2",
-                    "SPECIES4","START5","STEP11","UPTAKE_N2","UPTAKE_P2"))
+clusterExport(cl, c("BLANK3", "GROW_SAV2", "GROW_FP2", "INPUT5","MOVE_FP","MOVE_SAV",
+                    "OUTPUT5","OVERWINTER","RELEASE_N2","RELEASE_P2",
+                    "SPECIES4","START5","STEP12","UPTAKE_N2","UPTAKE_P2","WIND"))
 
 registerDoSNOW(cl) # registers the SNOW parallel backend w/ foreach package 
 getDoParWorkers() # returns the # of workers - this should match the # of cores on your machine (or # cores - 1)
@@ -88,7 +88,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   
   LIST<-STEP12() # Run the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
   
-  OUTPUT4(threshold=70) # generates graphs - if you want .html animation you must specify animate=TRUE, set "FP regime" threshold here too 
+  OUTPUT5(threshold=70) # generates graphs - if you want .html animation you must specify animate=TRUE, set "FP regime" threshold here too 
   
   # RESULTS[simulnumb,1] <- propyears_avgFPcover_abovethreshold # assign the current simulations results to the correct spot
   # RESULTS[simulnumb,2] <- propyears_prop_daysFP_abovehalf # assign the current simulations results to the correct spot

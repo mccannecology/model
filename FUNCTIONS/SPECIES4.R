@@ -18,14 +18,14 @@ SPECIES4 <- function(x){
   colnames(speciesmatrix)<-c("species","maxrgr","initial_cells","initial_total_biomass","overwinter","halfsatB","halfsatN","halfsatP","uptakeN","uptakeP")
   
   # build a species matrix from the parameter values defined elsewhere
-  speciesmatrix[1]<-c("FP",seq(1,numbFPspecies,1)) # a vector of species numbers 
+  speciesmatrix[1]<-c("SAV",seq(1,numbFPspecies,1)) # a vector of species numbers 
   
   # REMEMBER: parameters[simulnumb,9+i] for maxrgr means it starts @ colmn 10 
   for (i in 1:(numbFPspecies+1)) {speciesmatrix[i,2] <- parameters[simulnumb,25+i]} # a vector of maxrgr - length varies on number of species
   for (i in 1:(numbFPspecies+1)) {speciesmatrix[i,3] <- parameters[simulnumb,15+i]} # a vector of initial_cells 
   for (i in 1:(numbFPspecies+1)) {speciesmatrix[i,4] <- parameters[simulnumb,20+i]} # a vector of initial_total_biomass 
   for (i in 1:(numbFPspecies+1)) {speciesmatrix[i,5] <- parameters[simulnumb,30+i]} # a vector of overwinter 
-  for (i in 1:(numbFPspecies+1)) {speciesmatrix[i,6] <- parameters[simulnumb,25+i]} # a vector of halfsatB 
+  for (i in 1:(numbFPspecies+1)) {speciesmatrix[i,6] <- parameters[simulnumb,35+i]} # a vector of halfsatB 
   for (i in 1:(numbFPspecies+1)) {speciesmatrix[i,7] <- parameters[simulnumb,40+i]} # a vector of halfsatN 
   for (i in 1:(numbFPspecies+1)) {speciesmatrix[i,8] <- parameters[simulnumb,45+i]} # a vector of halfsatP 
   for (i in 1:(numbFPspecies+1)) {speciesmatrix[i,9] <- parameters[simulnumb,50+i]} # a vector of uptakeN 
