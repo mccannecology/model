@@ -9,7 +9,7 @@
 # Created: MJ McCann 3/22/2014        #
 # Updated: 4/2014                     #
 #######################################
-MOVE_SAV <- function(x1) { 
+MOVE_SAV <- function(x1,full_threshold=150) { 
   for (j in 1:height) { # loop over all rows (height)
     for (k in 1:width) { # loop over all columns (width)
       
@@ -29,24 +29,31 @@ MOVE_SAV <- function(x1) {
             distance <- distance+1 # adds one to your distance (how far away you try to move) 
             
             # Returns an 8x3 matrix of the indices and occupancy of your 8 neighbors 
-            neighbors <- matrix(c(j+distance, k, 
-                                  j+distance, k+distance, 
-                                  j+distance, k-distance, 
-                                  j, k+distance, 
-                                  j, k-distance, 
-                                  j-distance, k, 
-                                  j-distance, k-distance, 
-                                  j-distance, k+distance),
+            neighbors <- matrix(c(j+distance, k, x1[j+distance, k],
+                                  j+distance, k+distance, x1[j+distance, k+distance],
+                                  j+distance, k-distance, x1[j+distance, k-distance],
+                                  j, k+distance, x1[j, k+distance], 
+                                  j, k-distance, x1[j, k-distance],
+                                  j-distance, k, x1[j-distance, k],
+                                  j-distance, k-distance, x1[j-distance, k-distance], 
+                                  j-distance, k+distance, x1[j-distance, k+distance]),
                                 nrow=8,byrow=TRUE)
             
             # Remove neighbor coordinates that are outside the grid (negatives or >width or width) 
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
-                         
+            
+            # Remove neighbor coordinates that are "too full" according to full_threshold
+            neighbors <- subset(neighbors,
+                                neighbors[,3]<=full_threshold)
+            
+            # ends the repeat loop if there are no suitable neighbors 
+            if(nrow(neighbors) == 0) break() # end the repeat loop when movement is successful 
+            
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
-            
+                    
             # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV + maxamounttomoveSAV
             if (x1[j,k] < maxthresholdtomoveSAV + maxamounttomoveSAV) {
               amounttomove <- (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV)
@@ -82,18 +89,25 @@ MOVE_SAV <- function(x1) {
             distance <- distance+1 # adds one to your distance (how far away you try to move) 
             
             # Returns an 8x3 matrix of the indices and occupancy of your 8 neighbors 
-            neighbors <- matrix(c(j+distance, k,
-                                  j+distance, k+distance,
-                                  j+distance, k-distance,
-                                  j, k+distance,
-                                  j, k-distance),
+            neighbors <- matrix(c(j+distance, k, x1[j+distance],
+                                  j+distance, k+distance, x1[j+distance, k+distance],
+                                  j+distance, k-distance, x1[j+distance, k-distance],
+                                  j, k+distance, x1[j, k+distance],
+                                  j, k-distance, x1[j, k-distance]),
                                 nrow=5,byrow=TRUE)
             
             # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
-                        
+            
+            # Remove neighbor coordinates that are "too full" according to full_threshold
+            neighbors <- subset(neighbors,
+                                neighbors[,3]<=full_threshold)
+            
+            # ends the repeat loop if there are no suitable neighbors 
+            if(nrow(neighbors) == 0) break() # end the repeat loop when movement is successful 
+            
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
@@ -130,17 +144,24 @@ MOVE_SAV <- function(x1) {
             distance <- distance+1 # adds one to your distance (how far away you try to move) 
             
             # Returns an 8x3 matrix of the indices and occupancy of your 8 neighbors 
-            neighbors <- matrix(c(j, k+distance,
-                                  j, k-distance,
-                                  j-distance, k,
-                                  j-distance, k-distance,
-                                  j-distance, k+distance),
+            neighbors <- matrix(c(j, k+distance, x1[j, k+distance],
+                                  j, k-distance, x1[j, k-distance],
+                                  j-distance, k, x1[j-distance, k],
+                                  j-distance, k-distance, x1[j-distance, k-distance],
+                                  j-distance, k+distance, x1[j-distance, k+distance]),
                                 nrow=5,byrow=TRUE)
             
             # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
+            
+            # Remove neighbor coordinates that are "too full" according to full_threshold
+            neighbors <- subset(neighbors,
+                                neighbors[,3]<=full_threshold)
+            
+            # ends the repeat loop if there are no suitable neighbors 
+            if(nrow(neighbors) == 0) break() # end the repeat loop when movement is successful 
             
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
@@ -178,11 +199,11 @@ MOVE_SAV <- function(x1) {
             distance <- distance+1 # adds one to your distance (how far away you try to move) 
             
             # Returns an 8x3 matrix of the indices and occupancy of your 8 neighbors 
-            neighbors <- matrix(c(j+distance, k,
-                                  j+distance, k+distance,
-                                  j, k+distance,
-                                  j-distance, k,
-                                  j-distance, k+distance),
+            neighbors <- matrix(c(j+distance, k, x1[j+distance, k],
+                                  j+distance, k+distance, x1[j+distance, k+distance],
+                                  j, k+distance, x1[j, k+distance],
+                                  j-distance, k, x1[j-distance, k],
+                                  j-distance, k+distance, x1[j-distance, k+distance]),
                                 nrow=5,byrow=TRUE)
             
             # Remove coordinates that outside of the grid (negatives or >width or width)
@@ -190,6 +211,13 @@ MOVE_SAV <- function(x1) {
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
 
+            # Remove neighbor coordinates that are "too full" according to full_threshold
+            neighbors <- subset(neighbors,
+                                neighbors[,3]<=full_threshold)
+            
+            # ends the repeat loop if there are no suitable neighbors 
+            if(nrow(neighbors) == 0) break() # end the repeat loop when movement is successful 
+                        
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
@@ -226,18 +254,25 @@ MOVE_SAV <- function(x1) {
             distance <- distance+1 # adds one to your distance (how far away you try to move) 
             
             # Returns an 8x3 matrix of the indices and occupancy of your 8 neighbors 
-            neighbors <- matrix(c(j+distance, k,
-                                  j+distance, k-distance,
-                                  j, k-distance,
-                                  j-distance, k,
-                                  j-distance, k-distance),
+            neighbors <- matrix(c(j+distance, k, x1[j+distance, k],
+                                  j+distance, k-distance, x1[j+distance, k-distance],
+                                  j, k-distance, x1[j, k-distance],
+                                  j-distance, k, x1[j-distance, k],
+                                  j-distance, k-distance, x1[j-distance, k-distance]),
                                 nrow=5,byrow=TRUE)
             
             # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
-             
+            
+            # Remove neighbor coordinates that are "too full" according to full_threshold
+            neighbors <- subset(neighbors,
+                                neighbors[,3]<=full_threshold)
+            
+            # ends the repeat loop if there are no suitable neighbors 
+            if(nrow(neighbors) == 0) break() # end the repeat loop when movement is successful 
+            
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
@@ -274,16 +309,23 @@ MOVE_SAV <- function(x1) {
             distance <- distance+1 # adds one to your distance (how far away you try to move) 
             
             # Returns an 8x3 matrix of the indices and occupancy of your 8 neighbors 
-            neighbors <- matrix(c(j+distance, k,
-                                  j+distance, k+distance,                    
-                                  j, k+distance),                                                
+            neighbors <- matrix(c(j+distance, k, x1[j+distance, k],
+                                  j+distance, k+distance, x1[j+distance, k+distance],                    
+                                  j, k+distance, x1[j, k+distance]),                                                
                                 nrow=3,byrow=TRUE)
             
             # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
-                  
+            
+            # Remove neighbor coordinates that are "too full" according to full_threshold
+            neighbors <- subset(neighbors,
+                                neighbors[,3]<=full_threshold)
+            
+            # ends the repeat loop if there are no suitable neighbors 
+            if(nrow(neighbors) == 0) break() # end the repeat loop when movement is successful 
+            
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
@@ -320,16 +362,23 @@ MOVE_SAV <- function(x1) {
             distance <- distance+1 # adds one to your distance (how far away you try to move) 
             
             # Returns an 8x3 matrix of the indices and occupancy of your 8 neighbors 
-            neighbors <- matrix(c(j+distance, k,
-                                  j+distance, k-distance,
-                                  j, k-distance),                        
+            neighbors <- matrix(c(j+distance, k, x1[j+distance, k],
+                                  j+distance, k-distance, x1[j+distance, k-distance],
+                                  j, k-distance, x1[j, k-distance]),                        
                                 nrow=3,byrow=TRUE)
             
             # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
-
+            
+            # Remove neighbor coordinates that are "too full" according to full_threshold
+            neighbors <- subset(neighbors,
+                                neighbors[,3]<=full_threshold)
+            
+            # ends the repeat loop if there are no suitable neighbors 
+            if(nrow(neighbors) == 0) break() # end the repeat loop when movement is successful 
+            
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
@@ -366,16 +415,23 @@ MOVE_SAV <- function(x1) {
             distance <- distance+1 # adds one to your distance (how far away you try to move) 
             
             # Returns an 8x3 matrix of the indices and occupancy of your 8 neighbors 
-            neighbors <- matrix(c(j, k+distance,
-                                  j-distance, k,
-                                  j-distance, k+distance),
+            neighbors <- matrix(c(j, k+distance, x1[j, k+distance],
+                                  j-distance, k, x1[j-distance, k],
+                                  j-distance, k+distance, x1[j-distance, k+distance]),
                                 nrow=3,byrow=TRUE)
             
             # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
-
+            
+            # Remove neighbor coordinates that are "too full" according to full_threshold
+            neighbors <- subset(neighbors,
+                                neighbors[,3]<=full_threshold)
+            
+            # ends the repeat loop if there are no suitable neighbors 
+            if(nrow(neighbors) == 0) break() # end the repeat loop when movement is successful 
+            
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
@@ -412,15 +468,22 @@ MOVE_SAV <- function(x1) {
             distance <- distance+1 # adds one to your distance (how far away you try to move) 
             
             # Returns an 8x3 matrix of the indices and occupancy of your 8 neighbors 
-            neighbors <- matrix(c(j, k-distance,
-                                  j-distance, k,
-                                  j-distance, k-distance),
+            neighbors <- matrix(c(j, k-distance, x1[j, k-distance],
+                                  j-distance, k, x1[j-distance, k],
+                                  j-distance, k-distance, x1[j-distance, k-distance]),
                                 nrow=3,byrow=TRUE)
             
             # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
+            
+            # Remove neighbor coordinates that are "too full" according to full_threshold
+            neighbors <- subset(neighbors,
+                                neighbors[,3]<=full_threshold)
+            
+            # ends the repeat loop if there are no suitable neighbors 
+            if(nrow(neighbors) == 0) break() # end the repeat loop when movement is successful 
             
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
