@@ -41,26 +41,29 @@ STEP12 <- function() { # start defining the function
       ########
       # WIND #
       ########
+      # full_treshold - if biomass of neighbor cell exceeds this value
+      # plants will not be blown into that cell 
+      
       if (numbFPspecies == 4) { 
-        LIST[[i]]$FP4matrix <- WIND(LIST[[i]]$FP4matrix) 
-        LIST[[i]]$FP3matrix <- WIND(LIST[[i]]$FP3matrix)
-        LIST[[i]]$FP2matrix <- WIND(LIST[[i]]$FP2matrix)
-        LIST[[i]]$FP1matrix <- WIND(LIST[[i]]$FP1matrix)
+        LIST[[i]]$FP4matrix <- WIND(LIST[[i]]$FP4matrix,full_threshold=800) 
+        LIST[[i]]$FP3matrix <- WIND(LIST[[i]]$FP3matrix,full_threshold=800) 
+        LIST[[i]]$FP2matrix <- WIND(LIST[[i]]$FP2matrix,full_threshold=800) 
+        LIST[[i]]$FP1matrix <- WIND(LIST[[i]]$FP1matrix,full_threshold=800) 
         LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP4matrix + LIST[[i]]$FP3matrix + LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix
       }
       else if (numbFPspecies == 3) {
-        LIST[[i]]$FP3matrix <- WIND(LIST[[i]]$FP3matrix)
-        LIST[[i]]$FP2matrix <- WIND(LIST[[i]]$FP2matrix)
-        LIST[[i]]$FP1matrix <- WIND(LIST[[i]]$FP1matrix)
+        LIST[[i]]$FP3matrix <- WIND(LIST[[i]]$FP3matrix,full_threshold=800) 
+        LIST[[i]]$FP2matrix <- WIND(LIST[[i]]$FP2matrix,full_threshold=800) 
+        LIST[[i]]$FP1matrix <- WIND(LIST[[i]]$FP1matrix,full_threshold=800) 
         LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP3matrix + LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix
       }
       else if (numbFPspecies == 2) {
-        LIST[[i]]$FP2matrix <- WIND(LIST[[i]]$FP2matrix)
-        LIST[[i]]$FP1matrix <- WIND(LIST[[i]]$FP1matrix)
+        LIST[[i]]$FP2matrix <- WIND(LIST[[i]]$FP2matrix,full_threshold=800) 
+        LIST[[i]]$FP1matrix <- WIND(LIST[[i]]$FP1matrix,full_threshold=800) 
         LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix + LIST[[i]]$FPALLmatrix
       }
       else if (numbFPspecies == 1) {
-        LIST[[i]]$FP1matrix <- WIND(LIST[[i]]$FP1matrix)
+        LIST[[i]]$FP1matrix <- WIND(LIST[[i]]$FP1matrix,full_threshold=800) 
         LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP1matrix
       }
             
@@ -154,8 +157,7 @@ STEP12 <- function() { # start defining the function
     ########
     # PLOT #
     ########
-    require(raster)
-    
+    # require(raster)
     # new plotting: zlim should set the constant scale 
     # par(mfrow=c(2,1))
     # If I cap biomass @ 100 g/sq. m

@@ -7,7 +7,7 @@
 # Created: MJ McCann 5/8/2014         #
 #######################################
 
-WIND <- function (x1) {
+WIND <- function (x1,full_threshold) {
   
   # Figure out which direction and how much the wind is going to blow on this time step 
   direction_sample <- c(rep("U",prob_up*100),rep("D",prob_down*100),rep("L",prob_left*100),rep("R",prob_right*100)) # make a vector of wind directions to sample from
@@ -27,25 +27,25 @@ WIND <- function (x1) {
           amounttomove <- x1[j,k]*proptomove # amount of cell biomass * proportion of occupied cell biomass that will move 
           
           if (direction_of_wind == "U"){  
-            if (x1[j-1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j-1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j-1,k] <- x1[j-1,k] + amounttomove # add amountomove UP
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "R"){    
-            if (x1[j,k+1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k+1] < full_threshold) { # only move if the destination cell is not "too full" 
             x1[j,k+1] <- x1[j,k+1] + amounttomove # add amountomove RIGHT
             x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "D"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j+1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j+1,k] <- x1[j+1,k] + amounttomove # add amountomove DOWN
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "L"){
-            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -62,19 +62,19 @@ WIND <- function (x1) {
             x1[j,k] <- x1[j,k] 
           }
           if (direction_of_wind == "R"){    
-            if (x1[j,k+1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k+1] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j,k+1] <- x1[j,k+1] + amounttomove # add amountomove RIGHT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "D"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j+1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j+1,k] <- x1[j+1,k] + amounttomove # add amountomove DOWN
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "L"){
-            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -87,13 +87,13 @@ WIND <- function (x1) {
           amounttomove <- x1[j,k] * proptomove # amount of cell biomass * proportion of occupied cell biomass that will move 
           
           if (direction_of_wind == "U"){  
-            if (x1[j-1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j-1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j-1,k] <- x1[j-1,k] + amounttomove # add amountomove UP
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "R"){    
-            if (x1[j,k+1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k+1] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j,k+1] <- x1[j,k+1] + amounttomove # add amountomove RIGHT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -102,7 +102,7 @@ WIND <- function (x1) {
             x1[j,k] <- x1[j,k] 
           }
           if (direction_of_wind == "L"){
-            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -115,19 +115,19 @@ WIND <- function (x1) {
           amounttomove <- x1[j,k] * proptomove # amount of cell biomass * proportion of occupied cell biomass that will move 
           
           if (direction_of_wind == "U"){  
-            if (x1[j-1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j-1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j-1,k] <- x1[j-1,k] + amounttomove # add amountomove UP
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "R"){    
-            if (x1[j,k+1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k+1] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j,k+1] <- x1[j,k+1] + amounttomove # add amountomove RIGHT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "D"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j+1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j+1,k] <- x1[j+1,k] + amounttomove # add amountomove DOWN
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -143,7 +143,7 @@ WIND <- function (x1) {
           amounttomove <- x1[j,k] * proptomove # amount of cell biomass * proportion of occupied cell biomass that will move 
           
           if (direction_of_wind == "U"){  
-            if (x1[j-1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j-1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j-1,k] <- x1[j-1,k] + amounttomove # add amountomove UP
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -152,13 +152,13 @@ WIND <- function (x1) {
             x1[j,k] <- x1[j,k] 
           }
           if (direction_of_wind == "D"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j+1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j+1,k] <- x1[j+1,k] + amounttomove # add amountomove DOWN
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "L"){
-            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -174,13 +174,13 @@ WIND <- function (x1) {
             x1[j,k] <- x1[j,k] 
           }
           if (direction_of_wind == "R"){    
-            if (x1[j,k+1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k+1] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j,k+1] <- x1[j,k+1] + amounttomove # add amountomove RIGHT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "D"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j+1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j+1,k] <- x1[j+1,k] + amounttomove # add amountomove DOWN
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -202,13 +202,13 @@ WIND <- function (x1) {
             x1[j,k] <- x1[j,k] 
           }
           if (direction_of_wind == "D"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j+1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j+1,k] <- x1[j+1,k] + amounttomove # add amountomove DOWN
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "L"){
-            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -222,13 +222,13 @@ WIND <- function (x1) {
           amounttomove <- x1[j,k] * proptomove # amount of cell biomass * proportion of occupied cell biomass that will move 
           
           if (direction_of_wind == "U"){  
-            if (x1[j-1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j-1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j-1,k] <- x1[j-1,k] + amounttomove # add amountomove UP
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "R"){    
-            if (x1[j,k+1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k+1] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j,k+1] <- x1[j,k+1] + amounttomove # add amountomove RIGHT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -248,7 +248,7 @@ WIND <- function (x1) {
           amounttomove <- x1[j,k] * proptomove # amount of cell biomass * proportion of occupied cell biomass that will move 
           
           if (direction_of_wind == "U"){  
-            if (x1[j-1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j-1,k] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j-1,k] <- x1[j-1,k] + amounttomove # add amountomove UP
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -260,7 +260,7 @@ WIND <- function (x1) {
             x1[j,k] <- x1[j,k] 
           }
           if (direction_of_wind == "L"){
-            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < full_threshold) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
