@@ -48,9 +48,10 @@ MOVE_SAV <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
-            if (x1[j,k] < maxthresholdtomoveSAV) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveFP) {
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveSAV
             else {
@@ -96,9 +97,10 @@ MOVE_SAV <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
-            if (x1[j,k] < maxthresholdtomoveSAV) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveFP) {
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveSAV
             else {
@@ -143,9 +145,10 @@ MOVE_SAV <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
-            if (x1[j,k] < maxthresholdtomoveSAV) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveFP) {
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveSAV
             else {
@@ -190,9 +193,10 @@ MOVE_SAV <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
-            if (x1[j,k] < maxthresholdtomoveSAV) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveFP) {
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveSAV
             else {
@@ -237,9 +241,10 @@ MOVE_SAV <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
-            if (x1[j,k] < maxthresholdtomoveSAV) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveFP) {
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveSAV
             else {
@@ -282,9 +287,10 @@ MOVE_SAV <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
-            if (x1[j,k] < maxthresholdtomoveSAV) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveFP) {
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveSAV
             else {
@@ -327,9 +333,10 @@ MOVE_SAV <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
-            if (x1[j,k] < maxthresholdtomoveSAV) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveFP) {
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveSAV
             else {
@@ -372,9 +379,10 @@ MOVE_SAV <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
-            if (x1[j,k] < maxthresholdtomoveSAV) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveFP) {
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveSAV
             else {
@@ -417,9 +425,10 @@ MOVE_SAV <- function(x1) {
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
             # move: cells > minthresholdtomoveSAV but < maxthresholdtomoveSAV
-            if (x1[j,k] < maxthresholdtomoveSAV) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveSAV/(maxthresholdtomoveSAV-minthresholdtomoveSAV))*(x1[j,k]-minthresholdtomoveSAV) # subtract this value from the original spot  
+            if (x1[j,k] < maxthresholdtomoveFP) {
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveSAV
             else {

@@ -49,8 +49,9 @@ MOVE_FP <- function(x1) {
             
             # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
             if (x1[j,k] < maxthresholdtomoveFP) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # subtract this value from the original spot  
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveFP
             else {
@@ -97,8 +98,9 @@ MOVE_FP <- function(x1) {
             
             # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
             if (x1[j,k] < maxthresholdtomoveFP) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # subtract this value from the original spot  
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveFP
             else {
@@ -144,8 +146,9 @@ MOVE_FP <- function(x1) {
             
             # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
             if (x1[j,k] < maxthresholdtomoveFP) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # subtract this value from the original spot  
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveFP
             else {
@@ -191,8 +194,9 @@ MOVE_FP <- function(x1) {
             
             # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
             if (x1[j,k] < maxthresholdtomoveFP) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # subtract this value from the original spot  
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveFP
             else {
@@ -238,8 +242,9 @@ MOVE_FP <- function(x1) {
             
             # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
             if (x1[j,k] < maxthresholdtomoveFP) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # subtract this value from the original spot  
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveFP
             else {
@@ -283,8 +288,9 @@ MOVE_FP <- function(x1) {
             
             # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
             if (x1[j,k] < maxthresholdtomoveFP) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # subtract this value from the original spot  
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveFP
             else {
@@ -328,8 +334,9 @@ MOVE_FP <- function(x1) {
             
             # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
             if (x1[j,k] < maxthresholdtomoveFP) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # subtract this value from the original spot  
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveFP
             else {
@@ -373,8 +380,9 @@ MOVE_FP <- function(x1) {
             
             # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
             if (x1[j,k] < maxthresholdtomoveFP) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # subtract this value from the original spot  
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveFP
             else {
@@ -418,8 +426,9 @@ MOVE_FP <- function(x1) {
             
             # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
             if (x1[j,k] < maxthresholdtomoveFP) {
-              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # add this value to the new spot  
-              x1[j,k] <- x1[j,k] - (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP) # subtract this value from the original spot  
+              amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
+              x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
+              x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
             # move: cells > maxthresholdtomoveFP
             else {
