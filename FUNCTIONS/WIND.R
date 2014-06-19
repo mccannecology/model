@@ -45,7 +45,7 @@ WIND <- function (x1) {
             }
           }
           if (direction_of_wind == "L"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -54,7 +54,7 @@ WIND <- function (x1) {
         } # closes  if loop - through occupied center cells 
         
         # if the cell is in the top row (but not a corner), then do the following: 
-        else if (j==1 & (k>=2 & k<= (width-1))) { 
+        else if (j==1 & (k>=2 & k<=(width-1))) { 
           
           amounttomove <- x1[j,k] * proptomove # amount of cell biomass * proportion of occupied cell biomass that will move 
           
@@ -74,7 +74,7 @@ WIND <- function (x1) {
             }
           }
           if (direction_of_wind == "L"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -102,7 +102,7 @@ WIND <- function (x1) {
             x1[j,k] <- x1[j,k] 
           }
           if (direction_of_wind == "L"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -110,7 +110,7 @@ WIND <- function (x1) {
         } # closes  if loop - through occupied bottom row 
         
         # if the cell is in the 1st column (but not a corner), then do the following: 
-        else if (k==1 & (j>=2 & j<= (height-1))) { 
+        else if (k==1 & (j>=2 & j<=(height-1))) { 
           
           amounttomove <- x1[j,k] * proptomove # amount of cell biomass * proportion of occupied cell biomass that will move 
           
@@ -138,7 +138,7 @@ WIND <- function (x1) {
         } # closes  if loop - through occupied 1st column  
         
         # if the cell is in the last column (but not a corner), then do the following: 
-        else if (k==width & (j>=2 & j<= (height-1))) { 
+        else if (k==width & (j>=2 & j<=(height-1))) { 
           
           amounttomove <- x1[j,k] * proptomove # amount of cell biomass * proportion of occupied cell biomass that will move 
           
@@ -158,7 +158,7 @@ WIND <- function (x1) {
             }
           }
           if (direction_of_wind == "L"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -208,7 +208,7 @@ WIND <- function (x1) {
             }
           }
           if (direction_of_wind == "L"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -254,13 +254,13 @@ WIND <- function (x1) {
             }
           }
           if (direction_of_wind == "R"){       
-            x1[j,k] <- x1[j,k] 
+            x1[j,k] <- x1[j,k]
           }
           if (direction_of_wind == "D"){      
             x1[j,k] <- x1[j,k] 
           }
           if (direction_of_wind == "L"){
-            if (x1[j+1,k] < 800) { # only move if the destination cell is not "too full" 
+            if (x1[j,k-1] < 800) { # only move if the destination cell is not "too full" 
               x1[j,k-1] <- x1[j,k-1] + amounttomove # add amountomove LEFT
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot 
             }
@@ -269,6 +269,6 @@ WIND <- function (x1) {
         
       } # closes if loop - through occupied cells 
     } # closes for loop - through width/columns (k)    
-  } # closes for loop - through height/rows (j)   
+  } # closes for loop - through height/rows (j)  
   return(x1)
 }

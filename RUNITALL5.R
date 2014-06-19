@@ -153,5 +153,5 @@ parameters$avg_firstdaySAV <- RESULT[,11]
 
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output12.csv",row.names=F) 
+write.csv(parameters,"output14.csv",row.names=F) 
 
