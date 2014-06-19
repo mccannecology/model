@@ -8,35 +8,38 @@ STEP12 <- function() { # start defining the function
       ########
       # MOVE #
       ########
-      #if (numbFPspecies == 4) { 
-      #  LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix,full_threshold=150) 
-      #  LIST[[i]]$FP4matrix <- MOVE_FP(LIST[[i]]$FP4matrix) 
-      #  LIST[[i]]$FP3matrix <- MOVE_FP(LIST[[i]]$FP3matrix)
-      #  LIST[[i]]$FP2matrix <- MOVE_FP(LIST[[i]]$FP2matrix)
-      #  LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
-      #  LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP4matrix + LIST[[i]]$FP3matrix + LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix
-      #}
-      #else if (numbFPspecies == 3) {
-      #  LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix,full_threshold=150)
-      #  LIST[[i]]$FP3matrix <- MOVE_FP(LIST[[i]]$FP3matrix)
-      #  LIST[[i]]$FP2matrix <- MOVE_FP(LIST[[i]]$FP2matrix)
-      #  LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
-      #  LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP3matrix + LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix
-      #}
-      #else if (numbFPspecies == 2) {
-      #  LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix,full_threshold=150)
-      #  LIST[[i]]$FP2matrix <- MOVE_FP(LIST[[i]]$FP2matrix)
-      #  LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
-      #  LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix + LIST[[i]]$FPALLmatrix
-      #}
-      #else if (numbFPspecies == 1) {
-      #  LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix,full_threshold=150)
-      #  LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
-      #  LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP1matrix
-      #}
+      # full_treshold - if biomass of neighbor cell exceeds this value
+      # plants will not be move into that cell 
+      
+      if (numbFPspecies == 4) { 
+        LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix,full_threshold=150) 
+        LIST[[i]]$FP4matrix <- MOVE_FP(LIST[[i]]$FP4matrix) 
+        LIST[[i]]$FP3matrix <- MOVE_FP(LIST[[i]]$FP3matrix)
+        LIST[[i]]$FP2matrix <- MOVE_FP(LIST[[i]]$FP2matrix)
+        LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
+        LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP4matrix + LIST[[i]]$FP3matrix + LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix
+      }
+      else if (numbFPspecies == 3) {
+        LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix,full_threshold=150)
+        LIST[[i]]$FP3matrix <- MOVE_FP(LIST[[i]]$FP3matrix)
+        LIST[[i]]$FP2matrix <- MOVE_FP(LIST[[i]]$FP2matrix)
+        LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
+        LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP3matrix + LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix
+      }
+      else if (numbFPspecies == 2) {
+        LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix,full_threshold=150)
+        LIST[[i]]$FP2matrix <- MOVE_FP(LIST[[i]]$FP2matrix)
+        LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
+        LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP2matrix + LIST[[i]]$FP1matrix + LIST[[i]]$FPALLmatrix
+      }
+      else if (numbFPspecies == 1) {
+        LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix,full_threshold=150)
+        LIST[[i]]$FP1matrix <- MOVE_FP(LIST[[i]]$FP1matrix)
+        LIST[[i]]$FPALLmatrix <- LIST[[i]]$FP1matrix
+      }
       
       # Move for SAV only 
-      LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix,full_threshold=150)
+      # LIST[[i]]$SAVmatrix <- MOVE_SAV(LIST[[i]]$SAVmatrix,full_threshold=150)
       
       ########
       # WIND #
