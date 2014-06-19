@@ -39,7 +39,7 @@ MOVE_SAV <- function(x1) {
                                   j-distance, k+distance),
                                 nrow=8,byrow=TRUE)
             
-            # Remove coordinates that are outside the grid (negatives or >width or width) 
+            # Remove neighbor coordinates that are outside the grid (negatives or >width or width) 
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
@@ -53,6 +53,7 @@ MOVE_SAV <- function(x1) {
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
+            
             # move: cells > maxthresholdtomoveSAV + maxamounttomoveSAV
             else {
               amounttomove <- x1[j,k] - maxthresholdtomoveSAV # bring cells greater than 100 down to 100 
@@ -88,7 +89,7 @@ MOVE_SAV <- function(x1) {
                                   j, k-distance),
                                 nrow=5,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) 
+            # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
@@ -136,7 +137,7 @@ MOVE_SAV <- function(x1) {
                                   j-distance, k+distance),
                                 nrow=5,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) 
+            # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
@@ -232,7 +233,7 @@ MOVE_SAV <- function(x1) {
                                   j-distance, k-distance),
                                 nrow=5,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) 
+            # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
@@ -278,7 +279,7 @@ MOVE_SAV <- function(x1) {
                                   j, k+distance),                                                
                                 nrow=3,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) 
+            # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
@@ -324,7 +325,7 @@ MOVE_SAV <- function(x1) {
                                   j, k-distance),                        
                                 nrow=3,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) 
+            # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
@@ -370,7 +371,7 @@ MOVE_SAV <- function(x1) {
                                   j-distance, k+distance),
                                 nrow=3,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) 
+            # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
@@ -416,7 +417,7 @@ MOVE_SAV <- function(x1) {
                                   j-distance, k-distance),
                                 nrow=3,byrow=TRUE)
             
-            # Remove coordinates that outside of the grid (negatives or >width or width) 
+            # Remove neighbor coordinates that are outside the grid (negatives or >width or width)
             neighbors <- subset(neighbors, 
                                 (neighbors[,1]>=1 & neighbors[,1]<=height) 
                                 & (neighbors[,2]>=1 & neighbors[,2]<=width))
