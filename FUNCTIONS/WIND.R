@@ -13,7 +13,9 @@ WIND <- function (x1,full_threshold) {
   direction_sample <- c(rep("U",prob_up*100),rep("D",prob_down*100),rep("L",prob_left*100),rep("R",prob_right*100)) # make a vector of wind directions to sample from
   direction_of_wind <- sample(direction_sample,1) # sample from it 
   proptomove <- rnorm(1,wind_avg,wind_std) # assign an amount to move on the given time-step based on the average & SD of windiness 
+  
   if (proptomove < 0) {proptomove <- 0} # make any negative values 0 
+  if (proptomove > 1) {proptomove <- 1} # cannot move >100% of a cell  
   
   for (j in 1:height) { # loop over all rows (height)
     for (k in 1:width) { # loop over all columns (width)
