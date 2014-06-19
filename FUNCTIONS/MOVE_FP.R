@@ -47,13 +47,13 @@ MOVE_FP <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
-            if (x1[j,k] < maxthresholdtomoveFP) {
+            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP + maxamounttomoveFP
+            if (x1[j,k] < maxthresholdtomoveFP + maxamounttomoveFP) {
               amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
-            # move: cells > maxthresholdtomoveFP
+            # move: cells > maxthresholdtomoveFP + maxamounttomove
             else {
               amounttomove <- x1[j,k] - maxthresholdtomoveFP # bring cells greater than 100 down to 100 
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
@@ -96,13 +96,13 @@ MOVE_FP <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
-            if (x1[j,k] < maxthresholdtomoveFP) {
+            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP + maxamounttomoveFP
+            if (x1[j,k] < maxthresholdtomoveFP + maxamounttomoveFP) {
               amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
-            # move: cells > maxthresholdtomoveFP
+            # move: cells > maxthresholdtomoveFP + maxamounttomove
             else {
               amounttomove <- x1[j,k] - maxthresholdtomoveFP # bring cells greater than 100 down to 100 
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
@@ -144,13 +144,13 @@ MOVE_FP <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
-            if (x1[j,k] < maxthresholdtomoveFP) {
+            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP + maxamounttomoveFP
+            if (x1[j,k] < maxthresholdtomoveFP + maxamounttomoveFP) {
               amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
-            # move: cells > maxthresholdtomoveFP
+            # move: cells > maxthresholdtomoveFP + maxamounttomove
             else {
               amounttomove <- x1[j,k] - maxthresholdtomoveFP # bring cells greater than 100 down to 100 
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
@@ -192,13 +192,13 @@ MOVE_FP <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
-            if (x1[j,k] < maxthresholdtomoveFP) {
+            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP + maxamounttomoveFP
+            if (x1[j,k] < maxthresholdtomoveFP + maxamounttomoveFP) {
               amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
-            # move: cells > maxthresholdtomoveFP
+            # move: cells > maxthresholdtomoveFP + maxamounttomove
             else {
               amounttomove <- x1[j,k] - maxthresholdtomoveFP # bring cells greater than 100 down to 100 
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
@@ -240,13 +240,13 @@ MOVE_FP <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
-            if (x1[j,k] < maxthresholdtomoveFP) {
+            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP + maxamounttomoveFP
+            if (x1[j,k] < maxthresholdtomoveFP + maxamounttomoveFP) {
               amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
-            # move: cells > maxthresholdtomoveFP
+            # move: cells > maxthresholdtomoveFP + maxamounttomove
             else {
               amounttomove <- x1[j,k] - maxthresholdtomoveFP # bring cells greater than 100 down to 100 
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
@@ -286,13 +286,13 @@ MOVE_FP <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
-            if (x1[j,k] < maxthresholdtomoveFP) {
+            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP + maxamounttomoveFP
+            if (x1[j,k] < maxthresholdtomoveFP + maxamounttomoveFP) {
               amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
-            # move: cells > maxthresholdtomoveFP
+            # move: cells > maxthresholdtomoveFP + maxamounttomove
             else {
               amounttomove <- x1[j,k] - maxthresholdtomoveFP # bring cells greater than 100 down to 100 
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
@@ -332,13 +332,13 @@ MOVE_FP <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
-            if (x1[j,k] < maxthresholdtomoveFP) {
+            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP + maxamounttomoveFP
+            if (x1[j,k] < maxthresholdtomoveFP + maxamounttomoveFP) {
               amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
-            # move: cells > maxthresholdtomoveFP
+            # move: cells > maxthresholdtomoveFP + maxamounttomove
             else {
               amounttomove <- x1[j,k] - maxthresholdtomoveFP # bring cells greater than 100 down to 100 
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
@@ -378,13 +378,13 @@ MOVE_FP <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
-            if (x1[j,k] < maxthresholdtomoveFP) {
+            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP + maxamounttomoveFP
+            if (x1[j,k] < maxthresholdtomoveFP + maxamounttomoveFP) {
               amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
-            # move: cells > maxthresholdtomoveFP
+            # move: cells > maxthresholdtomoveFP + maxamounttomove
             else {
               amounttomove <- x1[j,k] - maxthresholdtomoveFP # bring cells greater than 100 down to 100 
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
@@ -424,13 +424,13 @@ MOVE_FP <- function(x1) {
             # randomly pick a neighbor to move into 
             offspring <- neighbors[sample(nrow(neighbors),1),]
             
-            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP
-            if (x1[j,k] < maxthresholdtomoveFP) {
+            # move: cells > minthresholdtomoveFP but < maxthresholdtomoveFP + maxamounttomoveFP
+            if (x1[j,k] < maxthresholdtomoveFP + maxamounttomoveFP) {
               amounttomove <- (maxamounttomoveFP/(maxthresholdtomoveFP-minthresholdtomoveFP))*(x1[j,k]-minthresholdtomoveFP)
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
               x1[j,k] <- x1[j,k] - amounttomove # subtract this value from the original spot  
             }
-            # move: cells > maxthresholdtomoveFP
+            # move: cells > maxthresholdtomoveFP + maxamounttomove
             else {
               amounttomove <- x1[j,k] - maxthresholdtomoveFP # bring cells greater than 100 down to 100 
               x1[offspring[1],offspring[2]] <- x1[offspring[1],offspring[2]] + amounttomove # add this value to the new spot  
