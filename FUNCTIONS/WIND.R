@@ -7,7 +7,7 @@
 # Created: MJ McCann 5/8/2014         #
 #######################################
 
-WIND <- function (x1,full_threshold) {
+WIND <- function (x1,full_threshold=800) {
   
   # Figure out which direction and how much the wind is going to blow on this time step 
   direction_sample <- c(rep("U",prob_up*100),rep("D",prob_down*100),rep("L",prob_left*100),rep("R",prob_right*100)) # make a vector of wind directions to sample from
