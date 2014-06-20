@@ -160,14 +160,14 @@ STEP13 <- function() { # start defining the function
     ########
     # PLOT #
     ########
-    require(raster)
+    # require(raster)
     # new plotting: zlim should set the constant scale 
-    par(mfrow=c(2,1))
+    # par(mfrow=c(2,1))
     # If I cap biomass @ 100 g/sq. m
     # plot(raster(LIST[[i]]$SAVmatrix),main=paste("SAV","Timestep:",i,sep=" "), zlim=c(0,100))
     # plot(raster(LIST[[i]]$FPALLmatrix),main=paste("All FP species"), zlim=c(0,100))
-    plot(raster(LIST[[i]]$SAVmatrix),main=paste("SAV","Timestep:",i,sep=" "))
-    plot(raster(LIST[[i]]$FPALLmatrix),main=paste("All FP species"))
+    # plot(raster(LIST[[i]]$SAVmatrix),main=paste("SAV","Timestep:",i,sep=" "))
+    # plot(raster(LIST[[i]]$FPALLmatrix),main=paste("All FP species"))
 
     
   } # closes for loop through time steps 
