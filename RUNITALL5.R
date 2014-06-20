@@ -29,10 +29,10 @@
 # 
 ########################################################################################################
 # Enter your total number of simulations - should be same as # rows in "inputXX.csv"
-totalsimuls <- 720
+totalsimuls <- 1800
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input15.csv") 
+parameters <- read.csv("input16.csv") 
 
 # add blank columns to parameters for each of the results 
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
@@ -58,9 +58,9 @@ cl <- makeCluster(4,"SOCK")
 sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE) 
 
 #  assigns the functions to the global environments of each node
-clusterExport(cl, c("BLANK3", "GROW_SAV2", "GROW_FP2", "INPUT5","MOVE_FP","MOVE_SAV",
+clusterExport(cl, c("BLANK3", "GROW_SAV3", "GROW_FP3", "INPUT5","MOVE_FP","MOVE_SAV",
                     "OUTPUT5","OVERWINTER","RELEASE_N2","RELEASE_P2",
-                    "SPECIES4","START5","STEP12","UPTAKE_N2","UPTAKE_P2","WIND"))
+                    "SPECIES4","START5","STEP13","UPTAKE_N2","UPTAKE_P2","WIND"))
 
 registerDoSNOW(cl) # registers the SNOW parallel backend w/ foreach package 
 getDoParWorkers() # returns the # of workers - this should match the # of cores on your machine (or # cores - 1)
@@ -86,7 +86,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   
   LIST[[1]]<-START5() # Start the first time step with some individuals 
   
-  LIST<-STEP12() # Run the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
+  LIST<-STEP13() # Run the model for all of the time steps - aging, senescence, reproduction, overwintering, movement, etc. 
   
   OUTPUT5(threshold=70) # generates graphs - if you want .html animation you must specify animate=TRUE, set "FP regime" threshold here too 
   
@@ -153,5 +153,5 @@ parameters$avg_firstdaySAV <- RESULT[,11]
 
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output15.csv",row.names=F) 
+write.csv(parameters,"output16.csv",row.names=F) 
 
