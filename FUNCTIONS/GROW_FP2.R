@@ -21,7 +21,7 @@ GROW_FP2 <- function(x1,x2,x3,n,x4,x5) {
       if (x1[j,k] > 0) {
         x2[j,k] <- x1[j,k] + # initial biomass 
           
-                      ((x3[j,k]*speciesmatrix$maxrgr[n+1]) * # 
+                      ((x1[j,k]*speciesmatrix$maxrgr[n+1]) * # new growth 
         
                       (x4/(x4+speciesmatrix$halfsatP[n+1])) * # phosphorus limitation 
           
