@@ -1,7 +1,5 @@
 #######################################
 # Growth function                     #
-# Compatible w/ new LIST structure    #
-# Compatible w/ SAV component         #
 #                                     #
 # INPUTS:                             #
 # x1... LIST[[i]]$FPmatrix            #
@@ -13,6 +11,8 @@
 #                                     #
 # Created: MJ McCann 3/23/2014        #
 # Updated: 4/2014                     #
+# Compatible w/ new LIST structure    #
+# Compatible w/ SAV component         #
 #######################################
 GROW_FP <- function(x1,x2,x3,n,x4,x5) { 
   for (j in 1:height) { # loop over all rows (height)
