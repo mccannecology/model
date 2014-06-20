@@ -25,3 +25,14 @@ for (i in 1:1000) {
 plot(temp[,1],temp[,2],ylab="New growth",xlab="Biomass_t")
 abline(a=0,b=1)
 
+
+x<-200 # floating plant biomass 
+a<-0.02 # light limitation (by self)
+b<-0.04 # shading by FP 
+W<-0 # light attenuation (water column )
+j<-100
+
+SAV_GROW <- function(j,k) {
+  k <- j + (maxrgr*j)*(1/(1+(a*j)+(b*x)+W))-(loss*j)
+  return(k)
+}
