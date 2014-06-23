@@ -97,4 +97,5 @@ INPUT5 <- function(x){
   assign("prob_left", parameters$prob_left[simulnumb], pos = 1)      # prob that the wind is blowing up
   assign("prob_right", parameters$prob_right[simulnumb], pos = 1)    # prob that the wind is blowing up
   
+  assign("lightlimitation_FP", parameters$lightlimitation_FP[simulnumb], pos = 1)    # self-shading FP on FP 
 }
