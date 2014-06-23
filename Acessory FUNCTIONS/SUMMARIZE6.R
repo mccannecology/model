@@ -54,7 +54,7 @@ ggsave(file="output17 - FP&SAV - with_wind - with_move - constant NtoP.pdf",comb
 ###############
 # Y = average average FP cover for all years (except for first three)
 FP_plot_2 <- ggplot(data, aes(x=TOTALN,y=avg_avg_FPcover)) 
-FP_plot_2 <- FP_plot_2 + geom_point(position="jitter")
+FP_plot_2 <- FP_plot_2 + geom_point(alpha=0.4)
 FP_plot_2 <- FP_plot_2 + facet_grid(wind_avg ~ wind_direction)
 FP_plot_2 <- FP_plot_2 + ylim(0,100)
 FP_plot_2 <- FP_plot_2 + xlab("Total N (mg/L)")
@@ -65,7 +65,7 @@ FP_plot_2
 ggsave(file="output17 - FP&SAV - with_wind - with_move - constant NtoP - FP only.pdf",FP_plot_2, height=11,width=8)
 
 SAV_plot_2 <- ggplot(data, aes(x=TOTALN,y=avg_avg_SAVcover))
-SAV_plot_2 <- SAV_plot_2 + geom_point(position="jitter")
+SAV_plot_2 <- SAV_plot_2 + geom_point(alpha=0.4)
 SAV_plot_2 <- SAV_plot_2 + facet_grid(wind_avg ~ wind_direction)
 SAV_plot_2 <- SAV_plot_2 + ylim(0,100)
 SAV_plot_2 <- SAV_plot_2 + xlab("Total N (mg/L)")
