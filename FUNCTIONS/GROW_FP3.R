@@ -27,7 +27,7 @@ GROW_FP3 <- function(x1,x2,x3,n,x4,x5) {
               
                       (x5/(x5+speciesmatrix$halfsatN[n+1])) * # nitrogen limitation 
           
-                      (1/(1+lightlimitation*x3[j,k])) - # biomass limitation 
+                      (1/(1+lightlimitation_FP*x3[j,k])) - # biomass limitation 
           
                       (lossFP*x1[j,k])) # biomass loss 
       }
