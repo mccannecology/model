@@ -29,7 +29,7 @@
 # 
 ########################################################################################################
 # Enter your total number of simulations - should be same as # rows in "inputXX.csv"
-totalsimuls <- 9504
+totalsimuls <- 1188
 
 # imports parameter  values for all simulations 
 parameters <- read.csv("input18.csv") 
