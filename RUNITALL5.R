@@ -29,10 +29,10 @@
 # 
 ########################################################################################################
 # Enter your total number of simulations - should be same as # rows in "inputXX.csv"
-totalsimuls <- 2709
+totalsimuls <- 9504
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input18a.csv") 
+parameters <- read.csv("input18.csv") 
 
 # add blank columns to parameters for each of the results 
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
@@ -153,5 +153,5 @@ parameters$avg_firstdaySAV <- RESULT[,11]
 
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output18a.csv",row.names=F) 
+write.csv(parameters,"output18.csv",row.names=F) 
 
