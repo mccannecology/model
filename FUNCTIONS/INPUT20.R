@@ -12,7 +12,7 @@ INPUT20 <- function(x){
   assign("height", parameters$height[simulnumb], pos = 1)  # height of the grid
   assign("width", parameters$width[simulnumb], pos = 1)   # width of the grid
   
-  assign("timesteps", parameters$timesteps[simulnumb], pos = 1)  # number of time-steps (+1, actually) in a "growing season" 
+  assign("days", parameters$days[simulnumb], pos = 1)  # number of days in a "growing season" 
   assign("years", parameters$years[simulnumb], pos = 1)      # number of years ("growing seasons") to run the model 
   
   assign("TOTALN", parameters$TOTALN[simulnumb], pos = 1)  # overall nitrogen concentration (mg/L)
