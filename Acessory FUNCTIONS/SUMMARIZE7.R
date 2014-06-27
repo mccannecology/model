@@ -36,7 +36,7 @@ SAV_plot <- SAV_plot + geom_point(position="jitter",size=3)
 SAV_plot <- SAV_plot + facet_grid(lightlimitation_FP ~ lightlimitation)
 SAV_plot <- SAV_plot + ylim(0,100)
 SAV_plot <- SAV_plot + xlab("Total N (mg/L)")
-SAV_plot <- SAV_plot + ylab(expression(paste("Annual avg. FP cover excl. 1st 3 yr")))
+SAV_plot <- SAV_plot + ylab(expression(paste("Annual avg. SAV cover excl. 1st 3 yr")))
 SAV_plot <- SAV_plot + labs(colour=expression(paste("shadingbyFP")))
 SAV_plot <- SAV_plot + theme_bw(base_size=18)
 SAV_plot
