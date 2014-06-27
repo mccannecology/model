@@ -11,7 +11,6 @@
 
 OUTPUT20 <- function(animate=FALSE,regimethreshold=70){  
   
-  require(animation)
   require(raster)
   
   # save your original working directory
@@ -30,6 +29,8 @@ OUTPUT20 <- function(animate=FALSE,regimethreshold=70){
   ############## animated plotting - package animate ###########
   ##############################################################
   if (animate == TRUE){
+    require(animation)
+    
     saveHTML({
       
       ani.options(interval=0.2, nmax=(timesteps+1),verbose=FALSE)
@@ -93,50 +94,7 @@ OUTPUT20 <- function(animate=FALSE,regimethreshold=70){
   plot(raster(LIST[[timesteps-1]]$SAV),main="SAV Final")
   plot(raster(LIST[[timesteps-1]]$FPtotal),main="All FP species Final")
   dev.off()
-  
-  #####################################################################################  
-  ############### Plot total biomass of all species through time - GGPLOT2 ############
-  #####################################################################################
-  require(ggplot2)
-  require(reshape2)
-  
-  # creates a blank data frame where this all will go 
-  data_biomass_total<-NULL
-  data_biomass_total<-as.data.frame(data_biomass_total)
-  
-  # for each timestep, for each species, assign the popl. size to the appropriate position in data_biomass_total
-  
-  
-  for (i in 1:(timesteps+1)) { 
-    data_biomass_total[i,1]<-sum(LIST[[i]]$SAV)
-    data_biomass_total[i,2]<-sum(LIST[[i]]$FPtotal)
-    for (j in 1:length(LIST[[i]]$FP)){
-      data_biomass_total[i,j+2]<-sum(LIST[[i]]$FP[[j]])
-    }
-  }
     
-  # generate a vector of ("species1","species2",etc.) - to use for naming your columns 
-  names<-c("SAV","All_FP")
-  for (n in 1:numbFPspecies){
-    names<-append(names, paste("FP_0",n,sep="",collapse=""))
-  }
-  
-  # assign that vector to the column names of your dataframe 
-  names(data_biomass_total)<-names
-  
-  # add time to your dataframe 
-  time <- seq(1,timesteps+1,1)
-  data_biomass_total<-cbind(time,data_biomass_total)
-  
-  #reshape your data 1st before trying ggplot2 
-  data_biomass_total_melt <- melt(data_biomass_total,id.vars="time")
-  
-  ggplot(data_biomass_total_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("total biomass (g)")
-  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," total biomass", ".jpg", sep=""),width=11,height=8,units="in")
-  
-  
-  
-  
   #####################################################################################  
   ##### Plot average biomass (by cell) of all species through time - GGPLOT2 ##########
   #####################################################################################
@@ -298,10 +256,7 @@ OUTPUT20 <- function(animate=FALSE,regimethreshold=70){
 
   data_cover$year <- year # add year to your dataframe 
   data_cover$day <- c(rep(seq(1,days+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
-  
-  data_biomass_total$year <- year # add year to your dataframe 
-  data_biomass_total$day <- c(rep(seq(1,days+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
- 
+   
   data_biomass_avg$year <- year # add year to your dataframe 
   data_biomass_avg$day <- c(rep(seq(1,days+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
   
@@ -315,10 +270,6 @@ OUTPUT20 <- function(animate=FALSE,regimethreshold=70){
   # ***Maximum*** floating plant ***cover*** for all time steps in each year 
   maxFPcover <- aggregate(data_cover$All_FP,list(year=data_cover$year),max) 
   colnames(maxFPcover)[2] <- "maxFPcover"
-  
-  # ***Average*** total floating plant ***biomass*** for all time steps in each year 
-  avgtotFPbiomass <- aggregate(data_biomass_total$All_FP,list(year=data_biomass_total$year),mean) 
-  colnames(avgtotFPbiomass)[2] <- "avgtotFPbiomass"
   
   # ***Average*** average floating plant ***biomass*** by cell for all time steps in each year 
   avgavgFPbiomass <- aggregate(data_biomass_avg$All_FP,list(year=data_biomass_avg$year),mean) 
@@ -334,10 +285,6 @@ OUTPUT20 <- function(animate=FALSE,regimethreshold=70){
   # ***Maximum*** submerged plant ***cover*** for all time steps in each year 
   maxSAVcover <- aggregate(data_cover$SAV,list(year=data_cover$year),max) 
   colnames(maxSAVcover)[2] <- "maxSAVcover"
-  
-  # ***Average*** submerged plant ***biomass*** for all time steps in each year 
-  avgtotSAVbiomass <- aggregate(data_biomass_total$SAV,list(year=data_biomass_total$year),mean) 
-  colnames(avgtotSAVbiomass)[2] <- "avgtotSAVbiomass"
   
   # ***Average*** average floating plant ***biomass*** by cell for all time steps in each year 
   avgavgSAVbiomass <- aggregate(data_biomass_avg$SAV,list(year=data_biomass_avg$year),mean) 
@@ -373,7 +320,7 @@ OUTPUT20 <- function(animate=FALSE,regimethreshold=70){
   firstdayFP[j+1] <- NA # add an NA for the first day of the last year (years+1)
   
   # this is ugly, but i need this to be in a dataframe with years and firstdayFP
-  firstdayFP <- cbind(avgtotFPbiomass[,-2],firstdayFP)
+  firstdayFP <- cbind(avgavgFPbiomass[,-2],firstdayFP)
   colnames(firstdayFP)[1] <- "year"
   
   #######
@@ -406,7 +353,7 @@ OUTPUT20 <- function(animate=FALSE,regimethreshold=70){
   firstdaySAV[j+1] <- NA # add an NA for the first day of the last year (years+1)
   
   # this is ugly, but i need this to be in a dataframe with years and firstdaySAV
-  firstdaySAV <- cbind(avgtotSAVbiomass[,-2],firstdaySAV)
+  firstdaySAV <- cbind(avgavgSAVbiomass[,-2],firstdaySAV)
   colnames(firstdaySAV)[1] <- "year"
   
   
@@ -416,16 +363,14 @@ OUTPUT20 <- function(animate=FALSE,regimethreshold=70){
                                 merge(maxFPcover,
                                       merge(avgSAVcover,
                                             merge(maxSAVcover,
-                                                  merge(avgtotFPbiomass,
-                                                        merge(avgtotSAVbiomass,
-                                                            merge(numb_daysFP,
-                                                                merge(prop_daysFP,
-                                                                    merge(firstdayFP,
-                                                                          merge(numb_daysSAV,
-                                                                                merge(prop_daysSAV,
-                                                                                    merge(firstdaySAV,
-                                                                                      merge(avgavgFPbiomass,avgavgSAVbiomass,
-                                                                                          )))))))))))))
+                                                merge(numb_daysFP,
+                                                    merge(prop_daysFP,
+                                                        merge(firstdayFP,
+                                                              merge(numb_daysSAV,
+                                                                    merge(prop_daysSAV,
+                                                                        merge(firstdaySAV,
+                                                                          merge(avgavgFPbiomass,avgavgSAVbiomass,
+                                                                              )))))))))))
     
   # save it 
   write.csv(data_summary_by_year,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)
