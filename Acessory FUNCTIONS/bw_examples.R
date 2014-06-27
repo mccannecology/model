@@ -13,17 +13,31 @@ sapply(LIST,function(x){
 
 # profiling a function
 Rprof(tmp <- tempfile())
-source("RUNITALL5.R")
+source("RUNITALL20.R")
 Rprof()
 summaryRprof(tmp)
 unlink(tmp)
 
+# profiling a function
+Rprof("temp.out")
+source("RUNITALL20.R")
+Rprof()
+summaryRprof("temp.out")
 
-Rprof(tmp <- tempfile())
+# profiling a function
+Rprof("temp.out")
 source("testfunction.R")
 Rprof()
+summaryRprof("temp.out")
+
+Rprof(tmp <- tempfile())
+a<-testfunction()
+Rprof()
 summaryRprof(tmp)
 unlink(tmp)
+
+
+
 
 
 

@@ -32,7 +32,7 @@
 totalsimuls <- 1
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input18.csv")
+parameters <- read.csv("input18.csv")[1,]
 
 # add blank columns to parameters for each of the results 
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
@@ -76,7 +76,6 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   speciesmatrix <- SPECIES20(simulnumb) # function that builds the dataframe of species-specific parameters that is used in STEPX()
   
   # define couple of things in the environment that get used in STEPX() and OUTPUT()
-  # totaltime <- 1+(timesteps+1)*years # total length of time - used in OUTPUT() plotting
   timesteps<-years*(days+1) # this will need to change b/c of overwintering 
   winters <- (days+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters - used in STEPX()
   
@@ -97,12 +96,15 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
     today<-tomorrow
     
     # Plot as you go (slows it down)
-    par(mfrow=c(2,1))
-    plot(raster(LIST[[t]]$SAV),main=paste("SAV","Timestep:",t,sep=" "))
-    plot(raster(LIST[[t]]$FPtotal),main=paste("All FP species"))
+    # par(mfrow=c(2,1))
+    # plot(raster(LIST[[t]]$SAV),main=paste("SAV","Timestep:",t,sep=" "))
+    # plot(raster(LIST[[t]]$FPtotal),main=paste("All FP species"))
   }    
   
-  OUTPUT5(threshold=70) # generates graphs - if you want .html animation you must specify animate=TRUE, set "FP regime" threshold here too 
+  # generates graphs
+  # if you want .html animation you must specify animate=TRUE
+  # set "FP regime" threshold here  
+  OUTPUT20(animate=FALSE,regimethreshold=70) 
   
   # RESULTS[simulnumb,1] <- propyears_avgFPcover_abovethreshold # assign the current simulations results to the correct spot
   # RESULTS[simulnumb,2] <- propyears_prop_daysFP_abovehalf # assign the current simulations results to the correct spot
