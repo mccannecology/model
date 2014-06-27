@@ -11,15 +11,15 @@
 MOVE_SAV20 <- function(x1,full_threshold=150) { 
   
   # testing some subsetting options
-  LIST[[1]]$SAV # whole matrix 
-  LIST[[1]]$SAV[LIST[[1]]$SAV>=minthresholdtomoveSAV] # all above a threshold 
-  LIST[[1]]$SAV[height,] # bottom row
-  LIST[[1]]$SAV[1,] # top row
-  LIST[[1]]$SAV[width,] # last column
-  LIST[[1]]$SAV[width,,drop=FALSE] # last column, w/ index (but does not know it's last column) 
-  LIST[[1]]$SAV[,1] # first column
-  LIST[[1]]$SAV[,1] <- 1 # assign first column a value 
-  subset(LIST[[1]]$SAV, LIST[[1]]$SAV>=minthresholdtomoveSAV)
+  # LIST[[1]]$SAV # whole matrix 
+  # LIST[[1]]$SAV[LIST[[1]]$SAV>=minthresholdtomoveSAV] # all above a threshold 
+  # LIST[[1]]$SAV[height,] # bottom row
+  # LIST[[1]]$SAV[1,] # top row
+  # LIST[[1]]$SAV[width,] # last column
+  # LIST[[1]]$SAV[width,,drop=FALSE] # last column, w/ index (but does not know it's last column) 
+  # LIST[[1]]$SAV[,1] # first column
+  # LIST[[1]]$SAV[,1] <- 1 # assign first column a value 
+  # subset(LIST[[1]]$SAV, LIST[[1]]$SAV>=minthresholdtomoveSAV)
     
   for (j in 1:height) { # loop over all rows (height)
     for (k in 1:width) { # loop over all columns (width)
