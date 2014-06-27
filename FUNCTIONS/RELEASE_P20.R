@@ -11,7 +11,7 @@
 # Updated: 4/2014                     #
 #######################################
 
-RELEASE_P2 <- function(x,i) {
+RELEASE_P20 <- function(x,i) {
   # newbiomass <- sum(x[[i+1]]$SPALLmatrix-x[[i]]$SPALLmatrix) + # new biomass that grew during the last year 
   #               sum(x[[i+1]]$SPALLmatrix-x[[i]]$SPALLmatrix)
   # reset nutrient to something lower than initial value 
