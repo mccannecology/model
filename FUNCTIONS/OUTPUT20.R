@@ -9,10 +9,7 @@
 # Last Updated: 4/2014                                  #
 ######################################################### 
 
-OUTPUT5 <- function(animate=FALSE,threshold){  
-  
-  # assign the regimthreshold input value to the working environment for this function 
-  regimethreshold <- threshold
+OUTPUT20 <- function(animate=FALSE,regimethreshold=70){  
   
   require(animation)
   require(raster)
@@ -35,10 +32,10 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   if (animate == TRUE){
     saveHTML({
       
-      ani.options(interval=0.2, nmax=(1+(timesteps+1)*years),verbose=FALSE)
+      ani.options(interval=0.2, nmax=(timesteps+1),verbose=FALSE)
       
-      for(i in 1:(1+(timesteps+1)*years)) { # loop through time steps
-        plot(raster(LIST[[i]]$FPALLmatrix),main=paste("Floating Plants ","Timestep ",i,sep=""))
+      for(i in 1:(timesteps+1)) { # loop through time steps
+        plot(raster(LIST[[i]]$FPtotal),main=paste("Floating Plants ","Timestep ",i,sep=""))
         ani.pause()
       }
     },
@@ -47,10 +44,10 @@ OUTPUT5 <- function(animate=FALSE,threshold){
     
     saveHTML({
       
-      ani.options(interval=0.2, nmax=(1+(timesteps+1)*years),verbose=FALSE)
+      ani.options(interval=0.2, nmax=(timesteps+1),verbose=FALSE)
       
-      for(i in 1:(1+(timesteps+1)*years)) { # loop through time steps
-        plot(raster(LIST[[i]]$SAVmatrix),main=paste("Submerged plants ","Timestep ",i,sep=""))
+      for(i in 1:(timesteps+1)) { # loop through time steps
+        plot(raster(LIST[[i]]$SAV),main=paste("Submerged plants ","Timestep ",i,sep=""))
              ani.pause()
       }
     },
@@ -65,18 +62,18 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   jet.colors = colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan", "#7FFF7F",
                                   "yellow", "#FF7F00", "red", "#7F0000")) # define "jet" palette
   
-  image = array(0, c(height, width, (1+(timesteps+1)*years)))
+  image = array(0, c(height, width, (timesteps+1)))
   
-  for(i in 1:(1+(timesteps+1)*years)) image[,,i] = LIST[[i]]$FPALLmatrix
+  for(i in 1:(timesteps+1)) image[,,i] = LIST[[i]]$FPtotal
   
   write.gif(image, filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," FP animate", ".gif", sep=""), 
             scale="always", col="jet.colors")  
   
   rm(image)
   
-  image = array(0, c(height, width, (1+(timesteps+1)*years)))
+  image = array(0, c(height, width, (timesteps+1)))
   
-  for(i in 1:(1+(timesteps+1)*years)) image[,,i] = LIST[[i]]$SAVmatrix
+  for(i in 1:(timesteps+1)) image[,,i] = LIST[[i]]$SAV
   
   write.gif(image, filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," SAV animate", ".gif", sep=""), 
             scale="always", col="jet.colors")  
@@ -89,54 +86,75 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   # new plotting: zlim should set the constant scale 
   jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshots", ".jpg", sep=""),width=11,height=8,units="in",res=300)
   par(mfrow=c(3,2))
-  plot(raster(LIST[[1]]$SAVmatrix),main="SAV Initial")
-  plot(raster(LIST[[1]]$FPALLmatrix),main="All FP species Initial")
-  plot(raster(LIST[[(timesteps*years)/2]]$SAVmatrix),main="SAV Midpoint")
-  plot(raster(LIST[[(timesteps*years)/2]]$FPALLmatrix),main="All FP species Midpoint")
-  plot(raster(LIST[[(timesteps*years)-1]]$SAVmatrix),main="SAV Final")
-  plot(raster(LIST[[(timesteps*years)-1]]$FPALLmatrix),main="All FP species Final")
+  plot(raster(LIST[[1]]$SAV),main="SAV Initial")
+  plot(raster(LIST[[1]]$FPtotal),main="All FP species Initial")
+  plot(raster(LIST[[timesteps/2]]$SAV),main="SAV Midpoint")
+  plot(raster(LIST[[timesteps/2]]$FPtotal),main="All FP species Midpoint")
+  plot(raster(LIST[[timesteps-1]]$SAV),main="SAV Final")
+  plot(raster(LIST[[timesteps-1]]$FPtotal),main="All FP species Final")
   dev.off()
   
   #####################################################################################  
-  ############### Plot biomass of all species through time - GGPLOT2 ##################
+  ############### Plot total biomass of all species through time - GGPLOT2 ############
   #####################################################################################
   require(ggplot2)
   require(reshape2)
   
   # creates a blank data frame where this all will go 
-  data_biomass<-NULL
-  data_biomass<-as.data.frame(data_biomass)
+  data_biomass_total<-NULL
+  data_biomass_total<-as.data.frame(data_biomass_total)
   
-  # for each timestep, for each species, assign the popl. size to the appropriate position in data_biomass
+  # for each timestep, for each species, assign the popl. size to the appropriate position in data_biomass_total
   
-  ### modify here with a if speciesnumb == 4
   
-  for (i in 1:(1+(timesteps+1)*years)) { 
-    if (numbFPspecies == 4) { 
-      data_biomass[i,1]<-sum(LIST[[i]]$SAVmatrix)
-      data_biomass[i,2]<-sum(LIST[[i]]$FPALLmatrix)
-      data_biomass[i,3]<-sum(LIST[[i]]$FP1matrix)
-      data_biomass[i,4]<-sum(LIST[[i]]$FP2matrix)
-      data_biomass[i,5]<-sum(LIST[[i]]$FP3matrix)
-      data_biomass[i,6]<-sum(LIST[[i]]$FP4matrix)
+  for (i in 1:(timesteps+1)) { 
+    data_biomass_total[i,1]<-sum(LIST[[i]]$SAV)
+    data_biomass_total[i,2]<-sum(LIST[[i]]$FPtotal)
+    for (j in 1:length(LIST[[i]]$FP)){
+      data_biomass_total[i,j+2]<-sum(LIST[[i]]$FP[[j]])
     }
-    else if (numbFPspecies == 3) {
-      data_biomass[i,1]<-sum(LIST[[i]]$SAVmatrix)
-      data_biomass[i,2]<-sum(LIST[[i]]$FPALLmatrix)
-      data_biomass[i,3]<-sum(LIST[[i]]$FP1matrix)
-      data_biomass[i,4]<-sum(LIST[[i]]$FP2matrix)
-      data_biomass[i,5]<-sum(LIST[[i]]$FP3matrix)
-    }
-    else if (numbFPspecies == 2) {
-      data_biomass[i,1]<-sum(LIST[[i]]$SAVmatrix)
-      data_biomass[i,2]<-sum(LIST[[i]]$FPALLmatrix)
-      data_biomass[i,3]<-sum(LIST[[i]]$FP1matrix)
-      data_biomass[i,4]<-sum(LIST[[i]]$FP2matrix)
-    }
-    else if (numbFPspecies == 1) {
-      data_biomass[i,1]<-sum(LIST[[i]]$SAVmatrix)
-      data_biomass[i,2]<-sum(LIST[[i]]$FPALLmatrix)
-      data_biomass[i,3]<-sum(LIST[[i]]$FP1matrix)
+  }
+    
+  # generate a vector of ("species1","species2",etc.) - to use for naming your columns 
+  names<-c("SAV","All_FP")
+  for (n in 1:numbFPspecies){
+    names<-append(names, paste("FP_0",n,sep="",collapse=""))
+  }
+  
+  # assign that vector to the column names of your dataframe 
+  names(data_biomass_total)<-names
+  
+  # add time to your dataframe 
+  time <- seq(1,timesteps+1,1)
+  data_biomass_total<-cbind(time,data_biomass_total)
+  
+  #reshape your data 1st before trying ggplot2 
+  data_biomass_total_melt <- melt(data_biomass_total,id.vars="time")
+  
+  ggplot(data_biomass_total_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("total biomass (g)")
+  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," total biomass", ".jpg", sep=""),width=11,height=8,units="in")
+  
+  
+  
+  
+  #####################################################################################  
+  ##### Plot average biomass (by cell) of all species through time - GGPLOT2 ##########
+  #####################################################################################
+  require(ggplot2)
+  require(reshape2)
+  
+  # creates a blank data frame where this all will go 
+  data_biomass_avg<-NULL
+  data_biomass_avg<-as.data.frame(data_biomass_avg)
+  
+  # for each timestep, for each species, assign the popl. size to the appropriate position in data_biomass_avg
+  
+  
+  for (i in 1:(timesteps+1)) { 
+    data_biomass_avg[i,1]<-mean(LIST[[i]]$SAV)
+    data_biomass_avg[i,2]<-mean(LIST[[i]]$FPtotal)
+    for (j in 1:length(LIST[[i]]$FP)){
+      data_biomass_avg[i,j+2]<-mean(LIST[[i]]$FP[[j]])
     }
   }
   
@@ -147,19 +165,18 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   }
   
   # assign that vector to the column names of your dataframe 
-  names(data_biomass)<-names
+  names(data_biomass_avg)<-names
   
   # add time to your dataframe 
-  data_biomass$time <- seq(1,1+(timesteps+1)*years,1)
+  time <- seq(1,timesteps+1,1)
+  data_biomass_avg<-cbind(time,data_biomass_avg)
   
   #reshape your data 1st before trying ggplot2 
-  data_biomass_melt <- melt(data_biomass,id.vars="time")
+  data_biomass_avg_melt <- melt(data_biomass_avg,id.vars="time")
   
-  ggplot(data_biomass_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("total biomass (g)")
-  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," biomass", ".jpg", sep=""),width=11,height=8,units="in")
-  
-  # dev.off()
-  
+  ggplot(data_biomass_avg_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("average biomass (g/sq.mm)")
+  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," average biomass", ".jpg", sep=""),width=11,height=8,units="in")
+    
   #################################################################
   ############# Plot % cover through time - GGPLOT2 ###############
   #################################################################
@@ -168,104 +185,23 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   data_cover<-as.data.frame(data_cover)
   
   # for each timestep, for each species, assign the percent cover to the appropriate position in data_cover
-  for (i in 1:(1+(timesteps+1)*years)) { 
-    if (numbFPspecies == 4) { 
-      for (j in 1:height) { # loop over all rows (height)
-        for (k in 1:width) { # loop over all columns (width) 
-          if (LIST[[i]]$SAVmatrix[j,k] > 100) {
-            LIST[[i]]$SAVmatrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FPALLmatrix[j,k] > 100) {
-            LIST[[i]]$FPALLmatrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FP1matrix[j,k] > 100) {
-            LIST[[i]]$FP1matrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FP2matrix[j,k] > 100) {
-            LIST[[i]]$FP2matrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FP3matrix[j,k] > 100) {
-            LIST[[i]]$FP3matrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FP4matrix[j,k] > 100) {
-            LIST[[i]]$FP4matrix[j,k] <- 100
-          }
+  for (i in 1:(timesteps+1)) { 
+    for (j in 1:height) { # loop over all rows (height)
+      for (k in 1:width) { # loop over all columns (width) 
+        
+        if (LIST[[i]]$SAV[j,k] > 100) {LIST[[i]]$SAV[j,k] <- 100}
+        data_cover[i,1]<-mean(LIST[[i]]$SAV)
+        
+        if (LIST[[i]]$FPtotal[j,k] > 100) {LIST[[i]]$FPtotal[j,k] <- 100}
+        data_cover[i,2]<-mean(LIST[[i]]$FPtotal)
+        
+        for (m in 1:length(LIST[[i]]$FP)){
+          if (LIST[[i]]$FP[[m]][j,k] > 100) {LIST[[i]]$FP[[m]][j,k] <- 100}
+          data_cover[i,m+2]<-mean(LIST[[i]]$FP[[m]])      
         }
       }
-      data_cover[i,1]<-mean(LIST[[i]]$SAVmatrix)
-      data_cover[i,2]<-mean(LIST[[i]]$FPALLmatrix)
-      data_cover[i,3]<-mean(LIST[[i]]$FP1matrix)
-      data_cover[i,4]<-mean(LIST[[i]]$FP2matrix)
-      data_cover[i,5]<-mean(LIST[[i]]$FP3matrix)
-      data_cover[i,6]<-mean(LIST[[i]]$FP4matrix)
     }
-    else if (numbFPspecies == 3) {
-      for (j in 1:height) { # loop over all rows (height)
-        for (k in 1:width) { # loop over all columns (width) 
-          if (LIST[[i]]$SAVmatrix[j,k] > 100) {
-            LIST[[i]]$SAVmatrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FPALLmatrix[j,k] > 100) {
-            LIST[[i]]$FPALLmatrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FP1matrix[j,k] > 100) {
-            LIST[[i]]$FP1matrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FP2matrix[j,k] > 100) {
-            LIST[[i]]$FP2matrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FP3matrix[j,k] > 100) {
-            LIST[[i]]$FP3matrix[j,k] <- 100
-          }
-        }
-      }
-      data_cover[i,1]<-mean(LIST[[i]]$SAVmatrix)
-      data_cover[i,2]<-mean(LIST[[i]]$FPALLmatrix)
-      data_cover[i,3]<-mean(LIST[[i]]$FP1matrix)
-      data_cover[i,4]<-mean(LIST[[i]]$FP2matrix)
-      data_cover[i,5]<-mean(LIST[[i]]$FP3matrix)
-    }
-    else if (numbFPspecies == 2) {
-      for (j in 1:height) { # loop over all rows (height)
-        for (k in 1:width) { # loop over all columns (width) 
-          if (LIST[[i]]$SAVmatrix[j,k] > 100) {
-            LIST[[i]]$SAVmatrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FPALLmatrix[j,k] > 100) {
-            LIST[[i]]$FPALLmatrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FP1matrix[j,k] > 100) {
-            LIST[[i]]$FP1matrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FP2matrix[j,k] > 100) {
-            LIST[[i]]$FP2matrix[j,k] <- 100
-          }
-        }
-      }
-      data_cover[i,1]<-mean(LIST[[i]]$SAVmatrix)
-      data_cover[i,2]<-mean(LIST[[i]]$FPALLmatrix)
-      data_cover[i,3]<-mean(LIST[[i]]$FP1matrix)
-      data_cover[i,4]<-mean(LIST[[i]]$FP2matrix)
-    }
-    else if (numbFPspecies == 1) {
-      for (j in 1:height) { # loop over all rows (height)
-        for (k in 1:width) { # loop over all columns (width) 
-          if (LIST[[i]]$SAVmatrix[j,k] > 100) {
-            LIST[[i]]$SAVmatrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FPALLmatrix[j,k] > 100) {
-            LIST[[i]]$FPALLmatrix[j,k] <- 100
-          }
-          if (LIST[[i]]$FP1matrix[j,k] > 100) {
-            LIST[[i]]$FP1matrix[j,k] <- 100
-          }
-        }
-      }
-      data_cover[i,1] <- mean(LIST[[i]]$SAVmatrix)
-      data_cover[i,2] <- mean(LIST[[i]]$FPALLmatrix)
-      data_cover[i,3] <- mean(LIST[[i]]$FP1matrix)
-    }
-  }
+  } # ends for loop through time steps 
   
   # generate a vector of ("species1","species2",etc.) - to use for naming your columns 
   names<-c("SAV","All_FP")
@@ -277,7 +213,8 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   names(data_cover)<-names
     
   # add time to your dataframe 
-  data_cover$time <- seq(1,1+(timesteps+1)*years,1)
+  time <- seq(1,timesteps+1,1)
+  data_cover<-cbind(time,data_cover)
   
   # reshape your data 1st before trying ggplot2 
   data_cover_melt <- melt(data_cover,id.vars="time")
@@ -295,21 +232,22 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   data_nutrients<-as.data.frame(data_nutrients)
   
   # for each timestep, for each species, assign the percent cover to the appropriate position in data_nutrients
-  for (i in 1:(1+(timesteps+1)*years)) { 
+  for (i in 1:(timesteps+1)) { 
     data_nutrients[i,1]<-LIST[[i]]$TOTALN
     data_nutrients[i,2]<-LIST[[i]]$TOTALP
   }
+    
+  # add time to your dataframe 
+  time <- seq(1,(timesteps+1),1)
+  data_nutrients<-cbind(time,data_nutrients)
   
   # assign the correct names to the column names of your dataframe 
-  names(data_nutrients)<-c("TOTAL_N","TOTAL_P")
-  
-  # add time to your dataframe 
-  data_nutrients$time <- seq(1,1+(timesteps+1)*years,1)
+  names(data_nutrients)<-c("time","Total N","Total P")
   
   # reshape your data 1st before trying ggplot2 
   data_nutrients_melt <- melt(data_nutrients,id.vars="time")
   
-  ggplot(data_nutrients_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("concentration(mg/L)")
+  ggplot(data_nutrients_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("nutrient concentration(mg/L)")
   ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," nutrients", ".jpg", sep=""),width=11,height=8,units="in")
   
   # dev.off()
@@ -322,21 +260,22 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   data_cell_occupancy<-as.data.frame(data_cell_occupancy)
   
   # for each timestep, count up how many cells are occupied (at any biomass/cover level)
-  for (i in 1:(1+(timesteps+1)*years)) { 
-    data_cell_occupancy[i,1] <- length(LIST[[i]]$SAVmatrix[LIST[[i]]$SAVmatrix > 0])
-    data_cell_occupancy[i,2] <- length(LIST[[i]]$FPALLmatrix[LIST[[i]]$FPALLmatrix > 0])
-    data_cell_occupancy[i,3] <- (length(LIST[[i]]$SAVmatrix[LIST[[i]]$SAVmatrix > 0]) / (height*width)) * 100
-    data_cell_occupancy[i,4] <- (length(LIST[[i]]$FPALLmatrix[LIST[[i]]$FPALLmatrix > 0]) / (height*width)) * 100
+  for (i in 1:(timesteps+1)) { 
+    data_cell_occupancy[i,1] <- length(LIST[[i]]$SAV[LIST[[i]]$SAV > 0])
+    data_cell_occupancy[i,2] <- length(LIST[[i]]$FPtotal[LIST[[i]]$FPtotal > 0])
+    data_cell_occupancy[i,3] <- (length(LIST[[i]]$SAV[LIST[[i]]$SAV > 0]) / (height*width)) * 100
+    data_cell_occupancy[i,4] <- (length(LIST[[i]]$FPtotal[LIST[[i]]$FPtotal > 0]) / (height*width)) * 100
   }
+    
+  # add time to your dataframe 
+  time <- seq(1,(timesteps+1),1)
+  data_cell_occupancy <- cbind(time,data_cell_occupancy)
   
   # generate a vector for naming your columns 
-  names<-c("numb_cells_occup_SAV","numb_cells_occup_FP","perc_cells_occup_SAV","perc_cells_occup_FP")
+  names<-c("time","# cells occupied - SAV","# cells occupied - FP","% cells occupied - SAV","% cells occupied - FP")
   
   # assign that vector to the column names of your dataframe 
   names(data_cell_occupancy)<-names
-  
-  # add time to your dataframe 
-  data_cell_occupancy$time <- seq(1,1+(timesteps+1)*years,1)
   
   # reshape your data 1st before trying ggplot2 
   data_cell_occupancy_melt <- melt(data_cell_occupancy,id.vars="time")
@@ -354,15 +293,18 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   # Set up data frames to hold summary statistics 
   # make a vector of "year"
   year <- NULL
-  for (i in 1:years){year <- append(year,rep(i,timesteps+1))}
+  for (i in 1:years){year <- append(year,rep(i,days+1))}
   year <- append(year, i+1) # this is for the first day of the next year 
 
   data_cover$year <- year # add year to your dataframe 
-  data_cover$day <- c(rep(seq(1,timesteps+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
+  data_cover$day <- c(rep(seq(1,days+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
   
-  data_biomass$year <- year # add year to your dataframe 
-  data_biomass$day <- c(rep(seq(1,timesteps+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
+  data_biomass_total$year <- year # add year to your dataframe 
+  data_biomass_total$day <- c(rep(seq(1,days+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
  
+  data_biomass_avg$year <- year # add year to your dataframe 
+  data_biomass_avg$day <- c(rep(seq(1,days+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
+  
   ######
   # FP #
   ######
@@ -374,9 +316,13 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   maxFPcover <- aggregate(data_cover$All_FP,list(year=data_cover$year),max) 
   colnames(maxFPcover)[2] <- "maxFPcover"
   
-  # ***Average*** floating plant ***biomass*** for all time steps in each year 
-  avgFPbiomass <- aggregate(data_biomass$All_FP,list(year=data_biomass$year),mean) 
-  colnames(avgFPbiomass)[2] <- "avgFPbiomass"
+  # ***Average*** total floating plant ***biomass*** for all time steps in each year 
+  avgtotFPbiomass <- aggregate(data_biomass_total$All_FP,list(year=data_biomass_total$year),mean) 
+  colnames(avgtotFPbiomass)[2] <- "avgtotFPbiomass"
+  
+  # ***Average*** average floating plant ***biomass*** by cell for all time steps in each year 
+  avgavgFPbiomass <- aggregate(data_biomass_avg$All_FP,list(year=data_biomass_avg$year),mean) 
+  colnames(avgavgFPbiomass)[2] <- "avgavgFPbiomass"
   
   #######
   # SAV #
@@ -390,8 +336,12 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   colnames(maxSAVcover)[2] <- "maxSAVcover"
   
   # ***Average*** submerged plant ***biomass*** for all time steps in each year 
-  avgSAVbiomass <- aggregate(data_biomass$SAV,list(year=data_biomass$year),mean) 
-  colnames(avgSAVbiomass)[2] <- "avgSAVbiomass"
+  avgtotSAVbiomass <- aggregate(data_biomass_total$SAV,list(year=data_biomass_total$year),mean) 
+  colnames(avgtotSAVbiomass)[2] <- "avgtotSAVbiomass"
+  
+  # ***Average*** average floating plant ***biomass*** by cell for all time steps in each year 
+  avgavgSAVbiomass <- aggregate(data_biomass_avg$SAV,list(year=data_biomass_avg$year),mean) 
+  colnames(avgavgSAVbiomass)[2] <- "avgavgSAVbiomass"
   
   ######
   # FP #
@@ -405,7 +355,7 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   
   # ***Proportion*** of days each year that the waterbody is above a treshold value of All_FP
   apply.fun <- function(x) {
-    sum((x > regimethreshold)/timesteps)
+    sum((x > regimethreshold)/days)
   }
   prop_daysFP <- aggregate(data_cover$All_FP,list(year=data_cover$year),apply.fun) 
   colnames(prop_daysFP)[2] <- "prop_daysFP"
@@ -423,7 +373,7 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   firstdayFP[j+1] <- NA # add an NA for the first day of the last year (years+1)
   
   # this is ugly, but i need this to be in a dataframe with years and firstdayFP
-  firstdayFP <- cbind(avgFPbiomass[,-2],firstdayFP)
+  firstdayFP <- cbind(avgtotFPbiomass[,-2],firstdayFP)
   colnames(firstdayFP)[1] <- "year"
   
   #######
@@ -438,7 +388,7 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   
   # ***Proportion*** of days each year that the waterbody is above a treshold value of SAV
   apply.fun <- function(x) {
-    sum((x > regimethreshold)/timesteps)
+    sum((x > regimethreshold)/days)
   }
   prop_daysSAV <- aggregate(data_cover$SAV,list(year=data_cover$year),apply.fun) 
   colnames(prop_daysSAV)[2] <- "prop_daysSAV"
@@ -456,7 +406,7 @@ OUTPUT5 <- function(animate=FALSE,threshold){
   firstdaySAV[j+1] <- NA # add an NA for the first day of the last year (years+1)
   
   # this is ugly, but i need this to be in a dataframe with years and firstdaySAV
-  firstdaySAV <- cbind(avgSAVbiomass[,-2],firstdaySAV)
+  firstdaySAV <- cbind(avgtotSAVbiomass[,-2],firstdaySAV)
   colnames(firstdaySAV)[1] <- "year"
   
   
@@ -466,14 +416,16 @@ OUTPUT5 <- function(animate=FALSE,threshold){
                                 merge(maxFPcover,
                                       merge(avgSAVcover,
                                             merge(maxSAVcover,
-                                                  merge(avgFPbiomass,
-                                                        merge(avgSAVbiomass,
+                                                  merge(avgtotFPbiomass,
+                                                        merge(avgtotSAVbiomass,
                                                             merge(numb_daysFP,
                                                                 merge(prop_daysFP,
                                                                     merge(firstdayFP,
                                                                           merge(numb_daysSAV,
-                                                                                merge(prop_daysSAV,firstdaySAV,
-                                                                                          )))))))))))
+                                                                                merge(prop_daysSAV,
+                                                                                    merge(firstdaySAV,
+                                                                                      merge(avgavgFPbiomass,avgavgSAVbiomass,
+                                                                                          )))))))))))))
     
   # save it 
   write.csv(data_summary_by_year,file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," results summary", ".csv", sep=""),row.names=F)
