@@ -1,3 +1,7 @@
+# load workspace for de-bugging 
+# LIST has an initial time step
+# load("testworkspace.Rdata")
+
 STEP20<-function(x,t){
   
   thisstep <- x 

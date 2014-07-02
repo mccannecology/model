@@ -8,6 +8,10 @@
 # Created: MJ McCann 3/22/2014        #
 # Updated: 4/2014                     #
 #######################################
+# load workspace for de-bugging 
+# LIST has an initial time step
+# load("testworkspace.Rdata")
+
 MOVE_SAV20 <- function(x1,full_threshold=150) { 
   
   # testing some subsetting options
