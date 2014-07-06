@@ -1,6 +1,21 @@
+#################################
+# Main function                 #
+# calls GROW(), MOVE(),         #
+# ...WIND(), UPTAKE(), etc.     # 
+#                               #
+# thisstep... LIST[[t]]         #
+# nextstep... LIST[[t+1]]       #
+#                               #
+# returns: nextstep             #
+#                               #
+# updated: 7/6/2014 MJM         #
+#################################
+
+#################################
 # load workspace for de-bugging 
 # LIST has an initial time step
 # load("testworkspace.Rdata")
+#################################
 
 STEP20<-function(x,t){
   
