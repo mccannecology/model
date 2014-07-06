@@ -3,19 +3,25 @@
 # calls GROW(), MOVE(),         #
 # ...WIND(), UPTAKE(), etc.     # 
 #                               #
+# INPUTS:                       #
+# x... LIST[[t]]                #
+# t... timestep                 #
+#                               #
 # thisstep... LIST[[t]]         #
 # nextstep... LIST[[t+1]]       #
 #                               #
-# returns: nextstep             #
+# OUTPUT:                       #
+# nextstep                      #
 #                               #
 # updated: 7/6/2014 MJM         #
 #################################
 
-#################################
+######################################
 # load workspace for de-bugging 
-# LIST has an initial time step
+# LIST has an initial time step only 
+# short (3 yrs, 50 days each)
 # load("testworkspace.Rdata")
-#################################
+######################################
 
 STEP20<-function(x,t){
   
@@ -36,21 +42,31 @@ STEP20<-function(x,t){
     ###########
     # Grow FP #
     ###########  
-    for (i in 1:numbFPspecies) {
-      nextstep$FP[[i]]<-GROW_FP20(thisstep$FP,thisstep$FPtotal,i,thisstep$TOTALP,thisstep$TOTALN) 
+    for (j in 1:numbFPspecies) {
+      nextstep$FP[[j]]<-GROW_FP20(thisstep$FP,thisstep$FPtotal,j,thisstep$TOTALP,thisstep$TOTALN) 
     }
     
     ############
     # Move SAV #
     ############
-    nextstep$SAV <- MOVE_SAV20(nextstep$SAV,full_threshold=150)
-  
+    # raster version of MOVE() 
+    nextstep$SAV <- MOVE_with_raster(nextstep$SAV,neigh_thresh_SAV,focal_thresh_SAV,amnt_colonize_SAV)
+    
+    # old version of MOVE()
+    #nextstep$SAV <- MOVE_SAV20(nextstep$SAV,full_threshold=150)
+    
     ###########
     # Move FP #
     ###########
+    # raster version of MOVE() 
     nextstep$FP <- lapply(nextstep$FP,function(x){
-      MOVE_FP20(x)
+      MOVE_with_raster(x,neigh_thresh_FP,focal_thresh_FP,amnt_colonize_FP)
     })
+    
+    # old version of MOVE()
+    #nextstep$FP <- lapply(nextstep$FP,function(x){
+    #  MOVE_FP20(x)
+    #})
       
     ###########
     # Wind FP #

@@ -9,6 +9,14 @@
 # Last Updated: 4/2014                                  #
 ######################################################### 
 
+########################################
+# load workspace for de-bugging
+#
+# complete LIST 
+# 7 years, 125 days each 
+# load("testworkspace-complete.Rdata")
+########################################
+
 OUTPUT20 <- function(animate=FALSE,regimethreshold=70){  
   
   require(raster)
@@ -140,25 +148,22 @@ OUTPUT20 <- function(animate=FALSE,regimethreshold=70){
   #################################################################
   # creates a blank data frame where this all will go 
   data_cover<-NULL
-  data_cover<-as.data.frame(data_cover)
+  data_cover<-as.data.frame(data_cover)  
   
   # for each timestep, for each species, assign the percent cover to the appropriate position in data_cover
   for (i in 1:(timesteps+1)) { 
-    for (j in 1:height) { # loop over all rows (height)
-      for (k in 1:width) { # loop over all columns (width) 
-        
-        if (LIST[[i]]$SAV[j,k] > 100) {LIST[[i]]$SAV[j,k] <- 100}
-        data_cover[i,1]<-mean(LIST[[i]]$SAV)
-        
-        if (LIST[[i]]$FPtotal[j,k] > 100) {LIST[[i]]$FPtotal[j,k] <- 100}
-        data_cover[i,2]<-mean(LIST[[i]]$FPtotal)
-        
-        for (m in 1:length(LIST[[i]]$FP)){
-          if (LIST[[i]]$FP[[m]][j,k] > 100) {LIST[[i]]$FP[[m]][j,k] <- 100}
-          data_cover[i,m+2]<-mean(LIST[[i]]$FP[[m]])      
-        }
-      }
+
+    LIST[[i]]$SAV[LIST[[i]]$SAV > 100] <- 100
+    data_cover[i,1]<-mean(LIST[[i]]$SAV)
+    
+    LIST[[i]]$FPtotal[LIST[[i]]$FPtotal > 100] <- 100
+    data_cover[i,2]<-mean(LIST[[i]]$FPtotal)
+    
+    for (m in 1:length(LIST[[i]]$FP)){
+      LIST[[i]]$FP[[m]][LIST[[i]]$FP[[m]] > 100] <- 100
+      data_cover[i,m+2]<-mean(LIST[[i]]$FP[[m]])      
     }
+      
   } # ends for loop through time steps 
   
   # generate a vector of ("species1","species2",etc.) - to use for naming your columns 

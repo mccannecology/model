@@ -12,7 +12,6 @@
 # Includes an overwintering step, where there is a large die-off of individuals 
 #
 # TO DO:
-# add WIND() 
 # Modify shape of the waterbody (non-rectangular)
 #
 # Print parameter value labels on outputs (.gif or .jpg files)
@@ -28,11 +27,23 @@
 # Does the order of evaluting individuals in MOVE() matter? (i.e., center vs. UL corner vs. UR corner, etc.) - probably not b/c don't require empty cell 
 # 
 ########################################################################################################
-# Enter your total number of simulations - should be same as # rows in "inputXX.csv"
-totalsimuls <- 1980
+
+########################################
+# load workspace for de-bugging
+# 
+# # load("testworkspace.Rdata")
+# LIST has an initial time step only 
+# short (3 yrs, 50 days each)
+#
+# complete LIST 
+# 7 years, 125 days each 
+# load("testworkspace-complete.Rdata")
+########################################
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input19.csv")
+parameters <- read.csv("input20.csv")
+
+totalsimuls <- nrow(parameters)
 
 # add blank columns to parameters for each of the results 
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
@@ -59,7 +70,7 @@ sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE)
 
 #  assigns the functions to the global environments of each node
 clusterExport(cl, c("BLANK20", "GROW_SAV20", "GROW_FP20", 
-                    "INPUT20","MOVE_FP20","MOVE_SAV20",
+                    "INPUT20","MOVE_with_raster",
                     "OUTPUT20","OVERWINTER20","RELEASE_N20",
                     "RELEASE_P20","SPECIES20","START20",
                     "STEP20","UPTAKE_N20","UPTAKE_P20","WIND20"))
@@ -169,5 +180,5 @@ parameters$avg_firstdaySAV <- RESULT[,11]
 
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output19.csv",row.names=F) 
+write.csv(parameters,"output20.csv",row.names=F) 
 

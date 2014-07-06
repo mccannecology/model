@@ -21,13 +21,13 @@ INPUT20 <- function(x){
   assign("lossSAV", parameters$lossSAV[simulnumb], pos = 1)  # "losses" - respiration & various sources of mortality 
   assign("lossFP", parameters$lossFP[simulnumb], pos = 1)  # "losses" - respiration & various sources of mortality 
   
-  assign("minthresholdtomoveSAV", parameters$minthresholdtomoveSAV[simulnumb], pos = 1)  # min threshold value - above this biomass and plants start moving 
-  assign("maxthresholdtomoveSAV", parameters$maxthresholdtomoveSAV[simulnumb], pos = 1)  # max threshold value - above this biomass and move at a constant maxamountomove value
-  assign("maxamounttomoveSAV", parameters$maxamounttomoveSAV[simulnumb], pos = 1)  # movement amount once plant density is at maxthresholdtomove
+  assign("neigh_thresh_SAV", parameters$neigh_thresh_SAV[simulnumb], pos = 1)  # sum of neighbor biomass must exceed this to be colonized
+  assign("focal_thresh_SAV", parameters$focal_thresh_SAV[simulnumb], pos = 1)  # focal biomass must be lower than this to be colonized
+  assign("amnt_colonize_SAV", parameters$amnt_colonize_SAV[simulnumb], pos = 1)  # amount to colonize 
   
-  assign("minthresholdtomoveFP", parameters$minthresholdtomoveFP[simulnumb], pos = 1)  # min threshold value - above this biomass and plants start moving 
-  assign("maxthresholdtomoveFP", parameters$maxthresholdtomoveFP[simulnumb], pos = 1)  # max threshold value - above this biomass and move at a constant maxamountomove value
-  assign("maxamounttomoveFP", parameters$maxamounttomoveFP[simulnumb], pos = 1)  # movement amount once plant density is at maxthresholdtomove 
+  assign("neigh_thresh_FP", parameters$neigh_thresh_FP[simulnumb], pos = 1)  # sum of neighbor biomass must exceed this to be colonized
+  assign("focal_thresh_FP", parameters$focal_thresh_FP[simulnumb], pos = 1)  # focal biomass must be lower than this to be colonized
+  assign("amnt_colonize_FP", parameters$amnt_colonize_FP[simulnumb], pos = 1)  # amount to colonize 
   
   assign("numbFPspecies", parameters$numbFPspecies[simulnumb], pos = 1) # number of species in the model 
   

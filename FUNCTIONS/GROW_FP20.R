@@ -34,16 +34,16 @@ GROW_FP20 <- function(x1,x2,i,x3,x4) {
 
 
 # try with real numbers
-#LIST[[1]]$FP[[i]][LIST[[1]]$FP[[i]]>0] <- LIST[[1]]$FP[[i]][LIST[[1]]$FP[[i]]>0] + # initial biomass 
+#LIST[[1]]$FP[[j]][LIST[[1]]$FP[[j]]>0] <- LIST[[1]]$FP[[j]][LIST[[1]]$FP[[j]]>0] + # initial biomass 
   
-#  ((LIST[[1]]$FP[[i]][LIST[[1]]$FP[[i]]>0]*speciesmatrix$maxrgr[i+1]) * # new growth 
+#  ((LIST[[1]]$FP[[j]][LIST[[1]]$FP[[j]]>0]*speciesmatrix$maxrgr[j+1]) * # new growth 
      
-#     (LIST[[1]]$TOTALN/(LIST[[1]]$TOTALN+speciesmatrix$halfsatN[i+1])) * # nitrogen limitation 
+#     (LIST[[1]]$TOTALN/(LIST[[1]]$TOTALN+speciesmatrix$halfsatN[j+1])) * # nitrogen limitation 
      
-#     (1/(1+lightlimitation_FP*LIST[[1]]$FPtotal[LIST[[1]]$FP[[i]]>0])) - # biomass limitation 
+#     (1/(1+lightlimitation_FP*LIST[[1]]$FPtotal[LIST[[1]]$FP[[j]]>0])) - # biomass limitation 
      
-#     (lossFP*LIST[[1]]$FP[[i]][LIST[[1]]$FP[[i]]>0])) # biomass loss 
+#     (lossFP*LIST[[1]]$FP[[j]][LIST[[1]]$FP[[j]]>0])) # biomass loss 
 
-#new_FP <- LIST[[1]]$FP[[i]]
+#new_FP <- LIST[[1]]$FP[[j]]
 
 #return(new_FP) 

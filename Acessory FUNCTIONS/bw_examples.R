@@ -37,8 +37,11 @@ summaryRprof(tmp)
 unlink(tmp)
 
 
-
-
+Rprof(tmp <- tempfile())
+a<-OUTPUT20(animate=FALSE,regimethreshold=70) 
+Rprof()
+summaryRprof(tmp)
+unlink(tmp)
 
 
 # using lapply and an inline function on a LIST 
