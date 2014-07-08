@@ -18,6 +18,8 @@
 # load("testworkspace.Rdata") 
 # two FP species
 # load("testworkspace-2FPspecies.Rdata") 
+# four FP species
+# load("testworkspace-4FPspecies.Rdata") 
 #########################################
 
 MOVE21 <- function(x1,neigh_thresh=100,focal_thresh=0,amnt_colonize=1) { 

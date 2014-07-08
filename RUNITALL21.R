@@ -116,7 +116,19 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
     FPtotal<-raster(LIST[[t]]$FPtotal)
      
     # stack raster layers 
-    all_layers <- stack(SAV, FPtotal,FP01, FP02)
+    # I need a smarter way to make this variable length 
+    if (numbFPspecies == 4){
+      all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03,FP04)
+    }
+    if (numbFPspecies == 3){
+      all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03)
+    }
+    if (numbFPspecies == 2){
+      all_layers <- stack(SAV,FPtotal,FP01,FP02)
+    }
+    if (numbFPspecies == 1){
+      all_layers <- stack(SAV,FPtotal,FP01)
+    }
     
     # name raster layers 
     names(all_layers)[1] <- "SAV"

@@ -24,6 +24,8 @@
 # load("testworkspace.Rdata") 
 # two FP species
 # load("testworkspace-2FPspecies.Rdata") 
+# four FP species
+# load("testworkspace-4FPspecies.Rdata") 
 #########################################
 
 STEP21<-function(x,t){
