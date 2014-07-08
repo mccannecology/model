@@ -15,7 +15,9 @@ SPECIES20 <- function(x){
   
   speciesmatrix <- as.data.frame(speciesmatrix)
   
-  colnames(speciesmatrix)<-c("species","maxrgr","initial_cells","initial_total_biomass","overwinter","halfsatB","halfsatN","halfsatP","uptakeN","uptakeP")
+  colnames(speciesmatrix)<-c("species","maxrgr","initial_cells",
+                             "initial_total_biomass","overwinter",
+                             "halfsatB","halfsatN","halfsatP","uptakeN","uptakeP")
   
   # build a species matrix from the parameter values defined elsewhere
   speciesmatrix[1]<-c("SAV",seq(1,numbFPspecies,1)) # a vector of species numbers 

@@ -16,12 +16,12 @@
 # Updated: 6/20/2014                  #
 # No cap @ 100 g/m2                   #
 #######################################
-GROW_FP20 <- function(x1,x2,i,x3,x4) { 
+GROW_FP21 <- function(x1,x2,i,x3,x4) { 
   x1[[i]][x1[[i]]>0] <- x1[[i]][x1[[i]]>0] + # initial biomass 
     
-                ((x1[[i]][x1[[i]]>0]*speciesmatrix$maxrgr[i+1]) * # new growth 
+                ((x1[[i]][x1[[i]]>0]*specieslist$maxrgr[i+1]) * # new growth 
         
-                (x4/(x4+speciesmatrix$halfsatN[i+1])) * # nitrogen limitation 
+                (x4/(x4+specieslist$halfsatN[i+1])) * # nitrogen limitation 
     
                 (1/(1+lightlimitation_FP*x2[x1[[i]]>0])) - # biomass limitation 
     
