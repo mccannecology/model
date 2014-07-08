@@ -43,19 +43,17 @@
 # imports parameter  values for all simulations 
 parameters <- read.csv("input20.csv")
 
-totalsimuls <- nrow(parameters)
-
 # add blank columns to parameters for each of the results 
-parameters$propyears_avgFPcover_abovethreshold <- rep(NA, totalsimuls)
-parameters$propyears_prop_daysFP_abovehalf <- rep(NA, totalsimuls)
-parameters$avg_avg_FPcover <- rep(NA, totalsimuls)
-parameters$avg_max_FPcover <- rep(NA, totalsimuls)
-parameters$avg_firstdayFP <- rep(NA, totalsimuls)
-parameters$propyears_avgSAVcover_abovethreshold <- rep(NA, totalsimuls)
-parameters$propyears_prop_daysSAV_abovehalf <- rep(NA, totalsimuls)
-parameters$avg_avg_SAVcover <- rep(NA, totalsimuls)
-parameters$avg_max_SAVcover <- rep(NA, totalsimuls)
-parameters$avg_firstdaySAV <- rep(NA, totalsimuls)
+parameters$propyears_avgFPcover_abovethreshold <- rep(NA, nrow(parameters))
+parameters$propyears_prop_daysFP_abovehalf <- rep(NA, nrow(parameters))
+parameters$avg_avg_FPcover <- rep(NA, nrow(parameters))
+parameters$avg_max_FPcover <- rep(NA, nrow(parameters))
+parameters$avg_firstdayFP <- rep(NA, nrow(parameters))
+parameters$propyears_avgSAVcover_abovethreshold <- rep(NA, nrow(parameters))
+parameters$propyears_prop_daysSAV_abovehalf <- rep(NA, nrow(parameters))
+parameters$avg_avg_SAVcover <- rep(NA, nrow(parameters))
+parameters$avg_max_SAVcover <- rep(NA, nrow(parameters))
+parameters$avg_firstdaySAV <- rep(NA, nrow(parameters))
 
 # load the packages you need 
 require(foreach)
@@ -71,8 +69,7 @@ sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE)
 #  assigns the functions to the global environments of each node
 clusterExport(cl, c("BLANK20", "GROW_SAV20", "GROW_FP20", 
                     "INPUT20","MOVE_with_raster",
-                    "OUTPUT20","OVERWINTER20","RELEASE_N20",
-                    "RELEASE_P20","SPECIES20","START20",
+                    "OUTPUT20","SPECIES20","START20",
                     "STEP20","UPTAKE_N20","UPTAKE_P20","WIND20"))
 
 registerDoSNOW(cl) # registers the SNOW parallel backend w/ foreach package 
@@ -86,7 +83,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   
   speciesmatrix <- SPECIES20(simulnumb) # function that builds the dataframe of species-specific parameters that is used in STEPX()
   
-  # define couple of things in the environment that get used in STEPX() and OUTPUT()
+  # define a couple of things in the environment that get used in STEPX() and OUTPUT()
   timesteps<-years*(days+1) # this will need to change b/c of overwintering 
   winters <- (days+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters - used in STEPX()
   
@@ -125,6 +122,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   # parameters$propyears_prop_daysFP_abovehalf[simulnumb] <- propyears_prop_daysFP_abovehalf
   # parameters$avg_avg_FPcover[simulnumb] <- avg_avg_FPcover
     
+  # these results are produced by OUTPUT()
   # stick all of the results you want out in a vector together 
   c(simulnumb, 
     propyears_avgFPcover_abovethreshold,
