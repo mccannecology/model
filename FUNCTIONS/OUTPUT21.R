@@ -92,16 +92,98 @@ OUTPUT21 <- function(animate=FALSE,regimethreshold=70){
   #########################################################################
   require(raster)
   
-  # new plotting: zlim should set the constant scale 
-  jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshots", ".jpg", sep=""),width=11,height=8,units="in",res=300)
-  par(mfrow=c(3,2))
-  plot(raster(LIST[[1]]$SAV),main="SAV Initial")
-  plot(raster(LIST[[1]]$FPtotal),main="All FP species Initial")
-  plot(raster(LIST[[timesteps/2]]$SAV),main="SAV Midpoint")
-  plot(raster(LIST[[timesteps/2]]$FPtotal),main="All FP species Midpoint")
-  plot(raster(LIST[[timesteps-1]]$SAV),main="SAV Final")
-  plot(raster(LIST[[timesteps-1]]$FPtotal),main="All FP species Final")
+  ###########
+  # Initial #
+  ########### 
+  
+  # make raster layers 
+  SAV<-raster(LIST[[1]]$SAV)
+  for (y in 1:numbFPspecies){
+    assign(paste("FP0",y,sep=""),raster(LIST[[1]]$FP[[y]]))
+  }
+  FPtotal<-raster(LIST[[1]]$FPtotal)
+  
+  # stack raster layers 
+  all_layers <- stack(SAV, FPtotal,FP01, FP02)
+  
+  # name raster layers 
+  names(all_layers)[1] <- "SAV"
+  names(all_layers)[2] <- "FPtotal"
+  for (y in 1:numbFPspecies){
+    names(all_layers)[y+2] <- paste("FP0",y,sep="")
+  }
+  
+  # plot raster layers 
+  jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshot_01_initial", ".jpg", sep=""),width=11,height=8,units="in",res=300)
+  plot(all_layers)
   dev.off()
+  
+  ############
+  # Midpoint #
+  ############
+  
+  # make raster layers 
+  SAV<-raster(LIST[[timesteps/2]]$SAV)
+  for (y in 1:numbFPspecies){
+    assign(paste("FP0",y,sep=""),raster(LIST[[timesteps/2]]$FP[[y]]))
+  }
+  FPtotal<-raster(LIST[[timesteps/2]]$FPtotal)
+  
+  # stack raster layers 
+  all_layers <- stack(SAV, FPtotal,FP01, FP02)
+  
+  # name raster layers 
+  names(all_layers)[1] <- "SAV"
+  names(all_layers)[2] <- "FPtotal"
+  for (y in 1:numbFPspecies){
+    names(all_layers)[y+2] <- paste("FP0",y,sep="")
+  }
+  
+  # plot raster layers 
+  jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshot_02_midpoint", ".jpg", sep=""),width=11,height=8,units="in",res=300)
+  plot(all_layers)
+  dev.off()
+  
+  #########
+  # Final #
+  #########
+  
+  # make raster layers 
+  SAV<-raster(LIST[[timesteps-1]]$SAV)
+  for (y in 1:numbFPspecies){
+    assign(paste("FP0",y,sep=""),raster(LIST[[timesteps-1]]$FP[[y]]))
+  }
+  FPtotal<-raster(LIST[[timesteps-1]]$FPtotal)
+  
+  # stack raster layers 
+  all_layers <- stack(SAV, FPtotal,FP01, FP02)
+  
+  # name raster layers 
+  names(all_layers)[1] <- "SAV"
+  names(all_layers)[2] <- "FPtotal"
+  for (y in 1:numbFPspecies){
+    names(all_layers)[y+2] <- paste("FP0",y,sep="")
+  }
+  
+  # plot raster layers 
+  jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshot_03_final", ".jpg", sep=""),width=11,height=8,units="in",res=300)
+  plot(all_layers)
+  dev.off()
+  
+  
+  
+  ###################################################
+  
+  # new plotting: zlim should set the constant scale 
+  # jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshots", ".jpg", sep=""),width=11,height=8,units="in",res=300)
+  # par(mfrow=c(3,2))
+  # plot(raster(LIST[[1]]$SAV),main="SAV Initial")
+  # plot(raster(LIST[[1]]$FPtotal),main="All FP species Initial")
+  # plot(raster(LIST[[timesteps/2]]$SAV),main="SAV Midpoint")
+  # plot(raster(LIST[[timesteps/2]]$FPtotal),main="All FP species Midpoint")
+  # plot(raster(LIST[[timesteps-1]]$SAV),main="SAV Final")
+  # plot(raster(LIST[[timesteps-1]]$FPtotal),main="All FP species Final")
+  # dev.off()
     
   #####################################################################################  
   ##### Plot average biomass (by cell) of all species through time - GGPLOT2 ##########

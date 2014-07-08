@@ -86,7 +86,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   specieslist <- SPECIES21() # function that builds the list of species-specific parameters that is used in STEPX()  
   
   # define a couple of things in the environment that get used in STEPX() and OUTPUT()
-  timesteps<-years*(days+1) # this will need to change b/c of overwintering 
+  timesteps <- years*(days+1) # this will need to change b/c of overwintering 
   winters <- (days+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters - used in STEPX()
   
   # generate blank list for total timesteps
@@ -105,10 +105,31 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
     LIST[[t+1]]<-tomorrow
     today<-tomorrow
     
-    # Plot as you go (slows it down)
-    par(mfrow=c(2,1))
-    plot(raster(LIST[[t]]$SAV),main=paste("SAV","Timestep:",t,sep=" "))
-    plot(raster(LIST[[t]]$FPtotal),main=paste("All FP species"))
+    ##################################
+    # Plot as you go (slows it down) #
+    ##################################
+    # make raster layers 
+    SAV<-raster(LIST[[t]]$SAV)
+    for (y in 1:numbFPspecies){
+      assign(paste("FP0",y,sep=""),raster(LIST[[t]]$FP[[y]]))
+    }
+    FPtotal<-raster(LIST[[t]]$FPtotal)
+     
+    # stack raster layers 
+    all_layers <- stack(SAV, FPtotal,FP01, FP02)
+    
+    # name raster layers 
+    names(all_layers)[1] <- "SAV"
+    names(all_layers)[2] <- "FPtotal"
+    for (y in 1:numbFPspecies){
+      names(all_layers)[y+2] <- paste("FP0",y,sep="")
+    }
+    
+    # plot raster layers 
+    plot(all_layers,sub="test")
+    
+    # print timestep to console - SLOW!
+    # print(t)
   }    
   
   # generates graphs

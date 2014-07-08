@@ -10,12 +10,15 @@
 # Updated: 7/8/2014                   # 
 #######################################
 
-#################################
+#########################################
 # load workspace for de-bugging 
 # LIST has an initial time step
 # short (3 yrs, 50 days each)
-# load("testworkspace.Rdata")
-#################################
+# one FP species
+# load("testworkspace.Rdata") 
+# two FP species
+# load("testworkspace-2FPspecies.Rdata") 
+#########################################
 
 MOVE21 <- function(x1,neigh_thresh=100,focal_thresh=0,amnt_colonize=1) { 
   

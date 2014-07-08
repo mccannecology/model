@@ -16,12 +16,15 @@
 # updated: 07/08/2014 MJM       #
 #################################
 
-######################################
+#########################################
 # load workspace for de-bugging 
 # LIST has an initial time step only 
 # short (3 yrs, 50 days each)
-# load("testworkspace.Rdata")
-######################################
+# one FP species
+# load("testworkspace.Rdata") 
+# two FP species
+# load("testworkspace-2FPspecies.Rdata") 
+#########################################
 
 STEP21<-function(x,t){
   
@@ -52,9 +55,6 @@ STEP21<-function(x,t){
     # raster version of MOVE() 
     nextstep$SAV <- MOVE21(nextstep$SAV,neigh_thresh_SAV,focal_thresh_SAV,amnt_colonize_SAV)
     
-    # old version of MOVE()
-    #nextstep$SAV <- MOVE_SAV20(nextstep$SAV,full_threshold=150)
-    
     ###########
     # Move FP #
     ###########
@@ -63,11 +63,6 @@ STEP21<-function(x,t){
       MOVE21(x,neigh_thresh_FP,focal_thresh_FP,amnt_colonize_FP)
     })
     
-    # old version of MOVE()
-    #nextstep$FP <- lapply(nextstep$FP,function(x){
-    #  MOVE_FP20(x)
-    #})
-      
     ###########
     # Wind FP #
     ###########
