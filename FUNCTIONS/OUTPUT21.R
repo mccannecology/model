@@ -140,7 +140,10 @@ OUTPUT21 <- function(animate=FALSE,regimethreshold=70){
   #reshape your data 1st before trying ggplot2 
   data_biomass_avg_melt <- melt(data_biomass_avg,id.vars="time")
   
-  ggplot(data_biomass_avg_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("average biomass (g/sq.mm)")
+  temp <- ggplot(data_biomass_avg_melt, aes(x=time,y=value,colour=variable)) 
+  temp <- temp + geom_line() 
+  temp <- temp + ylab("average biomass (g/sq.mm)")
+  temp <- temp + theme_classic(base_size=18)
   ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," average biomass", ".jpg", sep=""),width=11,height=8,units="in")
     
   #################################################################
@@ -182,7 +185,10 @@ OUTPUT21 <- function(animate=FALSE,regimethreshold=70){
   # reshape your data 1st before trying ggplot2 
   data_cover_melt <- melt(data_cover,id.vars="time")
   
-  ggplot(data_cover_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("percent cover")
+  temp <- ggplot(data_cover_melt, aes(x=time,y=value,colour=variable)) 
+  temp <- temp + geom_line() 
+  temp <- temp + ylab("percent cover")
+  temp <- temp + theme_classic(base_size=18)
   ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," percent cover", ".jpg", sep=""),width=11,height=8,units="in")
   
   # dev.off()
@@ -210,7 +216,10 @@ OUTPUT21 <- function(animate=FALSE,regimethreshold=70){
   # reshape your data 1st before trying ggplot2 
   data_nutrients_melt <- melt(data_nutrients,id.vars="time")
   
-  ggplot(data_nutrients_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("nutrient concentration(mg/L)")
+  temp <- ggplot(data_nutrients_melt, aes(x=time,y=value,colour=variable)) 
+  temp <- temp + geom_line() 
+  temp <- temp + ylab("nutrient concentration(mg/L)")
+  temp <- temp + theme_classic(base_size=18)
   ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," nutrients", ".jpg", sep=""),width=11,height=8,units="in")
   
   # dev.off()
@@ -245,7 +254,10 @@ OUTPUT21 <- function(animate=FALSE,regimethreshold=70){
   
   # Change this back to the command two lines down if it does not work 
   # ggplot(data_cell_occupancy_melt, aes(x=time,y=perc_cells_occup,colour=variable)) + geom_line() + ylab("cells occupied")
-  ggplot(data_cell_occupancy_melt, aes(x=time,y=value,colour=variable)) + geom_line() + ylab("cells occupied")
+  temp <- ggplot(data_cell_occupancy_melt, aes(x=time,y=value,colour=variable)) 
+  temp <- temp + geom_line() 
+  temp <- temp + ylab("cells occupied")
+  temp <- temp + theme_classic(base_size=18)
   ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," cells occupied", ".jpg", sep=""),width=11,height=8,units="in")
   
   # dev.off()
