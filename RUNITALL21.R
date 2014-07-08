@@ -42,7 +42,7 @@
 ########################################
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input20.csv")
+parameters <- read.csv("input21.csv")
 
 # add blank columns to parameters for each of the results 
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, nrow(parameters))
@@ -106,9 +106,9 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
     today<-tomorrow
     
     # Plot as you go (slows it down)
-    # par(mfrow=c(2,1))
-    # plot(raster(LIST[[t]]$SAV),main=paste("SAV","Timestep:",t,sep=" "))
-    # plot(raster(LIST[[t]]$FPtotal),main=paste("All FP species"))
+    par(mfrow=c(2,1))
+    plot(raster(LIST[[t]]$SAV),main=paste("SAV","Timestep:",t,sep=" "))
+    plot(raster(LIST[[t]]$FPtotal),main=paste("All FP species"))
   }    
   
   # generates graphs

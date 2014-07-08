@@ -23,7 +23,7 @@ GROW_FP21 <- function(x1,x2,i,x3,x4) {
         
                 (x4/(x4+specieslist$halfsatN[i+1])) * # nitrogen limitation 
     
-                (1/(1+lightlimitation_FP*x2[x1[[i]]>0])) - # biomass limitation 
+                (1/(1+specieslist$lightlimitation[i+1]*x2[x1[[i]]>0])) - # biomass limitation 
     
                 (lossFP*x1[[i]][x1[[i]]>0])) # biomass loss 
   

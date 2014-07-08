@@ -19,6 +19,7 @@ SPECIES21 <- function(){
   halfsatP <- c(halfsatPSAV,halfsatP01,halfsatP02,halfsatP03,halfsatP04)
   uptakeN <- c(uptakeNSAV ,uptakeN01,uptakeN02,uptakeN03,uptakeN04)
   uptakeP <- c(uptakePSAV ,uptakeP01,uptakeP02,uptakeP03,uptakeP04)
+  lightlimitation <- c(lightlimitationSAV ,lightlimitation01,lightlimitation02,lightlimitation03,lightlimitation04)
   
   # remove any extra values for FP species that are not include 
   maxrgr <- maxrgr[1:(numbFPspecies+1)]
@@ -30,16 +31,17 @@ SPECIES21 <- function(){
   halfsatP <- halfsatP[1:(numbFPspecies+1)]
   uptakeN <- uptakeN[1:(numbFPspecies+1)]
   uptakeP <- uptakeP[1:(numbFPspecies+1)]
+  lightlimitation <- lightlimitation[1:(numbFPspecies+1)]
   
   # combine vectors into a list 
   mylist <- list(maxrgr, initial_cells, initial_total_biomass,
                  overwinter, halfsatB, halfsatN, halfsatP,
-                 uptakeN, uptakeP)
+                 uptakeN, uptakeP, lightlimitation)
   
   # give each vector a name 
   names(mylist) <- c("maxrgr", "initial_cells","initial_total_biomass",
                      "overwinter","halfsatB","halfsatN","halfsatP",
-                     "uptakeN","uptakeP")
+                     "uptakeN","uptakeP","lightlimitation")
   
   return(mylist) 
 }

@@ -86,7 +86,12 @@ INPUT21 <- function(x){
   assign("uptakeP03", parameters$uptakeP03[simulnumb], pos = 1)    # phosphorus uptake rate - species 03  
   assign("uptakeP04", parameters$uptakeP04[simulnumb], pos = 1)    # phosphorus uptake rate - species 04
 
-  assign("lightlimitation", parameters$lightlimitation[simulnumb], pos = 1)    # self-shading SAV on SAV 
+  assign("lightlimitationSAV", parameters$lightlimitationSAV[simulnumb], pos = 1)    # self-shading SAV on SAV 
+  assign("lightlimitation01", parameters$lightlimitation01[simulnumb], pos = 1)    # self-shading FP on FP 
+  assign("lightlimitation02", parameters$lightlimitation02[simulnumb], pos = 1)    # self-shading FP on FP 
+  assign("lightlimitation03", parameters$lightlimitation03[simulnumb], pos = 1)    # self-shading FP on FP 
+  assign("lightlimitation04", parameters$lightlimitation04[simulnumb], pos = 1)    # self-shading FP on FP 
+    
   assign("shadingbyFP", parameters$shadingbyFP[simulnumb], pos = 1)            # shading by FP on SAV 
   assign("lightattenuation", parameters$lightattenuation[simulnumb], pos = 1)  # light attenuation in the water column 
   
@@ -97,5 +102,4 @@ INPUT21 <- function(x){
   assign("prob_left", parameters$prob_left[simulnumb], pos = 1)      # prob that the wind is blowing up
   assign("prob_right", parameters$prob_right[simulnumb], pos = 1)    # prob that the wind is blowing up
   
-  assign("lightlimitation_FP", parameters$lightlimitation_FP[simulnumb], pos = 1)    # self-shading FP on FP 
 }

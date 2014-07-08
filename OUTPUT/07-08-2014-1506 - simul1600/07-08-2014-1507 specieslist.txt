@@ -1,0 +1,30 @@
+$maxrgr
+[1] 0.5 0.5
+
+$initial_cells
+[1] 200 200
+
+$initial_total_biomass
+[1] 10000 10000
+
+$overwinter
+[1] 0.1 0.1
+
+$halfsatB
+[1]  0 42
+
+$halfsatN
+[1] 0.0 0.2
+
+$halfsatP
+[1] 0.00 0.05
+
+$uptakeN
+[1] 0.075 0.005
+
+$uptakeP
+[1] 0.01875 0.00125
+
+$lightlimitation
+[1] 0.02 0.01
+

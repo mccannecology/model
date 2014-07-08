@@ -25,7 +25,7 @@ GROW_SAV21 <- function(x1,x2,x3,x4) {
     
                 # needs the corresponding cell in the FP matrix 
     
-                (1/(1+(lightlimitation*x1[x1>0])+(shadingbyFP*x2[x1>0])+lightattenuation)) * # limitation according to Scheffer et al. 2003 
+                (1/(1+(specieslist$lightlimitation[1]*x1[x1>0])+(shadingbyFP*x2[x1>0])+lightattenuation)) * # limitation according to Scheffer et al. 2003 
     
                 (x4/(x4+specieslist$halfsatN[1])) - # nutrient limitation 
     

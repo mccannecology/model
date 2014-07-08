@@ -50,7 +50,7 @@ STEP21<-function(x,t){
     # Move SAV #
     ############
     # raster version of MOVE() 
-    nextstep$SAV <- MOVE_with_raster(nextstep$SAV,neigh_thresh_SAV,focal_thresh_SAV,amnt_colonize_SAV)
+    nextstep$SAV <- MOVE21(nextstep$SAV,neigh_thresh_SAV,focal_thresh_SAV,amnt_colonize_SAV)
     
     # old version of MOVE()
     #nextstep$SAV <- MOVE_SAV20(nextstep$SAV,full_threshold=150)
@@ -60,7 +60,7 @@ STEP21<-function(x,t){
     ###########
     # raster version of MOVE() 
     nextstep$FP <- lapply(nextstep$FP,function(x){
-      MOVE_with_raster(x,neigh_thresh_FP,focal_thresh_FP,amnt_colonize_FP)
+      MOVE21(x,neigh_thresh_FP,focal_thresh_FP,amnt_colonize_FP)
     })
     
     # old version of MOVE()
