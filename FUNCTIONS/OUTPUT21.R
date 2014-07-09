@@ -87,6 +87,22 @@ OUTPUT21 <- function(animate=FALSE,regimethreshold=70){
   write.gif(image, filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," SAV animate", ".gif", sep=""), 
             scale="always", col="jet.colors")  
   
+  
+  ######################################################################
+  ################### plot distribution of wind strength ###############
+  ######################################################################
+  jpeg(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," wind_beta_distrib", ".jpg"),
+       width=8,height=8,
+       units="in",res=1600)
+  hist(rbeta(10000,wind_shape1,wind_shape2), 
+       sub=paste(paste(c("wind_shape1 = ", wind_shape1), collapse = ""),
+             paste(c("wind_shape2 = ", wind_shape2), collapse = ""), sep=" "
+         ))
+  dev.off()
+  
+  
+  
+  
   #########################################################################
   ################### save a few snapshots of the waterbody ###############
   #########################################################################
