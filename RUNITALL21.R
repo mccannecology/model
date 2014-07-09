@@ -113,6 +113,8 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
     ##################################
     # Plot as you go (slows it down) #
     ##################################
+    require(raster)
+    
     # make raster layers 
     SAV<-raster(LIST[[t]]$SAV)
     for (y in 1:numbFPspecies){
