@@ -81,7 +81,7 @@ STEP21<-function(x,t){
     if (proptomove > 1) {proptomove <- 1} # cannot move >100% of a cell  
     
     nextstep$FP <- lapply(nextstep$FP,function(x){
-      WIND20(x,proptomove,direction_of_wind,full_threshold=800) 
+      WIND21(x,proptomove,direction_of_wind,full_threshold=800) 
     })
   
     ##########

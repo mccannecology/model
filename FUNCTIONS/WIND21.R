@@ -8,7 +8,7 @@
 # Updated: 07/08/2014
 #######################################
 
-WIND20 <- function (x1,proptomove,direction_of_wind,full_threshold=800) {
+WIND21 <- function (x1,proptomove,direction_of_wind,full_threshold=800) {
   for (j in 1:height) { # loop over all rows (height)
     for (k in 1:width) { # loop over all columns (width)
       
