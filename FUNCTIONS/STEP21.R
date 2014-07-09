@@ -77,11 +77,13 @@ STEP21<-function(x,t){
     direction_of_wind <- sample(direction_sample,1) # sample from it 
     proptomove <- rbeta(1,wind_shape1,wind_shape2) # assign an amount to move on the given time-step based on a beta distribution
     
+    print(proptomove)
+    
     if (proptomove < 0) {proptomove <- 0} # make any negative values 0 
     if (proptomove > 1) {proptomove <- 1} # cannot move >100% of a cell  
     
     nextstep$FP <- lapply(nextstep$FP,function(x){
-      WIND21(x,proptomove,direction_of_wind,full_threshold=800) 
+      WIND21(x,proptomove,direction_of_wind,full_thresh_wind=800) 
     })
   
     ##########
@@ -135,14 +137,14 @@ STEP21<-function(x,t){
 # Testing real data  #
 ######################
 # move SAV 
-# MOVE_SAV20(LIST[[1]]$SAV,full_threshold=150)
+# MOVE_SAV20(LIST[[1]]$SAV,full_thresh_wind=150)
 # move FP 
 #LIST[[1]]$FP <- lapply(LIST[[1]]$FP,function(x){
 #  MOVE_FP20(x)
 #})
 # Wind FP
 #lapply(LIST[[1]]$FP,function(x){
-#  WIND20(x,full_threshold=800) 
+#  WIND20(x,full_thresh_wind=800) 
 #})
 # Grow SAV
 #grow_SAV<-GROW_SAV20(LIST[[1]]$SAV,LIST[[1]]$FPtotal, LIST[[1]]$TOTALP, LIST[[1]]$TOTALN) 

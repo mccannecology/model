@@ -103,5 +103,5 @@ INPUT21 <- function(x){
   assign("prob_down", parameters$prob_down[simulnumb], pos = 1)      # prob that the wind is blowing up
   assign("prob_left", parameters$prob_left[simulnumb], pos = 1)      # prob that the wind is blowing up
   assign("prob_right", parameters$prob_right[simulnumb], pos = 1)    # prob that the wind is blowing up
-  
+  assign("full_thresh_wind", parameters$full_thresh_wind[simulnumb], pos = 1)    # threshold - above this and WIND will not blow biomass in
 }
