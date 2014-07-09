@@ -32,9 +32,14 @@
 ########################################
 # load workspace for de-bugging
 # 
-# # load("testworkspace.Rdata")
 # LIST has an initial time step only 
 # short (3 yrs, 50 days each)
+# one FP species
+# load("testworkspace.Rdata") 
+# two FP species
+# load("testworkspace-2FPspecies.Rdata") 
+# four FP species
+# load("testworkspace-4FPspecies.Rdata") 
 #
 # complete LIST 
 # 7 years, 125 days each 
@@ -138,7 +143,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
     }
     
     # plot raster layers 
-    plot(all_layers,sub="test")
+    plot(all_layers)
     
     # print timestep to console - SLOW!
     # print(t)
