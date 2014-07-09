@@ -15,9 +15,7 @@
 # LIST has an initial time step
 # short (3 yrs, 50 days each)
 # one FP species
-# load("testworkspace.Rdata") 
-# two FP species
-# load("testworkspace-2FPspecies.Rdata") 
+# load("testworkspace-1FPspecies.Rdata") 
 # four FP species
 # load("testworkspace-4FPspecies.Rdata") 
 #########################################

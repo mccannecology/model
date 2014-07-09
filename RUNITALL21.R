@@ -35,9 +35,7 @@
 # LIST has an initial time step only 
 # short (3 yrs, 50 days each)
 # one FP species
-# load("testworkspace.Rdata") 
-# two FP species
-# load("testworkspace-2FPspecies.Rdata") 
+# load("testworkspace-1FPspecies.Rdata") 
 # four FP species
 # load("testworkspace-4FPspecies.Rdata") 
 #
@@ -87,7 +85,6 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   
   INPUT21(simulnumb) # reads the .csv file of parameter values and assigns them to the global environment 
   
-  # speciesmatrix <- SPECIES20(simulnumb) # function that builds the dataframe of species-specific parameters that is used in STEPX()
   specieslist <- SPECIES21() # function that builds the list of species-specific parameters that is used in STEPX()  
   
   # define a couple of things in the environment that get used in STEPX() and OUTPUT()
