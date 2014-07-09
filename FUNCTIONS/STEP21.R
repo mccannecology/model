@@ -75,7 +75,7 @@ STEP21<-function(x,t){
                           rep("L",prob_left*100),
                           rep("R",prob_right*100)) # make a vector of wind directions to sample from
     direction_of_wind <- sample(direction_sample,1) # sample from it 
-    proptomove <- rnorm(1,wind_avg,wind_std) # assign an amount to move on the given time-step based on the average & SD of windiness 
+    proptomove <- rbeta(1,wind_shape1,wind_shape2) # assign an amount to move on the given time-step based on a beta distribution
     
     if (proptomove < 0) {proptomove <- 0} # make any negative values 0 
     if (proptomove > 1) {proptomove <- 1} # cannot move >100% of a cell  

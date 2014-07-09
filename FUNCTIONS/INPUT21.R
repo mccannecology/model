@@ -95,8 +95,10 @@ INPUT21 <- function(x){
   assign("shadingbyFP", parameters$shadingbyFP[simulnumb], pos = 1)            # shading by FP on SAV 
   assign("lightattenuation", parameters$lightattenuation[simulnumb], pos = 1)  # light attenuation in the water column 
   
-  assign("wind_avg", parameters$wind_avg[simulnumb], pos = 1)        # mean proportion of cell biomass to move via wind 
-  assign("wind_std", parameters$wind_std[simulnumb], pos = 1)        # stdev proportion of cell biomass to move via wind 
+  assign("wind_shape1", parameters$wind_shape1[simulnumb], pos = 1)  # wind - beta distribution - shape parameter 1 
+  assign("wind_shape2", parameters$wind_shape2[simulnumb], pos = 1)  # wind - beta distribution - shape parameter 2 
+  assign("wind_avg", parameters$wind_shape1[simulnumb], pos = 1)     # wind - avg of beta distribution 
+  assign("wind_stdev", parameters$wind_shape2[simulnumb], pos = 1)   # wind - stdev beta distribution 
   assign("prob_up", parameters$prob_up[simulnumb], pos = 1)          # prob that the wind is blowing up
   assign("prob_down", parameters$prob_down[simulnumb], pos = 1)      # prob that the wind is blowing up
   assign("prob_left", parameters$prob_left[simulnumb], pos = 1)      # prob that the wind is blowing up
