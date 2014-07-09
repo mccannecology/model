@@ -206,21 +206,6 @@ OUTPUT21 <- function(animate=FALSE,regimethreshold=70){
   plot(all_layers)
   dev.off()
   
-  
-  
-  ###################################################
-  
-  # new plotting: zlim should set the constant scale 
-  # jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshots", ".jpg", sep=""),width=11,height=8,units="in",res=300)
-  # par(mfrow=c(3,2))
-  # plot(raster(LIST[[1]]$SAV),main="SAV Initial")
-  # plot(raster(LIST[[1]]$FPtotal),main="All FP species Initial")
-  # plot(raster(LIST[[timesteps/2]]$SAV),main="SAV Midpoint")
-  # plot(raster(LIST[[timesteps/2]]$FPtotal),main="All FP species Midpoint")
-  # plot(raster(LIST[[timesteps-1]]$SAV),main="SAV Final")
-  # plot(raster(LIST[[timesteps-1]]$FPtotal),main="All FP species Final")
-  # dev.off()
-    
   #####################################################################################  
   ##### Plot average biomass (by cell) of all species through time - GGPLOT2 ##########
   #####################################################################################
