@@ -291,7 +291,7 @@ WIND22 <- function (x1,proptomove,direction_of_wind,full_thresh_wind=800) {
           if (direction_of_wind == "U"){  
             if (x1[j-1,k] < full_thresh_wind) { # only move if the destination cell is not "too full" 
               new_mass_BR[j-1,k] <- amounttomove # add amountomove UP
-              remove_mass[j,k] <- -amounttomove # subtract this value from the original spot 
+              remove_mass_BR[j,k] <- -amounttomove # subtract this value from the original spot 
             }
           }
           if (direction_of_wind == "R"){       

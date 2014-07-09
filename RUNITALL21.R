@@ -76,7 +76,7 @@ sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE)
 clusterExport(cl, c("BLANK21", "GROW_SAV21", "GROW_FP21", 
                     "INPUT21","MOVE21",
                     "OUTPUT21","SPECIES21","START21",
-                    "STEP21","UPTAKE_N21","UPTAKE_P21","WIND21"))
+                    "STEP21","UPTAKE_N21","UPTAKE_P21","WIND22"))
 
 registerDoSNOW(cl) # registers the SNOW parallel backend w/ foreach package 
 getDoParWorkers() # returns the # of workers - this should match the # of cores on your machine (or # cores - 1)
