@@ -22,14 +22,18 @@
 
 MOVE21 <- function(x1,neigh_thresh=100,focal_thresh=0,amnt_colonize=1) { 
   
+  # biomass... biomass on current time step 
+  # biomass_next... biomass on next time step 
+  # neighbor_biomass... 
+  
   require(raster)
   
   # Set-up biomass as raster objects 
-  biomass <- raster(x1) # convert SAV matrix to a raster object 
+  biomass <- raster(x1) # convert biomass matrix to a raster object 
   names(biomass) <- "biomass"
   
   # set up a new raster to hold the results 
-  biomass_next <- biomass # convert SAV matrix to a raster object 
+  biomass_next <- biomass 
   names(biomass_next) <- "biomass_next"
   
   # define a matrix that looks at all nine neighbors, but not the focal cell 
@@ -43,23 +47,19 @@ MOVE21 <- function(x1,neigh_thresh=100,focal_thresh=0,amnt_colonize=1) {
   # view focal biomass and total neighbor biomass side by side 
   # plot(stack(biomass,neighbor_biomass))
   
+  # convert raster layers to matrices 
   neighbor_biomass <- as.matrix(neighbor_biomass)
   biomass_next <- as.matrix(biomass_next)
   biomass <- as.matrix(biomass)
   
-  # gives birth 
-  # assign a small value to those cells that have low biomass AND 
-  # that have lots of surrounding biomass 
-  #biomass_next[Which(neighbor_biomass >= neigh_thresh) & Which(biomass <= focal_thresh)] <- (amnt_colonize + biomass)
+  # colonize 
+  # assign (amnt_colonize) to  cells <focal_thresh & neigh_biomass > neigh_thresh 
   biomass_next[(neighbor_biomass >= neigh_thresh) & (biomass <= focal_thresh)] <- (amnt_colonize + biomass_next[(neighbor_biomass >= neigh_thresh) & (biomass <= focal_thresh)]) 
-  # this is not right yet
-  # if a cell is surrounded by 9 densely occupied cells it will get more than 
-  # a cell occupied by 1 densely occupied cell 
-  # Right-hand side of the equation above should be an equation 
-  
+
   # view view current biomass, neighbor biomass, and biomass on next step 
   # plot(stack(biomass,neighbor_biomass,biomass_next))
   
+  # UNRESOLVED: 
   # substract off from cells in biomass that moved 
   # need to know the number of cells around them that are < threshold to move into 
   
