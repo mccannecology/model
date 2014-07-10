@@ -72,8 +72,8 @@ sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE)
 
 #  assigns the functions to the global environments of each node
 clusterExport(cl, c("BLANK21", "GROW_SAV21", "GROW_FP21", 
-                    "INPUT21","MOVE21",
-                    "OUTPUT21","SPECIES21","START21",
+                    "INPUT21","MOVE21", "OUTPUT21",
+                    "OVERWINTER21","SPECIES21","START21",
                     "STEP21","UPTAKE_N21","UPTAKE_P21","WIND22"))
 
 registerDoSNOW(cl) # registers the SNOW parallel backend w/ foreach package 
@@ -110,39 +110,39 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
     ##################################
     # Plot as you go (slows it down) #
     ##################################
-    require(raster)
+    # require(raster)
     
     # make raster layers 
-    SAV<-raster(LIST[[t]]$SAV)
-    for (y in 1:numbFPspecies){
-      assign(paste("FP0",y,sep=""),raster(LIST[[t]]$FP[[y]]))
-    }
-    FPtotal<-raster(LIST[[t]]$FPtotal)
+    # SAV<-raster(LIST[[t]]$SAV)
+    # for (y in 1:numbFPspecies){
+    #   assign(paste("FP0",y,sep=""),raster(LIST[[t]]$FP[[y]]))
+    # }
+    # FPtotal<-raster(LIST[[t]]$FPtotal)
      
     # stack raster layers 
     # I need a smarter way to make this variable length 
-    if (numbFPspecies == 4){
-      all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03,FP04)
-    }
-    if (numbFPspecies == 3){
-      all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03)
-    }
-    if (numbFPspecies == 2){
-      all_layers <- stack(SAV,FPtotal,FP01,FP02)
-    }
-    if (numbFPspecies == 1){
-      all_layers <- stack(SAV,FPtotal,FP01)
-    }
+    # if (numbFPspecies == 4){
+    #  all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03,FP04)
+    # }
+    # if (numbFPspecies == 3){
+    #   all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03)
+    # }
+    # if (numbFPspecies == 2){
+    #   all_layers <- stack(SAV,FPtotal,FP01,FP02)
+    # }
+    # if (numbFPspecies == 1){
+    #   all_layers <- stack(SAV,FPtotal,FP01)
+    # }
     
     # name raster layers 
-    names(all_layers)[1] <- "SAV"
-    names(all_layers)[2] <- "FPtotal"
-    for (y in 1:numbFPspecies){
-      names(all_layers)[y+2] <- paste("FP0",y,sep="")
-    }
+    # names(all_layers)[1] <- "SAV"
+    # names(all_layers)[2] <- "FPtotal"
+    # for (y in 1:numbFPspecies){
+    #   names(all_layers)[y+2] <- paste("FP0",y,sep="")
+    # }
     
     # plot raster layers 
-    plot(all_layers)
+    # plot(all_layers)
     
     # print timestep to console - SLOW!
     # print(t)
