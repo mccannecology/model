@@ -100,7 +100,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   # initialize first time step
   LIST[[1]]<-START21(LIST[[1]])  
   
-  # for loop - STEP20() to the entire LIST
+  # for loop - STEP() to the entire LIST
   today<-LIST[[1]]
   for (t in 1:timesteps){
     tomorrow<-STEP21(today,t)
