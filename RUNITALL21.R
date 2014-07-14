@@ -45,7 +45,7 @@
 ########################################
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input21.csv")
+parameters <- read.csv("input22.csv")
 
 # add blank columns to parameters for each of the results 
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, nrow(parameters))
@@ -119,17 +119,17 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     # make raster layers 
     # SAV<-raster(LIST[[t]]$SAV)
     # for (y in 1:numbFPspecies){
-    #   assign(paste("FP0",y,sep=""),raster(LIST[[t]]$FP[[y]]))
+    #  assign(paste("FP0",y,sep=""),raster(LIST[[t]]$FP[[y]]))
     # }
     # FPtotal<-raster(LIST[[t]]$FPtotal)
      
     # stack raster layers 
     # I need a smarter way to make this variable length 
     # if (numbFPspecies == 4){
-    #  all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03,FP04)
+    #   all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03,FP04)
     # }
     # if (numbFPspecies == 3){
-    #   all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03)
+    #    all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03)
     # }
     # if (numbFPspecies == 2){
     #   all_layers <- stack(SAV,FPtotal,FP01,FP02)
@@ -142,7 +142,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     # names(all_layers)[1] <- "SAV"
     # names(all_layers)[2] <- "FPtotal"
     # for (y in 1:numbFPspecies){
-    #   names(all_layers)[y+2] <- paste("FP0",y,sep="")
+    #    names(all_layers)[y+2] <- paste("FP0",y,sep="")
     # }
     
     # plot raster layers 
@@ -223,5 +223,5 @@ parameters$avg_firstdaySAV <- RESULT[,11]
 
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output21.csv",row.names=F) 
+write.csv(parameters,"output22.csv",row.names=F) 
 
