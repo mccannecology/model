@@ -1,0 +1,134 @@
+There were 33 warnings (use warnings() to see them)
+> 
+> # stop the cluster 
+> stopCluster(cl)
+> 
+> # name the RESULTS columns 
+> colnames(RESULT) <- c("simulnumb",
++                       "propyears_avgFPcover_abovethreshold",
++                       "propyears_prop_daysFP_abovehalf",
++                       "avg_avg_FPcover", 
++                       "avg_max_FPcover", 
++                       "avg_firstdayFP",
++                       "propyears_avgSAVcover_abovethreshold",
++                       "propyears_prop_daysSAV_abovehalf",
++                       "avg_avg_SAVcover", 
++                       "avg_max_SAVcover", 
++                       "avg_firstdaySAV")
+> 
+> # convert to a data frame 
+> RESULT <- as.data.frame(RESULT)
+> 
+> # Order the RESULT by simulation number 
+> # create a vector of simulnumb in increasing order 
+> order.simulnumb <- order(RESULT$simulnumb)
+Error in order(RESULT$simulnumb) : 
+  unimplemented type 'list' in 'orderVector1'
+> 
+> # use that vector to order the RESULT data frame 
+> RESULT <- RESULT[order.simulnumb,] 
+> 
+> # add the columns of the RESULT data frame to the original parameters data frame 
+> parameters$propyears_avgFPcover_abovethreshold <- RESULT[,2]
+Error in `$<-.data.frame`(`*tmp*`, "propyears_avgFPcover_abovethreshold",  : 
+  replacement has 16 rows, data has 3771
+> parameters$propyears_prop_daysFP_abovehalf <- RESULT[,3]
+Error in `$<-.data.frame`(`*tmp*`, "propyears_prop_daysFP_abovehalf",  : 
+  replacement has 16 rows, data has 3771
+> parameters$avg_avg_FPcover <- RESULT[,4]
+Error in `$<-.data.frame`(`*tmp*`, "avg_avg_FPcover", value = list(result.1 = 4,  : 
+  replacement has 16 rows, data has 3771
+> parameters$avg_max_FPcover <- RESULT[,5]
+Error in `$<-.data.frame`(`*tmp*`, "avg_max_FPcover", value = list(result.1 = 5,  : 
+  replacement has 16 rows, data has 3771
+> parameters$avg_firstdayFP <- RESULT[,6]
+Error in `$<-.data.frame`(`*tmp*`, "avg_firstdayFP", value = list(result.1 = 6,  : 
+  replacement has 16 rows, data has 3771
+> parameters$propyears_avgSAVcover_abovethreshold <- RESULT[,7]
+Error in `$<-.data.frame`(`*tmp*`, "propyears_avgSAVcover_abovethreshold",  : 
+  replacement has 16 rows, data has 3771
+> parameters$propyears_prop_daysSAV_abovehalf <- RESULT[,8]
+Error in `$<-.data.frame`(`*tmp*`, "propyears_prop_daysSAV_abovehalf",  : 
+  replacement has 16 rows, data has 3771
+> parameters$avg_avg_SAVcover <- RESULT[,9]
+Error in `$<-.data.frame`(`*tmp*`, "avg_avg_SAVcover", value = list(result.1 = 9,  : 
+  replacement has 16 rows, data has 3771
+> parameters$avg_max_SAVcover <- RESULT[,10]
+Error in `$<-.data.frame`(`*tmp*`, "avg_max_SAVcover", value = list(result.1 = 10,  : 
+  replacement has 16 rows, data has 3771
+> parameters$avg_firstdaySAV <- RESULT[,11]
+Error in `$<-.data.frame`(`*tmp*`, "avg_firstdaySAV", value = list(result.1 = 11,  : 
+  replacement has 16 rows, data has 3771
+> 
+> 
+> # write parameters with RESULT appended to a .csv 
+> write.csv(parameters,"output21.csv",row.names=F)
+> warnings()
+Warning messages:
+1: In fun(accum, result.596, result.597, result.598, result.599,  ... :
+  number of columns of result is not a multiple of vector length (arg 79)
+2: In fun(accum, result.695, result.696, result.697, result.698,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+3: In fun(accum, result.794, result.795, result.796, result.797,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+4: In fun(accum, result.893, result.894, result.895, result.896,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+5: In fun(accum, result.992, result.993, result.994, result.995,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+6: In fun(accum, result.1091, result.1092, result.1093, result.1094,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+7: In fun(accum, result.1190, result.1191, result.1192, result.1193,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+8: In fun(accum, result.1289, result.1290, result.1291, result.1292,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+9: In fun(accum, result.1388, result.1389, result.1390, result.1391,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+10: In fun(accum, result.1487, result.1488, result.1489, result.1490,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+11: In fun(accum, result.1586, result.1587, result.1588, result.1589,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+12: In fun(accum, result.1685, result.1686, result.1687, result.1688,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+13: In fun(accum, result.1784, result.1785, result.1786, result.1787,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+14: In fun(accum, result.1883, result.1884, result.1885, result.1886,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+15: In fun(accum, result.1982, result.1983, result.1984, result.1985,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+16: In fun(accum, result.2081, result.2082, result.2083, result.2084,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+17: In fun(accum, result.2180, result.2181, result.2182, result.2183,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+18: In fun(accum, result.2279, result.2280, result.2281, result.2282,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+19: In fun(accum, result.2378, result.2379, result.2380, result.2381,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+20: In fun(accum, result.2477, result.2478, result.2479, result.2480,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+21: In fun(accum, result.2576, result.2577, result.2578, result.2579,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+22: In fun(accum, result.2675, result.2676, result.2677, result.2678,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+23: In fun(accum, result.2774, result.2775, result.2776, result.2777,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+24: In fun(accum, result.2873, result.2874, result.2875, result.2876,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+25: In fun(accum, result.2972, result.2973, result.2974, result.2975,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+26: In fun(accum, result.3071, result.3072, result.3073, result.3074,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+27: In fun(accum, result.3170, result.3171, result.3172, result.3173,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+28: In fun(accum, result.3269, result.3270, result.3271, result.3272,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+29: In fun(accum, result.3368, result.3369, result.3370, result.3371,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+30: In fun(accum, result.3467, result.3468, result.3469, result.3470,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+31: In fun(accum, result.3566, result.3567, result.3568, result.3569,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+32: In fun(accum, result.3665, result.3666, result.3667, result.3668,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+33: In fun(accum, result.3764, result.3765, result.3766, result.3767,  ... :
+  number of columns of result is not a multiple of vector length (arg 2)
+> 

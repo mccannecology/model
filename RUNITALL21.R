@@ -79,7 +79,7 @@ clusterExport(cl, c("BLANK21", "GROW_SAV21", "GROW_FP21",
 registerDoSNOW(cl) # registers the SNOW parallel backend w/ foreach package 
 getDoParWorkers() # returns the # of workers - this should match the # of cores on your machine (or # cores - 1)
 
-RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
+RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') %dopar% { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
   # I am not sure if this is neccasary. Can I just use i as the input to the functions below?
   simulnumb <- i # assigns the simulation # from the for loop - will be used as an input to INPUT() to read the right row of .csv
   
@@ -102,9 +102,13 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   
   # for loop - STEP() to the entire LIST
   today<-LIST[[1]]
+  
   for (t in 1:timesteps){
+    
     tomorrow<-STEP21(today,t)
+    
     LIST[[t+1]]<-tomorrow
+    
     today<-tomorrow
     
     ##################################
@@ -153,10 +157,12 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
   # set "FP regime" threshold here  
   OUTPUT21(animate=FALSE,regimethreshold=70) 
   
+  # When not using foreach() loop: 
   # RESULTS[simulnumb,1] <- propyears_avgFPcover_abovethreshold # assign the current simulations results to the correct spot
   # RESULTS[simulnumb,2] <- propyears_prop_daysFP_abovehalf # assign the current simulations results to the correct spot
   # RESULTS[simulnumb,3] <- avg_avg_FPcover # assign the current simulations results to the correct spot  
   
+  # When not using foreach() loop (alternative):
   # parameters$propyears_avgFPcover_abovethreshold[simulnumb] <- propyears_avgFPcover_abovethreshold
   # parameters$propyears_prop_daysFP_abovehalf[simulnumb] <- propyears_prop_daysFP_abovehalf
   # parameters$avg_avg_FPcover[simulnumb] <- avg_avg_FPcover
@@ -180,7 +186,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind) %dopar% { # loop throug
 # stop the cluster 
 stopCluster(cl)
 
-# name the RESULTS columns 
+# name columns of RESULT  
 colnames(RESULT) <- c("simulnumb",
                       "propyears_avgFPcover_abovethreshold",
                       "propyears_prop_daysFP_abovehalf",
