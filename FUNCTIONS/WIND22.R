@@ -15,35 +15,35 @@ WIND22 <- function (x1,proptomove,direction_of_wind,full_thresh_wind=800) {
   new_mass_C <- matrix(0,nrow=height,ncol=width)
   remove_mass_C <- matrix(0,nrow=height,ncol=width)
   
-  # new mass originating from 
+  # new mass originating from top row (blank matrix for now)
   new_mass_Trow <- new_mass_C
   remove_mass_Trow <- new_mass_C
 
-  # new mass originating from 
+  # new mass originating from bottom row (blank matrix for now)
   new_mass_Brow <- new_mass_C
   remove_mass_Brow <- new_mass_C
   
-  # new mass originating from 
+  # new mass originating from first column (blank matrix for now) 
   new_mass_Fcol <- new_mass_C
   remove_mass_Fcol <- new_mass_C
   
-  # new mass originating from 
+  # new mass originating from last column (blank matrix for now) 
   new_mass_Lcol <- new_mass_C
   remove_mass_Lcol <- new_mass_C
   
-  # new mass originating from 
+  # new mass originating from top left (blank matrix for now) 
   new_mass_TL <- new_mass_C
   remove_mass_TL <- new_mass_C
   
-  # new mass originating from 
+  # new mass originating from top right (blank matrix for now) 
   new_mass_TR <- new_mass_C
   remove_mass_TR <- new_mass_C
   
-  # new mass originating from 
+  # new mass originating from bottom left (blank matrix for now) 
   new_mass_BL <- new_mass_C
   remove_mass_BL <- new_mass_C
   
-  # new mass originating from 
+  # new mass originating from bottom right (blank matrix for now) 
   new_mass_BR <- new_mass_C
   remove_mass_BR <- new_mass_C
   
