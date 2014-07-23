@@ -45,7 +45,7 @@
 ########################################
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input25.csv")
+parameters <- read.csv("input26.csv")
 
 # add blank columns to parameters for each of the results 
 parameters$propyears_avgFPcover_abovethreshold <- rep(NA, nrow(parameters))
@@ -83,9 +83,9 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
   # I am not sure if this is neccasary. Can I just use i as the input to the functions below?
   simulnumb <- i # assigns the simulation # from the for loop - will be used as an input to INPUT() to read the right row of .csv
   
-  INPUT21(simulnumb) # reads the .csv file of parameter values and assigns them to the global environment 
+  INPUT25(simulnumb) # reads the .csv file of parameter values and assigns them to the global environment 
   
-  specieslist <- SPECIES21() # function that builds the list of species-specific parameters that is used in STEPX()  
+  specieslist <- SPECIES25() # function that builds the list of species-specific parameters that is used in STEPX()  
   
   # define a couple of things in the environment that get used in STEPX() and OUTPUT()
   timesteps <- years*(days+1) # this will need to change b/c of overwintering 
@@ -94,18 +94,18 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
   # generate blank list for total timesteps
   LIST<-NULL
   for (i in 1:timesteps){ 
-    LIST[[i]] <- BLANK21()
+    LIST[[i]] <- BLANK25()
   }
   
   # initialize first time step
-  LIST[[1]]<-START21(LIST[[1]])  
+  LIST[[1]]<-START25(LIST[[1]])  
   
   # for loop - STEP() to the entire LIST
   today<-LIST[[1]]
   
   for (t in 1:timesteps){
     
-    tomorrow<-STEP21(today,t)
+    tomorrow<-STEP25(today,t)
     
     LIST[[t+1]]<-tomorrow
     
@@ -114,39 +114,39 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     ##################################
     # Plot as you go (slows it down) #
     ##################################
-    # require(raster)
+    require(raster)
     
     # make raster layers 
-    # SAV<-raster(LIST[[t]]$SAV)
-    # for (y in 1:numbFPspecies){
-    #  assign(paste("FP0",y,sep=""),raster(LIST[[t]]$FP[[y]]))
-    # }
-    # FPtotal<-raster(LIST[[t]]$FPtotal)
+    SAV<-raster(LIST[[t]]$SAV)
+    for (y in 1:numbFPspecies){
+      assign(paste("FP0",y,sep=""),raster(LIST[[t]]$FP[[y]]))
+    }
+    FPtotal<-raster(LIST[[t]]$FPtotal)
      
     # stack raster layers 
     # I need a smarter way to make this variable length 
-    # if (numbFPspecies == 4){
-    #   all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03,FP04)
-    # }
-    # if (numbFPspecies == 3){
-    #    all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03)
-    # }
-    # if (numbFPspecies == 2){
-    #   all_layers <- stack(SAV,FPtotal,FP01,FP02)
-    # }
-    # if (numbFPspecies == 1){
-    #   all_layers <- stack(SAV,FPtotal,FP01)
-    # }
+    if (numbFPspecies == 4){
+     all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03,FP04)
+    }
+    if (numbFPspecies == 3){
+      all_layers <- stack(SAV,FPtotal,FP01,FP02,FP03)
+    }
+    if (numbFPspecies == 2){
+     all_layers <- stack(SAV,FPtotal,FP01,FP02)
+    }
+    if (numbFPspecies == 1){
+     all_layers <- stack(SAV,FPtotal,FP01)
+    }
     
     # name raster layers 
-    # names(all_layers)[1] <- "SAV"
-    # names(all_layers)[2] <- "FPtotal"
-    # for (y in 1:numbFPspecies){
-    #    names(all_layers)[y+2] <- paste("FP0",y,sep="")
-    # }
+    names(all_layers)[1] <- "SAV"
+    names(all_layers)[2] <- "FPtotal"
+    for (y in 1:numbFPspecies){
+      names(all_layers)[y+2] <- paste("FP0",y,sep="")
+    }
     
     # plot raster layers 
-    # plot(all_layers)
+    plot(all_layers)
     
     # print timestep to console - SLOW!
     # print(t)
