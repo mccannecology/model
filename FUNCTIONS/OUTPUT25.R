@@ -517,7 +517,7 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   ###### 
   # create variables 
   # prop years with avgFPcover > regimethreshold
-  propyears_avgFPcover_abovethreshold <- sum(data_summary_by_year$avgFPcover >= regimethreshold)/years
+  propyears_avgFPcover_abovethreshold <- sum(data_summary_by_year$avgFPcover[1:years] >= regimethreshold)/years
   
   # prop years with prop_daysFP > 0.5
   propyears_prop_daysFP_abovehalf <- sum(data_summary_by_year$prop_daysFP >= 0.5)/years
@@ -543,7 +543,7 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   ####### 
   # create variables 
   # prop years with avgFPcover > regimethreshold
-  propyears_avgSAVcover_abovethreshold <- sum(data_summary_by_year$avgSAVcover >= regimethreshold)/years
+  propyears_avgSAVcover_abovethreshold <- sum(data_summary_by_year$avgSAVcover[1:years] >= regimethreshold)/years
   
   # prop years with prop_daysSAV > 0.5
   propyears_prop_daysSAV_abovehalf <- sum(data_summary_by_year$prop_daysSAV >= 0.5)/years
