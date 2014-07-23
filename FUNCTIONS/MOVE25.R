@@ -58,7 +58,19 @@ MOVE25 <- function(x1,neigh_thresh=100,focal_thresh=0,amnt_colonize=1) {
   # colonize 
   # assign (amnt_colonize) to  cells <focal_thresh & neigh_biomass > neigh_thresh 
   biomass_next[(neighbor_biomass >= neigh_thresh) & (biomass <= focal_thresh)] <- (amnt_colonize + biomass_next[(neighbor_biomass >= neigh_thresh) & (biomass <= focal_thresh)]) 
-
+  
+  # number of new colonizers   
+  numb_colonizers <- length(biomass_next[(neighbor_biomass >= neigh_thresh) & (biomass <= focal_thresh)])
+  
+  # amount to subtract   
+  amnt_subtract <- amnt_colonize*(numb_colonizers/length(biomass_next[biomass >= neigh_thresh/2]))
+  
+  # sutract new biomass from existing cells 
+  # subtract from cells above neigh_thresh/2 (cells that are likely origins of colonizers)
+  # Amount to subtract is the amnt_colonize * # of newly colonized cells
+  # divided by the number of cells above neigh_thresh/2 
+  biomass_next[biomass >= neigh_thresh/2] <- (biomass_next[biomass >= neigh_thresh/2] - amnt_subtract)
+  
   # view view current biomass, neighbor biomass, and biomass on next step 
   # plot(stack(biomass,neighbor_biomass,biomass_next))
   
@@ -70,4 +82,10 @@ MOVE25 <- function(x1,neigh_thresh=100,focal_thresh=0,amnt_colonize=1) {
   
   return(x1)
 }
+
+
+# test with real matrix
+# temp <- MOVE25(LIST[[1]]$SAV,neigh_thresh_SAV,focal_thresh_SAV,amnt_colonize_SAV)
+
+
 

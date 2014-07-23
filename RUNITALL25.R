@@ -114,41 +114,41 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     ##################################
     # Plot as you go (slows it down) #
     ##################################
-    # require(raster)
+    require(raster)
     
     # make raster layers 
-    # LANDrast<-raster(LAND)
-    # SAV<-raster(LIST[[t]]$SAV)
-    # for (y in 1:numbFPspecies){
-    #   assign(paste("FP0",y,sep=""),raster(LIST[[t]]$FP[[y]]))
-    # }
-    # FPtotal<-raster(LIST[[t]]$FPtotal)
+    LANDrast<-raster(LAND)
+    SAV<-raster(LIST[[t]]$SAV)
+    for (y in 1:numbFPspecies){
+     assign(paste("FP0",y,sep=""),raster(LIST[[t]]$FP[[y]]))
+    }
+    FPtotal<-raster(LIST[[t]]$FPtotal)
      
     # stack raster layers 
     # I need a smarter way to make this variable length 
-    # if (numbFPspecies == 4){
-    #  all_layers <- stack(LANDrast,SAV,FPtotal,FP01,FP02,FP03,FP04)
-    # }
-    # if (numbFPspecies == 3){
-    #   all_layers <- stack(LANDrast,SAV,FPtotal,FP01,FP02,FP03)
-    # }
-    # if (numbFPspecies == 2){
-    #  all_layers <- stack(LANDrast,SAV,FPtotal,FP01,FP02)
-    # }
-    # if (numbFPspecies == 1){
-    #  all_layers <- stack(LANDrast,SAV,FPtotal,FP01)
-    # }
+    if (numbFPspecies == 4){
+      all_layers <- stack(LANDrast,SAV,FPtotal,FP01,FP02,FP03,FP04)
+    }
+    if (numbFPspecies == 3){
+     all_layers <- stack(LANDrast,SAV,FPtotal,FP01,FP02,FP03)
+    }
+    if (numbFPspecies == 2){
+      all_layers <- stack(LANDrast,SAV,FPtotal,FP01,FP02)
+    }
+    if (numbFPspecies == 1){
+      all_layers <- stack(LANDrast,SAV,FPtotal,FP01)
+    }
     
     # name raster layers 
-    # names(all_layers)[1] <- "LAND"
-    # names(all_layers)[2] <- "SAV"
-    # names(all_layers)[3] <- "FPtotal"
-    # for (y in 1:numbFPspecies){
-    #   names(all_layers)[y+3] <- paste("FP0",y,sep="")
-    # }
+    names(all_layers)[1] <- "LAND"
+    names(all_layers)[2] <- "SAV"
+    names(all_layers)[3] <- "FPtotal"
+    for (y in 1:numbFPspecies){
+     names(all_layers)[y+3] <- paste("FP0",y,sep="")
+    }
     
     # plot raster layers 
-    # plot(all_layers)
+    plot(all_layers)
     
     # print timestep to console - SLOW!
     # print(t)
