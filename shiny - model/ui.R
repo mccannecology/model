@@ -3,6 +3,7 @@
 # images saved in ./images
 # images named "image1.jpg"..."image4.jpg"
 ############################################
+library(shiny)
 
 shinyUI(pageWithSidebar(
   
@@ -11,13 +12,20 @@ shinyUI(pageWithSidebar(
   sidebarPanel(
     selectInput("simulation", 
                 "Simulation:",
-                choices=list("A"=1,"B"=2,"C"=3,"D"=4)
+                choices=list("A"=1,"B"=2)
     )
   ),
   
   mainPanel(
     # Use imageOutput to place the image on the page
-    imageOutput("preImage")
+    imageOutput("initial",height="100%"),
+    hr(),
+    imageOutput("middle",height="100%"),
+    hr(),
+    imageOutput("final",height="100%")
+    #imageOutput("preImage"),
+    #imageOutput("preImage"),
+    #imageOutput("preImage")
   )
 )
 )
