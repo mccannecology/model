@@ -380,6 +380,7 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
     
   ####################################################
   ########## Summary statistics - by year ############
+  ####### saved to data_summary_by_year.csv ##########
   ####################################################
   # Set up data frames to hold summary statistics 
   # make a vector of "year"
@@ -393,9 +394,11 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   data_biomass_avg$year <- year # add year to your dataframe 
   data_biomass_avg$day <- c(rep(seq(1,days+1),years),1)  # add a vector of "day" instead of "time" to the data frame 
   
-  ######
-  # FP #
-  ######
+  #####################################
+  # Summ. stats by year               #
+  # FP                                #
+  # saved to data_summary_by_year.csv #
+  #####################################
   # ***Average*** floating plant ***cover*** for all time steps in each year 
   avgFPcover <- aggregate(data_cover$All_FP,list(year=data_cover$year),mean) 
   colnames(avgFPcover)[2] <- "avgFPcover"
@@ -408,9 +411,11 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   avgavgFPbiomass <- aggregate(data_biomass_avg$All_FP,list(year=data_biomass_avg$year),mean) 
   colnames(avgavgFPbiomass)[2] <- "avgavgFPbiomass"
   
-  #######
-  # SAV #
-  ####### 
+  #####################################
+  # Summ. stats by year               #
+  # SAV                               #
+  # saved to data_summary_by_year.csv #
+  #####################################
   # ***Average*** submerged plant ***cover*** for all time steps in each year 
   avgSAVcover <- aggregate(data_cover$SAV,list(year=data_cover$year),mean) 
   colnames(avgSAVcover)[2] <- "avgSAVcover"
@@ -423,9 +428,11 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   avgavgSAVbiomass <- aggregate(data_biomass_avg$SAV,list(year=data_biomass_avg$year),mean) 
   colnames(avgavgSAVbiomass)[2] <- "avgavgSAVbiomass"
   
-  ######
-  # FP #
-  ######
+  ##################################### 
+  # Summ. stats by year               #
+  # FP                                #
+  # saved to data_summary_by_year.csv #
+  #####################################
   # ***Number*** of days each year that the waterbody is above a treshold value of All_FP
   apply.fun <- function(x) {
     sum(x > regimethreshold)
@@ -456,9 +463,11 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   firstdayFP <- cbind(avgavgFPbiomass[,-2],firstdayFP)
   colnames(firstdayFP)[1] <- "year"
   
-  #######
-  # SAV #
-  #######
+  #####################################
+  # Summ. stats by year               #
+  # SAV                               #
+  # saved to data_summary_by_year.csv #
+  #####################################
   # ***Number*** of days each year that the waterbody is above a treshold value of SAV
   apply.fun <- function(x) {
     sum(x > regimethreshold)
@@ -511,10 +520,14 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
 
   #########################################################
   ########## Summary statistics - across years ############
+  ################# saved to output.csv ###################
   #########################################################
-  ###### 
-  # FP #
-  ###### 
+  
+  ############################
+  # Summ. stats across years #
+  # FP                       #  
+  # saved to output.csv      #
+  ############################ 
   # create variables 
   # prop years with avgFPcover > regimethreshold
   propyears_avgFPcover_abovethreshold <- sum(data_summary_by_year$avgFPcover[1:years] >= regimethreshold)/years
@@ -538,9 +551,11 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   assign("avg_max_FPcover", avg_max_FPcover, pos = 1)
   assign("avg_firstdayFP", avg_firstdayFP, pos = 1)
   
-  ####### 
-  # SAV #
-  ####### 
+  ############################
+  # Summ. stats across years #
+  # SAV                      #  
+  # saved to output.csv      #
+  ############################ 
   # create variables 
   # prop years with avgFPcover > regimethreshold
   propyears_avgSAVcover_abovethreshold <- sum(data_summary_by_year$avgSAVcover[1:years] >= regimethreshold)/years
@@ -563,6 +578,29 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   assign("avg_avg_SAVcover", avg_avg_SAVcover, pos = 1)
   assign("avg_max_SAVcover", avg_max_SAVcover, pos = 1)
   assign("avg_firstdaySAV", avg_firstdaySAV, pos = 1)
+  
+  #########################################################
+  ########## Summary statistics - across years ############
+  ################# saved to output.csv ###################
+  #########################################################
+  
+  # average SAV cover each years (1st three)
+  avg_SAVcover_yr01 <- data_summary_by_year$avgSAVcover[1]
+  avg_SAVcover_yr02 <- data_summary_by_year$avgSAVcover[2]
+  avg_SAVcover_yr03 <- data_summary_by_year$avgSAVcover[3]
+
+  # average FP cover each years (1st three)
+  avg_FPcover_yr01 <- data_summary_by_year$avgFPcover[1]
+  avg_FPcover_yr02 <- data_summary_by_year$avgFPcover[2]
+  avg_FPcover_yr03 <- data_summary_by_year$avgFPcover[3]
+  
+  # assign those variables to the environment outside of this function 
+  assign("avg_SAVcover_yr01", avg_SAVcover_yr01, pos = 1)
+  assign("avg_SAVcover_yr02", avg_SAVcover_yr02, pos = 1)
+  assign("avg_SAVcover_yr03", avg_SAVcover_yr03, pos = 1)
+  assign("avg_FPcover_yr01", avg_FPcover_yr01, pos = 1)
+  assign("avg_FPcover_yr02", avg_FPcover_yr02, pos = 1)
+  assign("avg_FPcover_yr03", avg_FPcover_yr03, pos = 1)
   
   ########################################################################
   ########### write a .txt of ALL parameter values in workspace ##########

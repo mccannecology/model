@@ -58,6 +58,12 @@ parameters$propyears_prop_daysSAV_abovehalf <- rep(NA, nrow(parameters))
 parameters$avg_avg_SAVcover <- rep(NA, nrow(parameters))
 parameters$avg_max_SAVcover <- rep(NA, nrow(parameters))
 parameters$avg_firstdaySAV <- rep(NA, nrow(parameters))
+parameters$avg_SAVcover_yr01 <- rep(NA, nrow(parameters)) 
+parameters$avg_SAVcover_yr02 <- rep(NA, nrow(parameters))
+parameters$avg_SAVcover_yr03 <- rep(NA, nrow(parameters))
+parameters$avg_FPcover_yr01 <- rep(NA, nrow(parameters))
+parameters$avg_FPcover_yr02 <- rep(NA, nrow(parameters))
+parameters$avg_FPcover_yr03 <- rep(NA, nrow(parameters))
 
 # load the packages you need 
 require(foreach)
@@ -171,6 +177,11 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     
   # these results are produced by OUTPUT()
   # stick all of the results you want out in a vector together 
+  # I'm not sure what this is actually doing, 
+  # since I am not assigning this vector to anything
+  # BUT, if I take it out, writing "output.csv" does not work
+  # Error in `colnames<-`(`*tmp*`, value = c("simulnumb", "propyears_avgFPcover_abovethreshold",  : 
+  # length of 'dimnames' [2] not equal to array extent
   c(simulnumb, 
     propyears_avgFPcover_abovethreshold,
     propyears_prop_daysFP_abovehalf,
@@ -181,7 +192,13 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     propyears_prop_daysSAV_abovehalf,
     avg_avg_SAVcover,
     avg_max_SAVcover,
-    avg_firstdaySAV)
+    avg_firstdaySAV,
+    avg_SAVcover_yr01,
+    avg_SAVcover_yr02,
+    avg_SAVcover_yr03,
+    avg_FPcover_yr01,
+    avg_FPcover_yr02,
+    avg_FPcover_yr03)
     
 }
 
@@ -199,7 +216,13 @@ colnames(RESULT) <- c("simulnumb",
                       "propyears_prop_daysSAV_abovehalf",
                       "avg_avg_SAVcover", 
                       "avg_max_SAVcover", 
-                      "avg_firstdaySAV")
+                      "avg_firstdaySAV",    
+                      "avg_SAVcover_yr01",
+                      "avg_SAVcover_yr02",
+                      "avg_SAVcover_yr03",
+                      "avg_FPcover_yr01",
+                      "avg_FPcover_yr02",
+                      "avg_FPcover_yr03")
 
 # convert to a data frame 
 RESULT <- as.data.frame(RESULT)
@@ -222,7 +245,12 @@ parameters$propyears_prop_daysSAV_abovehalf <- RESULT[,8]
 parameters$avg_avg_SAVcover <- RESULT[,9]
 parameters$avg_max_SAVcover <- RESULT[,10]
 parameters$avg_firstdaySAV <- RESULT[,11]
-
+parameters$avg_SAVcover_yr01 <- RESULT[,12]
+parameters$avg_SAVcover_yr02 <- RESULT[,13]
+parameters$avg_SAVcover_yr03 <- RESULT[,14]
+parameters$avg_FPcover_yr01 <- RESULT[,15]
+parameters$avg_FPcover_yr02 <- RESULT[,16]
+parameters$avg_FPcover_yr03 <- RESULT[,17]
 
 # write parameters with RESULT appended to a .csv 
 write.csv(parameters,"output26.csv",row.names=F) 
