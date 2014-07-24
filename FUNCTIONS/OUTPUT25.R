@@ -28,10 +28,14 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   setwd(paste(getwd(),"/OUTPUT",sep=""))
   
   # create another folder to hold the animation results - inside the /OUTPUT folder 
-  dir.create(paste(format(Sys.time(), "%m-%d-%Y-%H%M")," - simul",simulnumb, sep=""))
+  # dir.create(paste(format(Sys.time(), "%m-%d-%Y-%H%M")," - simul",simulnumb, sep=""))
+  # without the time stamp
+  dir.create(paste(getwd(),"/",simulnumb,sep=""))
   
   # now set your wd to that new - timestamped output folder 
-  setwd(paste(getwd(),"/",format(Sys.time(), "%m-%d-%Y-%H%M")," - simul",simulnumb,sep=""))
+  # setwd(paste(getwd(),"/",format(Sys.time(), "%m-%d-%Y-%H%M")," - simul",simulnumb,sep=""))
+  # without the time stamp
+  setwd(paste(getwd(),"/"simulnumb,sep=""))
   
   ##############################################################
   ############## animated plotting - package animate ###########
@@ -91,9 +95,14 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   ######################################################################
   ################### plot distribution of wind strength ###############
   ######################################################################
-  jpeg(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," wind_beta_distrib", ".jpg"),
-       width=8,height=8,
-       units="in",res=1600)
+  #jpeg(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," wind_beta_distrib", ".jpg"),
+  #     width=4,height=4,
+  #     units="in",res=300)
+  
+  # without the time stamp
+  jpeg(filename="wind.jpg", width=4, height=4, units="in", res=300)
+  
+  
   hist(rbeta(10000,wind_shape1,wind_shape2), 
        sub=paste(paste(c("wind_shape1 = ", wind_shape1), collapse = ""),
              paste(c("wind_shape2 = ", wind_shape2), collapse = ""), sep=" "
@@ -140,7 +149,10 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   }
   
   # plot raster layers 
-  jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshot_01_initial", ".jpg", sep=""),width=11,height=8,units="in",res=300)
+  # jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshot_01_initial", ".jpg", sep=""),width=11,height=8,units="in",res=300)
+  
+  # without the time stamp
+  jpeg(file="initial.jpg",width=11,height=8,units="in",res=300)  
   plot(all_layers)
   dev.off()
   
@@ -178,7 +190,10 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   }
   
   # plot raster layers 
-  jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshot_02_midpoint", ".jpg", sep=""),width=11,height=8,units="in",res=300)
+  # jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshot_02_midpoint", ".jpg", sep=""),width=11,height=8,units="in",res=300)
+  
+  # without the time stamp
+  jpeg(file="middle.jpg",width=11,height=8,units="in",res=300)  
   plot(all_layers)
   dev.off()
   
@@ -216,7 +231,10 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   }
   
   # plot raster layers 
-  jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshot_03_final", ".jpg", sep=""),width=11,height=8,units="in",res=300)
+  # jpeg(file=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," snapshot_03_final", ".jpg", sep=""),width=11,height=8,units="in",res=300)
+  
+  # without the time stamp
+  jpeg(file="final.jpg",width=11,height=8,units="in",res=300)  
   plot(all_layers)
   dev.off()
   
@@ -260,8 +278,10 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   temp <- temp + geom_line() 
   temp <- temp + ylab("average biomass (g/sq.mm)")
   temp <- temp + theme_classic(base_size=18)
-  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," average biomass", ".jpg", sep=""),width=11,height=8,units="in")
-    
+  # ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," average biomass", ".jpg", sep=""),width=11,height=8,units="in")
+  # without the time stamp
+  ggsave(filename="biomass.jpg",width=11,height=8,units="in")
+  
   #################################################################
   ############# Plot % cover through time - GGPLOT2 ###############
   #################################################################
@@ -305,7 +325,11 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   temp <- temp + geom_line() 
   temp <- temp + ylab("percent cover")
   temp <- temp + theme_classic(base_size=18)
-  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," percent cover", ".jpg", sep=""),width=11,height=8,units="in")
+  # ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," percent cover", ".jpg", sep=""),width=11,height=8,units="in")
+  
+  # without the time stamp
+  ggsave(filename="cover.jpg",width=11,height=8,units="in")
+  
   
   # dev.off()
   
@@ -336,7 +360,10 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   temp <- temp + geom_line() 
   temp <- temp + ylab("nutrient concentration(mg/L)")
   temp <- temp + theme_classic(base_size=18)
-  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," nutrients", ".jpg", sep=""),width=11,height=8,units="in")
+  # ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," nutrients", ".jpg", sep=""),width=11,height=8,units="in")
+  
+  # without the time stamp
+  ggsave(filename="nutrients.jpg",width=11,height=8,units="in")
   
   # dev.off()
   
@@ -374,7 +401,10 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   temp <- temp + geom_line() 
   temp <- temp + ylab("cells occupied")
   temp <- temp + theme_classic(base_size=18)
-  ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," cells occupied", ".jpg", sep=""),width=11,height=8,units="in")
+  # ggsave(filename=paste(format(Sys.time(), "%m-%d-%Y-%H%M")," cells occupied", ".jpg", sep=""),width=11,height=8,units="in")
+  
+  # without the time stamp
+  ggsave(filename="cells.jpg",width=11,height=8,units="in")
   
   # dev.off()
     
