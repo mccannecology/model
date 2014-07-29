@@ -100,14 +100,14 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   #     units="in",res=300)
   
   # without the time stamp
-  jpeg(filename="wind.jpg", width=4, height=4, units="in", res=300)
+  # jpeg(filename="wind.jpg", width=4, height=4, units="in", res=300)
   
   
-  hist(rbeta(10000,wind_shape1,wind_shape2), 
-       sub=paste(paste(c("wind_shape1 = ", wind_shape1), collapse = ""),
-             paste(c("wind_shape2 = ", wind_shape2), collapse = ""), sep=" "
-         ))
-  dev.off()
+  # hist(rbeta(10000,wind_shape1,wind_shape2), 
+  #      sub=paste(paste(c("wind_shape1 = ", wind_shape1), collapse = ""),
+  #            paste(c("wind_shape2 = ", wind_shape2), collapse = ""), sep=" "
+  #        ))
+  # dev.off()
 
   #########################################################################
   ################### save a few snapshots of the waterbody ###############
