@@ -30,12 +30,12 @@ OUTPUT25 <- function(animate=FALSE,regimethreshold=70){
   # create another folder to hold the animation results - inside the /OUTPUT folder 
   # dir.create(paste(format(Sys.time(), "%m-%d-%Y-%H%M")," - simul",simulnumb, sep=""))
   # without the time stamp
-  dir.create(paste(getwd(),"/",simulnumb,sep=""))
+  dir.create(paste(getwd(),"/",parameters$simulation[simulnumb],sep=""))
   
   # now set your wd to that new - timestamped output folder 
   # setwd(paste(getwd(),"/",format(Sys.time(), "%m-%d-%Y-%H%M")," - simul",simulnumb,sep=""))
   # without the time stamp
-  setwd(paste(getwd(),"/",simulnumb,sep=""))
+  setwd(paste(getwd(),"/",parameters$simulation[simulnumb],sep=""))
   
   ##############################################################
   ############## animated plotting - package animate ###########
