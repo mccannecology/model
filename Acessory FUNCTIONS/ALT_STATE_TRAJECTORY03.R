@@ -8,7 +8,7 @@
 library(ggplot2)
 library(gridExtra)
 
-data <- read.csv("output30.csv") # imports parameter  values for all simulations 
+data <- read.csv("output31.csv") # imports parameter  values for all simulations 
 head(data)
 nrow(data)
 colnames(data)
@@ -18,8 +18,6 @@ colnames(data)
 ############################################
 
 # For loop through variables to subset data 
-
-
 for (i in unique(data$TOTALN)){
   for (j in unique(data$shadingbyFP)){
     for (k in unique(data$size)){
@@ -81,6 +79,12 @@ for (i in unique(data$TOTALN)){
 }
 
 
+
+
+###################################
+# This is now outdated            #
+# look up simul via param values  #
+###################################
 ##############################
 # Building the look up table #
 # Have input parameters      #

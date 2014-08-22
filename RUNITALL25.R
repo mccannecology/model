@@ -45,7 +45,14 @@
 ########################################
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input30d.csv")
+parameters <- read.csv("input31.csv")
+
+# for trouble-shooting
+# parameters <- parameters[1:4,]
+# subset - do the chunks of 6000 simulations 
+# parameters <- parameters[1:6000,]
+# parameters <- parameters[6001:12000,]
+# parameters <- parameters[12001:18000,]
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
@@ -82,7 +89,7 @@ sourceDirectory(path=paste(getwd(),"/FUNCTIONS",sep=""),recursive=FALSE)
 
 #  assigns the functions to the global environments of each node
 clusterExport(cl, c("BLANK25", "GROW_SAV25", "GROW_FP25", 
-                    "INPUT25","MOVE25","OUTPUT25",
+                    "INPUT25","MOVE25","OUTPUT26",
                     "OVERWINTER25","SPECIES25","START25",
                     "STEP25","UPTAKE_N25","UPTAKE_P25","WIND25"))
 
@@ -167,7 +174,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
   # generates graphs
   # if you want .html animation you must specify animate=TRUE
   # set "FP regime" threshold here  
-  OUTPUT25(animate=FALSE,regimethreshold=70) 
+  OUTPUT26(animate=FALSE,regimethreshold=70) 
   
   # When not using foreach() loop: 
   # RESULTS[simulnumb,1] <- propyears_avgFPcover_abovethreshold # assign the current simulations results to the correct spot
@@ -257,5 +264,5 @@ parameters$avg_FPcover_yr02 <- RESULT[,16]
 parameters$avg_FPcover_yr03 <- RESULT[,17]
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output30d.csv",row.names=F) 
+write.csv(parameters,"output31c.csv",row.names=F) 
 
