@@ -8,7 +8,11 @@
 library(ggplot2)
 library(gridExtra)
 
-data <- read.csv("output31.csv") # imports parameter  values for all simulations 
+# this assumes that if you split your simulation into multiple batches,
+# that you've already combined them into one .csv file
+# see "combine_output_files.R" for combining 
+
+data <- read.csv("output32.csv") # imports parameter  values for all simulations 
 head(data)
 nrow(data)
 colnames(data)

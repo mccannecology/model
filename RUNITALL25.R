@@ -45,14 +45,23 @@
 ########################################
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input31.csv")
+parameters <- read.csv("input32.csv")
+# imports parameter  values for some simulations 
+# parameters <- read.csv("input32.csv")[1:2000,]
 
 # for trouble-shooting
-# parameters <- parameters[1:4,]
-# subset - do the chunks of 6000 simulations 
-# parameters <- parameters[1:6000,]
-# parameters <- parameters[6001:12000,]
-# parameters <- parameters[12001:18000,]
+
+# subset - do the chunks of 2000 simulations 
+## parameters <- read.csv("input32.csv")[1:2000,]
+## parameters <- read.csv("input32.csv")[2001:4000,]
+## parameters <- read.csv("input32.csv")[4001:6000,]
+## parameters <- read.csv("input32.csv")[6001:7000,] 
+## parameters <- read.csv("input32.csv")[7001:8000,]
+## parameters <- read.csv("input32.csv")[8001:10000,] 
+## parameters <- read.csv("input32.csv")[10001:12000,] 
+## parameters <- read.csv("input32.csv")[12001:14000,] 
+## parameters <- read.csv("input32.csv")[14001:16000,] 
+parameters <- read.csv("input32.csv")[16001:18000,] # this one is running
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
@@ -264,5 +273,13 @@ parameters$avg_FPcover_yr02 <- RESULT[,16]
 parameters$avg_FPcover_yr03 <- RESULT[,17]
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output31c.csv",row.names=F) 
-
+# write.csv(parameters,"output32a.csv",row.names=F) 
+# write.csv(parameters,"output32b.csv",row.names=F) 
+# write.csv(parameters,"output32c.csv",row.names=F) 
+# write.csv(parameters,"output32d.csv",row.names=F) 
+# write.csv(parameters,"output32e.csv",row.names=F) 
+# write.csv(parameters,"output32f.csv",row.names=F) 
+# write.csv(parameters,"output32g.csv",row.names=F) 
+# write.csv(parameters,"output32h.csv",row.names=F) 
+# write.csv(parameters,"output32i.csv",row.names=F)
+write.csv(parameters,"output32j.csv",row.names=F)
