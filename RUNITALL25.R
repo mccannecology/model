@@ -45,23 +45,23 @@
 ########################################
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input32.csv")
+parameters <- read.csv("input33.csv")
 # imports parameter  values for some simulations 
-# parameters <- read.csv("input32.csv")[1:2000,]
+# parameters <- read.csv("input33.csv")[1:2000,]
 
 # for trouble-shooting
 
 # subset - do the chunks of 2000 simulations 
-## parameters <- read.csv("input32.csv")[1:2000,]
-## parameters <- read.csv("input32.csv")[2001:4000,]
-## parameters <- read.csv("input32.csv")[4001:6000,]
-## parameters <- read.csv("input32.csv")[6001:7000,] 
-## parameters <- read.csv("input32.csv")[7001:8000,]
-## parameters <- read.csv("input32.csv")[8001:10000,] 
-## parameters <- read.csv("input32.csv")[10001:12000,] 
-## parameters <- read.csv("input32.csv")[12001:14000,] 
-## parameters <- read.csv("input32.csv")[14001:16000,] 
-parameters <- read.csv("input32.csv")[16001:18000,] # this one is running
+# parameters <- read.csv("input33.csv")[1:1000,] 
+# parameters <- read.csv("input33.csv")[1001:1500,] 
+# parameters <- read.csv("input33.csv")[1501:2500,] # this one is running
+parameters <- read.csv("input33.csv")[2501:3000,] # do this one next
+## parameters <- read.csv("input33.csv")[3001:5000,]
+## parameters <- read.csv("input33.csv")[5001:6000,] 
+## parameters <- read.csv("input33.csv")[6001:7000,] 
+## parameters <- read.csv("input33.csv")[7001:8000,] 
+## parameters <- read.csv("input33.csv")[8001:9000,] 
+## parameters <- read.csv("input33.csv")[9001:18000,] 
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
@@ -273,13 +273,5 @@ parameters$avg_FPcover_yr02 <- RESULT[,16]
 parameters$avg_FPcover_yr03 <- RESULT[,17]
 
 # write parameters with RESULT appended to a .csv 
-# write.csv(parameters,"output32a.csv",row.names=F) 
-# write.csv(parameters,"output32b.csv",row.names=F) 
-# write.csv(parameters,"output32c.csv",row.names=F) 
-# write.csv(parameters,"output32d.csv",row.names=F) 
-# write.csv(parameters,"output32e.csv",row.names=F) 
-# write.csv(parameters,"output32f.csv",row.names=F) 
-# write.csv(parameters,"output32g.csv",row.names=F) 
-# write.csv(parameters,"output32h.csv",row.names=F) 
-# write.csv(parameters,"output32i.csv",row.names=F)
-write.csv(parameters,"output32j.csv",row.names=F)
+# write.csv(parameters,"output33a.csv",row.names=F) 
+write.csv(parameters,"output33d.csv",row.names=F)  # starting @ simulation #74501 (row #2501)
