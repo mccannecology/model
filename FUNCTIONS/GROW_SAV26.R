@@ -16,7 +16,9 @@
 # Updated: Sept 2014 - spatial nutr.  #
 # No cap @ 100 g/m2                   #
 #######################################
-GROW_SAV25 <- function(x1,x2,x3,x4,x5) { 
+GROW_SAV26 <- function(x1,x2,x3,x4,x5) { 
+  
+  # Why do I have new_SAV here but not for FP? (MJM 9/11/14)
   
   new_SAV <- matrix(data=0,nrow=height1,ncol=width1)
   
@@ -28,7 +30,7 @@ GROW_SAV25 <- function(x1,x2,x3,x4,x5) {
     
                 (1/(1+(specieslist$lightlimitation[1]*x1[x1>0 & x5==0])+(shadingbyFP*x2[x1>0 & x5==0])+lightattenuation)) * # limitation according to Scheffer et al. 2003 
     
-                (x4/(x4+specieslist$halfsatN[1])) - # nutrient limitation 
+                (x4[x1>0 & x5==0] / (x4[x1>0 & x5==0] + specieslist$halfsatN[1])) - # nutrient limitation 
     
                 (lossSAV*x1[x1>0 & x5==0]) # biomass loss 
      
@@ -38,4 +40,16 @@ GROW_SAV25 <- function(x1,x2,x3,x4,x5) {
 }
 
 
+# Try with a real example 
 
+# LIST[[1]]$SAV[LIST[[1]]$SAV>0 & LAND==0] <- LIST[[1]]$SAV[LIST[[1]]$SAV>0 & LAND==0] +  # initial biomass plus 
+  
+  # (specieslist$maxrgr[1]*LIST[[1]]$SAV[LIST[[1]]$SAV>0 & LAND==0]) *  # new growth 
+  
+  # needs the corresponding cell in the FP matrix 
+  
+  # (1/(1+(specieslist$lightlimitation[1]*LIST[[1]]$SAV[LIST[[1]]$SAV>0 & LAND==0])+(shadingbyFP*LIST[[1]]$FPtotal[LIST[[1]]$SAV>0 & LAND==0])+lightattenuation)) * # limitation according to Scheffer et al. 2003 
+  
+  # (LIST[[1]]$TOTALN[LIST[[1]]$SAV>0 & LAND==0] / (LIST[[1]]$TOTALN[LIST[[1]]$SAV>0 & LAND==0]+specieslist$halfsatN[1])) - # nutrient limitation 
+  
+  # (lossSAV*LIST[[1]]$SAV[LIST[[1]]$SAV>0 & LAND==0]) # biomass loss 
