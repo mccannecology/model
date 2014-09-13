@@ -16,6 +16,9 @@ data02 <- read.csv("output34b.csv")
 
 data <- rbind(data01,data02)
 
+# I already combined my results into output34.csv 
+data <- read.csv("output34.csv")
+
 write.csv(data,"output34.csv",row.names=FALSE)
 
 head(data)
@@ -69,7 +72,7 @@ FP_plot02 <- FP_plot02 + ylim(0,100)
 FP_plot02 <- FP_plot02 + xlab("Total N (mg/L)")
 FP_plot02 <- FP_plot02 + ylab(expression(paste("Avg. FP cover year 4")))
 FP_plot02 <- FP_plot02 + theme_bw(base_size=18)
-FP_plot02 <- FP_plot02 + ggtitle("data_small")
+FP_plot02 <- FP_plot02 + ggtitle("")
 FP_plot02
 
 SAV_plot02 <- ggplot(data_medium, aes(x=TOTALN,y=avg_avg_SAVcover)) 
@@ -129,7 +132,7 @@ SAV_FP_plot2 <- SAV_FP_plot2 + ylab(expression(paste("Plant state score")))
 SAV_FP_plot2 <- SAV_FP_plot2 + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot2 <- SAV_FP_plot2 + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot2 <- SAV_FP_plot2 + theme_bw(base_size=18)
-SAV_FP_plot2 <- SAV_FP_plot2 + ggtitle("data_small")
+SAV_FP_plot2 <- SAV_FP_plot2 + ggtitle("")
 SAV_FP_plot2
 
 ggsave(file="output34 - state_score - spatial_nutrients - 0_04ha.jpg",SAV_FP_plot2, height=11,width=8)
