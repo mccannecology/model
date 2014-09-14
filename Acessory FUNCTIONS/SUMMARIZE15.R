@@ -72,11 +72,7 @@ FP_plot02 <- FP_plot02 + ylim(0,100)
 FP_plot02 <- FP_plot02 + xlab("Total N (mg/L)")
 FP_plot02 <- FP_plot02 + ylab(expression(paste("Avg. FP cover year 4")))
 FP_plot02 <- FP_plot02 + theme_bw(base_size=18)
-<<<<<<< HEAD
-FP_plot02 <- FP_plot02 + ggtitle("data_medium")
-=======
 FP_plot02 <- FP_plot02 + ggtitle("")
->>>>>>> de6f3ae0e06ee94e29761e67ac2956081e8043bc
 FP_plot02
 
 SAV_plot02 <- ggplot(data_medium, aes(x=TOTALN,y=avg_avg_SAVcover)) 
@@ -140,6 +136,32 @@ SAV_FP_plot2 <- SAV_FP_plot2 + ggtitle("")
 SAV_FP_plot2
 
 ggsave(file="output34 - state_score - spatial_nutrients - 0_04ha.jpg",SAV_FP_plot2, height=11,width=8)
+
+###################
+# rectangle       #
+# small (0.04 ha) #  # try different facetting - see what looks best 
+# state_score     #
+# wind: weak, all #
+###################
+data_small_weak_all <- subset(data, data$size=="small" & data$wind_direction=="all" & data$wind_shape2==4)
+
+# Y = average average FP cover for all years (except for first three)
+SAV_FP_plot2 <- ggplot(data_small_weak_all, aes(x=TOTALN,y=state_score))
+SAV_FP_plot2 <- SAV_FP_plot2 + scale_colour_grey()
+SAV_FP_plot2 <- SAV_FP_plot2 + geom_point(position="jitter",size=3)
+SAV_FP_plot2 <- SAV_FP_plot2 + xlab("Total N (mg/L)")
+SAV_FP_plot2 <- SAV_FP_plot2 + ylab(expression(paste("Plant state score")))
+SAV_FP_plot2 <- SAV_FP_plot2 + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed",size=1)
+SAV_FP_plot2 <- SAV_FP_plot2 + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed",size=1)
+SAV_FP_plot2 <- SAV_FP_plot2 + theme_bw(base_size=18)
+SAV_FP_plot2 <- SAV_FP_plot2 + ggtitle("")
+SAV_FP_plot2
+
+ggsave(file="output34 - state_score - spatial_nutrients - 0_04ha - weak_all.jpg",SAV_FP_plot2, height=11,width=8)
+
+
+
+
 
 ###################
 # rectangle       #
