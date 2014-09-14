@@ -45,7 +45,7 @@
 ########################################
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input_for_committee.csv")[601:1944,]
+parameters <- read.csv("input_for_committee.csv")[1501:1944,]
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
@@ -257,4 +257,12 @@ parameters$avg_FPcover_yr02 <- RESULT[,16]
 parameters$avg_FPcover_yr03 <- RESULT[,17]
 
 # write parameters with RESULT appended to a .csv  
-write.csv(parameters,"output_for_committee_b.csv",row.names=F)  
+write.csv(parameters,"output_for_committee_c.csv",row.names=F)  
+
+data01<-read.csv("output_for_committee_a.csv")
+data02<-read.csv("output_for_committee_b.csv")
+data03<-read.csv("output_for_committee_c.csv")
+
+data <- rbind(data01,data02,data03)
+
+write.csv(data,"output_for_committee.csv",row.names=FALSE)

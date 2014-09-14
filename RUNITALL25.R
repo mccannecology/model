@@ -45,7 +45,7 @@
 ########################################
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input33.csv")
+# parameters <- read.csv("input33.csv")
 # imports parameter  values for some simulations 
 # parameters <- read.csv("input33.csv")[1:2000,]
 
@@ -54,7 +54,7 @@ parameters <- read.csv("input33.csv")
 # subset - do the chunks of 2000 simulations 
 # parameters <- read.csv("input33.csv")[1:1000,] 
 # parameters <- read.csv("input33.csv")[1001:1500,] 
-# parameters <- read.csv("input33.csv")[1501:2500,] # this one is running
+# parameters <- read.csv("input33.csv")[1501:2500,] 
 parameters <- read.csv("input33.csv")[2501:3000,] # do this one next
 ## parameters <- read.csv("input33.csv")[3001:5000,]
 ## parameters <- read.csv("input33.csv")[5001:6000,] 

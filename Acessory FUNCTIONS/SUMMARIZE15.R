@@ -69,7 +69,7 @@ FP_plot02 <- FP_plot02 + ylim(0,100)
 FP_plot02 <- FP_plot02 + xlab("Total N (mg/L)")
 FP_plot02 <- FP_plot02 + ylab(expression(paste("Avg. FP cover year 4")))
 FP_plot02 <- FP_plot02 + theme_bw(base_size=18)
-FP_plot02 <- FP_plot02 + ggtitle("data_small")
+FP_plot02 <- FP_plot02 + ggtitle("data_medium")
 FP_plot02
 
 SAV_plot02 <- ggplot(data_medium, aes(x=TOTALN,y=avg_avg_SAVcover)) 
