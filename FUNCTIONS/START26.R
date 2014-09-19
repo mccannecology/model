@@ -84,10 +84,12 @@ START26 <- function(x){
   # Initializing TOTAL N & TOTAL P 
   #######################################
   # assign the single total N value to every cell in the grid 
-  x$TOTALN <- matrix(TOTALN, height1, width1)
+  x$TOTALN <- matrix(0, height1, width1) # first make all of the cells (incl. LAND) 0
+  x$TOTALN[LAND==0] <- TOTALN # then assign TOTALN to all cells that are not LAND 
   
   # assign the single total P value to every cell in the grid 
-  x$TOTALP <- matrix(TOTALP, height1, width1)
+  x$TOTALP <- matrix(0, height1, width1) # first make all of the cells (incl. LAND) 0
+  x$TOTALP[LAND==0] <- TOTALP # then assign TOTALP to all cells that are not LAND 
   
   #######################################
   # Put it all together & return it 

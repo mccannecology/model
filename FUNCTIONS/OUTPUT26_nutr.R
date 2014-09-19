@@ -355,10 +355,10 @@ OUTPUT26_nutr <- function(animate=FALSE,regimethreshold=70){
   # for each timestep, for each species, assign the nutrients to the appropriate position in data_nutrients
   for (i in 1:(timesteps+1)) { 
     data_nutrients[i,1]<-min(LIST[[i]]$TOTALN)
-    data_nutrients[i,2]<-mean(LIST[[i]]$TOTALN)
+    data_nutrients[i,2]<-sum(LIST[[i]]$TOTALN)/area
     data_nutrients[i,3]<-max(LIST[[i]]$TOTALN)
     data_nutrients[i,4]<-min(LIST[[i]]$TOTALP)
-    data_nutrients[i,5]<-mean(LIST[[i]]$TOTALP)
+    data_nutrients[i,5]<-sum(LIST[[i]]$TOTALP)/area
     data_nutrients[i,6]<-max(LIST[[i]]$TOTALP)
   }
     
