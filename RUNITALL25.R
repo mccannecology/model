@@ -55,12 +55,13 @@
 # parameters <- read.csv("input33.csv")[1:1000,] 
 # parameters <- read.csv("input33.csv")[1001:1500,] 
 # parameters <- read.csv("input33.csv")[1501:2500,] 
-parameters <- read.csv("input33.csv")[2501:3000,] # do this one next
-## parameters <- read.csv("input33.csv")[3001:5000,]
-## parameters <- read.csv("input33.csv")[5001:6000,] 
-## parameters <- read.csv("input33.csv")[6001:7000,] 
-## parameters <- read.csv("input33.csv")[7001:8000,] 
-## parameters <- read.csv("input33.csv")[8001:9000,] 
+# parameters <- read.csv("input33.csv")[2501:3000,] 
+# parameters <- read.csv("input33.csv")[3001:3500,] 
+# parameters <- read.csv("input33.csv")[3501:4000,] 
+# parameters <- read.csv("input33.csv")[4001:4500,]  
+# parameters <- read.csv("input33.csv")[4501:5000,] 
+parameters <- read.csv("input33.csv")[5001:7000,] # do this one next
+## parameters <- read.csv("input33.csv")[5001:9000,] 
 ## parameters <- read.csv("input33.csv")[9001:18000,] 
 
 # Check for errors in the input file 
@@ -274,4 +275,4 @@ parameters$avg_FPcover_yr03 <- RESULT[,17]
 
 # write parameters with RESULT appended to a .csv 
 # write.csv(parameters,"output33a.csv",row.names=F) 
-write.csv(parameters,"output33d.csv",row.names=F)  # starting @ simulation #74501 (row #2501)
+write.csv(parameters,"output33i.csv",row.names=F)
