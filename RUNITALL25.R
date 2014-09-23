@@ -60,7 +60,8 @@
 # parameters <- read.csv("input33.csv")[3501:4000,] 
 # parameters <- read.csv("input33.csv")[4001:4500,]  
 # parameters <- read.csv("input33.csv")[4501:5000,] 
-parameters <- read.csv("input33.csv")[5001:7000,] # do this one next
+parameters <- read.csv("input33.csv")[5001:5500,] # do this one next
+## parameters <- read.csv("input33.csv")[5501:6000,] 
 ## parameters <- read.csv("input33.csv")[5001:9000,] 
 ## parameters <- read.csv("input33.csv")[9001:18000,] 
 

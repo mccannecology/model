@@ -11,7 +11,7 @@
 # Updated: 7/8/2014                   #
 #######################################
 
-OVERWINTER27 <- function(x1,i) {
+OVERWINTER25 <- function(x1,i) {
   
   x1[[i]] <- x1[[i]] * specieslist$overwinter[i+1] # parameter value is completely arbitary !
     

@@ -101,11 +101,20 @@ STEP27<-function(x,t){
     ####################
     # Check if it is a mixing day (according to mix_freq) 
     if (t %in% mix_days){
-      nextstep$TOTALP <- matrix(sum(thisstep$TOTALP)/area,
+      
+      # TOTAL P # 
+      # uptake 
+      nextstep$TOTALP <- UPTAKE_P27(thisstep,nextstep)
+      # mix 
+      nextstep$TOTALP <- matrix(sum(nextstep$TOTALP)/area,
                                 nrow=height1,
                                 ncol=width1)
       
-      nextstep$TOTALN <- matrix(sum(thisstep$TOTALN)/area,
+      # TOTAL N # 
+      # uptake 
+      nextstep$TOTALN <- UPTAKE_N27(thisstep,nextstep)
+      # mix 
+      nextstep$TOTALN <- matrix(sum(nextstep$TOTALN)/area,
                                 nrow=height1,
                                 ncol=width1)
     }
