@@ -45,6 +45,8 @@
 ########################################
 
 # imports parameter  values for all simulations 
+parameters <- read.csv("input_mixing_rates2.csv")
+
 ##############
 # OLD INPUTS #
 ##############
@@ -275,4 +277,4 @@ parameters$avg_FPcover_yr04 <- RESULT[,19]
 # write.csv(parameters,"output33a.csv",row.names=F) 
 # write.csv(parameters,"output_mixing_rates.csv",row.names=F)  
 
-write.csv(parameters,"output_wind_and_size.csv",row.names=F)  
+write.csv(parameters,"output_mixing_rates2.csv",row.names=F)  
