@@ -60,9 +60,9 @@
 # parameters <- read.csv("input33.csv")[3501:4000,] 
 # parameters <- read.csv("input33.csv")[4001:4500,]  
 # parameters <- read.csv("input33.csv")[4501:5000,] 
-parameters <- read.csv("input33.csv")[5001:5500,] # do this one next
-## parameters <- read.csv("input33.csv")[5501:6000,] 
-## parameters <- read.csv("input33.csv")[5001:9000,] 
+# parameters <- read.csv("input33.csv")[5001:5500,] 
+parameters <- read.csv("input33.csv")[5501:6000,]  # do this one next
+## parameters <- read.csv("input33.csv")[6001:6500,] 
 ## parameters <- read.csv("input33.csv")[9001:18000,] 
 
 # Check for errors in the input file 
@@ -276,4 +276,4 @@ parameters$avg_FPcover_yr03 <- RESULT[,17]
 
 # write parameters with RESULT appended to a .csv 
 # write.csv(parameters,"output33a.csv",row.names=F) 
-write.csv(parameters,"output33i.csv",row.names=F)
+write.csv(parameters,"output33j.csv",row.names=F)
