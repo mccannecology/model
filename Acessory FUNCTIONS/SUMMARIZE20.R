@@ -92,17 +92,17 @@ data_A2_9 <- subset(data_A2, data_A2$size=="XL")
 ################
 SAV_FP_plot <- ggplot(data_A1_0x04, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
-SAV_FP_plot <- SAV_FP_plot + facet_grid(shape ~ wind_direction)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                    
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario A1, 0.04 ha")
 SAV_FP_plot
 
-ggsave(file="wind & shape & size - A1 - 0x04ha.jpg",SAV_FP_plot, height=11,width=8)
+ggsave(file="wind & shape & size - A1 - 0x04ha.jpg",SAV_FP_plot, height=8,width=12)
 
 ################
 # Scenario A1  #
@@ -110,17 +110,17 @@ ggsave(file="wind & shape & size - A1 - 0x04ha.jpg",SAV_FP_plot, height=11,width
 ################
 SAV_FP_plot <- ggplot(data_A1_1, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
-SAV_FP_plot <- SAV_FP_plot + facet_grid(shape ~ wind_direction)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario A1, 1 ha")
 SAV_FP_plot
 
-ggsave(file="wind & shape & size - A1 - 1ha.jpg",SAV_FP_plot, height=11,width=8)
+ggsave(file="wind & shape & size - A1 - 1ha.jpg",SAV_FP_plot, height=8,width=12)
 
 ################
 # Scenario A1  #
@@ -128,17 +128,17 @@ ggsave(file="wind & shape & size - A1 - 1ha.jpg",SAV_FP_plot, height=11,width=8)
 ################
 SAV_FP_plot <- ggplot(data_A1_2x25, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
-SAV_FP_plot <- SAV_FP_plot + facet_grid(shape ~ wind_direction)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario A1, 2.25 ha")
 SAV_FP_plot
 
-ggsave(file="wind & shape & size - A1 - 2x25ha.jpg",SAV_FP_plot, height=11,width=8)
+ggsave(file="wind & shape & size - A1 - 2x25ha.jpg",SAV_FP_plot, height=8,width=12)
 
 ################
 # Scenario A1  #
@@ -146,17 +146,17 @@ ggsave(file="wind & shape & size - A1 - 2x25ha.jpg",SAV_FP_plot, height=11,width
 ################
 SAV_FP_plot <- ggplot(data_A1_6x25, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
-SAV_FP_plot <- SAV_FP_plot + facet_grid(shape ~ wind_direction)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario A1, 6.25 ha")
 SAV_FP_plot
 
-ggsave(file="wind & shape & size - A1 - 6x25ha.jpg",SAV_FP_plot, height=11,width=8)
+ggsave(file="wind & shape & size - A1 - 6x25ha.jpg",SAV_FP_plot, height=8,width=12)
 
 ################
 # Scenario A1  #
@@ -164,17 +164,17 @@ ggsave(file="wind & shape & size - A1 - 6x25ha.jpg",SAV_FP_plot, height=11,width
 ################
 SAV_FP_plot <- ggplot(data_A1_9, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
-SAV_FP_plot <- SAV_FP_plot + facet_grid(shape ~ wind_direction)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario A1, 9 ha")
 SAV_FP_plot
 
-ggsave(file="wind & shape & size - A1 - 9ha.jpg",SAV_FP_plot, height=11,width=8)
+ggsave(file="wind & shape & size - A1 - 9ha.jpg",SAV_FP_plot, height=8,width=12)
 
 
 
@@ -186,17 +186,17 @@ ggsave(file="wind & shape & size - A1 - 9ha.jpg",SAV_FP_plot, height=11,width=8)
 ################
 SAV_FP_plot <- ggplot(data_A2_0x04, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
-SAV_FP_plot <- SAV_FP_plot + facet_grid(shape ~ wind_direction)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario A2, 0.04 ha")
 SAV_FP_plot
 
-ggsave(file="wind & shape & size - A2 - 0x04ha.jpg",SAV_FP_plot, height=11,width=8)
+ggsave(file="wind & shape & size - A2 - 0x04ha.jpg",SAV_FP_plot, height=8,width=12)
 
 ################
 # Scenario A2  #
@@ -204,17 +204,17 @@ ggsave(file="wind & shape & size - A2 - 0x04ha.jpg",SAV_FP_plot, height=11,width
 ################
 SAV_FP_plot <- ggplot(data_A2_1, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
-SAV_FP_plot <- SAV_FP_plot + facet_grid(shape ~ wind_direction)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario A2, 1 ha")
 SAV_FP_plot
 
-ggsave(file="wind & shape & size - A2 - 1ha.jpg",SAV_FP_plot, height=11,width=8)
+ggsave(file="wind & shape & size - A2 - 1ha.jpg",SAV_FP_plot, height=8,width=12)
 
 ################
 # Scenario A2  #
@@ -222,17 +222,17 @@ ggsave(file="wind & shape & size - A2 - 1ha.jpg",SAV_FP_plot, height=11,width=8)
 ################
 SAV_FP_plot <- ggplot(data_A2_2x25, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
-SAV_FP_plot <- SAV_FP_plot + facet_grid(shape ~ wind_direction)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario A2, 2.25 ha")
 SAV_FP_plot
 
-ggsave(file="wind & shape & size - A2 - 2x25ha.jpg",SAV_FP_plot, height=11,width=8)
+ggsave(file="wind & shape & size - A2 - 2x25ha.jpg",SAV_FP_plot, height=8,width=12)
 
 ################
 # Scenario A2  #
@@ -240,17 +240,17 @@ ggsave(file="wind & shape & size - A2 - 2x25ha.jpg",SAV_FP_plot, height=11,width
 ################
 SAV_FP_plot <- ggplot(data_A2_6x25, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
-SAV_FP_plot <- SAV_FP_plot + facet_grid(shape ~ wind_direction)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario A2, 6.25 ha")
 SAV_FP_plot
 
-ggsave(file="wind & shape & size - A2 - 6x25ha.jpg",SAV_FP_plot, height=11,width=8)
+ggsave(file="wind & shape & size - A2 - 6x25ha.jpg",SAV_FP_plot, height=8,width=12)
 
 ################
 # Scenario A2  #
@@ -258,17 +258,22 @@ ggsave(file="wind & shape & size - A2 - 6x25ha.jpg",SAV_FP_plot, height=11,width
 ################
 SAV_FP_plot <- ggplot(data_A2_9, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
-SAV_FP_plot <- SAV_FP_plot + facet_grid(shape ~ wind_direction)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                     
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
-SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
+#SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario A2, 9 ha")
 SAV_FP_plot
 
-ggsave(file="wind & shape & size - A2 - 9ha.jpg",SAV_FP_plot, height=11,width=8)
+ggsave(file="wind & shape & size - A2 - 9ha.jpg",SAV_FP_plot, height=8,width=12)
+
+
+
+
+
 
 
 ##################
@@ -276,6 +281,56 @@ ggsave(file="wind & shape & size - A2 - 9ha.jpg",SAV_FP_plot, height=11,width=8)
 # more specific  #
 # conditions     #
 ##################
+
+################
+# Scenario A1  #
+# Facet: size  #
+# Facet: wind  #
+# Rectangle    #
+################
+data_temp <- subset(data_A1, data_A1$shape=="rectangle")
+
+data_temp$size <- factor(data_temp$size, levels=c("small", "med1", "med2", "large", "XL"),
+                         labels=c("0.04 ha","1 ha", "2.25 ha", "6.25 ha", "9 ha"))
+
+SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
+SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+                                        position=position_jitter(w=0.075))
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ size)
+SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
+SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
+SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
+SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario: A1 (rectangle only)")
+SAV_FP_plot
+
+ggsave(file="wind & shape & size - A1 - rectangle.jpg",SAV_FP_plot, height=8,width=12)
+
+
+################
+# Scenario A2  #
+# Facet: size  #
+# Facet: wind  #
+# Rectangle    #
+################
+data_temp <- subset(data_A2, data_A2$shape=="rectangle")
+
+data_temp$size <- factor(data_temp$size, levels=c("small", "med1", "med2", "large", "XL"),
+                         labels=c("0.04 ha","1 ha", "2.25 ha", "6.25 ha", "9 ha"))
+
+SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
+SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+                                        position=position_jitter(w=0.075))
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ size)
+SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
+SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
+SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
+SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario: A2 (rectangle only)")
+SAV_FP_plot
+
+ggsave(file="wind & shape & size - A2 - rectangle.jpg",SAV_FP_plot, height=8,width=12)
+
 
 ################
 # Scenario A2  #
@@ -291,7 +346,8 @@ data_temp$size <- factor(data_temp$size, levels=c("small", "med1", "med2", "larg
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+                                        position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(. ~ size)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -315,7 +371,8 @@ data_temp$size <- factor(data_temp$size, levels=c("small", "med1", "med2", "larg
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+                                        position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(. ~ size)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -323,6 +380,54 @@ SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot
 
 ggsave(file="wind & shape & size - A2 - rectangle - up.jpg",SAV_FP_plot, height=4,width=12)
+
+
+################
+# Scenario A1  #
+# Facet: shape #
+# Face: wind   #
+# Size: 9ha    #
+################
+data_temp <- subset(data_A1, data_A1$size=="XL")
+
+data_temp$shape <- factor(data_temp$shape, levels=c("rectangle","eight","hook","tee","cross"))
+
+SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
+SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+                                        position=position_jitter(w=0.075))
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
+SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
+SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
+SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
+SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario: A1 (9 ha only)")
+SAV_FP_plot
+
+ggsave(file="wind & shape & size - A1 - 9ha.jpg",SAV_FP_plot, height=8,width=12)
+
+
+################
+# Scenario A2  #
+# Facet: shape #
+# Face: wind   #
+# Size: 9ha    #
+################
+data_temp <- subset(data_A2, data_A2$size=="XL")
+
+data_temp$shape <- factor(data_temp$shape, levels=c("rectangle","eight","hook","tee","cross"))
+
+SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
+SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+                                        position=position_jitter(w=0.075))
+SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
+SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
+SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
+SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
+SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario: A2 (9 ha only)")
+SAV_FP_plot
+
+ggsave(file="wind & shape & size - A2 - 9ha.jpg",SAV_FP_plot, height=8,width=12)
 
 
 ################
@@ -338,7 +443,8 @@ data_temp$shape <- factor(data_temp$shape, levels=c("rectangle","eight","hook","
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+                                        position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(. ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -346,6 +452,30 @@ SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot
 
 ggsave(file="wind & shape & size - A2 - 9ha - all.jpg",SAV_FP_plot, height=4,width=12)
+
+################
+# Scenario A2  #
+# Facet: shape #
+# Size: 9ha    #
+# wind up     #
+################
+data_temp <- subset(data_A2, data_A2$wind_direction=="up" & 
+                      data_A2$size=="XL")
+
+data_temp$shape <- factor(data_temp$shape, levels=c("rectangle","eight","hook","tee","cross"))
+
+SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
+SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+                                        position=position_jitter(w=0.075))
+SAV_FP_plot <- SAV_FP_plot + facet_grid(. ~ shape)
+SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
+SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
+SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
+SAV_FP_plot
+
+ggsave(file="wind & shape & size - A2 - 9ha - up.jpg",SAV_FP_plot, height=4,width=12)
+
 
 
 ################
@@ -359,7 +489,8 @@ data_temp <- subset(data_A1_0x04, data_A1_0x04$wind_direction=="up"
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(position="jitter",size=3)
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+                                        position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
 #SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
