@@ -1,0 +1,17 @@
+The last 5 commits:
+99872bdcff4163e9f34d98f4174487a2fced9815
+45e5f927b4a9cc8fb5461aa762fd45b6777b2abe
+cb8fc346873940127360d370d1b4f22c055ac6f2
+2bbf9ef7dd7a21971a881a9adddf4bd973a4bafb
+83275be6b4d13c304093f4ff1be16bd59982173d
+
+The committ with the bad file:
+cb8fc346873940127360d370d1b4f22c055ac6f2
+
+The bad file:
+workspace to trouble-shoot multiple FP species.RData
+(163MB)
+
+Tried but failed:
+$ git filter-branch -f --tree-filter 'rm "workspace to trouble-shoot multiple F
+P species.RData" ' HEAD
