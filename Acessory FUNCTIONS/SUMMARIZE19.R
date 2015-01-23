@@ -42,15 +42,15 @@ data$state[-50/sqrt(2) < data$state_score & data$state_score < 50/sqrt(2)] <- "m
 
 SAV_FP_plot2 <- ggplot(data, aes(x=TOTALN,y=state_score))
 SAV_FP_plot2 <- SAV_FP_plot2 + scale_colour_grey()
-SAV_FP_plot2 <- SAV_FP_plot2 + geom_point(position="jitter",size=3)
+SAV_FP_plot2 <- SAV_FP_plot2 + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075)) 
 SAV_FP_plot2 <- SAV_FP_plot2 + facet_grid(. ~ scenario)
 SAV_FP_plot2 <- SAV_FP_plot2 + xlab("Total N (mg/L)")
 SAV_FP_plot2 <- SAV_FP_plot2 + ylab(expression(paste("Plant state score")))
 SAV_FP_plot2 <- SAV_FP_plot2 + theme_bw(base_size=18)
-SAV_FP_plot2 <- SAV_FP_plot2 + ggtitle("")
+SAV_FP_plot2 <- SAV_FP_plot2 + ggtitle("Multiple Species (1 ha, rectangle)")
 SAV_FP_plot2
 
-ggsave(file="output_multiple_species - state_score.jpg",SAV_FP_plot2, height=3.5,width=12)
+ggsave(file="output_multiple_species - state_score.jpg",SAV_FP_plot2, height=4,width=10)
 
 
 
