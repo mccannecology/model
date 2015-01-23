@@ -11,10 +11,24 @@ library(ggplot2)
 library(gridExtra)
 
 # I already combined my results into output34.csv 
-data <- read.csv("output_mixing_rates.csv")
+data <- read.csv("output_mixing_rates_both.csv")
 
 head(data)
 nrow(data)
+
+
+###############################################
+# Calculate "state_score" for each simulation #
+# Range (-70.7, 70.7)                         #
+# (-) score: more SAV                         #
+# (+) score: more FP                          #
+###############################################
+# I could also use this (avg cover in the final year)
+data$state_score <- (data$avg_FPcover_yr04 - data$avg_SAVcover_yr04) / sqrt(2)
+
+
+
+
 
 ###################
 
@@ -71,17 +85,15 @@ data$state[-50/sqrt(2) < data$state_score & data$state_score < 50/sqrt(2)] <- "m
 
 SAV_FP_plot2 <- ggplot(data, aes(x=TOTALN,y=state_score))
 SAV_FP_plot2 <- SAV_FP_plot2 + scale_colour_grey()
-SAV_FP_plot2 <- SAV_FP_plot2 + geom_point(position="jitter",size=3)
-SAV_FP_plot2 <- SAV_FP_plot2 + facet_grid(mix_freq ~ .)
+SAV_FP_plot2 <- SAV_FP_plot2 + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))   
+SAV_FP_plot2 <- SAV_FP_plot2 + facet_grid(. ~ mix_freq)
 SAV_FP_plot2 <- SAV_FP_plot2 + xlab("Total N (mg/L)")
 SAV_FP_plot2 <- SAV_FP_plot2 + ylab(expression(paste("Plant state score")))
-SAV_FP_plot2 <- SAV_FP_plot2 + geom_hline(yintercept=(50/sqrt(2)),colour="red",linetype="dashed")
-SAV_FP_plot2 <- SAV_FP_plot2 + geom_hline(yintercept=(-50/sqrt(2)),colour="red",linetype="dashed")
 SAV_FP_plot2 <- SAV_FP_plot2 + theme_bw(base_size=18)
-SAV_FP_plot2 <- SAV_FP_plot2 + ggtitle("")
+SAV_FP_plot2 <- SAV_FP_plot2 + ggtitle("Mixing frequency (1 ha, rectangle)")
 SAV_FP_plot2
 
-ggsave(file="output_mixing_rates - state_score - 1ha.jpg",SAV_FP_plot2, height=11,width=8)
+ggsave(file="output_mixing_rates - state_score - 1ha.jpg",SAV_FP_plot2, height=4,width=12)
 
 
 
