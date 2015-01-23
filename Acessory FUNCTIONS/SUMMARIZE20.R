@@ -92,7 +92,7 @@ data_A2_9 <- subset(data_A2, data_A2$size=="XL")
 ################
 SAV_FP_plot <- ggplot(data_A1_0x04, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                    
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))                                    
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -110,7 +110,7 @@ ggsave(file="wind & shape & size - A1 - 0x04ha.jpg",SAV_FP_plot, height=8,width=
 ################
 SAV_FP_plot <- ggplot(data_A1_1, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))                                        
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -128,7 +128,7 @@ ggsave(file="wind & shape & size - A1 - 1ha.jpg",SAV_FP_plot, height=8,width=12)
 ################
 SAV_FP_plot <- ggplot(data_A1_2x25, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))                                        
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -146,7 +146,7 @@ ggsave(file="wind & shape & size - A1 - 2x25ha.jpg",SAV_FP_plot, height=8,width=
 ################
 SAV_FP_plot <- ggplot(data_A1_6x25, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))                                        
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -164,7 +164,7 @@ ggsave(file="wind & shape & size - A1 - 6x25ha.jpg",SAV_FP_plot, height=8,width=
 ################
 SAV_FP_plot <- ggplot(data_A1_9, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))                                        
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -186,7 +186,7 @@ ggsave(file="wind & shape & size - A1 - 9ha.jpg",SAV_FP_plot, height=8,width=12)
 ################
 SAV_FP_plot <- ggplot(data_A2_0x04, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -204,7 +204,7 @@ ggsave(file="wind & shape & size - A2 - 0x04ha.jpg",SAV_FP_plot, height=8,width=
 ################
 SAV_FP_plot <- ggplot(data_A2_1, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))                                        
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -222,7 +222,7 @@ ggsave(file="wind & shape & size - A2 - 1ha.jpg",SAV_FP_plot, height=8,width=12)
 ################
 SAV_FP_plot <- ggplot(data_A2_2x25, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))                                        
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -240,7 +240,7 @@ ggsave(file="wind & shape & size - A2 - 2x25ha.jpg",SAV_FP_plot, height=8,width=
 ################
 SAV_FP_plot <- ggplot(data_A2_6x25, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                        
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))                                        
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -258,7 +258,7 @@ ggsave(file="wind & shape & size - A2 - 6x25ha.jpg",SAV_FP_plot, height=8,width=
 ################
 SAV_FP_plot <- ggplot(data_A2_9, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3, position=position_jitter(w=0.075))                                     
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))                                     
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
@@ -295,7 +295,7 @@ data_temp$size <- factor(data_temp$size, levels=c("small", "med1", "med2", "larg
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3,
                                         position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ size)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
@@ -320,7 +320,7 @@ data_temp$size <- factor(data_temp$size, levels=c("small", "med1", "med2", "larg
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3,
                                         position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ size)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
@@ -346,7 +346,7 @@ data_temp$size <- factor(data_temp$size, levels=c("small", "med1", "med2", "larg
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3,
                                         position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(. ~ size)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
@@ -371,7 +371,7 @@ data_temp$size <- factor(data_temp$size, levels=c("small", "med1", "med2", "larg
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3,
                                         position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(. ~ size)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
@@ -394,7 +394,7 @@ data_temp$shape <- factor(data_temp$shape, levels=c("rectangle","eight","hook","
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3,
                                         position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
@@ -418,7 +418,7 @@ data_temp$shape <- factor(data_temp$shape, levels=c("rectangle","eight","hook","
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3,
                                         position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(wind_direction ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
@@ -443,7 +443,7 @@ data_temp$shape <- factor(data_temp$shape, levels=c("rectangle","eight","hook","
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3,
                                         position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(. ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
@@ -466,7 +466,7 @@ data_temp$shape <- factor(data_temp$shape, levels=c("rectangle","eight","hook","
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3,
                                         position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + facet_grid(. ~ shape)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
@@ -489,7 +489,7 @@ data_temp <- subset(data_A1_0x04, data_A1_0x04$wind_direction=="up"
 
 SAV_FP_plot <- ggplot(data_temp, aes(x=TOTALN,y=state_score))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
-SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.1,size=3,
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3,
                                         position=position_jitter(w=0.075))
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
