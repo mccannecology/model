@@ -92,8 +92,9 @@ STEP27<-function(x,t){
     })
   
     ##########
-    # Sum FP #
+    # Sum FP # 
     ##########
+    # combine multiple FP species into "FPtotal" 
     nextstep$FPtotal <- Reduce('+', nextstep$FP)
     
     ####################
