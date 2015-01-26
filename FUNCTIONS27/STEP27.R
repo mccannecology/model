@@ -67,18 +67,18 @@ STEP27<-function(x,t){
       # TOTAL P # 
       # uptake 
       nextstep$TOTALP <- UPTAKE_P27(thisstep,nextstep)
+      
       # mix 
-      nextstep$TOTALP <- matrix(sum(nextstep$TOTALP)/area,
-                                nrow=height1,
-                                ncol=width1)
+      nextstep$TOTALP[LAND==0] <- sum(nextstep$TOTALP)/area
+                 
       
       # TOTAL N # 
       # uptake 
       nextstep$TOTALN <- UPTAKE_N27(thisstep,nextstep)
+      
       # mix 
-      nextstep$TOTALN <- matrix(sum(nextstep$TOTALN)/area,
-                                nrow=height1,
-                                ncol=width1)
+      nextstep$TOTALN[LAND==0] <- sum(nextstep$TOTALN)/area
+
     }
     
     # Time steps when it is not a mixing day (according to mix_freq) 

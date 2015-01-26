@@ -45,13 +45,12 @@
 ########################################
 
 # imports parameter  values for all simulations 
-parameters <- read.csv("input_mixing_rates2.csv")
+parameters <- read.csv("input_wind_size_and_shape.csv")
 
 ##############
 # OLD INPUTS #
 ##############
 # parameters <- read.csv("input_mixing_rates.csv")
-# parameters <- read.csv("input_wind_and_size.csv")
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
@@ -139,7 +138,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     # LANDrast<-raster(LAND)
     # SAV<-raster(LIST[[t]]$SAV)
     # for (y in 1:numbFPspecies){
-    #  assign(paste("FP0",y,sep=""),raster(LIST[[t]]$FP[[y]]))
+    #   assign(paste("FP0",y,sep=""),raster(LIST[[t]]$FP[[y]]))
     # }
     # FPtotal<-raster(LIST[[t]]$FPtotal)
     # nitrogen<-raster(LIST[[t]]$TOTALN)
@@ -147,16 +146,16 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     # stack raster layers 
     # I need a smarter way to make this variable length 
     # if (numbFPspecies == 4){
-    #   all_layers <- stack(LANDrast,SAV,nitrogen,FPtotal,FP01,FP02,FP03,FP04)
+    #    all_layers <- stack(LANDrast,SAV,nitrogen,FPtotal,FP01,FP02,FP03,FP04)
     # }
     # if (numbFPspecies == 3){
-    #  all_layers <- stack(LANDrast,SAV,nitrogen,FPtotal,FP01,FP02,FP03)
+    #   all_layers <- stack(LANDrast,SAV,nitrogen,FPtotal,FP01,FP02,FP03)
     # }
     # if (numbFPspecies == 2){
     #   all_layers <- stack(LANDrast,SAV,nitrogen,FPtotal,FP01,FP02)
     # }
     # if (numbFPspecies == 1){
-    #  all_layers <- stack(LANDrast,SAV,nitrogen,FPtotal,FP01)
+    #   all_layers <- stack(LANDrast,SAV,nitrogen,FPtotal,FP01)
     # }
     
     # name raster layers 
@@ -165,7 +164,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     # names(all_layers)[3] <- "nitrogen"
     # names(all_layers)[4] <- "FPtotal"
     # for (y in 1:numbFPspecies){
-    #  names(all_layers)[y+4] <- paste("FP0",y,sep="")
+    #   names(all_layers)[y+4] <- paste("FP0",y,sep="")
     # }
     
     # plot raster layers 
@@ -277,4 +276,4 @@ parameters$avg_FPcover_yr04 <- RESULT[,19]
 # write.csv(parameters,"output33a.csv",row.names=F) 
 # write.csv(parameters,"output_mixing_rates.csv",row.names=F)  
 
-write.csv(parameters,"output_mixing_rates2.csv",row.names=F)  
+write.csv(parameters,"test_output.csv",row.names=F)  
