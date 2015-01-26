@@ -58,6 +58,35 @@ STEP27<-function(x,t){
                                   LAND) 
     }
     
+    ####################
+    # UPTAKE NUTRIENTS # 
+    ####################
+    # Check if it is a mixing day (according to mix_freq) 
+    if (t %in% mix_days){
+      
+      # TOTAL P # 
+      # uptake 
+      nextstep$TOTALP <- UPTAKE_P27(thisstep,nextstep)
+      # mix 
+      nextstep$TOTALP <- matrix(sum(nextstep$TOTALP)/area,
+                                nrow=height1,
+                                ncol=width1)
+      
+      # TOTAL N # 
+      # uptake 
+      nextstep$TOTALN <- UPTAKE_N27(thisstep,nextstep)
+      # mix 
+      nextstep$TOTALN <- matrix(sum(nextstep$TOTALN)/area,
+                                nrow=height1,
+                                ncol=width1)
+    }
+    
+    # Time steps when it is not a mixing day (according to mix_freq) 
+    else{
+      nextstep$TOTALN <- UPTAKE_N27(thisstep,nextstep)
+      nextstep$TOTALP <- UPTAKE_P27(thisstep,nextstep)
+    }
+    
     ############
     # Move SAV #
     ############
@@ -96,35 +125,6 @@ STEP27<-function(x,t){
     ##########
     # combine multiple FP species into "FPtotal" 
     nextstep$FPtotal <- Reduce('+', nextstep$FP)
-    
-    ####################
-    # UPTAKE NUTRIENTS # 
-    ####################
-    # Check if it is a mixing day (according to mix_freq) 
-    if (t %in% mix_days){
-      
-      # TOTAL P # 
-      # uptake 
-      nextstep$TOTALP <- UPTAKE_P27(thisstep,nextstep)
-      # mix 
-      nextstep$TOTALP <- matrix(sum(nextstep$TOTALP)/area,
-                                nrow=height1,
-                                ncol=width1)
-      
-      # TOTAL N # 
-      # uptake 
-      nextstep$TOTALN <- UPTAKE_N27(thisstep,nextstep)
-      # mix 
-      nextstep$TOTALN <- matrix(sum(nextstep$TOTALN)/area,
-                                nrow=height1,
-                                ncol=width1)
-    }
-    
-    # Time steps when it is not a mixing day (according to mix_freq) 
-    else{
-      nextstep$TOTALN <- UPTAKE_N27(thisstep,nextstep)
-      nextstep$TOTALP <- UPTAKE_P27(thisstep,nextstep)
-    }
     
   } # close if statement for non-overwintering
   
