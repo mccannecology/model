@@ -33,8 +33,15 @@
 #
 ########################################
 
-# imports parameter  values for all simulations 
-parameters <- read.csv("input_wind_size_and_shape.csv")[13:16,]
+# imports parameter  values for all simulations
+#parameters <- read.csv("input_wind_size_and_shape.csv")[1:8,]
+#parameters <- read.csv("input_wind_size_and_shape.csv")[9:16,]
+#parameters <- read.csv("input_wind_size_and_shape.csv")[17:24,]
+#parameters <- read.csv("input_wind_size_and_shape.csv")[25:32,]
+#parameters <- read.csv("input_wind_size_and_shape.csv")[37:40,]
+#parameters <- read.csv("input_wind_size_and_shape.csv")[41:44,]
+#parameters <- read.csv("input_wind_size_and_shape.csv")[45:1500,]
+parameters <- read.csv("input_wind_size_and_shape.csv")[1501:2500,]
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
@@ -58,7 +65,7 @@ parameters$TOTALN_end_yr04 <- rep(NA, nrow(parameters))
 require(foreach)
 require(doSNOW)
 require(R.utils) # package for sourceDirectory() - loeding all the functions in a directory 
-
+ 
 # make the correct number of clusters - the first argument will change depending on the machine / set-up 
 cl <- makeCluster(4,"SOCK") 
 
@@ -75,8 +82,13 @@ registerDoSNOW(cl) # registers the SNOW parallel backend w/ foreach package
 getDoParWorkers() # returns the # of workers - this should match the # of cores on your machine (or # cores - 1)
 
 RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') %dopar% { # loop through all of your simulations - User needs to specify the max # of simulations (rows of parameters) in .csv
+  
+  
   # I am not sure if this is neccasary. Can I just use i as the input to the functions below?
   simulnumb <- i # assigns the simulation # from the for loop - will be used as an input to INPUT() to read the right row of .csv
+  
+  # create a blank folder for each simulation to keep track of progress
+  dir.create(paste(getwd(),"/OUTPUT/",parameters$simulation[simulnumb],sep=""))
   
   INPUT27(simulnumb) # reads the .csv file of parameter values and assigns them to the global environment 
   
@@ -94,18 +106,18 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
   }
   
   # initialize first time step
-  LIST[[1]]<-START27(LIST[[1]])  
+  LIST[[1]] <- START27(LIST[[1]])  
   
   # for loop - STEP() to the entire LIST
-  today<-LIST[[1]]
+  today <- LIST[[1]]
   
   for (t in 1:timesteps){
     
-    tomorrow<-STEP27(today,t)
+    tomorrow <- STEP27(today,t)
     
-    LIST[[t+1]]<-tomorrow
+    LIST[[t+1]] <- tomorrow
     
-    today<-tomorrow
+    today <- tomorrow
     
     ##################################
     # Plot as you go (slows it down) #
@@ -235,4 +247,12 @@ parameters$TOTALN_end_yr03 <- RESULT[,12]
 parameters$TOTALN_end_yr04 <- RESULT[,13]
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"test_output.csv",row.names=F)  
+#write.csv(parameters,"onput_wind_size_and_shape_A.csv",row.names=F)  
+#write.csv(parameters,"onput_wind_size_and_shape_B.csv",row.names=F)  
+#write.csv(parameters,"onput_wind_size_and_shape_C.csv",row.names=F)  
+#write.csv(parameters,"onput_wind_size_and_shape_D.csv",row.names=F)  
+#write.csv(parameters,"onput_wind_size_and_shape_E.csv",row.names=F)  
+#write.csv(parameters,"onput_wind_size_and_shape_F.csv",row.names=F)  
+#write.csv(parameters,"onput_wind_size_and_shape_G.csv",row.names=F) 
+#write.csv(parameters,"onput_wind_size_and_shape_H.csv",row.names=F) 
+write.csv(parameters,"onput_wind_size_and_shape_I.csv",row.names=F) # do this one next
