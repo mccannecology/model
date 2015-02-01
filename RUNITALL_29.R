@@ -34,7 +34,7 @@
 ########################################
 
 # imports parameter  values for all simulations
-parameters <- read.csv("input_wind_size_and_shape.csv")[173:176,]
+parameters <- read.csv("input_testing_nutrient_uptake.csv")
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
@@ -79,9 +79,6 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
   
   # I am not sure if this is neccasary. Can I just use i as the input to the functions below?
   simulnumb <- i # assigns the simulation # from the for loop - will be used as an input to INPUT() to read the right row of .csv
-  
-  # create a blank folder for each simulation to keep track of progress
-  dir.create(paste(getwd(),"/OUTPUT/",parameters$simulation[simulnumb],sep=""))
   
   INPUT29(simulnumb) # reads the .csv file of parameter values and assigns them to the global environment 
   
@@ -240,4 +237,4 @@ parameters$TOTALN_end_yr03 <- RESULT[,12]
 parameters$TOTALN_end_yr04 <- RESULT[,13]
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output_growing_season.csv",row.names=F)
+write.csv(parameters,"output_testing_nutrient_uptake.csv",row.names=F)
