@@ -49,6 +49,6 @@ SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot
 
-ggsave(file="testing_nutrient_uptake.jpg",SAV_FP_plot, height=8,width=8)
+ggsave(file="testing_nutrient_uptake.jpg",SAV_FP_plot, height=5,width=5)
 
 
