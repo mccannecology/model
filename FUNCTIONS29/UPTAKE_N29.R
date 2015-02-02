@@ -21,7 +21,7 @@ UPTAKE_N29 <- function(thisstep,nextstep) {
   ###################################
   # Define function for uptake rate # 
   ################################### 
-  uptake_rate <- function(TOTALN){
+  uptake_rate <- function(TOTALN, rND){
     # corrected maximum uptake rate 
     uptake_max_cor <- cVNUptMax*cQ10Prod^(0.1*(temp-20))*((cNDmax-rND)/(cNDmax-cNDmin))
     
@@ -30,17 +30,26 @@ UPTAKE_N29 <- function(thisstep,nextstep) {
     rate
   }
   
-  ##################
-  # Values for SAV #
-  ##################
-  # I used the median between the min. and max. specified by Janse & van Puijenbroek 1997
+  #########################
+  # Common values for SAV #
+  #########################
+  # I used max. specified by Janse & van Puijenbroek 1997
   temp <- 20 # temperature 
-  cVNUptMax <- 0.0385 # max uptake rate 
-  rND <- 0.0125 # current ratio of nitrogen to plant dry mass (assume it's the min. b/c only new veg. uptakes)
-  cNDmin <- 0.0125  # min. ratio of nitrogen to plant dry mass
-  cNDmax <- 0.04 # max. ratio of nitrogen to plant dry mass
-  cQ10Prod <- 1.75 # factor by which growth rate increases due to a 10C increase in temp 
-  cAffNUpt <- 0.011 # affinity for N [m3/gD/d]
+  cVNUptMax <- 0.07 # max uptake rate 
+  cNDmin <- 0.02  # min. ratio of nitrogen to plant dry mass
+  cNDmax <- 0.05 # max. ratio of nitrogen to plant dry mass
+  cQ10Prod <- 2 # factor by which growth rate increases due to a 10C increase in temp 
+  cAffNUpt <- 0.02 # affinity for N [m3/gD/d]
+  
+  ############################
+  # Values for newbiomassSAV #
+  ############################
+  rND_new <- 0.045 # current ratio of nitrogen to plant dry mass (assume it's the min. b/c only new veg. uptakes)
+  
+  ############################
+  # Values for oldbiomassSAV #
+  ############################
+  rND_old <- 0.05 # current ratio of nitrogen to plant dry mass (assume it's the min. b/c only new veg. uptakes)
   
   ################
   # SAV - uptake # 
@@ -52,22 +61,32 @@ UPTAKE_N29 <- function(thisstep,nextstep) {
 
   # cells where biomass was lost - oldbiomass needs to decrease 
   oldbiomassSAV[newbiomassSAV<0] <- newbiomassSAV[newbiomassSAV<0] + oldbiomassSAV[newbiomassSAV<0] 
-  newbiomassSAV[newbiomassSAV<0] <- 0 # and new biomass should be set to 0
+  oldbiomassSAV[newbiomassSAV<0] <- 0 # and new biomass should be set to 0
   
   # uptake by SAV - allows for different uptake rates for new and old biomass 
-  NremovedSAV <- (newbiomassSAV * uptake_rate(thisstep$TOTALN)) 
+  NremovedSAV <- (newbiomassSAV * uptake_rate(thisstep$TOTALN,rND=rND_new) * 1000) + 
+                  (oldbiomassSAV * uptake_rate(thisstep$TOTALN,rND=rND_old) * 1000) 
   
-  ##################
-  # Values for FP #
-  ##################
-  # I used the median between the min. and max. specified by Janse & van Puijenbroek 1997
+  ##################################
+  # Common values for newbiomassFP #
+  ##################################
+  # I used max. specified by Janse & van Puijenbroek 1997
   temp <- 20
-  cVNUptMax <- 0.0385 
-  rND <- 0.02
-  cNDmin <- 0.02
-  cNDmax <- 0.75
-  cQ10Prod <- 2.25
-  cAffNUpt <- 0.011 
+  cVNUptMax <- 0.07 
+  cNDmin <- 0.03
+  cNDmax <- 0.1
+  cQ10Prod <- 2.5
+  cAffNUpt <- 0.02 
+  
+  ###########################
+  # Values for newbiomassFP #
+  ###########################
+  rND_new <- 0.09
+
+  ###########################
+  # Values for oldbiomassFP #
+  ###########################
+  rND_old <- 0.1
   
   ###############
   # FP - uptake # 
@@ -89,7 +108,8 @@ UPTAKE_N29 <- function(thisstep,nextstep) {
     oldbiomassFP[[i]][newbiomassFP[[i]]<0] <- newbiomassFP[[i]][newbiomassFP[[i]]<0] + oldbiomassFP[[i]][newbiomassFP[[i]]<0] 
     newbiomassFP[[i]][newbiomassFP[[i]]<0] <- 0 # and new biomass should be set to 0
     
-    NremovedFP[[i]]  <- (newbiomassFP[[i]] * uptake_rate(thisstep$TOTALN)) 
+    NremovedFP[[i]]  <- (newbiomassFP[[i]] * uptake_rate(thisstep$TOTALN,rND=rND_new) * 1000) + 
+                        (oldbiomassFP[[i]] * uptake_rate(thisstep$TOTALN,rND=rND_old) * 1000) 
   }
   
   # Sum the removal by all FP species ("Reduce" combines elements of a list)  

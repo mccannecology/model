@@ -87,7 +87,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
   # define a couple of things in the environment that get used in STEPX() and OUTPUT()
   timesteps <- years*(days+1) # this will need to change b/c of overwintering 
   winters <- (days+1) * seq(from=1, to=years, by=1) # ID timesteps that are winters - used in STEPX()
-  mix_days <- seq(1,timesteps,mix_freq)
+  mix_days <- seq(mix_freq+1,timesteps,mix_freq)
   
   # generate blank list for total timesteps
   LIST<-NULL
@@ -137,7 +137,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     # if (numbFPspecies == 1){
     #   all_layers <- stack(LANDrast,SAV,nitrogen,FPtotal,FP01)
     # }
-    #
+    # 
     # name raster layers 
     # names(all_layers)[1] <- "LAND"
     # names(all_layers)[2] <- "SAV"
@@ -146,7 +146,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     # for (y in 1:numbFPspecies){
     #  names(all_layers)[y+4] <- paste("FP0",y,sep="")
     # }
-    
+    # 
     # plot raster layers 
     # plot(all_layers)
     
