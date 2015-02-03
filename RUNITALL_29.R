@@ -169,7 +169,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
   # generates graphs
   # if you want .html animation you must specify animate=TRUE
   # set "FP regime" threshold here  
-  OUTPUT_29(shapshots=TRUE,timeseries=TRUE) 
+  OUTPUT_29(shapshots=FALSE,timeseries=FALSE) 
   
   # When not using foreach() loop: 
   # RESULTS[simulnumb,1] <- propyears_avgFPcover_abovethreshold # assign the current simulations results to the correct spot
