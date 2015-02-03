@@ -34,7 +34,8 @@
 ########################################
 
 # imports parameter  values for all simulations
-parameters <- read.csv("input_wind_size_and_shape.csv")[1:1200,]
+parameters <- read.csv("input_wind_size_and_shape.csv")[1:12,]
+#parameters <- read.csv("input_wind_size_and_shape.csv")[13:1200,]
 #parameters <- read.csv("input_wind_size_and_shape.csv")[1201:2400,]
 #parameters <- read.csv("input_wind_size_and_shape.csv")[2401:3600,]
 #parameters <- read.csv("input_wind_size_and_shape.csv")[3601:4800,]
@@ -169,7 +170,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
   # generates graphs
   # if you want .html animation you must specify animate=TRUE
   # set "FP regime" threshold here  
-  OUTPUT_29(shapshots=FALSE,timeseries=FALSE) 
+  OUTPUT_29(shapshots=TRUE,timeseries=TRUE) 
   
   # When not using foreach() loop: 
   # RESULTS[simulnumb,1] <- propyears_avgFPcover_abovethreshold # assign the current simulations results to the correct spot
@@ -261,4 +262,5 @@ write.csv(parameters,"output_wind_size_and_shapeA.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeJ.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeK.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeL.csv",row.names=F)
+#write.csv(parameters,"output_wind_size_and_shapeM.csv",row.names=F)
 
