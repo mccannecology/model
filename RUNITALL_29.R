@@ -161,7 +161,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
     # }
     # 
     # plot raster layers 
-    # plot(all_layers)
+    # plot(all_layers,main=t)
     
     # print timestep to console - SLOW!
     # print(t)

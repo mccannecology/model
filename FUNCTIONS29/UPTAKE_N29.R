@@ -64,8 +64,8 @@ UPTAKE_N29 <- function(thisstep,nextstep) {
   newbiomassSAV[newbiomassSAV<0] <- 0 # and new biomass should be set to 0
   
   # uptake by SAV - allows for different uptake rates for new and old biomass 
-  NremovedSAV <- (newbiomassSAV * uptake_rate(thisstep$TOTALN,rND=rND_new) * 1000) + 
-                  (oldbiomassSAV * uptake_rate(thisstep$TOTALN,rND=rND_old) * 1000) 
+  NremovedSAV <- (newbiomassSAV * uptake_rate(thisstep$TOTALN, rND=rND_new) * 1000) + 
+                  (oldbiomassSAV * uptake_rate(thisstep$TOTALN, rND=rND_old) * 1000) 
   
   ##################################
   # Common values for newbiomassFP #
@@ -108,8 +108,8 @@ UPTAKE_N29 <- function(thisstep,nextstep) {
     oldbiomassFP[[i]][newbiomassFP[[i]]<0] <- newbiomassFP[[i]][newbiomassFP[[i]]<0] + oldbiomassFP[[i]][newbiomassFP[[i]]<0] 
     newbiomassFP[[i]][newbiomassFP[[i]]<0] <- 0 # and new biomass should be set to 0
     
-    NremovedFP[[i]]  <- (newbiomassFP[[i]] * uptake_rate(thisstep$TOTALN,rND=rND_new) * 1000) + 
-                        (oldbiomassFP[[i]] * uptake_rate(thisstep$TOTALN,rND=rND_old) * 1000) 
+    NremovedFP[[i]]  <- (newbiomassFP[[i]] * uptake_rate(thisstep$TOTALN,rND= rND_new) * 1000) + 
+                        (oldbiomassFP[[i]] * uptake_rate(thisstep$TOTALN,rND= rND_old) * 1000) 
   }
   
   # Sum the removal by all FP species ("Reduce" combines elements of a list)  
@@ -127,6 +127,8 @@ UPTAKE_N29 <- function(thisstep,nextstep) {
   
   # convert any negative values to something really small
   nextstep$TOTALN[nextstep$TOTALN<0] <- 0.00001  
+  
+  nextstep$TOTALN[LAND==1] <- 0
   
   # return this value from the function 
   return(nextstep$TOTALN)

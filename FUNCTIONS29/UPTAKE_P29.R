@@ -67,7 +67,8 @@ UPTAKE_P29 <- function(thisstep,nextstep) {
   newbiomassSAV[newbiomassSAV<0] <- 0 # and new biomass should be set to 0
   
   # uptake by SAV - allows for different uptake rates for new and old biomass 
-  NremovedSAV <- (newbiomassSAV * uptake_rate(thisstep$TOTALP,rNP=0.0125)) + (oldbiomassSAV * uptake_rate(thisstep$TOTALP,rNP=0.0375)) 
+  NremovedSAV <- (newbiomassSAV * uptake_rate(thisstep$TOTALP, rNP=0.0125)) + 
+                  (oldbiomassSAV * uptake_rate(thisstep$TOTALP, rNP=0.0375)) 
   
   ###########################
   # Values for newbiomassFP #
