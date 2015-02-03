@@ -34,7 +34,7 @@
 ########################################
 
 # imports parameter  values for all simulations
-parameters <- read.csv("input_growing_season.csv")
+parameters <- read.csv("input_multiple_species.csv")
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
@@ -237,4 +237,4 @@ parameters$TOTALN_end_yr03 <- RESULT[,12]
 parameters$TOTALN_end_yr04 <- RESULT[,13]
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output_growing_season.csv",row.names=F)
+write.csv(parameters,"output_multiple_species.csv",row.names=F)
