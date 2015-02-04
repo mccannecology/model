@@ -34,20 +34,18 @@
 ########################################
 
 # imports parameter  values for all simulations
-parameters <- read.csv("input_wind_size_and_shape.csv")[1:12,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[13:1200,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[1201:2400,]
+parameters <- read.csv("input_wind_size_and_shape.csv")
+
+# only take simulations with wind scenario A2
+parameters <- subset(parameters, parameters$scenario == "A2")
+
+# subset smaller chunks 
+parameters <- parameters[1:1200,]
+#parameters <- parameters[1201:2400,]
 #parameters <- read.csv("input_wind_size_and_shape.csv")[2401:3600,]
 #parameters <- read.csv("input_wind_size_and_shape.csv")[3601:4800,]
 #parameters <- read.csv("input_wind_size_and_shape.csv")[4801:6000,]
 #parameters <- read.csv("input_wind_size_and_shape.csv")[6001:7200,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[7201:8400,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[8401:9600,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[9601:10800,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[10801:12000,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[12001:13200,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[13201:14400,]
-
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
