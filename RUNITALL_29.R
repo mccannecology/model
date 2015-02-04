@@ -42,6 +42,8 @@ parameters <- subset(parameters, parameters$scenario == "A2")
 # subset smaller chunks 
 parameters <- parameters[1:1200,]
 #parameters <- parameters[1201:2400,]
+#parameters <- read.csv("input_wind_size_and_shape.csv")[13:1200,]
+#parameters <- read.csv("input_wind_size_and_shape.csv")[1201:2400,]
 #parameters <- read.csv("input_wind_size_and_shape.csv")[2401:3600,]
 #parameters <- read.csv("input_wind_size_and_shape.csv")[3601:4800,]
 #parameters <- read.csv("input_wind_size_and_shape.csv")[4801:6000,]
@@ -248,7 +250,7 @@ parameters$TOTALN_end_yr03 <- RESULT[,12]
 parameters$TOTALN_end_yr04 <- RESULT[,13]
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output_wind_size_and_shapeA.csv",row.names=F)
+write.csv(parameters,"output_testing_version29",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeB.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeC.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeD.csv",row.names=F)
