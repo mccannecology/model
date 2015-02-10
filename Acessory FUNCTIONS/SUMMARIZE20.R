@@ -11,11 +11,11 @@ library(ggplot2)
 library(gridExtra)
 
 # combine results - on the first time after the simulation 
-data01 <- read.csv("output_wind_size_and_shape_A.csv")
-data02 <- read.csv("output_wind_size_and_shape_B.csv")
-data03 <- read.csv("output_wind_size_and_shape_C.csv")
-data04 <- read.csv("output_wind_size_and_shape_D.csv")
-data05 <- read.csv("output_wind_size_and_shape_E.csv")
+data01 <- read.csv("output_wind_size_and_shapeA.csv")
+data02 <- read.csv("output_wind_size_and_shapeB.csv")
+data03 <- read.csv("output_wind_size_and_shapeC.csv")
+data04 <- read.csv("output_wind_size_and_shapeD.csv")
+data05 <- read.csv("output_wind_size_and_shapeE.csv")
 data06 <- read.csv("output_wind_size_and_shape_F.csv")
 data07 <- read.csv("output_wind_size_and_shape_G.csv")
 data08 <- read.csv("output_wind_size_and_shape_H.csv")
@@ -44,7 +44,7 @@ nrow(data)
 # (+) score: more FP                          #
 ###############################################
 # I could also use this (avg cover in the final year)
-data$state_score <- (data$avg_FPcover_yr04 - data$avg_SAVcover_yr04) / sqrt(2)
+data$state_score <- (data$FP_end_yr04 - data$SAV_end_yr04) / sqrt(2)
 
 #############################################
 # Categorize "state_score" into "state"     #
