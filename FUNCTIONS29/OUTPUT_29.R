@@ -284,36 +284,42 @@ OUTPUT_29 <- function(shapshots=FALSE,timeseries=FALSE){
   
   if (years == 1){
     # Make SAV biomass > 100 turn to 100 
+    LIST[[days/4]]$SAV[LIST[[days/4]]$SAV > 100] <- 100
+    LIST[[days/2]]$SAV[LIST[[days/2]]$SAV > 100] <- 100
+    LIST[[days/(4/3)]]$SAV[LIST[[days/(4/3)]]$SAV > 100] <- 100
     LIST[[days]]$SAV[LIST[[days]]$SAV > 100] <- 100
 
     
     # Make FP biomass > 100 turn to 100 
     for (m in 1:length(LIST[[1]]$FP)){
+      LIST[[days/4]]$FP[[m]][LIST[[days/4]]$FP[[m]] > 100] <- 100
+      LIST[[days/2]]$FP[[m]][LIST[[days/2]]$FP[[m]] > 100] <- 100
+      LIST[[days/(4/3)]]$FP[[m]][LIST[[days/(4/3)]]$FP[[m]] > 100] <- 100
       LIST[[days]]$FP[[m]][LIST[[days]]$FP[[m]] > 100] <- 100
     }
     
     # Calculate %SAV cover 
-    SAV_end_yr01 <- sum(LIST[[days]]$SAV)/area
-    SAV_end_yr02 <- NA
-    SAV_end_yr03 <- NA
-    SAV_end_yr04 <- NA
+    SAV_end_yr01 <- sum(LIST[[days/4]]$SAV)/area
+    SAV_end_yr02 <- sum(LIST[[days/2]]$SAV)/area
+    SAV_end_yr03 <- sum(LIST[[days/(4/3)]]$SAV)/area
+    SAV_end_yr04 <- sum(LIST[[days]]$SAV)/area
     
     # Calculate %FP cover 
     for (m in 1:length(LIST[[1]]$FP)){
-      FP_end_yr01 <- sum(LIST[[days]]$FP[[m]])/area
-      FP_end_yr02 <- NA
-      FP_end_yr03 <- NA
-      FP_end_yr04 <- NA
+      FP_end_yr01 <- sum(LIST[[days/4]]$FP[[m]])/area
+      FP_end_yr02 <- sum(LIST[[days/2]]$FP[[m]])/area
+      FP_end_yr03 <- sum(LIST[[days/(4/3)]]$FP[[m]])/area
+      FP_end_yr04 <- sum(LIST[[days]]$FP[[m]])/area
     }
     
     # Calculate TOTAL N
-    TOTALN_end_yr01 <- sum(LIST[[days]]$TOTALN/1000)/area
-    TOTALN_end_yr02 <- NA
-    TOTALN_end_yr03 <- NA
-    TOTALN_end_yr04 <- NA
+    TOTALN_end_yr01 <- sum(LIST[[days/4]]$TOTALN/1000)/area
+    TOTALN_end_yr02 <- sum(LIST[[days/2]]$TOTALN/1000)/area
+    TOTALN_end_yr03 <- sum(LIST[[days/(4/3)]]$TOTALN/1000)/area
+    TOTALN_end_yr04 <- sum(LIST[[days]]$TOTALN/1000)/area
   }
   
-  if (years == 4){
+  else if (years == 4){
     # Make SAV biomass > 100 turn to 100 
     LIST[[days]]$SAV[LIST[[days]]$SAV > 100] <- 100
     LIST[[2*days+1]]$SAV[LIST[[2*days+1]]$SAV > 100] <- 100
@@ -349,75 +355,75 @@ OUTPUT_29 <- function(shapshots=FALSE,timeseries=FALSE){
     TOTALN_end_yr04 <- sum(LIST[[4*days+3]]$TOTALN/1000)/area
   } 
   
-  if (years == 8){
+  else if (years == 8){
     # Make SAV biomass > 100 turn to 100 
-    LIST[[5*days+4]]$SAV[LIST[[5*days+4]]$SAV > 100] <- 100
+    LIST[[2*days+1]]$SAV[LIST[[2*days+1]]$SAV > 100] <- 100
+    LIST[[4*days+3]]$SAV[LIST[[4*days+3]]$SAV > 100] <- 100
     LIST[[6*days+5]]$SAV[LIST[[6*days+5]]$SAV > 100] <- 100
-    LIST[[7*days+6]]$SAV[LIST[[7*days+6]]$SAV > 100] <- 100
     LIST[[8*days+7]]$SAV[LIST[[8*days+7]]$SAV > 100] <- 100
     
     # Make FP biomass > 100 turn to 100 
     for (m in 1:length(LIST[[1]]$FP)){
-      LIST[[5*days+4]]$FP[[m]][LIST[[5*days+4]]$FP[[m]] > 100] <- 100
+      LIST[[2*days+1]]$FP[[m]][LIST[[2*days+1]]$FP[[m]] > 100] <- 100
+      LIST[[4*days+3]]$FP[[m]][LIST[[4*days+3]]$FP[[m]] > 100] <- 100
       LIST[[6*days+5]]$FP[[m]][LIST[[6*days+5]]$FP[[m]] > 100] <- 100
-      LIST[[7*days+6]]$FP[[m]][LIST[[7*days+6]]$FP[[m]] > 100] <- 100
       LIST[[8*days+7]]$FP[[m]][LIST[[8*days+7]]$FP[[m]] > 100] <- 100
     }
     
     # Calculate %SAV cover 
-    SAV_end_yr01 <- sum(LIST[[5*days+4]]$SAV)/area
-    SAV_end_yr02 <- sum(LIST[[6*days+5]]$SAV)/area
-    SAV_end_yr03 <- sum(LIST[[7*days+6]]$SAV)/area
+    SAV_end_yr01 <- sum(LIST[[2*days+1]]$SAV)/area
+    SAV_end_yr02 <- sum(LIST[[4*days+3]]$SAV)/area
+    SAV_end_yr03 <- sum(LIST[[6*days+5]]$SAV)/area
     SAV_end_yr04 <- sum(LIST[[8*days+7]]$SAV)/area
     
     # Calculate %FP cover 
     for (m in 1:length(LIST[[1]]$FP)){
-      FP_end_yr01 <- sum(LIST[[5*days+4]]$FP[[m]])/area
-      FP_end_yr02 <- sum(LIST[[6*days+5]]$FP[[m]])/area
-      FP_end_yr03 <- sum(LIST[[7*days+6]]$FP[[m]])/area
+      FP_end_yr01 <- sum(LIST[[2*days+1]]$FP[[m]])/area
+      FP_end_yr02 <- sum(LIST[[4*days+3]]$FP[[m]])/area
+      FP_end_yr03 <- sum(LIST[[6*days+5]]$FP[[m]])/area
       FP_end_yr04 <- sum(LIST[[8*days+7]]$FP[[m]])/area
     }
     
     # Calculate TOTAL N
-    TOTALN_end_yr01 <- sum(LIST[[5*days+4]]$TOTALN/1000)/area
-    TOTALN_end_yr02 <- sum(LIST[[6*days+5]]$TOTALN/1000)/area
-    TOTALN_end_yr03 <- sum(LIST[[7*days+6]]$TOTALN/1000)/area
+    TOTALN_end_yr01 <- sum(LIST[[2*days+1]]$TOTALN/1000)/area
+    TOTALN_end_yr02 <- sum(LIST[[4*days+3]]$TOTALN/1000)/area
+    TOTALN_end_yr03 <- sum(LIST[[5*days+5]]$TOTALN/1000)/area
     TOTALN_end_yr04 <- sum(LIST[[8*days+7]]$TOTALN/1000)/area
   } 
   
-  if (years == 12){
+  else if (years == 12){
     # Make SAV biomass > 100 turn to 100 
+    LIST[[3*days+2]]$SAV[LIST[[3*days+2]]$SAV > 100] <- 100
+    LIST[[6*days+5]]$SAV[LIST[[6*days+5]]$SAV > 100] <- 100
     LIST[[9*days+8]]$SAV[LIST[[9*days+8]]$SAV > 100] <- 100
-    LIST[[10*days+9]]$SAV[LIST[[10*days+9]]$SAV > 100] <- 100
-    LIST[[11*days+10]]$SAV[LIST[[11*days+10]]$SAV > 100] <- 100
     LIST[[12*days+11]]$SAV[LIST[[12*days+11]]$SAV > 100] <- 100
     
     # Make FP biomass > 100 turn to 100 
     for (m in 1:length(LIST[[1]]$FP)){
+      LIST[[3*days+2]]$FP[[m]][LIST[[3*days+2]]$FP[[m]] > 100] <- 100
+      LIST[[6*days+5]]$FP[[m]][LIST[[6*days+5]]$FP[[m]] > 100] <- 100
       LIST[[9*days+8]]$FP[[m]][LIST[[9*days+8]]$FP[[m]] > 100] <- 100
-      LIST[[10*days+9]]$FP[[m]][LIST[[10*days+9]]$FP[[m]] > 100] <- 100
-      LIST[[11*days+10]]$FP[[m]][LIST[[11*days+10]]$FP[[m]] > 100] <- 100
       LIST[[12*days+11]]$FP[[m]][LIST[[12*days+11]]$FP[[m]] > 100] <- 100
     }
     
     # Calculate %SAV cover 
-    SAV_end_yr01 <- sum(LIST[[9*days+8]]$SAV)/area
-    SAV_end_yr02 <- sum(LIST[[10*days+9]]$SAV)/area
-    SAV_end_yr03 <- sum(LIST[[11*days+10]]$SAV)/area
+    SAV_end_yr01 <- sum(LIST[[3*days+2]]$SAV)/area
+    SAV_end_yr02 <- sum(LIST[[6*days+5]]$SAV)/area
+    SAV_end_yr03 <- sum(LIST[[9*days+8]]$SAV)/area
     SAV_end_yr04 <- sum(LIST[[12*days+11]]$SAV)/area
     
     # Calculate %FP cover 
     for (m in 1:length(LIST[[1]]$FP)){
-      FP_end_yr01 <- sum(LIST[[9*days+8]]$FP[[m]])/area
-      FP_end_yr02 <- sum(LIST[[10*days+9]]$FP[[m]])/area
-      FP_end_yr03 <- sum(LIST[[11*days+10]]$FP[[m]])/area
+      FP_end_yr01 <- sum(LIST[[3*days+2]]$FP[[m]])/area
+      FP_end_yr02 <- sum(LIST[[6*days+5]]$FP[[m]])/area
+      FP_end_yr03 <- sum(LIST[[9*days+8]]$FP[[m]])/area
       FP_end_yr04 <- sum(LIST[[12*days+11]]$FP[[m]])/area
     }
     
     # Calculate TOTAL N
-    TOTALN_end_yr01 <- sum(LIST[[9*days+8]]$TOTALN/1000)/area
-    TOTALN_end_yr02 <- sum(LIST[[10*days+9]]$TOTALN/1000)/area
-    TOTALN_end_yr03 <- sum(LIST[[11*days+10]]$TOTALN/1000)/area
+    TOTALN_end_yr01 <- sum(LIST[[3*days+2]]$TOTALN/1000)/area
+    TOTALN_end_yr02 <- sum(LIST[[6*days+5]]$TOTALN/1000)/area
+    TOTALN_end_yr03 <- sum(LIST[[9*days+8]]$TOTALN/1000)/area
     TOTALN_end_yr04 <- sum(LIST[[12*days+11]]$TOTALN/1000)/area
   } 
   

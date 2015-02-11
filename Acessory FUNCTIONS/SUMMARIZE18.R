@@ -11,11 +11,11 @@ nrow(data)
 
 
 # Set ap altern. measures of FP&SAV for 600 day growing season  
-data$FP_final[data$years==1] <- data$FP_end_yr01[data$years==1]
-data$FP_final[data$years!=1] <- data$FP_end_yr04[data$years!=1]
+# data$FP_final[data$years==1] <- data$FP_end_yr01[data$years==1]
+# data$FP_final[data$years!=1] <- data$FP_end_yr04[data$years!=1]
 
-data$SAV_final[data$years==1] <- data$SAV_end_yr01[data$years==1]
-data$SAV_final[data$years!=1] <- data$SAV_end_yr04[data$years!=1]
+# data$SAV_final[data$years==1] <- data$SAV_end_yr01[data$years==1]
+# data$SAV_final[data$years!=1] <- data$SAV_end_yr04[data$years!=1]
 
 
 ###############################################
@@ -25,7 +25,7 @@ data$SAV_final[data$years!=1] <- data$SAV_end_yr04[data$years!=1]
 # (+) score: more FP                          #
 ###############################################
 # I could also use this (avg cover in the final year)
-data$state_score <- (data$FP_final - data$SAV_final) / sqrt(2)
+data$state_score <- (data$FP_end_yr04 - data$SAV_end_yr04) / sqrt(2)
 
 # change "data$days" to a factor with different levels 
 data$days_factor <- as.factor(data$days)
