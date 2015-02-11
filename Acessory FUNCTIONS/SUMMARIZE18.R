@@ -30,7 +30,7 @@ data$state_score <- (data$FP_end_yr04 - data$SAV_end_yr04) / sqrt(2)
 # change "data$days" to a factor with different levels 
 data$days_factor <- as.factor(data$days)
 levels(data$days_factor) <- c("12 years\n 50 days per year","8 years\n 75 days per year",
-                              "5 years\n 150 days per year","1 year\n 600 days per year")
+                              "4 years\n 150 days per year","1 year\n 600 days per year")
 
 # Plot 
 SAV_FP_plot <- ggplot(data, aes(x=TOTALN,y=state_score))
