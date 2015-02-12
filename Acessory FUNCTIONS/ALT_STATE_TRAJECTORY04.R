@@ -53,19 +53,19 @@ for (i in unique(data$TOTALN)){
   
   # plot it 
   temp_plot <- ggplot(temp_data_reshape, aes(x=SAV_cover,y=FP_cover,group=id,colour=as.factor(id))) 
-  temp_plot <- temp_plot + geom_point() 
-  temp_plot <- temp_plot + geom_path(arrow=arrow(type="closed",length=unit(0.15,"inches")),alpha=0.4)
+  temp_plot <- temp_plot + geom_point(size=3) 
+  temp_plot <- temp_plot + geom_path(arrow=arrow(type="closed",length=unit(0.15,"inches")))
   temp_plot <- temp_plot + xlab("% SAV cover")
   temp_plot <- temp_plot + ylab("% FP cover")
   temp_plot <- temp_plot + ylim(0,100)
   temp_plot <- temp_plot + xlim(0,100)
   temp_plot <- temp_plot + geom_segment(x=0,y=0,xend=100,yend=100, colour="black",linetype="dashed")
-  temp_plot <- temp_plot + theme_classic(base_size=16)
+  temp_plot <- temp_plot + theme_classic(base_size=18)
   temp_plot <- temp_plot + theme(legend.position="none")
   temp_plot <- temp_plot + ggtitle(paste("Total N: ",i," mg/L",sep=""))
   temp_plot
     
-  ggsave(file=paste("alt_states_plot",i,"TOTALN.jpg",sep="_"),temp_plot,height=6,width=6)
+  ggsave(file=paste("alt_states_plot",i,"TOTALN.jpg",sep="_"),temp_plot,height=5,width=5)
 
 }
 
