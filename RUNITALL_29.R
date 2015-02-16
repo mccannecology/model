@@ -34,20 +34,20 @@
 ########################################
 
 # imports parameter  values for all simulations
-parameters <- read.csv("input_growing_season.csv")
+parameters <- read.csv("input_wind_size_and_shape.csv")
 
-# only take simulations with wind scenario A2
-#parameters <- subset(parameters, parameters$scenario == "A2")
+# only take simulations with wind scenario A1
+parameters <- subset(parameters, parameters$scenario == "A1")
 
 # subset smaller chunks 
-#parameters <- parameters[1:1200,]
-#parameters <- parameters[1201:2400,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[13:1200,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[1201:2400,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[2401:3600,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[3601:4800,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[4801:6000,]
-#parameters <- read.csv("input_wind_size_and_shape.csv")[6001:7200,]
+#parameters <- parameters[1:12,]
+#parameters <- parameters[13:600,]
+#parameters <- parameters[601:1200,]
+#parameters <- parameters[1201:1800,]
+#parameters <- parameters[2401:3600,]
+#parameters <- parameters[3601:4800,]
+#parameters <- parameters[4801:6000,]
+#parameters <- parameters[6001:7200,]
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
@@ -250,12 +250,7 @@ parameters$TOTALN_end_yr03 <- RESULT[,12]
 parameters$TOTALN_end_yr04 <- RESULT[,13]
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output_growing_season.csv",row.names=F)
-#write.csv(parameters,"output_wind_size_and_shapeB.csv",row.names=F)
-#write.csv(parameters,"output_wind_size_and_shapeC.csv",row.names=F)
-#write.csv(parameters,"output_wind_size_and_shapeD.csv",row.names=F)
-#write.csv(parameters,"output_wind_size_and_shapeE.csv",row.names=F)
-#write.csv(parameters,"output_wind_size_and_shapeF.csv",row.names=F)
+write.csv(parameters,"output_wind_size_and_shapeF.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeG.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeH.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeI.csv",row.names=F)
