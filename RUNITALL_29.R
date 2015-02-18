@@ -40,14 +40,18 @@ parameters <- read.csv("input_wind_size_and_shape.csv")
 parameters <- subset(parameters, parameters$scenario == "A1")
 
 # subset smaller chunks 
-#parameters <- parameters[1:12,]
-#parameters <- parameters[13:600,]
+#parameters <- parameters[1:600,]
 #parameters <- parameters[601:1200,]
-#parameters <- parameters[1201:1800,]
+parameters <- parameters[1201:1800,]
 #parameters <- parameters[2401:3600,]
 #parameters <- parameters[3601:4800,]
 #parameters <- parameters[4801:6000,]
 #parameters <- parameters[6001:7200,]
+
+######################################
+# Run the growing season simulations #
+###################################### 
+parameters <- read.csv("input_growing_season.csv")
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
@@ -170,7 +174,7 @@ RESULT <- foreach (i=1:nrow(parameters), .combine=rbind, .errorhandling='pass') 
   # generates graphs
   # if you want .html animation you must specify animate=TRUE
   # set "FP regime" threshold here  
-  OUTPUT_29(shapshots=FALSE,timeseries=FALSE) 
+  OUTPUT_29(shapshots=TRUE,timeseries=TRUE) 
   
   # When not using foreach() loop: 
   # RESULTS[simulnumb,1] <- propyears_avgFPcover_abovethreshold # assign the current simulations results to the correct spot
@@ -250,12 +254,11 @@ parameters$TOTALN_end_yr03 <- RESULT[,12]
 parameters$TOTALN_end_yr04 <- RESULT[,13]
 
 # write parameters with RESULT appended to a .csv 
-write.csv(parameters,"output_wind_size_and_shapeF.csv",row.names=F)
+#write.csv(parameters,"output_wind_size_and_shapeF.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeG.csv",row.names=F)
-#write.csv(parameters,"output_wind_size_and_shapeH.csv",row.names=F)
+write.csv(parameters,"output_wind_size_and_shapeH.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeI.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeJ.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeK.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeL.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeM.csv",row.names=F)
-
