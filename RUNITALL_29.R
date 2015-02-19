@@ -48,11 +48,6 @@ parameters <- parameters[1201:1800,]
 #parameters <- parameters[4801:6000,]
 #parameters <- parameters[6001:7200,]
 
-######################################
-# Run the growing season simulations #
-###################################### 
-parameters <- read.csv("input_growing_season.csv")
-
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
 # WARNING(parameters)
