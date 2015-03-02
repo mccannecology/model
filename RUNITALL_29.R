@@ -42,11 +42,12 @@ parameters <- subset(parameters, parameters$scenario == "A1")
 # subset smaller chunks 
 #parameters <- parameters[1:600,]
 #parameters <- parameters[601:1200,]
-parameters <- parameters[1201:1800,]
-#parameters <- parameters[2401:3600,]
-#parameters <- parameters[3601:4800,]
-#parameters <- parameters[4801:6000,]
-#parameters <- parameters[6001:7200,]
+#parameters <- parameters[1201:1800,]
+#parameters <- parameters[1801:3600,]
+#parameters <- parameters[3601:4500,]
+#parameters <- parameters[4501:5250,]
+#parameters <- parameters[5251:6000,]
+parameters <- parameters[6001:7200,]
 
 # Check for errors in the input file 
 # source(file=paste(getwd(),"/FUNCTIONS/WARNING.R",sep=""),chdir=TRUE)
@@ -251,9 +252,9 @@ parameters$TOTALN_end_yr04 <- RESULT[,13]
 # write parameters with RESULT appended to a .csv 
 #write.csv(parameters,"output_wind_size_and_shapeF.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeG.csv",row.names=F)
-write.csv(parameters,"output_wind_size_and_shapeH.csv",row.names=F)
+#write.csv(parameters,"output_wind_size_and_shapeH.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeI.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeJ.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeK.csv",row.names=F)
 #write.csv(parameters,"output_wind_size_and_shapeL.csv",row.names=F)
-#write.csv(parameters,"output_wind_size_and_shapeM.csv",row.names=F)
+write.csv(parameters,"output_wind_size_and_shapeM.csv",row.names=F)

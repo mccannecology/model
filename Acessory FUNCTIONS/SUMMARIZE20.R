@@ -16,15 +16,17 @@ data02 <- read.csv("output_wind_size_and_shapeB.csv")
 data03 <- read.csv("output_wind_size_and_shapeC.csv")
 data04 <- read.csv("output_wind_size_and_shapeD.csv")
 data05 <- read.csv("output_wind_size_and_shapeE.csv")
-data06 <- read.csv("output_wind_size_and_shape_F.csv")
-data07 <- read.csv("output_wind_size_and_shape_G.csv")
-data08 <- read.csv("output_wind_size_and_shape_H.csv")
-data09 <- read.csv("output_wind_size_and_shape_I.csv")
-data10 <- read.csv("output_wind_size_and_shape_J.csv")
-data11 <- read.csv("output_wind_size_and_shape_K.csv")
+data06 <- read.csv("output_wind_size_and_shapeF.csv")
+data07 <- read.csv("output_wind_size_and_shapeG.csv")
+data08 <- read.csv("output_wind_size_and_shapeH.csv")
+data09 <- read.csv("output_wind_size_and_shapeI.csv")
+data10 <- read.csv("output_wind_size_and_shapeJ.csv")
+data11 <- read.csv("output_wind_size_and_shapeK.csv")
+data12 <- read.csv("output_wind_size_and_shapeL.csv")
+data13 <- read.csv("output_wind_size_and_shapeM.csv")
 
 data <- rbind(data01,data02,data03,data04,data05,data06,
-              data07,data08,data09,data10,data11)
+              data07,data08,data09,data10,data11,data12,data13)
 
 write.csv(data,"output_wind_size_and_shape.csv",row.names=F)
 
@@ -35,7 +37,8 @@ head(data)
 nrow(data)
 
 
-
+rm(data01,data02,data03,data04,data05,data06,
+   data07,data08,data09,data10,data11,data12,data13)
 
 ###############################################
 # Calculate "state_score" for each simulation #
