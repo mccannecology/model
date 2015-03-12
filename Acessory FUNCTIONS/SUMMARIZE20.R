@@ -273,11 +273,11 @@ SAV_FP_plot
 
 ggsave(file="wind & shape & size - A2 - 9ha.jpg",SAV_FP_plot, height=8,width=12)
 
+# remove  title
+SAV_FP_plot <- SAV_FP_plot + ggtitle(NULL)
+SAV_FP_plot
 
-
-
-
-
+ggsave(file="wind & shape & size - A2 - 9ha - no_title.jpg",SAV_FP_plot, height=8,width=12)
 
 ##################
 # Plots under    #  
@@ -334,6 +334,11 @@ SAV_FP_plot
 
 ggsave(file="wind & shape & size - A2 - rectangle.jpg",SAV_FP_plot, height=8,width=12)
 
+# remove  title
+SAV_FP_plot <- SAV_FP_plot + ggtitle(NULL)
+SAV_FP_plot
+
+ggsave(file="wind & shape & size - A2 - rectangle - no_title.jpg.jpg",SAV_FP_plot, height=8,width=12)
 
 ################
 # Scenario A2  #
@@ -431,7 +436,6 @@ SAV_FP_plot <- SAV_FP_plot + ggtitle("Scenario: A2 (9 ha only)")
 SAV_FP_plot
 
 ggsave(file="wind & shape & size - A2 - 9ha.jpg",SAV_FP_plot, height=8,width=12)
-
 
 ################
 # Scenario A2  #

@@ -56,6 +56,11 @@ SAV_FP_plot2
 
 ggsave(file="output_multiple_species - state_score.jpg",SAV_FP_plot2, height=4,width=10)
 
+# remove title 
+SAV_FP_plot2 <- SAV_FP_plot2 + ggtitle(NULL)
+SAV_FP_plot2
+
+ggsave(file="output_multiple_species - state_score - no title.jpg",SAV_FP_plot2, height=4,width=10)
 
 
 
