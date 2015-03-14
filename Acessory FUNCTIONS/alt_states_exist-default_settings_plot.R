@@ -28,6 +28,7 @@ SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
 SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=0)
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
+SAV_FP_plot <- SAV_FP_plot + scale_x_continuous(breaks=c(1,3,5,7,9))
 SAV_FP_plot
 
 ggsave(file="plant_state_plot - default settings.jpg",SAV_FP_plot, height=8,width=12)
@@ -200,10 +201,10 @@ temp_plot_9
 # make a blank space-holder plot 
 blankPanel <- grid.rect(gp=gpar(col="white")) 
 
-combo_plot <- arrangeGrob(arrangeGrob(blankPanel,SAV_FP_plot,blankPanel, ncol=3,widths=c(0.25,1,0.25)),
+combo_plot <- arrangeGrob(arrangeGrob(blankPanel,SAV_FP_plot,blankPanel, ncol=3,widths=c(0.5,1,0.5)),
                           arrangeGrob(temp_plot_1,temp_plot_5,temp_plot_9, ncol=3),
                           ncol=1, 
-                          heights=c(1.75,1))
+                          heights=c(1.6,1))
 
 
 ggsave("combo_plot-default_settings.jpg",combo_plot,height=10,width=12)

@@ -52,6 +52,7 @@ SAV_FP_plot2 <- SAV_FP_plot2 + xlab("Total N (mg/L)")
 SAV_FP_plot2 <- SAV_FP_plot2 + ylab(expression(paste("Plant state score")))
 SAV_FP_plot2 <- SAV_FP_plot2 + theme_bw(base_size=18)
 SAV_FP_plot2 <- SAV_FP_plot2 + ggtitle("1 ha, rectangle")
+SAV_FP_plot2 <- SAV_FP_plot2 + scale_x_continuous(breaks=c(1,3,5,7,9))
 SAV_FP_plot2
 
 ggsave(file="output_multiple_species - state_score.jpg",SAV_FP_plot2, height=4,width=10)

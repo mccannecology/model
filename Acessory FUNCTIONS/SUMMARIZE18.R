@@ -41,6 +41,7 @@ SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 #SAV_FP_plot <- SAV_FP_plot + ggtitle("1 ha, rectangle")
+SAV_FP_plot <- SAV_FP_plot + scale_x_continuous(breaks=c(1,3,5,7,9))
 SAV_FP_plot
 
 ggsave(file="output_growing_season_state_score.jpg",SAV_FP_plot, height=4,width=12)
