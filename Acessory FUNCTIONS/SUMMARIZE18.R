@@ -73,5 +73,5 @@ SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
 SAV_FP_plot <- SAV_FP_plot + scale_x_continuous(breaks=c(1,3,5,7,9))
 SAV_FP_plot
 
-ggsave(file="output_growing_season_state_score - with_colour.jpg",SAV_FP_plot, height=4,width=13)
+ggsave(file="output_growing_season_state_score - with_colour.jpg",SAV_FP_plot, height=4,width=11)
 
