@@ -25,7 +25,16 @@ nrow(data)
 # (+) score: more FP                          #
 ###############################################
 # I could also use this (avg cover in the final year)
-data$state_score <- (data$FP_end_yr04 - data$SAV_end_yr04) / sqrt(2)
+data$state_score04 <- (data$FP_end_yr04 - data$SAV_end_yr04) / sqrt(2)
+data$state_score03 <- (data$FP_end_yr03 - data$SAV_end_yr03) / sqrt(2)
+data$state_score02 <- (data$FP_end_yr02 - data$SAV_end_yr02) / sqrt(2)
+data$state_score01 <- (data$FP_end_yr01 - data$SAV_end_yr01) / sqrt(2)
+
+#################################################### 
+# Calculate difference between last two time steps #  
+####################################################
+data$state_score04vs03 <- data$state_score04 - data$state_score03
+
 
 # change "data$days" to a factor with different levels 
 data$days_factor <- as.factor(data$days)
@@ -33,15 +42,36 @@ levels(data$days_factor) <- c("12 years\n 50 days per year","8 years\n 75 days p
                               "4 years\n 150 days per year","1 year\n 600 days per year")
 
 # Plot 
-SAV_FP_plot <- ggplot(data, aes(x=TOTALN,y=state_score))
+SAV_FP_plot <- ggplot(data, aes(x=TOTALN,y=state_score04))
 SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()
 SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075))                                 
 SAV_FP_plot <- SAV_FP_plot + facet_grid(. ~ days_factor)
 SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
 SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
 SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
-#SAV_FP_plot <- SAV_FP_plot + ggtitle("1 ha, rectangle")
 SAV_FP_plot <- SAV_FP_plot + scale_x_continuous(breaks=c(1,3,5,7,9))
 SAV_FP_plot
 
 ggsave(file="output_growing_season_state_score.jpg",SAV_FP_plot, height=4,width=12)
+
+
+# Plot it with color
+color_lims <- max(abs(min(data$state_score04vs03)), max(data$state_score04vs03))
+
+SAV_FP_plot <- ggplot(data, aes(x=TOTALN,y=state_score04))
+SAV_FP_plot <- SAV_FP_plot + geom_point(size=3, 
+                                        aes(fill=state_score04vs03),
+                                        position=position_jitter(w=0.075),
+                                        colour="black",pch=21)
+SAV_FP_plot <- SAV_FP_plot + scale_fill_gradientn(colours=c("red","white","blue"),
+                                                  limits=c(-color_lims,color_lims),
+                                                  name=expression(paste(Delta," state",sep="")))                             
+SAV_FP_plot <- SAV_FP_plot + facet_grid(. ~ days_factor)
+SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
+SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
+SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
+SAV_FP_plot <- SAV_FP_plot + scale_x_continuous(breaks=c(1,3,5,7,9))
+SAV_FP_plot
+
+ggsave(file="output_growing_season_state_score - with_colour.jpg",SAV_FP_plot, height=4,width=13)
+

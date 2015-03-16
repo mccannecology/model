@@ -21,7 +21,15 @@ nrow(data)
 # (+) score: more FP                          #
 ###############################################
 # I could also use this (avg cover in the final year)
-data$state_score <- (data$FP_end_yr04 - data$SAV_end_yr04) / sqrt(2)
+data$state_score04 <- (data$FP_end_yr04 - data$SAV_end_yr04) / sqrt(2)
+data$state_score03 <- (data$FP_end_yr03 - data$SAV_end_yr03) / sqrt(2)
+data$state_score02 <- (data$FP_end_yr02 - data$SAV_end_yr02) / sqrt(2)
+data$state_score01 <- (data$FP_end_yr01 - data$SAV_end_yr01) / sqrt(2)
+
+#################################################### 
+# Calculate difference between last two time steps #  
+####################################################
+data$state_score04vs03 <- data$state_score04 - data$state_score03
 
 #############################################
 # Categorize "state_score" into "state"     #
@@ -44,7 +52,7 @@ data$state[-50/sqrt(2) < data$state_score & data$state_score < 50/sqrt(2)] <- "m
 data$scenario_factor <- as.factor(data$scenario)
 levels(data$scenario_factor) <- c("1 species","3 species: equal","3 species: tradeoffs","3 species: hierarchy")
 
-SAV_FP_plot2 <- ggplot(data, aes(x=TOTALN,y=state_score))
+SAV_FP_plot2 <- ggplot(data, aes(x=TOTALN,y=state_score04))
 SAV_FP_plot2 <- SAV_FP_plot2 + scale_colour_grey()
 SAV_FP_plot2 <- SAV_FP_plot2 + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.075)) 
 SAV_FP_plot2 <- SAV_FP_plot2 + facet_grid(. ~ scenario_factor)
@@ -57,11 +65,32 @@ SAV_FP_plot2
 
 ggsave(file="output_multiple_species - state_score.jpg",SAV_FP_plot2, height=4,width=10)
 
-# remove title 
+
+# with colour
+color_lims <- max(abs(min(data$state_score04vs03)), max(data$state_score04vs03))
+
+SAV_FP_plot2 <- ggplot(data, aes(x=TOTALN,y=state_score04))
+SAV_FP_plot2 <- SAV_FP_plot2 + geom_point(size=3, 
+                                        aes(fill=state_score04vs03),
+                                        position=position_jitter(w=0.075),
+                                        colour="black",pch=21)
+SAV_FP_plot2 <- SAV_FP_plot2 + scale_fill_gradientn(colours=c("red","white","blue"),
+                                                  limits=c(-color_lims,color_lims),
+                                                  name=expression(paste(Delta," state",sep="")))
+SAV_FP_plot2 <- SAV_FP_plot2 + facet_grid(. ~ scenario_factor)
+SAV_FP_plot2 <- SAV_FP_plot2 + xlab("Total N (mg/L)")
+SAV_FP_plot2 <- SAV_FP_plot2 + ylab(expression(paste("Plant state score")))
+SAV_FP_plot2 <- SAV_FP_plot2 + theme_bw(base_size=18)
 SAV_FP_plot2 <- SAV_FP_plot2 + ggtitle(NULL)
+SAV_FP_plot2 <- SAV_FP_plot2 + scale_x_continuous(breaks=c(1,3,5,7,9))
 SAV_FP_plot2
 
-ggsave(file="output_multiple_species - state_score - no title.jpg",SAV_FP_plot2, height=4,width=10)
+ggsave(file="output_multiple_species - state_score - with_colour.jpg",SAV_FP_plot2, height=4,width=11)
+
+
+
+
+
 
 
 
