@@ -34,6 +34,18 @@ SAV_FP_plot
 ggsave(file="plant_state_plot - default settings.jpg",SAV_FP_plot, height=8,width=12)
 
 
+# plot the final nutrient levels vs. the initial nutrient levels 
+SAV_FP_plot <- ggplot(temp_data, aes(x=TOTALN_end_yr04,y=state_score))
+SAV_FP_plot <- SAV_FP_plot + scale_colour_grey()       
+SAV_FP_plot <- SAV_FP_plot + geom_point(alpha=0.2,size=3, position=position_jitter(w=0.025,h=1))                                    
+SAV_FP_plot <- SAV_FP_plot + xlab("Total N (mg/L)")
+SAV_FP_plot <- SAV_FP_plot + ylab(expression(paste("Plant state score")))
+SAV_FP_plot <- SAV_FP_plot + geom_hline(yintercept=0)
+SAV_FP_plot <- SAV_FP_plot + theme_bw(base_size=18)
+SAV_FP_plot
+ggsave(file="plant_state_plot - default settings - TOTALN_end_yr04.jpg",SAV_FP_plot, height=8,width=12)
+
+
 
 
 ##################################
